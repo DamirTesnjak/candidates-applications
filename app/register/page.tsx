@@ -1,28 +1,38 @@
+import { createHrUser } from "@/app/_actions/createHrUser";
+
 export default function RegisterPage() {
     // TODO create submit function
     return (
-        <form>
+        <form action={createHrUser}>
             <div>
                 <label htmlFor="name">Name</label>
-                <input id="name" type="text"/>
+                <input name="name" type="text"/>
             </div>
             <div>
                 <label htmlFor="surname">Surname</label>
-                <input id="surname" type="text"/>
+                <input name="surname" type="text"/>
             </div>
             <div>
                 <label htmlFor="companyName">Company name</label>
-                <input id="companyName" type="text"/>
+                <input name="companyName" type="text"/>
+            </div>
+            <div>
+                <label htmlFor="phoneNumber">Telephone</label>
+                <input name="phoneNumber" type="text"/>
+            </div>
+            <div>
+                <label htmlFor="email">Email</label>
+                <input name="email" type="email"/>
             </div>
             <div>
                 <label htmlFor="username">Username</label>
-                <input id="username" type="text"/>
+                <input name="username" type="text"/>
             </div>
             <div>
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password"/>
+                <input name="password" type="password"/>
             </div>
-            <button type="button">Upload profile picture</button>
+            <input name="file" type="file"/>
             <button type="submit">Create account</button>
         </form>
     )
