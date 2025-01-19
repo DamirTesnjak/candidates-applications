@@ -4,7 +4,7 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import nodemailer from 'nodemailer';
 import bcryptjs from "bcryptjs";
 
-import {DATABASES, EMAIL_TYPE, FORM_TYPE, FILE_TYPE} from "@/constants/constants";
+import {DATABASES, EMAIL_TYPE, FILE_TYPE} from "@/constants/constants";
 import { getFormDataObject } from "@/utils/formValidation/getFormDataObject";
 import { formValidation } from "@/utils/formValidation/formValidation";
 import { uploadFile } from "@/utils/uploadFile";
@@ -48,7 +48,7 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
             subject: emailType === EMAIL_TYPE.verify? "Verify your email" : "Reset your password",
             html: `<p>
                 Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === EMAIL_TYPE.verify ? "Verify your email!" : "Reset your password"} 
-                or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/main_content/verifyemail?token=${hashedToken}
+                or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
                 </p>`
         }
 
@@ -100,22 +100,35 @@ export const createHrUser = async (formData: FormData) => {
             password: hashedPassword,
         })
 
-        const savedUser = await newUser.save()
+        const savedUser = await newUser.save();
+
+        if (savedUser !== newUser) {
+            return {
+                error: "Cannot create user! Please try again or contact support!",
+            }
+        }
 
         // send verification email
-        await sendEmail({
+        const messageId = await sendEmail({
             email: formDataObject.email,
             emailType: EMAIL_TYPE.verify,
             userId: savedUser._id
         })
 
+        if (!messageId) {
+            return {
+                error: "Something went wrong! Please try again or contact support!",
+            }
+        }
+
         return {
             message: "User created successfully",
             success: true,
         }
-    } catch (_error: any) {
+    } catch (error) {
+        console.log('error', error);
         return {
-            message: "Cannot connect to the database!",
+            error: "Cannot connect to the database!",
             success: false,
         }
     }
