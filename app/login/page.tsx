@@ -1,14 +1,15 @@
+import {loginHrUser} from "@/app/_actions/loginHrUser";
+
 export default function LogingPage() {
-    // TODO create submit function
     return (
-        <form>
+        <form action={loginHrUser}>
             <div>
-                <label htmlFor="userName">Username</label>
-                <input id="username" type="text"/>
+                <label htmlFor="username">Username</label>
+                <input name="username" type="text"/>
             </div>
             <div>
                 <label htmlFor="password">Password</label>
-                <input id="password" type="password"/>
+                <input name="password" type="password"/>
             </div>
             <button type="submit">Login</button>
         </form>
