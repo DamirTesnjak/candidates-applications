@@ -1,7 +1,6 @@
 import { createHrUser } from "@/app/_actions/createHrUser";
 
 export default function RegisterPage() {
-    // TODO create submit function
     return (
         <form action={createHrUser}>
             <div>

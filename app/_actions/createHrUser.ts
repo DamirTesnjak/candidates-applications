@@ -74,7 +74,7 @@ export const createHrUser = async (formData: FormData) => {
         const Model = connectToDB(DATABASES.hrUsers);
         if (!Model) {
             return {
-                message: "Cann"
+                message: "Something went wrong, please try again or contact support.",
             }
         }
         // check if user already exists
