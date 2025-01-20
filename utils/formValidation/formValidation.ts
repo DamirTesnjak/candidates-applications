@@ -3,8 +3,8 @@ import {getFormValidationSchema} from "@/utils/formValidation/getFormValidationS
 
 
 export function formValidation(formData: FormData) {
-    const formValidationSchema = getFormValidationSchema();
     const formDataObject = getFormDataObject(formData);
+    const formValidationSchema = getFormValidationSchema(formDataObject);
 
     return formValidationSchema.safeParse(formDataObject);
 }
