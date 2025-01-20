@@ -1,10 +1,12 @@
+'use server'
+
 import {connectToDB} from "@/utils/dbConfig/dbConfig";
 import {DATABASES} from "@/constants/constants";
-import {redirect} from "next/navigation";
 
 export async function verifyEmail(token: string) {
     try {
-        const Model = connectToDB(DATABASES.hrUsers);
+        const Model = connectToDB(DATABASES.hrUsers)
+        console.log("token: ", token);
 
         if (!Model) {
             console.log('Cannot connect to DB');
@@ -17,6 +19,8 @@ export async function verifyEmail(token: string) {
             verifyToken: token,
             verifyTokenExpiry: { $gt: Date.now() },
         })
+
+        console.log('user', user);
 
         if (!user) {
             return { error: "Invalid token" };
@@ -33,9 +37,7 @@ export async function verifyEmail(token: string) {
                 error: "Something went wrong during verification process, please try again or contact support",
             }
         }
-        redirect('/login');
     } catch (error) {
-        console.log('Cannot connect to DB. Please check if MongoDB is running!');
         console.log('error', error);
         return {
             error: "Something went wrong, please try again later or contact support",
