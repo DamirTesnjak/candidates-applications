@@ -5,6 +5,11 @@ export interface IFormDataType {
     name?: string;
     surname?: string;
     companyName?: string;
+    address?: string;
+    city?: string;
+    zipCode?: string;
+    country?: string;
+    linkedIn?: string;
     phoneNumber?: string;
     email?: string;
     username?: string;

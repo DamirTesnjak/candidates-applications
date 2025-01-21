@@ -20,7 +20,7 @@ export function getFormValidationSchema(formDataObject: IFormDataType) {
             schemaShape[field] = z.string({ required_error: "Email address is required" })
                 .email({ message: "Invalid email address"})
         }
-        if (field === "file") {
+        if (field === "file" || field === "profilePicture") {
             schemaShape[field] = z.object({
                 size: z.number(),
                 type: z.string(),
