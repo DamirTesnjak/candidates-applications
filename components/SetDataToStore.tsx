@@ -17,7 +17,7 @@ export default function SetDataToStore({data, databaseName}) {
         if (databaseName === DATABASES.candidates) {
             dispatch(loadUpdateCandidate(data));
         }
-    }, [databaseName]);
+    }, [data, databaseName, dispatch]);
 
     useEffect(() => {
         if (data) {
