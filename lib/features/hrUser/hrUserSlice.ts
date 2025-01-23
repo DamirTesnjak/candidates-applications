@@ -19,15 +19,12 @@ export const hrUserSlice = createSlice({
         email: "",
     },
     reducers: {
-        updateHrUser: (state, action) => {
-            state.profilePicture = action.payload;
-        },
-        loadHrUser: (state, action) => {
+        loadUpdateHrUser: (state, action) => {
             return updateWholeObjectInState(state, action.payload);
         }
 
     }
 })
 
-export const { updateHrUser, loadHrUser } = hrUserSlice.actions;
+export const { loadUpdateHrUser } = hrUserSlice.actions;
 export default hrUserSlice.reducer;

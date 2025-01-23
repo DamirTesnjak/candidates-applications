@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Sidebar from "@/components/Sidebar";
 import StoreProvider from "@/app/StoreProvider";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,13 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <StoreProvider>
-        <html lang="en">
-          <body>
-            <Sidebar />
+    <html lang="en">
+      <body>
+        <Header />
+        <Sidebar />
+        <StoreProvider>
             {children}
-          </body>
-        </html>
-      </StoreProvider>
+        </StoreProvider>
+        <div id="modal" />
+      </body>
+    </html>
   );
 }
