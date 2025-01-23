@@ -6,7 +6,6 @@ import {DATABASES} from "@/constants/constants";
 export async function verifyEmail(token: string) {
     try {
         const Model = connectToDB(DATABASES.hrUsers)
-        console.log("token: ", token);
 
         if (!Model) {
             console.log('Cannot connect to DB');
@@ -19,8 +18,6 @@ export async function verifyEmail(token: string) {
             verifyToken: token,
             verifyTokenExpiry: { $gt: Date.now() },
         })
-
-        console.log('user', user);
 
         if (!user) {
             return { error: "Invalid token" };
