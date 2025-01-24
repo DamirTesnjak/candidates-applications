@@ -13,7 +13,7 @@ export default async function CandidatesPage() {
                     <div id="archived">{candidate.status.archived}</div>
                     <div id="employed">{candidate.status.employed}</div>
                     <div id="rejected">{candidate.status.rejected}</div>
-                    <Link href={`/candidateProfile/${candidate._id}`} target="_blank" prefetch>Link to profile</Link>
+                    <Link href={`/candidateProfile/${candidate._id}`} prefetch>Link to profile</Link>
                 </div>
             });
     }

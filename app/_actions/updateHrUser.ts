@@ -3,7 +3,7 @@
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
-import {DATABASES, FILE_TYPE} from "@/constants/constants";
+import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
 
 export async function updateHrUser(formData: FormData) {
@@ -25,19 +25,15 @@ export async function updateHrUser(formData: FormData) {
         }
     }
     // check if user already exists
-    let hrUser = await Model.findById({ id: formDataObject.id });
+    const hrUser = await Model.findById({ id: formDataObject.id });
     if (hrUser) {
-        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image);
-
-        hrUser = {
-            ...hrUser,
-            profilePicture: uploadedProfilePictureFile,
-            name: formDataObject.name,
-            surname: formDataObject.surname,
-            phoneNumber: formDataObject.phoneNumber,
-            email: formDataObject.email,
-            username: formDataObject.username,
-        }
+        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
+        hrUser.profilePicture = uploadedProfilePictureFile;
+        hrUser.name = formDataObject.name;
+        hrUser.surname = formDataObject.surname;
+        hrUser.phoneNumber = formDataObject.phoneNumber;
+        hrUser.email = formDataObject.email;
+        hrUser.username = formDataObject.username;
     }
 
     const savedHrUser = await hrUser.save();

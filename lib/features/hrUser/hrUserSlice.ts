@@ -1,23 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 import updateWholeObjectInState from "@/utils/updateWholeObjectInState";
 
+export const initialStateHrUser = {
+    id: "",
+    profilePicture: {
+        file: {
+            name: "",
+            data: "",
+            contentType: "",
+        },
+    },
+    name: "",
+    surname: "",
+    companyName: "",
+    phoneNumber: "",
+    email: "",
+}
+
 export const hrUserSlice = createSlice({
     name: 'hrUser',
-    initialState: {
-        id: "",
-        profilePicture: {
-            file: {
-                name: "",
-                data: "",
-                contentType: "",
-            },
-        },
-        name: "",
-        surname: "",
-        companyName: "",
-        phoneNumber: "",
-        email: "",
-    },
+    initialState: initialStateHrUser,
     reducers: {
         loadUpdateHrUser: (state, action) => {
             return updateWholeObjectInState(state, action.payload);

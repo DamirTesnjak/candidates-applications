@@ -16,10 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
         <Sidebar />
         <StoreProvider>
-            {children}
+          <Header />
+          {children}
         </StoreProvider>
         <div id="modal" />
       </body>

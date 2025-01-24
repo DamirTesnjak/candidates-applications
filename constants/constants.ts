@@ -1,3 +1,8 @@
+export const STORE_REDUCER_NAME = {
+    hrUser: "hrUser",
+    candidate: 'candidate'
+}
+
 export const DATABASES = {
     candidates: 'candidates',
     hrUsers: 'hrUsers',
@@ -17,4 +22,9 @@ export const FORM_TYPE = {
     hrRegisterForm: "hrRegisterForm",
     hrLoginForm: "hrLoginForm",
     candidateApplyForm: "candidateRegisterForm",
+}
+
+export const FORM_INPUT_FIELD_NAME = {
+    file: "file",
+    image: "profilePicture",
 }

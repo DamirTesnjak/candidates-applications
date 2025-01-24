@@ -14,7 +14,7 @@ export async function deleteProfileInfo(formData: FormData) {
         }
     }
     // check if user already exists
-    const profile = await Model.findById({ id: formDataObject.id });
+    const profile = await Model.findById(formDataObject.id);
     const deletedProfile = await profile.deleteOne();
 
     if (!deletedProfile) {

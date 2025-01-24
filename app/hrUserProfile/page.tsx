@@ -1,16 +1,10 @@
-import {getHrUserProfile} from "@/app/_actions/getHrUserProfile";
-import DisplayHrUserInfo from "@/components/DisplayHrUserInfo";
+import {initialStateHrUser} from "@/lib/features/hrUser/hrUserSlice";
+import {STORE_REDUCER_NAME} from "@/constants/constants";
+import EditForm from "@/components/EditForm";
 
 export default async function UserProfilePage() {
-    const hrUserInfo = await getHrUserProfile()
-
-    return (
-        <div>
-            User Profile
-            <div>
-                <DisplayHrUserInfo hrUserInfo={JSON.stringify(hrUserInfo)} />
-            </div>
-
-        </div>
-    )
+    return <EditForm
+        stateModel={initialStateHrUser}
+        storeReducerName={STORE_REDUCER_NAME.hrUser}
+    />
 }

@@ -6,9 +6,5 @@ export function getFormDataObject(formData: FormData) {
     for (const [key, value] of formData) {
         formDataObject[key] = value;
     }
-
-    const formDataObjectKeys = Object.keys(formDataObject);
-    delete formDataObject[formDataObjectKeys[0]];
-
     return formDataObject;
 }

@@ -3,12 +3,16 @@
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
-import {DATABASES, FILE_TYPE} from "@/constants/constants";
+import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
 
 export async function updateCandidate(formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
+
+    console.log('FormData', formData);
+
+
 
     // Return early if the form data is invalid
     if (!validatedFields.success) {
@@ -25,17 +29,17 @@ export async function updateCandidate(formData: FormData) {
         }
     }
     // check if user already exists
-    let User = await Model.findById({ id: formDataObject.id });
+    const User = await Model.findById(formDataObject.id);
     if (User) {
-        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image);
-        const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file);
+        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
+        const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file, FORM_INPUT_FIELD_NAME.file);
 
-        User = {
-            ...User,
-            profilePicture: uploadedProfilePictureFile,
-            name: formDataObject.name,
-            surname: formDataObject.surname,
-            contact: {
+        console.log(uploadedCurriculumVitaeFile);
+
+            User.profilePicture = uploadedProfilePictureFile;
+            User.name = formDataObject.name;
+            User.surname = formDataObject.surname;
+            User.contact = {
                 address: formDataObject.address,
                 city: formDataObject.city,
                 zipCode: formDataObject.zipCode,
@@ -43,15 +47,15 @@ export async function updateCandidate(formData: FormData) {
                 email: formDataObject.email,
                 phoneNumber: formDataObject.phoneNumber,
                 linkedIn: formDataObject.linkedIn,
-            },
-            curriculumVitae: uploadedCurriculumVitaeFile,
-            status: {
-                archived: true,
-                employed: false,
-                rejected: false,
-            },
-        }
+            };
+            User.curriculumVitae = uploadedCurriculumVitaeFile;
+            User.status = {
+                archived: formDataObject.archived === 'on',
+                employed: formDataObject.employed === 'on',
+                rejected: formDataObject.rejected === 'on',
+            };
     }
+
 
     const savedUser = await User.save();
     if (!savedUser) {

@@ -16,4 +16,7 @@ export interface IFormDataType {
     email?: string;
     username?: string;
     password?: string
+    archived?: string;
+    employed?: string;
+    rejected?: string;
 }

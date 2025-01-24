@@ -1,5 +1,5 @@
-export const uploadFile = async (formData: FormData, fileType: string) => {
-    const file = formData.get('file') as File;
+export const uploadFile = async (formData: FormData, fileType: string, inputFieldName: string) => {
+    const file = formData.get(inputFieldName) as File;
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 

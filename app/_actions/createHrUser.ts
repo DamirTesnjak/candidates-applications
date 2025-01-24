@@ -4,7 +4,7 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import nodemailer from 'nodemailer';
 import bcryptjs from "bcryptjs";
 
-import {DATABASES, EMAIL_TYPE, FILE_TYPE} from "@/constants/constants";
+import {DATABASES, EMAIL_TYPE, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import { getFormDataObject } from "@/utils/formValidation/getFormDataObject";
 import { formValidation } from "@/utils/formValidation/formValidation";
 import { uploadFile } from "@/utils/uploadFile";
@@ -88,7 +88,7 @@ export const createHrUser = async (formData: FormData) => {
         // hash password
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(formDataObject.password!, salt);
-        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image);
+        const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
 
         const newUser = new Model({
             profilePicture: uploadedProfilePictureFile,

@@ -4,7 +4,7 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {uploadFile} from "@/utils/uploadFile";
-import {DATABASES, FILE_TYPE} from "@/constants/constants";
+import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 
 export async function createCandidate(formData: FormData) {
     const validatedFields = formValidation(formData);
@@ -30,8 +30,8 @@ export async function createCandidate(formData: FormData) {
         return { error: "User already exists" };
     }
 
-    const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image);
-    const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file);
+    const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
+    const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file, FORM_INPUT_FIELD_NAME.file);
 
 
     const newCandidate = new Model({

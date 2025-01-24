@@ -6,13 +6,14 @@ import jwt from "jsonwebtoken";
 import {DATABASES} from "@/constants/constants";
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
-import {redirect} from "next/navigation";
 import { cookies } from 'next/headers';
 
 export async function loginHrUser(formData: FormData) {
     const cookieStore = await cookies();
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
+
+    console.log('formDataObject', formDataObject);
 
     // Return early if the form data is invalid
     if (!validatedFields.success) {
@@ -48,6 +49,8 @@ export async function loginHrUser(formData: FormData) {
         value: token,
         httpOnly: true,
     })
-
-    redirect('/')
+    return JSON.stringify({
+        message: `Successfully logged in!`,
+        User,
+    });
 }
