@@ -2,6 +2,8 @@ import { createConnection } from "mongoose";
 import { DATABASES } from "@/constants/constants";
 import candidateSchema from "@/utils/dbConfig/models/candidateModel.js";
 import hrUserSchema from "@/utils/dbConfig/models/hrUserModel";
+import emailTemplateSchema from "@/utils/dbConfig/models/emailTemplateModel";
+import companyEmailSettingsSchema from "@/utils/dbConfig/models/companyEmailSettingsModel";
 
 export function connectToDB(database: string) {
     try {
@@ -16,6 +18,14 @@ export function connectToDB(database: string) {
 
         if (database === DATABASES.hrUsers) {
             Model = connection.model(DATABASES.hrUsers, hrUserSchema);
+        }
+
+        if (database === DATABASES.emailTemplates) {
+            Model = connection.model(DATABASES.emailTemplates, emailTemplateSchema);
+        }
+
+        if (database === DATABASES.companyEmailConfigs) {
+            Model = connection.model(DATABASES.companyEmailConfigs, companyEmailSettingsSchema);
         }
 
         connection.on('connected', () => {

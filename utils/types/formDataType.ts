@@ -19,4 +19,8 @@ export interface IFormDataType {
     archived?: string;
     employed?: string;
     rejected?: string;
+    emailType?: string;
+    emailText?: string;
+    emailHost?: string;
+    port?: string;
 }

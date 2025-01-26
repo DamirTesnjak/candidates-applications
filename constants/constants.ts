@@ -6,6 +6,8 @@ export const STORE_REDUCER_NAME = {
 export const DATABASES = {
     candidates: 'candidates',
     hrUsers: 'hrUsers',
+    emailTemplates: 'emailTemplates',
+    companyEmailConfigs: 'companyEmailConfigs',
 }
 
 export const EMAIL_TYPE = {
