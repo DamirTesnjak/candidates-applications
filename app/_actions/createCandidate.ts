@@ -12,16 +12,16 @@ export async function createCandidate(formData: FormData) {
 
     // Return early if the form data is invalid
     if (!validatedFields.success) {
-        console.log('errors:', validatedFields.error.flatten().fieldErrors);
         return {
-            errors: validatedFields.error.flatten().fieldErrors,
+            error: validatedFields.error.flatten().fieldErrors,
         }
     }
     const Model = connectToDB(DATABASES.candidates);
 
     if (!Model) {
+        console.log('ERROR_CREATE_CANDIDATE: Error with connecting to the database!');
         return {
-            message: "Something went wrong, please try again or contact support.",
+            error: "Something went wrong, please try again or contact support.",
         }
     }
 
@@ -58,10 +58,11 @@ export async function createCandidate(formData: FormData) {
     const savedCandidate = await newCandidate.save();
 
     if (savedCandidate !== newCandidate) {
+        console.log('ERROR_CREATE_CANDIDATE: Error with saving new candidate to the database!');
         return {
             error: "Cannot create user! Please try again or contact support!",
         }
     }
 
-    return { message: "Candidate created successfully" }
+    return { message: "Candidate created successfully", success: true };
 }

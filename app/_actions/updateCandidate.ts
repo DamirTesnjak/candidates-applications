@@ -10,55 +10,51 @@ export async function updateCandidate(formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 
-    console.log('FormData', formData);
-
-
-
     // Return early if the form data is invalid
     if (!validatedFields.success) {
-        console.log('errors:', validatedFields.error.flatten().fieldErrors);
         return {
-            errors: validatedFields.error.flatten().fieldErrors,
+            error: validatedFields.error.flatten().fieldErrors,
         }
     }
 
     const Model = connectToDB(DATABASES.candidates);
+
     if (!Model) {
+        console.log('ERROR_UPDATE_CANDIDATE: Error with connecting to the database!');
         return {
-            message: "Something went wrong, please try again or contact support.",
+            error: "Something went wrong, please try again or contact support.",
         }
     }
     // check if user already exists
-    const User = await Model.findById(formDataObject.id);
-    if (User) {
+    const candidate = await Model.findById(formDataObject.id);
+    if (candidate) {
         const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
         const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file, FORM_INPUT_FIELD_NAME.file);
 
-        console.log(uploadedCurriculumVitaeFile);
-
-            User.profilePicture = uploadedProfilePictureFile;
-            User.name = formDataObject.name;
-            User.surname = formDataObject.surname;
-            User.contact = {
-                address: formDataObject.address,
-                city: formDataObject.city,
-                zipCode: formDataObject.zipCode,
-                country: formDataObject.country,
-                email: formDataObject.email,
-                phoneNumber: formDataObject.phoneNumber,
-                linkedIn: formDataObject.linkedIn,
-            };
-            User.curriculumVitae = uploadedCurriculumVitaeFile;
-            User.status = {
-                archived: formDataObject.archived === 'on',
-                employed: formDataObject.employed === 'on',
-                rejected: formDataObject.rejected === 'on',
-            };
+        candidate.profilePicture = uploadedProfilePictureFile || candidate.profilePicture;
+        candidate.name = formDataObject.name;
+        candidate.surname = formDataObject.surname;
+        candidate.contact = {
+            address: formDataObject.address,
+            city: formDataObject.city,
+            zipCode: formDataObject.zipCode,
+            country: formDataObject.country,
+            email: formDataObject.email,
+            phoneNumber: formDataObject.phoneNumber,
+            linkedIn: formDataObject.linkedIn,
+        };
+        candidate.curriculumVitae = uploadedCurriculumVitaeFile || candidate.curriculumVitae;
+        candidate.status = {
+            archived: formDataObject.archived === 'on',
+            employed: formDataObject.employed === 'on',
+            rejected: formDataObject.rejected === 'on',
+        };
     }
 
 
-    const savedUser = await User.save();
-    if (!savedUser) {
+    const savedCandidate = await candidate.save();
+    if (!savedCandidate) {
+        console.log('ERROR_UPDATE_CANDIDATE: Error with updating the candidate to the database!');
         return {
             error: "Something went wrong, cannot save changes, please try again or contact support.",
         }
@@ -66,5 +62,6 @@ export async function updateCandidate(formData: FormData) {
 
     return {
         message: "Changes saved",
+        success: true,
     }
 }

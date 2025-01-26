@@ -8,6 +8,14 @@ export async function getHrUserProfile() {
     const tokenData = await getDataFromToken();
 
     const Model = connectToDB(DATABASES.hrUsers);
+
+    if (!Model) {
+        console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
+        return {
+            message: "Something went wrong, please try again or contact support.",
+        }
+    }
+
     const user = await Model?.findOne({id: tokenData.id})
         .select("-password");
     if (!user) {
@@ -26,5 +34,6 @@ export async function getHrUserProfile() {
             email: user.email,
             profilePicture: user.profilePicture,
         },
+        success: true,
     })
 }

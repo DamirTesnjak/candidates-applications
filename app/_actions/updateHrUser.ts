@@ -12,23 +12,24 @@ export async function updateHrUser(formData: FormData) {
 
     // Return early if the form data is invalid
     if (!validatedFields.success) {
-        console.log('errors:', validatedFields.error.flatten().fieldErrors);
         return {
-            errors: validatedFields.error.flatten().fieldErrors,
+            error: validatedFields.error.flatten().fieldErrors,
         }
     }
 
     const Model = connectToDB(DATABASES.hrUsers);
+
     if (!Model) {
+        console.log('ERROR_UPDATE_HR_USER: Error with connecting to the database!');
         return {
-            message: "Something went wrong, please try again or contact support.",
+            error: "Something went wrong, please try again or contact support.",
         }
     }
     // check if user already exists
-    const hrUser = await Model.findById({ id: formDataObject.id });
+    const hrUser = await Model.findById(formDataObject.id);
     if (hrUser) {
         const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
-        hrUser.profilePicture = uploadedProfilePictureFile;
+        hrUser.profilePicture = uploadedProfilePictureFile || hrUser.profilePicture;
         hrUser.name = formDataObject.name;
         hrUser.surname = formDataObject.surname;
         hrUser.phoneNumber = formDataObject.phoneNumber;
@@ -38,6 +39,7 @@ export async function updateHrUser(formData: FormData) {
 
     const savedHrUser = await hrUser.save();
     if (!savedHrUser) {
+        console.log('ERROR_UPDATE_HR_USER: Error with saving to the database!');
         return {
             error: "Something went wrong, cannot save changes, please try again or contact support.",
         }
@@ -45,5 +47,6 @@ export async function updateHrUser(formData: FormData) {
 
     return {
         message: "Changes saved",
+        success: true,
     }
 }

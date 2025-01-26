@@ -9,8 +9,9 @@ export async function deleteProfileInfo(formData: FormData) {
 
     const Model = connectToDB(DATABASES[formDataObject.databaseName!]);
     if (!Model) {
+        console.log('ERROR_DELETE_PROFILE: Error with connecting to the database!');
         return {
-            message: "Something went wrong, please try again or contact support.",
+            error: "Something went wrong, please try again or contact support.",
         }
     }
     // check if user already exists
@@ -18,6 +19,7 @@ export async function deleteProfileInfo(formData: FormData) {
     const deletedProfile = await profile.deleteOne();
 
     if (!deletedProfile) {
+        console.log('ERROR_DELETE_PROFILE: Error with deleting the profile from the database!');
         return {
             error: "Something went wrong, cannot save changes, please try again or contact support.",
         }
@@ -25,5 +27,6 @@ export async function deleteProfileInfo(formData: FormData) {
 
     return {
         message: "Changes saved",
+        success: true,
     }
 }

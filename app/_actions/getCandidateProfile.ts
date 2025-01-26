@@ -6,6 +6,13 @@ import {DATABASES} from "@/constants/constants";
 export async function getCandidateProfile(id: string) {
     const Model = connectToDB(DATABASES.candidates);
 
+    if (!Model) {
+        console.log('ERROR_GET_CANDIDATE_PROFILE: Error with connecting to the database!');
+        return {
+            error: "Something went wrong, please try again or contact support.",
+        }
+    }
+
     const candidate = await Model?.findById(id);
     if (!candidate) {
         return {
@@ -24,5 +31,6 @@ export async function getCandidateProfile(id: string) {
             curriculumVitae: candidate.curriculumVitae,
             status: candidate.status,
         },
+        success: true,
     });
 }

@@ -8,6 +8,7 @@ export async function getCandidates() {
     const Model = connectToDB(DATABASES.candidates)
 
     if (!Model) {
+        console.log('ERROR_GET_CANDIDATES: Error with connecting to the database!');
         return {
             message: "Something went wrong, please try again or contact support.",
         }
