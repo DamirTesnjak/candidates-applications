@@ -1,7 +1,7 @@
 'use client'
 
 import {useState} from "react";
-import Modal from "@/components/Modal";
+import Modal from "@/components/Modal/Modal";
 import {DATABASES} from "@/constants/constants";
 import {deleteProfileInfo} from "@/app/_actions/deleteProfileInfo";
 

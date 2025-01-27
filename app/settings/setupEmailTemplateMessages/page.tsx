@@ -1,6 +1,6 @@
 'use client'
 
-import TextEditor from "@/components/TextEditor";
+import TextEditor from "@/components/TextEditor/TextEditor";
 import {createEmailTemplate} from "@/app/_actions/createEmailTemplate";
 
 export default function SetupEmailTemplateMessages(){

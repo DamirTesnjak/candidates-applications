@@ -1,4 +1,4 @@
-import TextEditor from "@/components/TextEditor";
+import TextEditor from "@/components/TextEditor/TextEditor";
 import {updateEmailTemplate} from "@/app/_actions/updateEmailTemplate";
 import {getEmailTemplate} from "@/app/_actions/getEmailTemplate";
 

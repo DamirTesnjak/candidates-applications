@@ -1,5 +1,5 @@
 import {createCandidate} from "@/app/_actions/createCandidate";
-import EditForm from "@/components/EditForm";
+import EditForm from "@/components/EditForm/EditForm";
 import {initialStateCandidate} from "@/lib/features/candidate/candidateSlice";
 import {STORE_REDUCER_NAME} from "@/constants/constants";
 

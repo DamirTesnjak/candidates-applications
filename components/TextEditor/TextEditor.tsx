@@ -22,6 +22,8 @@ import {candidateEmailFiredFromJobPosition} from "@/utils/emailMessagesTemplates
 import SelectInput from "@/UI/SelectInput/SelectInput";
 import {SelectChangeEvent} from "@mui/material/Select";
 
+import styles from './textEditor.module.scss';
+
 export default function TextEditor({ data }) {
     const [textAreaText, setTextAreaText] = useState({
         manualEditing: true,
@@ -104,13 +106,13 @@ export default function TextEditor({ data }) {
                     required={true}
                     id="outlined-required"
                     label="Email Type"
-                    defaultValue="Hello World"
                     variant="standard"
                     size="small"
                     focused={true}
+                    placeholder="Hire, reject, fire..."
                 />
             </div>
-            <label htmlFor="messageText">Message text as HTML markup</label>
+            <label htmlFor="messageText">Insert</label>
             <Button
                 variant="outlined"
                 startIcon={<Paragraph />}
@@ -123,95 +125,87 @@ export default function TextEditor({ data }) {
                 startIcon={<FormatItalicIcon />}
                 onClick={() => onButtonTextEditorClick("italic")
                 }>
-                Italic
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<FormatBoldIcon />}
                 onClick={() => onButtonTextEditorClick("strong")
                 }>
-                Bold
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<FormatUnderlinedIcon />}
                 onClick={() => onButtonTextEditorClick("underline")
                 }>
-                Underline
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<KeyboardReturnIcon />}
                 onClick={() => onButtonTextEditorClick("newLine")
                 }>
-                newLine
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<LinkIcon />}
                 onClick={() => onButtonTextEditorClick("link")
                 }>
-                link
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<SuperscriptIcon />}
                 onClick={() => onButtonTextEditorClick("superscript")
                 }>
-                Superscript
             </Button>
             <Button
                 variant="outlined"
                 startIcon={<SubscriptIcon />}
                 onClick={() => onButtonTextEditorClick("subscript")
                 }>
-                Subscript
             </Button>
-            <div>
                 <Button
                     variant="outlined"
                     startIcon={<PersonIcon />}
                     onClick={() => onButtonTextEditorClick("targetPersonFullName")
                     }>
-                    Candidate Name Template
+                    Candidate Name
                 </Button>
                 <Button
                     variant="outlined"
                     startIcon={<AccountBoxIcon />}
                     onClick={() => onButtonTextEditorClick("hrUserFullNameTemplate")
                     }>
-                    HR User Full Name Template
+                    HR Name
                 </Button>
                 <Button
                     variant="outlined"
                     startIcon={<WorkIcon />}
                     onClick={() => onButtonTextEditorClick("jobTitleTemplate")
                     }>
-                    Job Title Template
+                    Job Title
                 </Button>
                 <Button
                     variant="outlined"
                     startIcon={<BusinessIcon />}
                     onClick={() => onButtonTextEditorClick("companyNameTemplate")
                     }>
-                    Company Name Template
+                    Company Name
                 </Button>
                 <Button
                     variant="outlined"
                     startIcon={<EventIcon />}
                     onClick={() => onButtonTextEditorClick("currentYearTemplate")
                     }>
-                    Current Year Template
+                    Year
                 </Button>
                 <Button
                     variant="outlined"
                     startIcon={<CalendarMonthIcon />}
                     onClick={() => onButtonTextEditorClick("startDateTemplate")
                     }>
-                    Start Date Template
+                    Start Date
                 </Button>
-            </div>
             <div>
+                <span>Email template:</span>
                 <SelectInput
                     value={selectedEmailTemplate.selectedCategory}
                     handleChange={handleChangeOnSelectEmailTemplate}
@@ -220,10 +214,12 @@ export default function TextEditor({ data }) {
                     listDropdown={selectDropdownEmailList}
                 />
             </div>
-            <div>
-                <textarea id="editor" name="messageText" cols={50} rows={10} onInput={changeWhenTyping} value={textAreaText.text}/>
+            <div className={styles.textAreaDisplay}>
+                <div>
+                    <textarea className={styles.textarea} id="editor" name="messageText" cols={50} rows={10} onInput={changeWhenTyping} value={textAreaText.text}/>
+                </div>
+                <div id="preview" className={styles.preview}/>
             </div>
-            <div id="preview"></div>
         </div>
     )
 }

@@ -1,0 +1,7 @@
+.container {
+  display: grid;
+  grid-template-areas:
+          'header header header header'
+          'nav nav nav nav'
+          'sidebar page page page';
+}

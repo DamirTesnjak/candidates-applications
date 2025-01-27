@@ -1,0 +1,19 @@
+.candidateProfilePage {
+  grid-area: page;
+  display: grid;
+  grid-template-areas:
+          'pageTitle pageTitle'
+          'profilePicture profileForm';
+}
+
+.pageTitle {
+  grid-area: pageTitle;
+}
+
+.profilePicture {
+  grid-area: profilePicture;
+}
+
+.profileForm {
+  grid-area: profileForm;
+}

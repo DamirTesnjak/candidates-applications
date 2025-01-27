@@ -4,6 +4,9 @@ import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme/theme";
 
+import styles from '../styles/mainLayout/container.module.scss';
+import globalStyles from '../styles/global/variables.module.scss';
+
 const roboto = Roboto({
     weight: ['300', '400', '500', '700'],
     subsets: ['latin'],
@@ -12,9 +15,9 @@ const roboto = Roboto({
 });
 
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import StoreProvider from "@/app/StoreProvider";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,15 +29,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+    const sidebarLinks = [
+            {link: "/candidates", text: "Candidates"},
+            {link: "/settings", text: "Settings"},
+            {link: "/about", text: "About"},
+        ]
   return (
     <html lang="en">
-      <body className={roboto.variable}>
+      <body className={globalStyles.body}>
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
         <ThemeProvider theme={theme}>
-          <Sidebar />
             <StoreProvider>
-              <Header />
-              {children}
+                <div className={styles.container}>
+                    <Sidebar sidebarLinks={sidebarLinks} />
+                    <Header />
+                    {children}
+                </div>
             </StoreProvider>
             <div id="modal" />
           </ThemeProvider>

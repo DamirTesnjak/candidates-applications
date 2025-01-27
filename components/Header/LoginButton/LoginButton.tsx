@@ -7,7 +7,7 @@ import {useAppSelector} from "@/lib/hooks";
 import {getFile} from "@/utils/getFile";
 import {useCallback, useEffect, useState} from "react";
 import {getHrUserProfile} from "@/app/_actions/getHrUserProfile";
-import SetDataToStore from "@/components/SetDataToStore";
+import SetDataToStore from "@/components/SetDataToStore/SetDataToStore";
 import {DATABASES} from "@/constants/constants";
 
 export default function LoginButton() {

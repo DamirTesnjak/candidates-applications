@@ -1,0 +1,17 @@
+.textAreaDisplay {
+  display: grid;
+  grid-column-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.textarea {
+  width: 95%;
+  height: 400px;
+  resize: none;
+}
+
+.preview {
+  width: 100%;
+  height: 400px;
+
+}

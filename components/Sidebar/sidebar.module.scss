@@ -1,0 +1,8 @@
+.sidebar {
+    grid-area: sidebar;
+}
+
+.sidebarLinkItems {
+    display: flex;
+    flex-direction: column;
+}

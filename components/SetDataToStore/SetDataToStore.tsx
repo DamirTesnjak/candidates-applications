@@ -3,7 +3,7 @@
 import {useCallback, useEffect} from 'react'
 import {useAppDispatch} from "@/lib/hooks";
 import {loadUpdateCandidate} from "@/lib/features/candidate/candidateSlice";
-import {loadUpdateHrUser} from  "@/lib/features/hrUser/hrUserSlice";
+import {loadUpdateHrUser} from "@/lib/features/hrUser/hrUserSlice";
 import {DATABASES} from "@/constants/constants";
 
 export default function SetDataToStore({data, databaseName}) {
