@@ -9,6 +9,7 @@ export default function EditHrUserPage() {
             serverAction={updateHrUser}
             stateModel={initialStateHrUser}
             storeReducerName={STORE_REDUCER_NAME.hrUser}
+            editable={true}
         />
     )
 }

@@ -171,7 +171,7 @@ export default function TextEditor() {
                 <Button
                     variant="outlined"
                     startIcon={<PersonIcon />}
-                    onClick={() => onButtonTextEditorClick("candidateNameTemplate")
+                    onClick={() => onButtonTextEditorClick("targetPersonFullName")
                     }>
                     Candidate Name Template
                 </Button>

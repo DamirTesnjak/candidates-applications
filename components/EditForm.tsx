@@ -22,8 +22,6 @@ export default function EditForm(props: IFormProps) {
         return newProfile ? flattenObject(initialStateCandidate)[stateModelKey] : flattenObject(stateModelKeyAndValues)[stateModelKey];
     }
 
-    console.log('name',flattenedObjects('name'));
-
     return (
         <form action={serverAction}>
             {stateModelKeys.map((stateModelKey) => {
@@ -53,11 +51,13 @@ export default function EditForm(props: IFormProps) {
                     )
                 }
             })}
-            <label htmlFor="profilePicture">Profile picture</label>
-            <input name="profilePicture" type="file"/>
-            <label htmlFor="file">CV PDF file</label>
-            <input name="file" type="file"/>
-            <button type="submit">Save changes</button>
+            { editable && (<div>
+                <label htmlFor="profilePicture">Profile picture</label>
+                <input name="profilePicture" type="file"/>
+                <label htmlFor="file">CV PDF file</label>
+                <input name="file" type="file"/>
+                <button type="submit">Save changes</button>
+            </div>)}
         </form>
     )
 }
