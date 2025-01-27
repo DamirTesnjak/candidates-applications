@@ -1,5 +1,5 @@
 export const candidateEmailFiredFromJobPosition =`<div class="content">
-        <p>Dear [Candidate's Name],</p>
+        <p>Dear [TARGET_PERSON_FULL_NAME],</p>
 
         <p>We regret to inform you that your employment with [Company Name] will be terminated effective [Termination Date]. This decision was not made lightly, and we deeply value the contributions you have made during your time with the company.</p>
 
@@ -12,7 +12,7 @@ export const candidateEmailFiredFromJobPosition =`<div class="content">
         <p>We appreciate your efforts and wish you all the best in your future endeavors.</p>
 
         <p>Best regards,</p>
-        <p><strong>[Your Full Name]</strong><br>
+        <p><strong>[TARGET_PERSON_FULL_NAME]</strong><br>
             [Your Job Title]<br>
             [Company Name]</p>
     </div>

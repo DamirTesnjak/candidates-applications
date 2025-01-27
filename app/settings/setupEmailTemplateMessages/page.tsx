@@ -1,12 +1,13 @@
 'use client'
 
 import TextEditor from "@/components/TextEditor";
+import {createEmailTemplate} from "@/app/_actions/createEmailTemplate";
 
 export default function SetupEmailTemplateMessages(){
     return (
         <div>
             <h2>Create new email message template</h2>
-            <form action={() => {}}>
+            <form action={createEmailTemplate}>
                 <TextEditor />
                 <div>
                     <label htmlFor="companyLogo">Upload company logo</label>

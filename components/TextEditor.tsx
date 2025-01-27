@@ -22,14 +22,14 @@ import {candidateEmailFiredFromJobPosition} from "@/utils/emailMessagesTemplates
 import SelectInput from "@/UI/SelectInput/SelectInput";
 import {SelectChangeEvent} from "@mui/material/Select";
 
-export default function TextEditor() {
+export default function TextEditor({ data }) {
     const [textAreaText, setTextAreaText] = useState({
         manualEditing: true,
-        text: candidateCongratulationEmailJobPosition
+        text: data?.emailText || candidateCongratulationEmailJobPosition
     });
     const [selectedEmailTemplate, setEmailTemplate] = useState({
         manualEditing: false,
-        selectedCategory:"candidateHired"
+        selectedCategory: data?.emailType || "candidateHired"
     });
 
     const preDefinedEmailTemplates = useMemo(() => ({
