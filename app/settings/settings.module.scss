@@ -1,5 +1,6 @@
-.settingsPage {
-  grid-area: page;
+.page {
+  grid-column: 2/3;
+  grid-row: 2/4;
 }
 
 .candidate {

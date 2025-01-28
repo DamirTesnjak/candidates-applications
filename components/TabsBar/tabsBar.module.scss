@@ -1,0 +1,29 @@
+@import "../../styles/global/globals.module";
+
+.tabsBarContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 0 20px 0 20px;
+  margin-bottom: 20px;
+  color: $primary-color;
+  background-color: $white;
+
+  .tabItem {
+    padding: 15px 10px;
+    height: 50px;
+    color: $primary-color;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+      height: 50px;
+      align-items: flex-end;
+      border-bottom: 5px solid;
+      border-bottom-color: $primary-color;
+      background-color: $hover;
+    }
+  }
+}

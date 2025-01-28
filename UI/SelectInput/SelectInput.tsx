@@ -1,4 +1,4 @@
-import {MenuItem, Select} from "@mui/material";
+import {MenuItem, Select, FormControl, FormLabel } from "@mui/material";
 import { Theme, useTheme } from '@mui/material/styles';
 
 const ITEM_HEIGHT = 48;
@@ -13,14 +13,13 @@ const MenuProps = {
 };
 
 export default function SelectInput({
+    label,
     value,
     handleChange,
-    inputComponent,
     placeholder,
     listDropdown,
 }) {
     const theme = useTheme();
-    console.log('value', value);
 
     const getStyles = (listDropdownValue: string, selectedValue: readonly string[], theme: Theme) => {
         return {
@@ -31,33 +30,35 @@ export default function SelectInput({
     }
 
     return (
-    <Select
-        displayEmpty
-        value={value}
-        onChange={(e) => handleChange(e)}
-        input={inputComponent}
-        renderValue={(selected) => {
-            if (selected.length === 0) {
-                return <em>{placeholder}</em>;
-            }
-            console.log('selected', selected);
-
-            return selected;
-        }}
-        MenuProps={MenuProps}
-        inputProps={{ 'aria-label': 'Without label' }}
-    >
-        <MenuItem disabled value="">
-            <em>Placeholder</em>
-        </MenuItem>
-        {listDropdown.map((listDropdownItem) => (
-            <MenuItem
-                key={listDropdownItem.id}
-                value={listDropdownItem.value}
-                style={getStyles(listDropdownItem.value, value, theme)}
+        <FormControl sx={{ m: 1, minWidth: 160, maxWidth: 160, marginTop: 0 }} variant="standard" size="small">
+            <FormLabel id="demo-radio-buttons-group-label">{label}</FormLabel>
+            <Select
+                displayEmpty
+                value={value}
+                onChange={(e) => handleChange(e)}
+                renderValue={(selected) => {
+                    if (selected.length === 0) {
+                        return <em>{placeholder}</em>;
+                    }
+                    return selected;
+                }}
+                MenuProps={MenuProps}
+                inputProps={{ 'aria-label': 'Without label' }}
+                size="small"
             >
-                {listDropdownItem.value}
-            </MenuItem>
-        ))}
-    </Select>)
+                <MenuItem disabled value="">
+                    <em>Placeholder</em>
+                </MenuItem>
+                {listDropdown.map((listDropdownItem) => (
+                    <MenuItem
+                        key={listDropdownItem.id}
+                        value={listDropdownItem.value}
+                        style={getStyles(listDropdownItem.value, value, theme)}
+                    >
+                        {listDropdownItem.value}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
+    )
 }

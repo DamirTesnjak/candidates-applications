@@ -8,7 +8,7 @@ export default async function EditEmailTemplateMessage({params}){
     const parsedResults = results ? JSON.parse(results) : null;
     const { data } = parsedResults;
     return (
-        <div>
+        <div className={styles.container}>
             <h2>Edit email message template</h2>
             <form action={updateEmailTemplate}>
                 <TextEditor data={data} />

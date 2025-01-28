@@ -1,6 +1,12 @@
+@import "styles/global/globals.module.scss";
+
 .sidebar {
-    grid-area: sidebar;
-}
+    grid-column: 1/2;
+    grid-row: 2/4;
+    height: calc(100vh - 70px);
+    border-top-right-radius: 10px;
+    background: rgb(173,215,246);
+    background: linear-gradient(180deg, rgba(173,215,246,1) 0%, rgba(171,219,255,1) 24%, rgba(255,255,255,1) 65%); }
 
 .sidebarLinkItems {
     display: flex;

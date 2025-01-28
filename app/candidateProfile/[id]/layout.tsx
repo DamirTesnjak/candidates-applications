@@ -14,8 +14,6 @@ export default async function CandidateProfileLayout({ children, params }: { par
     const parsedResults = results ? JSON.parse(results) : null;
     const { data } = parsedResults
 
-    console.log(results)
-
     if (!data) {
         return <div>Could not found profile data</div>
     }

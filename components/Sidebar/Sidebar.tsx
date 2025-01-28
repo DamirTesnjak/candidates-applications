@@ -6,7 +6,7 @@ export default function Sidebar({sidebarLinks}) {
         <div className={styles.sidebar}>
             <ul>
                 {sidebarLinks.map((sidebarLink) => {
-                    return <li key={sidebarLink.link}>
+                    return <li className={styles.menuItem} key={sidebarLink.link}>
                         <Link href={sidebarLink.link}>{sidebarLink.text}</Link>
                     </li>
                 })}

@@ -4,8 +4,9 @@ import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme/theme";
 
+import 'scss-reset/_reset.scss'
 import styles from '../styles/mainLayout/container.module.scss';
-import globalStyles from '../styles/global/variables.module.scss';
+import globalStyles from '../styles/global/globals.module.scss';
 
 const roboto = Roboto({
     weight: ['300', '400', '500', '700'],
