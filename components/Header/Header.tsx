@@ -7,7 +7,7 @@ export default function Header() {
         <header className={styles.header}>
             <h1>CANDIDATES OVERWIEV</h1>
             <div className={styles.profile}>
-                <LoginButton />
+                {/*<LoginButton />*/}
                 <LogoutButton />
             </div>
         </header>

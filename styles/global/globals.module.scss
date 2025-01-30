@@ -6,6 +6,7 @@ $primary-color: #2667ff;
 $purple-heart: #3b28cc;
 $background-color: #eeeeee;
 $submit-button-background-color: #ffb600;
+$input-background-color: #d7f1ff ;
 
 
 $white: #fff;
@@ -45,6 +46,18 @@ body {
   }
 }
 
+.container {
+  margin: 0 10px 0 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: $white;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+
+  h3 {
+    color: $primary-color;
+  }
+}
+
 .page {
   padding: 20px;
   background: rgb(173,215,246);
@@ -76,47 +89,4 @@ body {
   color: $black;
   font-family: 'Courier New', "Helvetica Neue", sans-serif;
   line-height: 1.2rem;
-}
-
-.MuiButton-icon {
-  svg {
-    font-size: 1.5rem;
-  }
-}
-
-.ordinaryButton {
-  gap: 10px;
-  padding: 9px;
-  background-color: $primary-color;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: $white;
-  text-transform: uppercase;
-
-  span {
-    @extend .MuiButton-icon;
-  }
-}
-
-.submitButton {
-  padding: 13px 10px 13px 10px;
-  background-color: $submit-button-background-color;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: $black;
-  text-transform: uppercase;
-}
-
-.textButton {
-  gap: 10px;
-  padding: 13px 10px 13px 10px;
-  background-color: $white;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: $primary-color;
-  text-transform: uppercase;
-
-  span {
-    @extend .MuiButton-icon;
-  }
 }

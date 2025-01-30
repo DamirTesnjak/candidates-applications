@@ -1,8 +1,7 @@
-'use client'
-
 import TextEditor from "@/components/TextEditor/TextEditor";
 import {createEmailTemplate} from "@/app/_actions/createEmailTemplate";
 import styles from './setupEmail.templates.module.scss'
+import Button from "@/UI/Button/Button";
 
 export default function SetupEmailTemplateMessages(){
     return (

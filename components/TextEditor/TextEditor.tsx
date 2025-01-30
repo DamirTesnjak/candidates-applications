@@ -1,7 +1,8 @@
+'use client'
+
 import { EDIT_TEXT_BUTTON } from "@/constants/constants";
 import {useEffect, useState, useMemo} from "react";
 import addHTMLTags from "@/utils/addHTMLTags";
-import {Button, TextField} from "@mui/material";
 import Paragraph from '@mui/icons-material/LocalParking';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
@@ -22,6 +23,9 @@ import {candidateEmailFiredFromJobPosition} from "@/utils/emailMessagesTemplates
 import SelectInput from "@/UI/SelectInput/SelectInput";
 import {SelectChangeEvent} from "@mui/material/Select";
 import InputFileUpload from "@/components/InputFileUpload/InputFileUpload";
+import Button from "@/UI/Button/Button";
+import Input from "@/UI/Input/Input";
+
 
 import styles from './textEditor.module.scss';
 
@@ -42,12 +46,14 @@ export default function TextEditor({ data }) {
     }), []);
 
     const selectDropdownEmailList = [
+        { id: 'selectEmailTemplate', value: "selectEmailTemplate"},
         { id: 'candidateHired', value: "candidateHired"},
         { id: 'candidateRejected', value: "candidateRejected"},
         { id: 'employeeFired', value: "employeeFired"},
     ]
 
     const handleChangeOnSelectEmailTemplate = (event: SelectChangeEvent<typeof value>) => {
+        console.log('event', event);
         const previewElement = document.getElementById("preview");
         if (previewElement) {
             previewElement.innerHTML = preDefinedEmailTemplates[event.target.value];
@@ -103,14 +109,11 @@ export default function TextEditor({ data }) {
     return (
         <div>
             <div className={styles.selectionSaveToolbar}>
-                <TextField
-                    required={true}
-                    id="outlined-required"
-                    label="Email Type"
-                    variant="standard"
-                    size="small"
-                    focused={true}
-                    placeholder="Hire, reject, fire..."
+                <Input
+                    className="standard"
+                    flow="flowColumn"
+                    label="Email Template name"
+                    name="emailName"
                 />
                 <SelectInput
                     label="Email Template"
@@ -119,110 +122,116 @@ export default function TextEditor({ data }) {
                     placeholder="Select email template"
                     listDropdown={selectDropdownEmailList}
                 />
-                <InputFileUpload className={styles.ordinaryButton} text="Upload company logo"/>
-                <Button className={styles.submitButton} variant="contained" type="submit">Save Message</Button>
+                <div className={styles.buttonsContainer}>
+                    <Input className="uploadButton" flow="flowRow" type="file" label="Upload company logo"/>
+                    <Button
+                        className="submitButton"
+                        type="submit"
+                        text="Save Changes"
+                    />
+                </div>
             </div>
             <div className={styles.toolbar}>
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<Paragraph />}
-                    onClick={() => onButtonTextEditorClick("paragraph")
-                }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("paragraph")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<FormatItalicIcon />}
-                    onClick={() => onButtonTextEditorClick("italic")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("italic")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<FormatBoldIcon />}
-                    onClick={() => onButtonTextEditorClick("strong")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("strong")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<FormatUnderlinedIcon />}
-                    onClick={() => onButtonTextEditorClick("underline")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("underline")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<KeyboardReturnIcon />}
-                    onClick={() => onButtonTextEditorClick("newLine")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("newLine")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<LinkIcon />}
-                    onClick={() => onButtonTextEditorClick("link")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("link")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<SuperscriptIcon />}
-                    onClick={() => onButtonTextEditorClick("superscript")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("superscript")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<SubscriptIcon />}
-                    onClick={() => onButtonTextEditorClick("subscript")
-                    }>
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("subscript")}
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<PersonIcon />}
-                    onClick={() => onButtonTextEditorClick("targetPersonFullName")
-                    }>
-                    Candidate Name
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("targetPersonFullName")}
+                    text="Candidate name"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<AccountBoxIcon />}
-                    onClick={() => onButtonTextEditorClick("hrUserFullNameTemplate")
-                    }>
-                    Your Name
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("hrUserFullNameTemplate")}
+                    text="Your Name"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<WorkIcon />}
-                    onClick={() => onButtonTextEditorClick("jobTitleTemplate")
-                    }>
-                    Candidate Job Title
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("jobTitleTemplate")}
+                    text="Candidate Job Position"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<WorkIcon />}
-                    onClick={() => onButtonTextEditorClick("jobTitleTemplate")
-                }>
-                    Your Job Title
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("jobTitleTemplate")}
+                    text="Your Job Title"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<BusinessIcon />}
-                    onClick={() => onButtonTextEditorClick("companyNameTemplate")
-                    }>
-                    Company Name
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("companyNameTemplate")}
+                    text="Company Name"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<EventIcon />}
-                    onClick={() => onButtonTextEditorClick("currentDateTemplate")
-                    }>
-                    Current Date
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("currentDateTemplate")}
+                    text="Current Date"
+                />
                 <Button
-                    className={styles.textButton}
+                    className="textButton"
                     startIcon={<CalendarMonthIcon />}
-                    onClick={() => onButtonTextEditorClick("startDateTemplate")
-                    }>
-                    Start Date
-                </Button>
+                    type="button"
+                    onClick={() => onButtonTextEditorClick("startDateTemplate")}
+                    text="Start Date"
+                />
             </div>
             <div className={styles.textAreaDisplay}>
-                <textarea className={styles.textarea} id="editor" name="messageText" cols={50} rows={10} onInput={changeWhenTyping} value={textAreaText.text}/>
+                <textarea className={styles.textarea} id="editor" name="emailText" cols={50} rows={10} onInput={changeWhenTyping} value={textAreaText.text}/>
                 <div id="preview" className={styles.preview}/>
             </div>
         </div>

@@ -1,0 +1,65 @@
+@import "styles/global/globals.module.scss";
+@import "UI/Button/button.module.scss";
+
+
+.standard {
+  width: 250px;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  padding: 5px 10px 5px 10px;
+  background-color: $input-background-color;
+}
+
+.uploadButton {
+  @extend .button;
+  cursor: pointer;
+}
+
+.label {
+  width: 250px !important;
+  font-size: 15px;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+
+  input[type="file"] {
+    visibility: hidden;
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+}
+
+.flowRow {
+  display: flex;
+  flex-direction: row;
+  row-gap: 5px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+}

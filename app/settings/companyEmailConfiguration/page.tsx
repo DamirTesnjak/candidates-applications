@@ -1,7 +1,9 @@
+import styles from "../../../styles/global/globals.module.scss"
+
 export default function companyEmailConfigurationPage() {
     return (
-        <div>
-            <h2>Company email configuration</h2>
+        <div className={styles.container}>
+            <h3>Company email configuration</h3>
             <form>
                 <div>
                     <label htmlFor="emailHost">EmailHost</label>
@@ -23,7 +25,7 @@ export default function companyEmailConfigurationPage() {
                     <label htmlFor="password">Password</label>
                     <input name="password" type="password" />
                 </div>
-                <button type="submit">Save Changes</button>
+                <button className={styles.MuiButton} type="submit">Save Changes</button>
             </form>
         </div>
     )
