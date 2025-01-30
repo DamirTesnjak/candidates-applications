@@ -46,7 +46,6 @@ export default function TextEditor({ data }) {
     }), []);
 
     const selectDropdownEmailList = [
-        { id: 'selectEmailTemplate', value: "selectEmailTemplate"},
         { id: 'candidateHired', value: "candidateHired"},
         { id: 'candidateRejected', value: "candidateRejected"},
         { id: 'employeeFired', value: "employeeFired"},
@@ -117,9 +116,9 @@ export default function TextEditor({ data }) {
                 />
                 <SelectInput
                     label="Email Template"
-                    value={selectedEmailTemplate.selectedCategory}
-                    handleChange={handleChangeOnSelectEmailTemplate}
+                    onSelect={handleChangeOnSelectEmailTemplate}
                     listDropdown={selectDropdownEmailList}
+                    placeholder="Select email Template"
                 />
                 <div className={styles.buttonsContainer}>
                     <Input className="uploadButton" flow="flowRow" type="file" label="Upload company logo"/>

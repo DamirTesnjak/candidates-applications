@@ -5,6 +5,13 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import styles from './selectInput.module.scss';
 
+interface SelectInputProps {
+    label?: string;
+    onSelect: (value: SelectChangeEvent<any>) => void;
+    listDropdown: { id: string; value: string }[];
+    placeholder?: string;
+}
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -16,33 +23,19 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
+export default function SelectInput({ label, onSelect, listDropdown, placeholder }: SelectInputProps) {
+    const [selectedValue, setSelectValue] = React.useState<string[]>([]);
 
-export default function SelectInput({ label, className, ...rest }) {
-    const [personName, setPersonName] = React.useState<string[]>([]);
-
-    const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const handleChange = (event: SelectChangeEvent<typeof selectedValue>) => {
         const {
             target: { value },
         } = event;
-        setPersonName(
+        setSelectValue(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        onSelect(event);
     };
-
-    console.log('style', styles.select)
 
     return (
         <div>
@@ -55,12 +48,12 @@ export default function SelectInput({ label, className, ...rest }) {
                 <Select
                     className={styles.select}
                     displayEmpty
-                    value={personName}
+                    value={selectedValue}
                     onChange={handleChange}
                     input={<OutlinedInput />}
                     renderValue={(selected) => {
                         if (selected.length === 0) {
-                            return <em>Placeholder</em>;
+                            return <em>{placeholder}</em>;
                         }
 
                         return selected.join(', ');
@@ -71,15 +64,15 @@ export default function SelectInput({ label, className, ...rest }) {
                     <MenuItem
                         className={styles.menuItem}
                         disabled value="">
-                        <em>Placeholder</em>
+                        <em>{placeholder}</em>
                     </MenuItem>
-                    {names.map((name) => (
+                    {listDropdown.map((item) => (
                         <MenuItem
                             className={styles.menuItem}
-                            key={name}
-                            value={name}
+                            key={item.id}
+                            value={item.value}
                         >
-                            {name}
+                            {item.value}
                         </MenuItem>
                     ))}
                 </Select>
