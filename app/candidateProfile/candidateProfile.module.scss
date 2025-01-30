@@ -1,19 +1,24 @@
 .candidateProfilePage {
-  grid-area: page;
   display: grid;
-  grid-template-areas:
-          'pageTitle pageTitle'
-          'profilePicture profileForm';
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 50px 1fr;
 }
 
 .pageTitle {
-  grid-area: pageTitle;
+  display: grid;
+  grid-column: 1/3;
+  grid-row: 1/2;
 }
 
 .profilePicture {
-  grid-area: profilePicture;
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;
 }
 
 .profileForm {
-  grid-area: profileForm;
+  display: grid;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  margin: 0 0px 0 20px;
 }

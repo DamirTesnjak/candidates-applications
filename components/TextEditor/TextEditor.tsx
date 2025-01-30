@@ -119,7 +119,6 @@ export default function TextEditor({ data }) {
                     label="Email Template"
                     value={selectedEmailTemplate.selectedCategory}
                     handleChange={handleChangeOnSelectEmailTemplate}
-                    placeholder="Select email template"
                     listDropdown={selectDropdownEmailList}
                 />
                 <div className={styles.buttonsContainer}>
