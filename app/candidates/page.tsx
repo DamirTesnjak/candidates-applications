@@ -1,14 +1,17 @@
 import {getCandidates} from "@/app/_actions/getCandidates";
 import Link from "next/link";
 import styles from './candidates.module.scss';
-import {Button} from "@mui/material";
+import {Button } from "@mui/material";
+import Table from "@/UI/Table/Table";
+
 
 export default async function CandidatesPage() {
     const results = await getCandidates();
+    const parsedResults = JSON.parse(results);
 
-    if (results && results.candidates && results.candidates.length > 0) {
-        const candidates = results.candidates;
-        return  <div>{ candidates.map((candidate) => {
+    if (parsedResults && parsedResults.candidates && parsedResults.candidates.length > 0) {
+        return <Table data={JSON.parse(results).candidates} />;
+        /*return  <div>{ candidates.map((candidate) => {
             return (
                 <div className={styles.candidate}  key={candidate.id}>
                     <div id="name">{candidate.name}</div>
@@ -22,10 +25,10 @@ export default async function CandidatesPage() {
                     <Link href={`/candidateProfile/${candidate._id}`} prefetch>See candidate</Link>
                </div>
             )})}
-        </div>;
+        </div>;*/
     }
 
-    if (results && (!results.candidates || results.candidates.length === 0)) {
+    if (parsedResults && (!parsedResults.candidates || parsedResults.candidates.length === 0)) {
         return <div>No candidates found.</div>;
     }
 
