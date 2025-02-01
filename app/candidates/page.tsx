@@ -7,25 +7,15 @@ export default async function CandidatesPage() {
     const parsedResults = JSON.parse(results);
 
     if (parsedResults && parsedResults.candidates && parsedResults.candidates.length > 0) {
-        // do not display these columns in table
-        const doNotDisplayColumns = [
-            "profilePicture.file.name",
-            "profilePicture.file.data",
-            "profilePicture.file.contentType",
-            "contact.address",
-            "contact.city",
-            "contact.zipCode",
-            "contact.country",
-            "contact.email",
-            "curriculumVitae.file.name",
-            "curriculumVitae.file.contentType",
-            "_id",
-            "__v",
-        ]
-
-        // extra columns to add
-        const extraAccessorKeys = [
+        const columnsToDisplay = [
             "profilePicture",
+            "name",
+            "curriculumVitae",
+            "phoneNumber",
+            "linkedIn",
+            "archived",
+            "hired",
+            "rejected",
             "button1",
             "button2",
             "button3",
@@ -34,8 +24,7 @@ export default async function CandidatesPage() {
 
         return <TableComponent
             data={JSON.parse(results).candidates}
-            doNotDisplayColumns={doNotDisplayColumns}
-            extraAccessorKeys={extraAccessorKeys}
+            columnsToDisplay={columnsToDisplay}
             page={PAGES.customersPage}
         />;
     }

@@ -4,15 +4,14 @@ import { customerTableDataProps } from "@/app/candidates/customerTableDataProps"
 import Table from "../UI/Table/Table";
 import {PAGES} from "@/constants/constants";
 
-export default function tableComponent({data, doNotDisplayColumns, extraAccessorKeys, page}) {
+export default function tableComponent({data, columnsToDisplay, page}) {
     const pageTables = {
         [PAGES.customersPage]: customerTableDataProps,
     };
 
     return <Table
         data={data}
-        doNotDisplayColumns={doNotDisplayColumns}
-        extraAccessorKeys={extraAccessorKeys}
+        columnsToDisplay={columnsToDisplay}
         tableDataProps={pageTables[page]}
         />;
 

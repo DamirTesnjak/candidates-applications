@@ -13,11 +13,10 @@ interface TableDataProps {
 }
 
 export const customerTableDataProps = (row = null) => {
-    console.log('row', row);
     return {
         "profilePicture":
         {
-            size: 100,
+            size: 50,
             cell: row ? <Image src={getFile({
                     name: row.original.profilePicture.file.name,
                     data: row.original.profilePicture.file.data,
@@ -28,17 +27,12 @@ export const customerTableDataProps = (row = null) => {
             enableColumnDragging: false,
         },
         "name": {
-        title: "Name",
+            title: "Name",
             size: 150,
-            cell: row?.original.name,
+            cell: `${row?.original.name} ${row?.original.surname}`,
     },
-        "surname": {
-        title: "surname",
-            size: 150,
-            cell: row?.original.surname,
-    },
-        "curriculumVitae.file.data": {
-        title: "CV",
+        "curriculumVitae": {
+            title: "CV",
             size: 100,
             cell: row ? <Button className="textButton" text="CV" type="button" onClick={() => getFile({
                 name: row.original.curriculumVitae.file.name,
@@ -48,30 +42,30 @@ export const customerTableDataProps = (row = null) => {
             enableColumnActions: false,
             enableColumnFilter: false,
         },
-        "contact.phoneNumber": {
-        title: "Phone number",
+        "phoneNumber": {
+            title: "Phone number",
             size: 150,
             cell: row?.original.contact.phoneNumber,
     },
-        "contact.linkedIn": {
+        "linkedIn": {
             title: "LinkedIn",
             size: 100,
             cell: row ? <Link href={row.original.contact.linkedIn} target="_blank"><Button className="textButton" type="button" startIcon={<LinkedInIcon />} /></Link> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
         },
-        "status.archived": {
-        title: "Archived",
+        "archived": {
+            title: "Archived",
             size: 150,
             cell: row?.original.status.archived ? "True" : "False",
     },
-        "status.employed": {
-        title: "Employed",
+        "hired": {
+            title: "Hired",
             size: 150,
             cell: row?.original.status.employed ? "True" : "False",
     },
-        "status.rejected": {
-        title: "Rejected",
+        "rejected": {
+            title: "Rejected",
             size: 150,
             cell: row?.original.status.rejected ? "True" : "False",
     },

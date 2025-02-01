@@ -24,8 +24,11 @@
 
 .textButton {
   @extend .button;
-  background-color: $white;
+  background-color: unset;
   color: $primary-color;
+  &:hover {
+    background-color: $light-blue;
+  }
 
   span {
     @extend .MuiButton-icon;

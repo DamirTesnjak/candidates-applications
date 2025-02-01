@@ -6,7 +6,7 @@ $primary-color: #2667ff;
 $purple-heart: #3b28cc;
 $background-color: #eeeeee;
 $submit-button-background-color: #ffb600;
-$input-background-color: #d7f1ff ;
+$light-blue: #d7f1ff ;
 
 
 $white: #fff;
@@ -51,9 +51,9 @@ body {
 
   input {
     &:-webkit-autofill {
-      -webkit-box-shadow: inset 0 0 0 30px $input-background-color;
+      -webkit-box-shadow: inset 0 0 0 30px $light-blue;
       &:hover {
-        -webkit-box-shadow: inset 0 0 0 30px $input-background-color;
+        -webkit-box-shadow: inset 0 0 0 30px $light-blue;
       }
 
     }

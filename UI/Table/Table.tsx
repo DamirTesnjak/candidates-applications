@@ -10,18 +10,15 @@ import styles from "./table.module.scss";
 
 export interface TableProps {
     data: MRT_RowData[];
-    doNotDisplayColumns: string[];
-    extraAccessorKeys: string[];
+    columnsToDisplay: string[];
     tableDataProps: any;
 }
 
-export default function Table({data, doNotDisplayColumns, extraAccessorKeys, tableDataProps }: TableProps) {
+export default function Table({data, columnsToDisplay, tableDataProps }: TableProps) {
     const getColumnsDefsProps = useMemo(() => ({
-        tableData: data,
-        doNotDisplayColumns,
+        columnsToDisplay,
         tableDataProps,
-        extraAccessorKeys: extraAccessorKeys || [],
-    }), [data, doNotDisplayColumns, extraAccessorKeys, tableDataProps])
+    }), [columnsToDisplay, data, tableDataProps])
 
     const columns = useMemo(() => getColumnsDefs(getColumnsDefsProps), [getColumnsDefsProps]);
 
@@ -40,6 +37,9 @@ export default function Table({data, doNotDisplayColumns, extraAccessorKeys, tab
         },
         muiTableBodyCellProps: {
             className: styles.tableBodyCell,
+        },
+        muiBottomToolbarProps: {
+            className: styles.tablePagination,
         }
     });
 
