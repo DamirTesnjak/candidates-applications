@@ -22,7 +22,6 @@ import {candidateRejectionEmailJobPosition} from "@/utils/emailMessagesTemplates
 import {candidateEmailFiredFromJobPosition} from "@/utils/emailMessagesTemplates/messageEmployeeGotFired";
 import SelectInput from "@/UI/SelectInput/SelectInput";
 import {SelectChangeEvent} from "@mui/material/Select";
-import InputFileUpload from "@/components/InputFileUpload/InputFileUpload";
 import Button from "@/UI/Button/Button";
 import Input from "@/UI/Input/Input";
 

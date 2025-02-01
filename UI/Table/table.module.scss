@@ -1,0 +1,36 @@
+.tableHeaderCell {
+  padding: 10px 10px 10px 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tableBodyRow {
+  padding: 0;
+}
+
+.tableBodyCell {
+  font-weight:400;
+  font-size:0.875rem;
+  line-height:1.43;
+  display:table-cell;
+  border-bottom:1px solid rgba(224, 224, 224, 1);
+  text-align:left;
+  padding:0 10px 0 10px;
+  color:rgba(0, 0, 0, 0.87);
+  cursor:inherit;
+  outline-offset:-1px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:normal;
+  background-color:inherit;
+  background-image:inherit;
+  opacity:1;
+  position:relative;
+  -webkit-transition:padding 150ms ease-in-out;
+  transition:padding 150ms ease-in-out;
+  z-index:0;
+  min-width:max(calc(var(--col-profilePicture-size) * 1px), 40px);
+  width:calc(var(--col-profilePicture-size) * 1px);
+  vertical-align: middle;
+}
