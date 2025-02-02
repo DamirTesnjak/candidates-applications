@@ -39,7 +39,7 @@ export default function SelectInput({ label, onSelect, listDropdown, placeholder
 
     return (
         <div>
-            <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+            <FormControl sx={{ padding: 0, marginTop: 0, width: 300 }}>
                 <label
                     className={styles.label}
                 >

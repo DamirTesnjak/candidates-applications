@@ -3,7 +3,6 @@
 .tabsBarContainer {
   display: flex;
   flex-direction: row;
-  gap: 30px;
   padding: 0 20px 0 20px;
   margin-bottom: 20px;
   color: $primary-color;
@@ -11,7 +10,8 @@
 
   .tabItem {
     padding: 15px 10px;
-    height: 50px;
+    height: 20px;
+    width: auto;
     color: $primary-color;
     font-size: 0.875rem;
     font-weight: 500;
@@ -19,7 +19,7 @@
     text-decoration: none;
 
     &:hover {
-      height: 50px;
+      height: calc(20px - 5px);
       align-items: flex-end;
       border-bottom: 5px solid;
       border-bottom-color: $primary-color;

@@ -6,7 +6,6 @@ import {
 } from "material-react-table";
 import { useMemo } from "react";
 import {getColumnsDefs} from "@/utils/createTableColumnsDefs/createTableColumnsDef.";
-import styles from "./table.module.scss";
 
 export interface TableProps {
     data: MRT_RowData[];
@@ -18,7 +17,7 @@ export default function Table({data, columnsToDisplay, tableDataProps }: TablePr
     const getColumnsDefsProps = useMemo(() => ({
         columnsToDisplay,
         tableDataProps,
-    }), [columnsToDisplay, data, tableDataProps])
+    }), [columnsToDisplay, tableDataProps])
 
     const columns = useMemo(() => getColumnsDefs(getColumnsDefsProps), [getColumnsDefsProps]);
 
@@ -27,19 +26,24 @@ export default function Table({data, columnsToDisplay, tableDataProps }: TablePr
         data,
         initialState: {
             showColumnFilters: true,
+            density: 'compact',
         },
         enableColumnOrdering: true,
         muiTableHeadCellProps: {
-            className: styles.tableHeaderCell,
+            sx: {
+                padding: '0 5px 0 5px',
+                margin: 0
+            }
         },
         muiTableBodyRowProps: {
-            className: styles.tableBodyRow,
         },
         muiTableBodyCellProps: {
-            className: styles.tableBodyCell,
+            sx: {
+                padding: '0 5px 0 5px',
+                margin: 0
+            }
         },
         muiBottomToolbarProps: {
-            className: styles.tablePagination,
         }
     });
 

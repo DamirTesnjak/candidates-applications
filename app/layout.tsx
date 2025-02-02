@@ -4,7 +4,6 @@ import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme/theme";
 
-import 'scss-reset/_reset.scss'
 import styles from '../styles/mainLayout/container.module.scss';
 import globalStyles from '../styles/global/globals.module.scss';
 
@@ -39,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={globalStyles.body}>
-      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+      <AppRouterCacheProvider options={{ enableCssLayer: false }}>
         <ThemeProvider theme={theme}>
             <StoreProvider>
                 <div className={styles.container}>

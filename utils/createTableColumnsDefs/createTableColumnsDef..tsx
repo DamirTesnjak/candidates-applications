@@ -8,6 +8,7 @@ export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }) => {
             enableColumnFilter: tableDataProps()[keyItem].enableColumnFilter,
             enableColumnActions: tableDataProps()[keyItem].enableColumnActions,
             enableColumnDragging: tableDataProps()[keyItem].enableColumnDragging,
+            enableSorting: tableDataProps()[keyItem].enableSorting,
             Cell: ({ renderedCellValue, row}) => (<div>{tableDataProps(row)[keyItem].cell}</div>),
         }
     })

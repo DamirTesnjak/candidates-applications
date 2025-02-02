@@ -6,9 +6,29 @@
     height: calc(100vh - 70px);
     border-top-right-radius: 10px;
     background: rgb(173,215,246);
-    background: linear-gradient(180deg, rgba(173,215,246,1) 0%, rgba(171,219,255,1) 24%, rgba(255,255,255,1) 65%); }
+    background: linear-gradient(180deg, rgba(173,215,246,1) 0%, rgba(171,219,255,1) 24%, rgba(255,255,255,1) 65%);
 
-.sidebarLinkItems {
-    display: flex;
-    flex-direction: column;
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .menuItem {
+        &:hover {
+            background-color: #87bfff;
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            padding: 20px 5px 20px 15px;
+            color: $primary-color;
+            font-weight: 500;
+            text-align: left;
+            text-decoration: none;
+        }
+    }
 }
