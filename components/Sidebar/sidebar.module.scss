@@ -8,14 +8,6 @@
     background: rgb(173,215,246);
     background: linear-gradient(180deg, rgba(173,215,246,1) 0%, rgba(171,219,255,1) 24%, rgba(255,255,255,1) 65%);
 
-    ul {
-        padding: 0;
-    }
-
-    li {
-        list-style: none;
-    }
-
     .menuItem {
         &:hover {
             background-color: #87bfff;

@@ -29,18 +29,9 @@ export default function Table({data, columnsToDisplay, tableDataProps }: TablePr
             density: 'compact',
         },
         enableColumnOrdering: true,
-        muiTableHeadCellProps: {
-            sx: {
-                padding: '0 5px 0 5px',
-                margin: 0
-            }
-        },
-        muiTableBodyRowProps: {
-        },
         muiTableBodyCellProps: {
             sx: {
-                padding: '0 5px 0 5px',
-                margin: 0
+                padding: 0,
             }
         },
         muiBottomToolbarProps: {

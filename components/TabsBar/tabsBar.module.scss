@@ -9,9 +9,10 @@
   background-color: $white;
 
   .tabItem {
-    padding: 15px 10px;
-    height: 20px;
+    height: 40px;
     width: auto;
+    padding: 0 10px 0 10px;
+    align-items: center;
     color: $primary-color;
     font-size: 0.875rem;
     font-weight: 500;
@@ -19,8 +20,8 @@
     text-decoration: none;
 
     &:hover {
-      height: calc(20px - 5px);
-      align-items: flex-end;
+      height: calc(40px - 5px);
+      align-items: center;
       border-bottom: 5px solid;
       border-bottom-color: $primary-color;
       background-color: $light-blue;

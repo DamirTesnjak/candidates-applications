@@ -42,7 +42,8 @@ export const customerTableDataProps = (row: TableDataProps) => {
             size: 100,
             cell: `${row?.original.name}
             ${row?.original.surname}`,
-    },
+            enableColumnDragging: false,
+        },
         "curriculumVitae": {
             title: "CV",
             size: 100,

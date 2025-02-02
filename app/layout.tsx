@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "@/theme/theme";
 
+import '../styles/global/scssReset.css';
 import styles from '../styles/mainLayout/container.module.scss';
 import globalStyles from '../styles/global/globals.module.scss';
 

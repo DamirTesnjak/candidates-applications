@@ -28,13 +28,10 @@ body {
   line-height: 1.6;
   background: rgb(247,247,247);
   background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 57%);
-  padding: 0;
-  margin: 0;
 
   a {
     display: block;
     width: 100%;
-    padding: 5px 10px 5px 10px;
     color: $primary-color;
     font-weight: 500;
     text-align: left;
@@ -67,6 +64,10 @@ body {
       }
 
     }
+  }
+
+  svg {
+    max-width: unset;
   }
 }
 
