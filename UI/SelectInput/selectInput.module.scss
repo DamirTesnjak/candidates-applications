@@ -5,7 +5,8 @@
     @extend .button;
     margin: 5px 0 5px 0;
     border-radius: 0;
-    background-color: #d7f1ff;
+    border: 0;
+    background-color: $input-background-color;
     color: $black;
     text-transform: none;
 

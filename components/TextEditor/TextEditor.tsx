@@ -105,7 +105,7 @@ export default function TextEditor({ data }) {
     }, [textAreaText]);
 
     return (
-        <div>
+        <div className={styles.paper}>
             <div className={styles.selectionSaveToolbar}>
                 <Input
                     className="standard"

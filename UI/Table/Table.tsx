@@ -31,10 +31,26 @@ export default function Table({data, columnsToDisplay, tableDataProps }: TablePr
         enableColumnOrdering: true,
         muiTableBodyCellProps: {
             sx: {
-                padding: 0,
+                color: '#6c757d',
+                fontWeight: 300,
+                padding: '0 5px',
+            }
+        },
+        muiTableHeadCellProps: {
+            sx: {
+                color: '#6c757d',
+                '.MuiInputBase-root': {
+                   'input': {
+                       fontSize: '12px',
+                   }
+                },
+                padding: '0 5px',
             }
         },
         muiBottomToolbarProps: {
+            sx: {
+                fontWeight: 300,
+            }
         }
     });
 
