@@ -1,38 +1,49 @@
 import { createHrUser } from "@/app/_actions/createHrUser";
+import Input from "@/UI/Input/Input";
+import styles from "@/components/EditForm/editForm.module.scss";
+import Button from "@/UI/Button/Button";
 
 export default function RegisterPage() {
+    const inputFields = [
+        { name: "name", type: "text", label: "Name" },
+        { name: "surname", type: "text", label: "Surname" },
+        { name: "companyName", type: "text", label: "Company" },
+        { name: "phoneNumber", type: "text", label: "Phone Number" },
+        { name: "email", type: "email", label: "Email" },
+        { name: "username", type: "text", label: "Username" },
+        { name: "password", type: "password", label: "Password" },
+    ];
+
+    const formContent = inputFields.map((inputField) => {
+        console.log("inputField", inputField);
+        return (
+            <Input
+                className="standard"
+                name={inputField.name}
+                label={inputField.label}
+                type={inputField.type}
+                flow="flowRow"
+            />
+        )
+    })
+
     return (
         <form action={createHrUser}>
-            <div>
-                <label htmlFor="name">Name</label>
-                <input name="name" type="text"/>
+            { formContent }
+            <div className={styles.buttonsContainer}>
+                <Input
+                    className="uploadButton"
+                    flow="flowRow"
+                    label="Profile picture"
+                    name="profilePicture"
+                    type="file"
+                />
+                <Button
+                    className="submitButton"
+                    type="submit"
+                    text="Save Changes"
+                />
             </div>
-            <div>
-                <label htmlFor="surname">Surname</label>
-                <input name="surname" type="text"/>
-            </div>
-            <div>
-                <label htmlFor="companyName">Company name</label>
-                <input name="companyName" type="text"/>
-            </div>
-            <div>
-                <label htmlFor="phoneNumber">Telephone</label>
-                <input name="phoneNumber" type="text"/>
-            </div>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input name="email" type="email"/>
-            </div>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input name="username" type="text"/>
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input name="password" type="password"/>
-            </div>
-            <input name="file" type="file"/>
-            <button type="submit">Create account</button>
         </form>
     )
 }

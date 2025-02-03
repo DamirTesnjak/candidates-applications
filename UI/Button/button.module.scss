@@ -41,3 +41,8 @@
   background-color: $submit-button-background-color;
   color: $black;
 }
+
+.deleteButton {
+  @extend .button;
+  background-color: $red;
+}

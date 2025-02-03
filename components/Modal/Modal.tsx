@@ -2,9 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import styles from "./modal.module.scss";
 
-const Modal = ({ children }) => {
+const Modal = ({ content, type }) => {
     const elRef = useRef(null);
+
+    const titlePerType =  {
+        warning: "Warning",
+    }
+
     if (!elRef.current) {
         elRef.current = document.createElement("div");
     }
@@ -16,13 +22,15 @@ const Modal = ({ children }) => {
     }, []);
 
     return createPortal(
-        <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            backgroundColor: "beige",
-            zIndex: 1}}>
-                {children}
+        <div class={styles.modal}>
+            <div className={styles.window}>
+                <div className={styles.title}>
+                    {titlePerType[type]}
+                </div>
+                <div className={styles.content}>
+                    {content}
+                </div>
+            </div>,
         </div>,
         elRef.current);
 };

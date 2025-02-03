@@ -29,21 +29,17 @@ export default async function CandidateProfileLayout({ children, params }: { par
                 <div className={styles.profilePicture}>
                     <div id="profilePicture">
                         <Image src={getFile(data.profilePicture.file)!} alt="Profile image" width={200} height={200} />
-                        <ul>
-                            <li>
-                                <Link href={`/candidateProfile/${id}/editCandidate`}>
-                                    <Button
-                                        className="button"
-                                        text="Edit profile"
-                                        startIcon={<AddIcon />}
-                                        type="button"
-                                    />
-                                </Link>
-                            </li>
-                            <li>
-                                <DeleteProfileButton id={id} databaseName={DATABASES.candidates} />
-                            </li>
-                        </ul>
+                        <div className={styles.buttonsContainer}>
+                            <Link href={`/candidateProfile/${id}/editCandidate`}>
+                                <Button
+                                    className="button"
+                                    text="Edit profile"
+                                    startIcon={<AddIcon />}
+                                    type="button"
+                                />
+                            </Link>
+                            <DeleteProfileButton id={id} databaseName={DATABASES.candidates} />
+                        </div>
                     </div>
                 </div>
                 {children}

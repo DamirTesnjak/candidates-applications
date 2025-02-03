@@ -14,7 +14,7 @@ export default function Header() {
                 </span>
             </div>
             <div className={styles.profile}>
-                {/*<LoginButton />*/}
+                <LoginButton />
                 <LogoutButton />
             </div>
         </header>

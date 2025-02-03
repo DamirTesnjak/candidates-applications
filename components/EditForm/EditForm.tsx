@@ -20,6 +20,8 @@ export interface IFormProps {
 export default function EditForm(props: IFormProps) {
     const { serverAction, stateModel, storeReducerName, editable, newProfile } = props;
     const stateModelKeys = Object.keys(flattenObject(stateModel));
+    const filedsToDisplayKeys = stateModelKeys.filter((stateModelKey) => stateModelKey !== 'data' && stateModelKey !== 'contentType' && stateModelKey !== 'id');
+
     const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
 
     const flattenedObjects = (stateModelKey) => {
@@ -28,7 +30,8 @@ export default function EditForm(props: IFormProps) {
 
     return (
         <form action={serverAction}>
-            {stateModelKeys.map((stateModelKey) => {
+            {filedsToDisplayKeys.map((stateModelKey) => {
+                console.log('stateModelKey', stateModelKey);
                 if (stateModelKey === 'archived' || stateModelKey === 'employed' || stateModelKey === 'rejected') {
                     return (
                         <div key={stateModelKey}>
