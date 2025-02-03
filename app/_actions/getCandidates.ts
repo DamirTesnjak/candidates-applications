@@ -42,9 +42,9 @@ export async function getCandidates() {
             error: "No candidates found."
         }
     }
-    return {
+    return JSON.stringify({
         message: "Fetching data successful!",
         success: true,
         candidates,
-    };
+    });
 }

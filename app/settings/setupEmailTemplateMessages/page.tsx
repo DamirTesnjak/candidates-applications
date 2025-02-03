@@ -1,19 +1,13 @@
-'use client'
-
-import TextEditor from "@/components/TextEditor";
+import TextEditor from "@/components/TextEditor/TextEditor";
 import {createEmailTemplate} from "@/app/_actions/createEmailTemplate";
+import styles from '../../../styles/global/globals.module.scss';
 
 export default function SetupEmailTemplateMessages(){
     return (
-        <div>
-            <h2>Create new email message template</h2>
+        <div className={styles.container}>
+            <h3>Configure template message</h3>
             <form action={createEmailTemplate}>
                 <TextEditor />
-                <div>
-                    <label htmlFor="companyLogo">Upload company logo</label>
-                    <input name="companyLogo" type="file"/>
-                </div>
-                <button type="submit">Save Message</button>
             </form>
         </div>
     )

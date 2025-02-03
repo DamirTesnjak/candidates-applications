@@ -41,3 +41,8 @@ export const EDIT_TEXT_BUTTON = {
     currentYearTemplate: { type: "currentYearTemplate", startTag: "[CURRENT_YEAR]", endTag: "" },
     startDateTemplate: { type: "startDateTemplate", startTag: "[JOB_START_DATE]", endTag: "" },
 }
+
+export const PAGES = {
+    customersPage: "customerPage",
+    emailTemplatePage: "emailTemplatePage",
+}

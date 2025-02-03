@@ -1,0 +1,25 @@
+@import "styles/global/globals.module.scss";
+
+.sidebar {
+    grid-column: 1/2;
+    grid-row: 2/4;
+    height: calc(100vh - 70px);
+    border-top-right-radius: 10px;
+    background: $sidebar-background-color;
+
+    .menuItem {
+        a {
+            display: block;
+            width: 100%;
+            padding: 20px 5px 20px 15px;
+            color: $sidebar-menu-font-color;
+            font-weight: 500;
+            text-align: left;
+            text-decoration: none;
+
+            &:hover {
+                color: $sidebar-menu-font-color-hover;
+            }
+        }
+    }
+}

@@ -1,0 +1,87 @@
+@import "styles/global/globals.module.scss";
+@import "UI/Button/button.module.scss";
+
+
+.standard {
+  width: 250px;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  padding: 5px 5px 5px 5px;
+  border: 1px solid $input-border;
+  background-color: $input-background-color;
+}
+
+.uploadButton {
+  @extend .button;
+  cursor: pointer;
+}
+
+.checkbox {
+  margin: 11.5px 0 11.5px 0;
+  height: 24px;
+  width: 24px;
+}
+
+.label {
+  width: 250px !important;
+  font-size: 15px;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+
+  input[type="file"] {
+    visibility: hidden;
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+
+  .checkbox {
+    @extend .checkbox;
+  }
+}
+
+.flowRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 5px;
+
+  input[type="file"] {
+    display: none;
+  }
+
+  input {
+    &:-webkit-autofill {
+      background-color: $background-color;
+    }
+  }
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+
+  .uploadButton {
+    @extend .uploadButton;
+  }
+
+  .checkbox {
+    @extend .checkbox;
+  }
+}

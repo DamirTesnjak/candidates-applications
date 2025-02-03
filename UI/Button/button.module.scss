@@ -1,0 +1,48 @@
+@import "styles/global/globals.module.scss";
+
+.MuiButton-icon {
+  svg {
+    font-size: 1.5rem;
+  }
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  padding: 10px 10px 10px 10px;
+  background-color: $button-primary-background-color;
+  color: $button-primary-font-color;
+  font-family: Roboto, serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+}
+
+.textButton {
+  @extend .button;
+  background-color: unset;
+  color: $button-text-font-color;
+  &:hover {
+    background-color: $button-text-background-color-hover;
+  }
+
+  span {
+    @extend .MuiButton-icon;
+  }
+}
+
+.submitButton {
+  @extend .button;
+  background-color: $submit-button-background-color;
+  color: $black;
+}
+
+.deleteButton {
+  @extend .button;
+  background-color: $red;
+}

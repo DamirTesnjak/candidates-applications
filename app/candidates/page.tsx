@@ -1,24 +1,35 @@
 import {getCandidates} from "@/app/_actions/getCandidates";
-import Link from "next/link";
+import TableComponent from "@/components/TableComponent";
+import { PAGES } from "@/constants/constants";
 
 export default async function CandidatesPage() {
     const results = await getCandidates();
+    const parsedResults = JSON.parse(results);
 
-    if (results && results.candidates && results.candidates.length > 0) {
-        const candidates = results.candidates;
-        return  candidates.map((candidate) => {
-            return <div key={candidate.id}>
-                    <div id="name">{candidate.name}</div>
-                    <div id="name">{candidate.surname}</div>
-                    <div id="archived">{candidate.status.archived}</div>
-                    <div id="employed">{candidate.status.employed}</div>
-                    <div id="rejected">{candidate.status.rejected}</div>
-                    <Link href={`/candidateProfile/${candidate._id}`} prefetch>Link to profile</Link>
-                </div>
-            });
+    if (parsedResults && parsedResults.candidates && parsedResults.candidates.length > 0) {
+        const columnsToDisplay = [
+            "profilePicture",
+            "name",
+            "curriculumVitae",
+            "phoneNumber",
+            "linkedIn",
+            "archived",
+            "hired",
+            "rejected",
+            "button1",
+            "button2",
+            "button3",
+            "button4",
+        ]
+
+        return <TableComponent
+            data={JSON.parse(results).candidates}
+            columnsToDisplay={columnsToDisplay}
+            page={PAGES.customersPage}
+        />;
     }
 
-    if (results && (!results.candidates || results.candidates.length === 0)) {
+    if (parsedResults && (!parsedResults.candidates || parsedResults.candidates.length === 0)) {
         return <div>No candidates found.</div>;
     }
 

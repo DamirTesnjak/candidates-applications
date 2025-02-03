@@ -1,4 +1,4 @@
-import TextEditor from "@/components/TextEditor";
+import TextEditor from "@/components/TextEditor/TextEditor";
 import {updateEmailTemplate} from "@/app/_actions/updateEmailTemplate";
 import {getEmailTemplate} from "@/app/_actions/getEmailTemplate";
 
@@ -8,7 +8,7 @@ export default async function EditEmailTemplateMessage({params}){
     const parsedResults = results ? JSON.parse(results) : null;
     const { data } = parsedResults;
     return (
-        <div>
+        <div className={styles.container}>
             <h2>Edit email message template</h2>
             <form action={updateEmailTemplate}>
                 <TextEditor data={data} />

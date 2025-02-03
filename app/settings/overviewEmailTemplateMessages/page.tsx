@@ -1,6 +1,9 @@
 import Link from "next/link";
 import {getEmailTemplates} from "@/app/_actions/getEmailTemplates";
 import {deleteEmailTemplate} from "@/app/_actions/deleteEmailTemplate";
+import styles from "@/styles/global/globals.module.scss";
+import InfoMessage from "@/components/InfoMessage/InfoMessage";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 
 export default async function overviewEmailTemplateMessages() {
     const results = await getEmailTemplates();
@@ -19,10 +22,14 @@ export default async function overviewEmailTemplateMessages() {
     }
 
     if (results && (!results.emailTemplates || results.emailTemplates.length === 0)) {
-        return <div>No email templates found.</div>;
+        return  <div className={styles.container}>
+            <InfoMessage text="No email templates found" />
+        </div>
     }
 
     if (!results) {
-        return <div>Cannot find any email templates!.</div>;
+        return <div className={styles.container}>
+            <ErrorMessage text="Cannot find any email templates" />
+        </div>;
     }
 }

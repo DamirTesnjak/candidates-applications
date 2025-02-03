@@ -1,0 +1,30 @@
+@import "../../styles/global/globals.module";
+
+.tabsBarContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0 0 10px;
+  padding: 0 20px 0 20px;
+  margin-bottom: 20px;
+  color: $primary-color;
+
+  .tabItem {
+    height: 40px;
+    width: auto;
+    padding: 0 10px 0 10px;
+    align-items: center;
+    color: $button-text-font-color;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+      height: calc(40px - 5px);
+      align-items: center;
+      color: $primary-color;
+      border-bottom: 2px solid;
+      border-bottom-color: $primary-color;
+    }
+  }
+}

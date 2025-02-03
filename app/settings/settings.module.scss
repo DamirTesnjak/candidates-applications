@@ -1,0 +1,10 @@
+.page {
+  grid-column: 2/3;
+  grid-row: 2/4;
+}
+
+.candidate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

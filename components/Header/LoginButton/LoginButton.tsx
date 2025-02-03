@@ -7,8 +7,10 @@ import {useAppSelector} from "@/lib/hooks";
 import {getFile} from "@/utils/getFile";
 import {useCallback, useEffect, useState} from "react";
 import {getHrUserProfile} from "@/app/_actions/getHrUserProfile";
-import SetDataToStore from "@/components/SetDataToStore";
+import SetDataToStore from "@/components/SetDataToStore/SetDataToStore";
 import {DATABASES} from "@/constants/constants";
+
+import styles from '../header.module.scss';
 
 export default function LoginButton() {
     const [data, setData] = useState(null);
@@ -31,7 +33,7 @@ export default function LoginButton() {
     }, [hrUserId, getUserProfileData]);
 
     return (
-        <div>
+        <div className={styles.profileButton}>
             <SetDataToStore data={data} databaseName={DATABASES.hrUsers} />
             {hrUserId.length > 0 && (
                 <div>

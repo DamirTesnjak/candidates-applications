@@ -4,6 +4,10 @@ import {useAppSelector} from "@/lib/hooks";
 import {initialStateCandidate} from "@/lib/features/candidate/candidateSlice";
 import {initialStateHrUser} from "@/lib/features/hrUser/hrUserSlice";
 import flattenObject from "@/utils/flattenObject";
+import Input from "@/UI/Input/Input";
+import Button from "@/UI/Button/Button";
+
+import styles from "./editForm.module.scss";
 
 export interface IFormProps {
     serverAction?: (formData: FormData) =>  Promise<{errors: {[p: string]: string[] | undefined, [p: number]: string[] | undefined}, message?: undefined, error?: undefined} | {message: string, errors?: undefined, error?: undefined} | {}>
@@ -16,6 +20,8 @@ export interface IFormProps {
 export default function EditForm(props: IFormProps) {
     const { serverAction, stateModel, storeReducerName, editable, newProfile } = props;
     const stateModelKeys = Object.keys(flattenObject(stateModel));
+    const filedsToDisplayKeys = stateModelKeys.filter((stateModelKey) => stateModelKey !== 'data' && stateModelKey !== 'contentType' && stateModelKey !== 'id');
+
     const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
 
     const flattenedObjects = (stateModelKey) => {
@@ -24,12 +30,15 @@ export default function EditForm(props: IFormProps) {
 
     return (
         <form action={serverAction}>
-            {stateModelKeys.map((stateModelKey) => {
+            {filedsToDisplayKeys.map((stateModelKey) => {
+                console.log('stateModelKey', stateModelKey);
                 if (stateModelKey === 'archived' || stateModelKey === 'employed' || stateModelKey === 'rejected') {
                     return (
                         <div key={stateModelKey}>
-                            <label htmlFor={`${stateModelKey}`}>{stateModelKey}</label>
-                            <input
+                            <Input
+                                className="checkbox"
+                                flow="flowRow"
+                                label={stateModelKey}
                                 name={stateModelKey}
                                 type="checkbox"
                                 defaultValue={flattenedObjects(stateModelKey) ? "on" : "off"}
@@ -41,22 +50,39 @@ export default function EditForm(props: IFormProps) {
                 } else {
                     return (
                         <div key={stateModelKey}>
-                            <label htmlFor={`${stateModelKey}`}>{stateModelKey}</label>
-                            <input
+                            <Input
+                                className="standard"
+                                flow="flowRow"
+                                label={stateModelKey}
                                 name={stateModelKey}
                                 type="text"
                                 defaultValue={flattenedObjects(stateModelKey)}
-                                readOnly={!editable}/>
+                                readOnly={!editable}
+                            />
                         </div>
                     )
                 }
             })}
-            { editable && (<div>
-                <label htmlFor="profilePicture">Profile picture</label>
-                <input name="profilePicture" type="file"/>
-                <label htmlFor="file">CV PDF file</label>
-                <input name="file" type="file"/>
-                <button type="submit">Save changes</button>
+            { editable && (<div className={styles.buttonsContainer}>
+                <Input
+                    className="uploadButton"
+                    flow="flowRow"
+                    label="Profile picture"
+                    name="profilePicture"
+                    type="file"
+                />
+                <Input
+                    className="uploadButton"
+                    flow="flowRow"
+                    label="CV PDF file"
+                    name="file"
+                    type="file"
+                />
+                <Button
+                    className="submitButton"
+                    type="submit"
+                    text="Save Changes"
+                />
             </div>)}
         </form>
     )
