@@ -15,6 +15,7 @@ export const initialStateHrUser = {
     companyName: "",
     phoneNumber: "",
     email: "",
+    username: "",
 }
 
 export const hrUserSlice = createSlice({

@@ -1,5 +1,4 @@
-import LoginButton from "@/components/Header/LoginButton/LoginButton";
-import LogoutButton from "@/components/Header/LogoutButton/LogoutButton";
+import ProfileActions from "@/components/Header/ProfileActions/ProfileActions";
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import styles from './header.module.scss'
 
@@ -13,9 +12,8 @@ export default function Header() {
                     <span className={styles.appNameSecondPart}>Applicants</span>
                 </span>
             </div>
-            <div className={styles.profile}>
-                <LoginButton />
-                <LogoutButton />
+            <div className={styles.profileActions}>
+                <ProfileActions />
             </div>
         </header>
     )

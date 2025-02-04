@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
 
 export async function getDataFromToken() {
     const cookieStore = await cookies();
@@ -8,6 +9,6 @@ export async function getDataFromToken() {
         const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!)
         return decodedToken;
     } catch (error: any) {
-        throw new Error(error.message);
+        redirect("/")
     }
 }

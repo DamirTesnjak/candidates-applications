@@ -33,6 +33,7 @@ export async function getHrUserProfile() {
             phoneNumber: user.phoneNumber,
             email: user.email,
             profilePicture: user.profilePicture,
+            username: user.username,
         },
         success: true,
     })
