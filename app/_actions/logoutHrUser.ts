@@ -1,7 +1,6 @@
 'use server'
 
 import {cookies} from "next/headers";
-import {redirect} from "next/navigation";
 
 export async function logoutHrUser() {
     const cookieStore = await cookies();
@@ -10,6 +9,5 @@ export async function logoutHrUser() {
         value: "",
         httpOnly: true,
     });
-    redirect('/');
-    return { message: "Logout successful" };
+    return { success: true };
 }

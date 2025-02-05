@@ -36,17 +36,24 @@
   }
 }
 
-.profile {
+.profileActions {
   display: flex;
   flex-direction: row;
 
-  .profileButton {
+  .profileAuthActions {
     a {
       padding: 0 10px 0 10px;
       color: $primary-color;
       font-weight: 500;
       text-transform: uppercase;
       text-decoration: none;
+    }
+
+    .profileNameDisplay {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
     }
   }
 }

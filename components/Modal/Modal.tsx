@@ -22,7 +22,7 @@ const Modal = ({ content, type }) => {
     }, []);
 
     return createPortal(
-        <div class={styles.modal}>
+        <div className={styles.modal}>
             <div className={styles.window}>
                 <div className={styles.title}>
                     {titlePerType[type]}

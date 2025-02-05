@@ -7,8 +7,10 @@ import {DATABASES} from "@/constants/constants";
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { cookies } from 'next/headers';
+import {redirect} from "next/navigation";
 
 export async function loginHrUser(formData: FormData) {
+    console.log("loginHrUser***********************************************************************", formData);
     const cookieStore = await cookies();
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
@@ -31,11 +33,12 @@ export async function loginHrUser(formData: FormData) {
     // check if user already exists
     const hrUser = await Model.findOne({ username: formDataObject.username });
     if (!hrUser) {
+        console.log('ERROR_LOGIN_HR_USER: User cannot be found!');
         return { error: 'Username does not exist! Please register first.' }
     }
 
     // check password
-    const validPassword = await bcryptjs.compare(formDataObject.password!, User.password)
+    const validPassword = await bcryptjs.compare(formDataObject.password!, hrUser.password)
 
     if(!validPassword) {
         return { error: 'Password does not match! Please try again or contact support.' }

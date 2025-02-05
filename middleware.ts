@@ -23,12 +23,10 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
     matcher: [
-        //'/',
-        //'/createCandidate',
-        //'/hrUserProfile',
-        //'/login',
-        //'/register',
-        //'/verifyemail',
-        //'/settings',
+        '/candidates',
+        '/createCandidate',
+        '/hrUserProfile',
+        '/verifyemail',
+        '/settings',
     ],
 }
