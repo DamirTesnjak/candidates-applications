@@ -27,11 +27,11 @@ export async function updateCompanyEmailConfiguration(formData: FormData) {
     // check if user already exists
     const emailConfig = await Model.findById(formDataObject.id);
     if (emailConfig) {
-        emailTemplate.emailHost = formDataObject.emailHost;
-        emailTemplate.port = formDataObject.port;
-        emailTemplate.username = formDataObject.username;
-        emailTemplate.companyName = formDataObject.companyName;
-        emailTemplate.password = formDataObject.password;
+        emailConfig.emailHost = formDataObject.emailHost;
+        emailConfig.port = formDataObject.port;
+        emailConfig.username = formDataObject.username;
+        emailConfig.companyName = formDataObject.companyName;
+        emailConfig.password = formDataObject.password;
     }
 
     const savedEmailConfig = await emailConfig.save();

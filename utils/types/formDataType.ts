@@ -22,5 +22,8 @@ export interface IFormDataType {
     emailType?: string;
     emailText?: string;
     emailHost?: string;
+    archive?: string;
+    hire?: string;
+    reject?: string;
     port?: string;
 }

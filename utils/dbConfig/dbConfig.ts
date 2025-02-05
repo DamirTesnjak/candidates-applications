@@ -4,6 +4,7 @@ import candidateSchema from "@/utils/dbConfig/models/candidateModel.js";
 import hrUserSchema from "@/utils/dbConfig/models/hrUserModel";
 import emailTemplateSchema from "@/utils/dbConfig/models/emailTemplateModel";
 import companyEmailSettingsSchema from "@/utils/dbConfig/models/companyEmailSettingsModel";
+import mappedEmailTemplates from "@/utils/dbConfig/models/mappedEmailTemplates";
 
 export function connectToDB(database: string) {
     try {
@@ -26,6 +27,10 @@ export function connectToDB(database: string) {
 
         if (database === DATABASES.companyEmailConfigs) {
             Model = connection.model(DATABASES.companyEmailConfigs, companyEmailSettingsSchema);
+        }
+
+        if (database === DATABASES.mappedEmailTemplates) {
+            Model = connection.model(DATABASES.mappedEmailTemplates, mappedEmailTemplates);
         }
 
         connection.on('connected', () => {
