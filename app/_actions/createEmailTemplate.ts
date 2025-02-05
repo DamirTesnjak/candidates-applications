@@ -3,7 +3,8 @@
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
-import {DATABASES} from "@/constants/constants";
+import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
+import {uploadFile} from "@/utils/uploadFile";
 
 export async function createEmailTemplate(formData: FormData) {
     const validatedFields = formValidation(formData);
@@ -24,9 +25,12 @@ export async function createEmailTemplate(formData: FormData) {
         }
     }
 
+    const companyLogoPicture = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.companyLogo);
+
     const newEmailTemplate = new Model({
         emailType: formDataObject.emailType,
         emailText: formDataObject.emailText,
+        companyLogo: companyLogoPicture,
     });
 
     const savedEmailTemplate = await newEmailTemplate.save();

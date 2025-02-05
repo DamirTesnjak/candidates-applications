@@ -111,7 +111,7 @@ export default function TextEditor({ data }) {
                     className="standard"
                     flow="flowColumn"
                     label="Email Template name"
-                    name="emailName"
+                    name="emailType"
                 />
                 <SelectInput
                     label="Email Template"
@@ -120,7 +120,7 @@ export default function TextEditor({ data }) {
                     placeholder="Select email Template"
                 />
                 <div className={styles.buttonsContainer}>
-                    <Input className="uploadButton" flow="flowRow" type="file" label="Upload company logo"/>
+                    <Input className="uploadButton" flow="flowRow" type="file" label="Upload company logo" name="companyLogo" />
                     <Button
                         className="submitButton"
                         type="submit"

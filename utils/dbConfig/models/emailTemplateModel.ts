@@ -4,6 +4,13 @@ export interface IEmailTemplateSchema {
     id: string;
     emailType: string;
     emailText: string;
+    companyLogo: {
+        file: {
+            name: string;
+            data: string;
+            contentType: string;
+        };
+    };
 }
 
 const { Schema } = mongoose;
@@ -14,7 +21,14 @@ const emailTemplateSchema = new Schema<IEmailTemplateSchema>({
         unique: true,
     },
     emailType: String,
-    emailText: String
+    emailText: String,
+    companyLogo: {
+        file: {
+            name: String,
+            data: String,
+            contentType: String,
+        },
+    },
 })
 
 export default emailTemplateSchema;
