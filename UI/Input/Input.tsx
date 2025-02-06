@@ -6,7 +6,7 @@ interface InputProps {
     className: "standard" | "full" | "outline" | "checkbox" | "uploadButton";
     flow: "flowRow" | "flowColumn";
     role?: "button" | "radio" | "checkbox";
-    type?: "button" | "file" | "text" | "checkbox" | "password" | "number" ;
+    type?: "button" | "file" | "text" | "checkbox" | "password" | "number" | "email" ;
     value?: string | number | string[];
     defaultValue?: string | number | string[];
     readOnly?: boolean;

@@ -1,13 +1,16 @@
 import Image from "next/image";
 import {getFile} from "@/utils/getFile";
 import Button from "@/UI/Button/Button";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LaunchIcon from "@mui/icons-material/Launch";
 import ArchiveIcon from '@mui/icons-material/Archive';
 import CancelIcon from '@mui/icons-material/Cancel';
+import WorkIcon from '@mui/icons-material/Work';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
+
+import {sendEmail} from "@/app/_actions/sendEmail";
 
 interface TableDataProps {
     original: {
@@ -19,6 +22,22 @@ interface TableDataProps {
         profilePicture: ICandidateSchema["profilePicture"];
         curriculumVitae: ICandidateSchema["curriculumVitae"];
     };
+}
+
+const buttonIcons = {
+    archive: <ArchiveIcon />,
+    hire: <WorkIcon />,
+    reject: <CancelIcon />,
+}
+
+export const RowButton = ({ clientId, name, text, value, icon }) => {
+    return (
+        <form action={sendEmail}>
+            <input name="id" value={clientId} readOnly hidden />
+            <input name={name} value={value} readOnly hidden />
+            <Button className="submitButton" text={text} type="submit" startIcon={buttonIcons[icon]} />
+        </form>
+    )
 }
 
 export const customerTableDataProps = (row: TableDataProps) => {
@@ -93,7 +112,7 @@ export const customerTableDataProps = (row: TableDataProps) => {
         "button1": {
             title: "",
             size: 150,
-            cell: <Button className="textButton" text="Archive" type="button" startIcon={<ArchiveIcon />} />,
+            cell: row ? <RowButton clientId={row.original._id} name="emailTemplateType" text="Archive" value="archive" icon="archive" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,
@@ -102,7 +121,7 @@ export const customerTableDataProps = (row: TableDataProps) => {
         "button2": {
             title: "",
             size: 150,
-            cell: <Button className="textButton" text="Hire" type="button" startIcon={<CloudDownloadIcon />} />,
+            cell: row ? <RowButton clientId={row.original._id} text="Hire" value="hire" name="emailTemplateType" icon="hire" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,
@@ -111,7 +130,7 @@ export const customerTableDataProps = (row: TableDataProps) => {
         "button3": {
             title: "",
             size: 150,
-            cell: <Button className="textButton" text="Reject" type="button" startIcon={<CancelIcon />} />,
+            cell: row ? <RowButton clientId={row.original._id} text="Reject" value="reject" name="emailTemplateType" icon="reject" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,

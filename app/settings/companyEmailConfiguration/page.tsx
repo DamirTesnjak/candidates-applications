@@ -1,12 +1,13 @@
 import Input from "../../../UI/Input/Input"
 import styles from "../../../styles/global/globals.module.scss"
 import Button from "@/UI/Button/Button";
+import { createCompanyEmailConfiguration } from "@/app/_actions/createCompanyEmailConfiguration";
 
 export default function companyEmailConfigurationPage() {
     return (
         <div className={styles.container}>
             <h3>Company email configuration</h3>
-            <form>
+            <form action={createCompanyEmailConfiguration}>
                 <Input
                     className="standard"
                     label="Email host"
@@ -17,15 +18,22 @@ export default function companyEmailConfigurationPage() {
                 <Input
                     className="standard"
                     label="Email host port"
-                    name="emailHostPort"
+                    name="port"
                     type="number"
                     flow="flowRow"
                 />
                 <Input
                     className="standard"
                     label="Company full name"
-                    name="companyFullName"
+                    name="companyName"
                     type="text"
+                    flow="flowRow"
+                />
+                <Input
+                    className="standard"
+                    label="Email address"
+                    name="email"
+                    type="email"
                     flow="flowRow"
                 />
                 <Input
