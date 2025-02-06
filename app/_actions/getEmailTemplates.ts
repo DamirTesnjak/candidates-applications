@@ -25,9 +25,9 @@ export async function getEmailTemplates() {
             error: "No email templates found."
         }
     }
-    return {
+    return JSON.stringify({
         message: "Fetching data successful!",
         success: true,
         emailTemplates,
-    };
+    });
 }

@@ -26,6 +26,7 @@ export async function getEmailTemplate(id: string) {
             id: emailTemplate._id,
             emailType: emailTemplate.emailType,
             emailText: emailTemplate.emailText,
+            companyLogo: emailTemplate.companyLogo,
         },
         success: true,
     });

@@ -8,6 +8,7 @@ export const DATABASES = {
     hrUsers: 'hrUsers',
     emailTemplates: 'emailTemplates',
     companyEmailConfigs: 'companyEmailConfigs',
+    mappedEmailTemplates: 'mappedEmailTemplates',
 }
 
 export const EMAIL_TYPE = {
@@ -23,6 +24,7 @@ export const FILE_TYPE = {
 export const FORM_INPUT_FIELD_NAME = {
     file: "file",
     image: "profilePicture",
+    companyLogo: "companyLogo",
 }
 
 export const EDIT_TEXT_BUTTON = {

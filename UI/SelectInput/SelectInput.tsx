@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,9 +9,10 @@ import styles from './selectInput.module.scss';
 
 interface SelectInputProps {
     label?: string;
-    onSelect: (value: SelectChangeEvent<any>) => void;
+    onSelect?: (value: SelectChangeEvent<any>) => void;
     listDropdown: { id: string; value: string }[];
     placeholder?: string;
+    name?: string;
 }
 
 const ITEM_HEIGHT = 48;
@@ -23,7 +26,7 @@ const MenuProps = {
     },
 };
 
-export default function SelectInput({ label, onSelect, listDropdown, placeholder }: SelectInputProps) {
+export default function SelectInput({ label, onSelect, listDropdown, placeholder, name }: SelectInputProps) {
     const [selectedValue, setSelectValue] = React.useState<string[]>([]);
 
     const handleChange = (event: SelectChangeEvent<typeof selectedValue>) => {
@@ -34,7 +37,12 @@ export default function SelectInput({ label, onSelect, listDropdown, placeholder
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
-        onSelect(event);
+
+        if (onSelect) {
+            onSelect(event);
+        } else {
+
+        }
     };
 
     return (
@@ -45,6 +53,7 @@ export default function SelectInput({ label, onSelect, listDropdown, placeholder
                 >
                     {label}
                 </label>
+                <input type="text" name={name} value={selectedValue} hidden readOnly />
                 <Select
                     className={styles.select}
                     displayEmpty
