@@ -8,30 +8,66 @@ import Input from "@/UI/Input/Input";
 import Button from "@/UI/Button/Button";
 
 import styles from "./editForm.module.scss";
+import { useActionState, useEffect, useState } from 'react';
+import Modal from '@/components/Modal/Modal';
+import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 
 export interface IFormProps {
+    id?: string;
     serverAction?: (formData: FormData) =>  Promise<{errors: {[p: string]: string[] | undefined, [p: number]: string[] | undefined}, message?: undefined, error?: undefined} | {message: string, errors?: undefined, error?: undefined} | {}>
     stateModel: typeof initialStateCandidate | typeof initialStateHrUser;
     storeReducerName: string;
     editable?: boolean;
     newProfile?: boolean;
+    showUploadCVButton?: boolean;
+    hrForm?: boolean;
+}
+
+export interface IShowModal {
+    success: boolean | undefined;
+    error: boolean | undefined;
 }
 
 export default function EditForm(props: IFormProps) {
-    const { serverAction, stateModel, storeReducerName, editable, newProfile } = props;
+    const { id, serverAction, stateModel, storeReducerName, editable, newProfile, showUploadCVButton, hrForm } = props;
+    const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
+
+    const [ response, formAction ] = useActionState(serverAction, null);
+    const [ showModal, setShowModal ] = useState<IShowModal>({
+        success: false,
+        error: false,
+    });
+
     const stateModelKeys = Object.keys(flattenObject(stateModel));
     const filedsToDisplayKeys = stateModelKeys.filter((stateModelKey) => stateModelKey !== 'data' && stateModelKey !== 'contentType' && stateModelKey !== 'id');
-
-    const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
 
     const flattenedObjects = (stateModelKey) => {
         return newProfile ? flattenObject(initialStateCandidate)[stateModelKey] : flattenObject(stateModelKeyAndValues)[stateModelKey];
     }
 
+    useEffect(() => {
+        if (response && (response.error || response.success)) {
+            setShowModal({
+                success: response.success,
+                error: response.error,
+            });
+        }
+    }, [response]);
+
+    const displayDefaultValue = (field) => {
+        if (response && response.prevState) {
+            return response.prevState[field]
+        }
+        return flattenedObjects(field);
+    }
+
+    console.log('response', response);
+
     return (
-        <form action={serverAction}>
+      <div>
+        <form action={formAction}>
+            <input name="id" type="text" value={flattenedObjects('id')} readOnly hidden />
             {filedsToDisplayKeys.map((stateModelKey) => {
-                console.log('stateModelKey', stateModelKey);
                 if (stateModelKey === 'archived' || stateModelKey === 'employed' || stateModelKey === 'rejected') {
                     return (
                         <div key={stateModelKey}>
@@ -42,7 +78,7 @@ export default function EditForm(props: IFormProps) {
                                 name={stateModelKey}
                                 type="checkbox"
                                 defaultValue={flattenedObjects(stateModelKey) ? "on" : "off"}
-                                defaultChecked={flattenedObjects(stateModelKey)}
+                                checked={flattenedObjects(stateModelKey)}
                                 readOnly={!editable}
                             />
                         </div>
@@ -56,8 +92,9 @@ export default function EditForm(props: IFormProps) {
                                 label={stateModelKey}
                                 name={stateModelKey}
                                 type="text"
-                                defaultValue={flattenedObjects(stateModelKey)}
                                 readOnly={!editable}
+                                errorMessage={response && response.errorFieldValidation ? response.errorFieldValidation[stateModelKey] : null}
+                                defaultValue={displayDefaultValue(stateModelKey)}
                             />
                         </div>
                     )
@@ -71,13 +108,13 @@ export default function EditForm(props: IFormProps) {
                     name="profilePicture"
                     type="file"
                 />
-                <Input
+                { showUploadCVButton && <Input
                     className="uploadButton"
                     flow="flowRow"
                     label="CV PDF file"
                     name="file"
                     type="file"
-                />
+                />}
                 <Button
                     className="submitButton"
                     type="submit"
@@ -85,5 +122,8 @@ export default function EditForm(props: IFormProps) {
                 />
             </div>)}
         </form>
+          {showModal.error && (<Modal type="error" content={<ModalContentMessage response={response} setShowModal={setShowModal} />}/>)}
+          {showModal.success && (<Modal type="success" content={<ModalContentMessage response={response} setShowModal={setShowModal} />}/>)}
+      </div>
     )
 }

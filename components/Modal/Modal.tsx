@@ -8,7 +8,9 @@ const Modal = ({ content, type }) => {
     const elRef = useRef(null);
 
     const titlePerType =  {
-        warning: "Warning",
+        warning: "Warning!",
+        error: "Error!",
+        success: "Success!",
     }
 
     if (!elRef.current) {

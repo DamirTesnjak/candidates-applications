@@ -4,10 +4,13 @@ import {initialStateCandidate} from "@/lib/features/candidate/candidateSlice";
 import {STORE_REDUCER_NAME} from "@/constants/constants";
 import styles from "../../candidateProfile.module.scss";
 
-export default function EditCandidatePage() {
+export default async function EditCandidatePage({params}) {
+    const { id } = await params;
+
     return (
         <div className={styles.profileForm}>
         <EditForm
+            id={id}
             serverAction={updateCandidate}
             stateModel={initialStateCandidate}
             storeReducerName={STORE_REDUCER_NAME.candidate}

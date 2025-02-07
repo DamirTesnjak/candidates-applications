@@ -3,7 +3,7 @@
 
 
 .standard {
-  width: 250px;
+  width: 230px;
   height: 40px;
   margin: 5px 0 5px 0;
   padding: 5px 5px 5px 5px;
@@ -25,6 +25,11 @@
 .label {
   width: 250px !important;
   font-size: 15px;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: $red;
 }
 
 .flowColumn {
@@ -58,6 +63,7 @@
   flex-direction: row;
   align-items: center;
   row-gap: 5px;
+  column-gap: 10px;
 
   input[type="file"] {
     display: none;

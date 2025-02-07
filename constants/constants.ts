@@ -3,7 +3,16 @@ export const STORE_REDUCER_NAME = {
     candidate: 'candidate'
 }
 
-export const DATABASES = {
+export interface IDatabaseType {
+    [x: string]: string;
+    candidates: 'candidates';
+    hrUsers: 'hrUsers';
+    emailTemplates: 'emailTemplates';
+    companyEmailConfigs: 'companyEmailConfigs';
+    mappedEmailTemplates: 'mappedEmailTemplates';
+}
+
+export const DATABASES: IDatabaseType = {
     candidates: 'candidates',
     hrUsers: 'hrUsers',
     emailTemplates: 'emailTemplates',

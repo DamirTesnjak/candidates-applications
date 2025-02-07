@@ -6,15 +6,28 @@ interface InputProps {
     className: "standard" | "full" | "outline" | "checkbox" | "uploadButton";
     flow: "flowRow" | "flowColumn";
     role?: "button" | "radio" | "checkbox";
-    type?: "button" | "file" | "text" | "checkbox" | "password" | "number" | "email" ;
+    type: "button" | "file" | "text" | "checkbox" | "password" | "number" | "email" ;
     value?: string | number | string[];
     defaultValue?: string | number | string[];
     readOnly?: boolean;
     required?: boolean;
-    defaultChecked?: string | number;
+    checked?: string | number | boolean;
+    errorMessage?: string | null;
 }
 
-export default function Input({ label, name, className, flow, role, type, value, defaultValue, readOnly, required, defaultChecked }: InputProps) {
+export default function Input({
+    label,
+    name,
+    className,
+    flow,
+    role,
+    type,
+    value,
+    defaultValue,
+    readOnly,
+    required,
+    checked,
+    errorMessage }: InputProps) {
     const CLASS_NAME = {
         input: styles.input,
         standard: styles.standard,
@@ -26,6 +39,7 @@ export default function Input({ label, name, className, flow, role, type, value,
         uploadButton: styles.uploadButton,
         checkbox: styles.checkbox,
     }
+
     return (
         <div className={CLASS_NAME[flow]}>
             <label
@@ -44,8 +58,9 @@ export default function Input({ label, name, className, flow, role, type, value,
                 defaultValue={defaultValue}
                 readOnly={readOnly}
                 required={required}
-                defaultChecked={!!defaultChecked}
+                defaultChecked={checked}
             />
+            {errorMessage ? <div className={styles.errorMessage}>{errorMessage}</div> : null}
         </div>
     )
 }

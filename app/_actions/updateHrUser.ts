@@ -1,19 +1,27 @@
 'use server'
 
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function updateHrUser(formData: FormData) {
-    const validatedFields = formValidation(formData);
+export async function updateHrUser(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid
-    if (!validatedFields.success) {
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+        formData,
+        formDataObject,
+        errorMessage: 'ERROR_UPDATE_HR_USER: inputField validation error'
+    })
+
+    if (error) {
         return {
-            error: validatedFields.error.flatten().fieldErrors,
+            errorFieldValidation,
+            error,
+            prevState: prevStateFormData,
         }
     }
 
@@ -22,11 +30,14 @@ export async function updateHrUser(formData: FormData) {
     if (!Model) {
         console.log('ERROR_UPDATE_HR_USER: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
     // check if user already exists
     const hrUser = await Model.findById(formDataObject.id);
+    console.log('hrUser', hrUser);
     if (hrUser) {
         const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
         hrUser.profilePicture = uploadedProfilePictureFile || hrUser.profilePicture;
@@ -41,12 +52,15 @@ export async function updateHrUser(formData: FormData) {
     if (!savedHrUser) {
         console.log('ERROR_UPDATE_HR_USER: Error with saving to the database!');
         return {
-            error: "Something went wrong, cannot save changes, please try again or contact support.",
+            errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
     return {
-        message: "Changes saved",
+        successMessage: "User updated successfully",
         success: true,
+        prevState: formDataObject,
     }
 }

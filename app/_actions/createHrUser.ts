@@ -6,8 +6,9 @@ import bcryptjs from "bcryptjs";
 
 import {DATABASES, EMAIL_TYPE, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import { getFormDataObject } from "@/utils/formValidation/getFormDataObject";
-import { formValidation } from "@/utils/formValidation/formValidation";
 import { uploadFile } from "@/utils/uploadFile";
+import checkFormValidation from "@/utils/utilsServer/checkFormValidation";
+import { IFormDataType } from '@/utils/types/formDataType';
 
 const sendEmail = async ({ email, emailType, userId }: any) => {
     // create a hashed token
@@ -18,7 +19,8 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
     if (!Model) {
         console.log('ERROR_SEND_EMAIL: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
         }
     }
 
@@ -60,14 +62,21 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
     return await transport.sendMail(mailOptions);
 }
 
-export const createHrUser = async (formData: FormData) => {
-    const validatedFields = formValidation(formData);
+export const createHrUser = async (prevState: IFormDataType, formData: FormData) => {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid
-    if (!validatedFields.success) {
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+        formData,
+        formDataObject,
+        errorMessage: 'ERROR_CREATE_HR_USER: inputField validation error'
+    })
+
+    if (error) {
         return {
-            error: validatedFields.error.flatten().fieldErrors,
+            errorFieldValidation,
+            error,
+            prevState: prevStateFormData,
         }
     }
 
@@ -75,21 +84,33 @@ export const createHrUser = async (formData: FormData) => {
     if (!Model) {
         console.log('ERROR_CREATE_HR_USER: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
     // check if user already exists
     const hrUser = await Model.findOne({ email: formDataObject.email });
     if (hrUser) {
         return {
-            error: "User already exists!"
+            errorMessage: "User already exists!",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
     // hash password
     const salt = await bcryptjs.genSalt(10)
     const hashedPassword = await bcryptjs.hash(formDataObject.password!, salt);
-    const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
+    const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image)
+
+    if (!uploadedProfilePictureFile) {
+        return {
+            errorMessage: "Please upload a picture!",
+            error: true,
+            prevState: formDataObject,
+        }
+    }
 
     const newUser = new Model({
         profilePicture: uploadedProfilePictureFile,
@@ -97,6 +118,7 @@ export const createHrUser = async (formData: FormData) => {
         surname: formDataObject.surname,
         phoneNumber: formDataObject.phoneNumber,
         email: formDataObject.email,
+        companyName: formDataObject.companyName,
         username: formDataObject.username,
         password: hashedPassword,
     })
@@ -106,7 +128,9 @@ export const createHrUser = async (formData: FormData) => {
     if (savedUser !== newUser) {
         console.log('ERROR_CREATE_HR_USER: Error with saving new candidate to the database!');
         return {
-            error: "Cannot create user! Please try again or contact support!",
+            errorMessage: "Cannot create user! Please try again or contact support!",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
@@ -120,12 +144,15 @@ export const createHrUser = async (formData: FormData) => {
     if (!messageId) {
         console.log('ERROR_CREATE_HR_USER: Error with sending confirmation email!');
         return {
-            error: "Something went wrong! Please try again or contact support!",
+            errorMessage: "Something went wrong! Please try again or contact support!",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
     return {
-        message: "User created successfully",
+        successMessage: "User created successfully",
         success: true,
+        prevState: formDataObject,
     }
 }

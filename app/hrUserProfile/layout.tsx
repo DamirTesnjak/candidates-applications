@@ -12,8 +12,9 @@ import AddIcon from "@mui/icons-material/Add";
 import globalStyles from "@/styles/global/globals.module.scss";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import LogoutButton from "@/components/Header/LogoutButton/LogoutButton";
+import { ReactNode } from 'react';
 
-export default async function CandidateProfileLayout({ children }: { params: { id: string } }) {
+export default async function CandidateProfileLayout({ children }: { children: ReactNode; params: { id: string } }) {
     const results = await getHrUserProfile();
     const parsedResults = results ? JSON.parse(results) : null;
     const { data } = parsedResults;

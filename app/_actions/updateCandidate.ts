@@ -10,6 +10,8 @@ export async function updateCandidate(formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 
+    console.log('formDataObject', formDataObject);
+
     // Return early if the form data is invalid
     if (!validatedFields.success) {
         return {

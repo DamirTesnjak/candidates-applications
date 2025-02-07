@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from "react";
+import { useState, useTransition } from 'react';
 import Modal from "@/components/Modal/Modal";
 import {DATABASES} from "@/constants/constants";
 import {deleteProfileInfo} from "@/app/_actions/deleteProfileInfo";
@@ -8,7 +8,19 @@ import Button from "@/UI/Button/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function DeleteProfileButton({id, databaseName}: {id: string; databaseName: string}) {
+    const [, startTransition] = useTransition();
     const [deleteProfile, setDeleteProfile] = useState(false);
+
+    const submitAction = async (formData: FormData) => {
+        startTransition(async () => {
+            const result = await deleteProfileInfo(formData);
+            console.log('result', result);
+            const {success} = result;
+            if (success) {
+                setDeleteProfile(false);
+            }
+        })
+    }
 
     const modalContent = (
         <div style={{
@@ -25,13 +37,16 @@ export default function DeleteProfileButton({id, databaseName}: {id: string; dat
                 gap: 12,
                 justifyContent: "center",
             }}>
-                <form action={deleteProfileInfo}>
+                <form onSubmit={async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.currentTarget);
+                    await submitAction(formData);
+                }}>
                     <input hidden={true} name="id" defaultValue={id}/>
                     <input hidden={true} name="databaseName" defaultValue={DATABASES[databaseName]}/>
                     <Button
                         className="submitButton"
                         text="Yes! Delete profile!"
-                        onClick={() => setDeleteProfile(false)}
                         type="button"
                     />
                 </form>
