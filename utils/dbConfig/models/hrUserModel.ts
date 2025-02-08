@@ -28,10 +28,7 @@ export interface IHrUserSchema {
 
 const { Schema } = mongoose;
 const hrUserSchema = new Schema<IHrUserSchema>({
-    id: {
-        type: String,
-        unique: true,
-    },
+    id: String,
     profilePicture: {
         file: {
             name: String,

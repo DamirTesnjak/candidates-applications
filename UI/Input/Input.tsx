@@ -43,13 +43,13 @@ export default function Input({
     return (
         <div className={CLASS_NAME[flow]}>
             <label
-                htmlFor={type === "file" ? `${className}-${type}` : name}
+                htmlFor={`${name}-file`}
                 className={type === "file" ? CLASS_NAME[className] : styles.label}
             >
                 {label}
             </label>
             <input
-                id={type === "file" ? `${className}-${type}` : name}
+                id={`${name}-file`}
                 name={name}
                 className={CLASS_NAME[className]}
                 role={role}

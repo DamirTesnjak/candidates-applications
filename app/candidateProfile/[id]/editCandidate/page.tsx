@@ -9,13 +9,14 @@ export default async function EditCandidatePage({params}) {
 
     return (
         <div className={styles.profileForm}>
-        <EditForm
-            id={id}
-            serverAction={updateCandidate}
-            stateModel={initialStateCandidate}
-            storeReducerName={STORE_REDUCER_NAME.candidate}
-            editable={true}
-        />
+          <EditForm
+              id={id}
+              serverAction={updateCandidate}
+              stateModel={initialStateCandidate}
+              storeReducerName={STORE_REDUCER_NAME.candidate}
+              editable={true}
+              showUploadCVButton={true}
+          />
         </div>
     )
 }

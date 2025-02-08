@@ -6,17 +6,32 @@ import {DATABASES} from "@/constants/constants";
 import {deleteProfileInfo} from "@/app/_actions/deleteProfileInfo";
 import Button from "@/UI/Button/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAppDispatch } from '@/lib/hooks';
+import { initialStateHrUser, loadUpdateHrUser } from '@/lib/features/hrUser/hrUserSlice';
+import { loadUpdateCandidate } from '@/lib/features/candidate/candidateSlice';
+import { useRouter } from 'next/navigation'
 
 export default function DeleteProfileButton({id, databaseName}: {id: string; databaseName: string}) {
+    const router = useRouter()
+    const dispatch = useAppDispatch();
     const [, startTransition] = useTransition();
     const [deleteProfile, setDeleteProfile] = useState(false);
 
     const submitAction = async (formData: FormData) => {
         startTransition(async () => {
             const result = await deleteProfileInfo(formData);
-            console.log('result', result);
             const {success} = result;
             if (success) {
+                if (DATABASES.candidates === DATABASES[databaseName]) {
+                    dispatch(loadUpdateCandidate(initialStateHrUser));
+                    router.push('/candidates');
+                }
+
+                if (DATABASES.hrUsers === DATABASES[databaseName]) {
+                    dispatch(loadUpdateHrUser(initialStateHrUser));
+                    router.push('/register');
+
+                }
                 setDeleteProfile(false);
             }
         })
@@ -47,7 +62,7 @@ export default function DeleteProfileButton({id, databaseName}: {id: string; dat
                     <Button
                         className="submitButton"
                         text="Yes! Delete profile!"
-                        type="button"
+                        type="submit"
                     />
                 </form>
                 <Button

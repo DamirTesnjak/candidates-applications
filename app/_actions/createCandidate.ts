@@ -1,33 +1,49 @@
 'use server'
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {uploadFile} from "@/utils/uploadFile";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
+import { IFormDataType } from '@/utils/types/formDataType';
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 
-export async function createCandidate(formData: FormData) {
-    const validatedFields = formValidation(formData);
+export async function createCandidate(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid
-    if (!validatedFields.success) {
-        return {
-            error: validatedFields.error.flatten().fieldErrors,
-        }
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+      formData,
+      formDataObject,
+      errorMessage: 'ERROR_CREATE_CANDIDATE: inputField validation error'
+    })
+
+    if (error) {
+      return {
+        errorFieldValidation,
+        error,
+        prevState: prevStateFormData,
+      }
     }
+
     const Model = connectToDB(DATABASES.candidates);
 
     if (!Model) {
         console.log('ERROR_CREATE_CANDIDATE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
-    const candidateFound = await Model.findOne({ id: formDataObject.id })
+    const candidateFound = await Model.findOne({ "contact.email": formDataObject.email })
     if (candidateFound) {
-        return { error: "User already exists" };
+        return {
+          errorMessage: "Candidate already exists",
+          error: true,
+          prevState: formDataObject,
+
+        };
     }
 
     const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
@@ -60,9 +76,11 @@ export async function createCandidate(formData: FormData) {
     if (savedCandidate !== newCandidate) {
         console.log('ERROR_CREATE_CANDIDATE: Error with saving new candidate to the database!');
         return {
-            error: "Cannot create user! Please try again or contact support!",
+            errorMessage: "Cannot create candidate! Please try again or contact support!",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
-    return { message: "Candidate created successfully", success: true };
+    return { successMessage: "Candidate created successfully", success: true };
 }

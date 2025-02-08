@@ -13,10 +13,7 @@ export interface ICompanyEmailSettingsSchema {
 const { Schema } = mongoose;
 
 const companyEmailSettingsSchema = new Schema<ICompanyEmailSettingsSchema>({
-    id: {
-        type: String,
-        unique: true,
-    },
+    id: String,
     emailHost: String,
     port: Number,
     email: String,

@@ -16,10 +16,7 @@ export interface IEmailTemplateSchema {
 const { Schema } = mongoose;
 
 const emailTemplateSchema = new Schema<IEmailTemplateSchema>({
-    id: {
-        type: String,
-        unique: true,
-    },
+    id: String,
     emailType: String,
     emailText: String,
     companyLogo: {

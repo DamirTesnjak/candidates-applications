@@ -1,6 +1,7 @@
 export const STORE_REDUCER_NAME = {
     hrUser: "hrUser",
-    candidate: 'candidate'
+    candidate: 'candidate',
+    companyEmailConfigs: "companyEmailConfigs",
 }
 
 export interface IDatabaseType {

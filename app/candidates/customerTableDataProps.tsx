@@ -139,7 +139,7 @@ export const customerTableDataProps = (row: TableDataProps) => {
         "button4": {
             title: "Profile Link",
             size: 150,
-            cell: row ? <Link href={`/candidateProfile/${row.original._id}`} target="_blank"><Button className="textButton" type="button" startIcon={<LaunchIcon />} /></Link> : null,
+            cell: row ? <Link href={`/candidateProfile/${row.original._id}`} ><Button className="textButton" type="button" startIcon={<LaunchIcon />} /></Link> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,

@@ -1,22 +1,28 @@
 'use server'
 
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function updateCandidate(formData: FormData) {
-    const validatedFields = formValidation(formData);
+export async function updateCandidate(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
-    console.log('formDataObject', formDataObject);
-
     // Return early if the form data is invalid
-    if (!validatedFields.success) {
-        return {
-            error: validatedFields.error.flatten().fieldErrors,
-        }
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+      formData,
+      formDataObject,
+      errorMessage: 'ERROR_UPDATE_CANDIDATE: inputField validation error'
+    })
+
+    if (error) {
+      return {
+        errorFieldValidation,
+        error,
+        prevState: prevStateFormData,
+      }
     }
 
     const Model = connectToDB(DATABASES.candidates);
@@ -24,7 +30,9 @@ export async function updateCandidate(formData: FormData) {
     if (!Model) {
         console.log('ERROR_UPDATE_CANDIDATE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject
         }
     }
     // check if user already exists
@@ -58,12 +66,15 @@ export async function updateCandidate(formData: FormData) {
     if (!savedCandidate) {
         console.log('ERROR_UPDATE_CANDIDATE: Error with updating the candidate to the database!');
         return {
-            error: "Something went wrong, cannot save changes, please try again or contact support.",
+            errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
     return {
-        message: "Changes saved",
+        successMessage: "Changes saved",
         success: true,
+        prevState: formDataObject,
     }
 }

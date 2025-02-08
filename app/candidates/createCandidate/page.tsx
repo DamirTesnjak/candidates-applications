@@ -5,11 +5,13 @@ import {STORE_REDUCER_NAME} from "@/constants/constants";
 
 export default function RegisterPage() {
     return (
-            <EditForm
-                serverAction={createCandidate}
-                stateModel={initialStateCandidate}
-                storeReducerName={STORE_REDUCER_NAME.candidate}
-                editable={true}
-                newProfile={true}
-            />)
+        <EditForm
+            serverAction={createCandidate}
+            stateModel={initialStateCandidate}
+            storeReducerName={STORE_REDUCER_NAME.candidate}
+            editable={true}
+            newProfile={true}
+            showUploadPictureButton={true}
+            showUploadCVButton={true}
+        />)
 }

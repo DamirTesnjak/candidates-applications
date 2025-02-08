@@ -9,10 +9,7 @@ export interface IMappedEmailTemplates {
 
 const { Schema } = mongoose;
 const mappedEmailTemplates = new Schema<IMappedEmailTemplates>({
-    id: {
-        type: String,
-        unique: true,
-    },
+    id: String,
     archive: String,
     hire: String,
     reject: String,

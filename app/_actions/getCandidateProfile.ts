@@ -9,19 +9,21 @@ export async function getCandidateProfile(id: string) {
     if (!Model) {
         console.log('ERROR_GET_CANDIDATE_PROFILE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
         }
     }
 
     const candidate = await Model?.findById(id);
     if (!candidate) {
         return {
-            error: "Candidate not found!",
+            errorMessage: "Candidate not found!",
+            error: true,
         }
     };
 
     return JSON.stringify({
-        message: "Candidate found",
+        successMessage: "Candidate found",
         data: {
             id: candidate._id,
             profilePicture: candidate.profilePicture,

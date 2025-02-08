@@ -4,36 +4,39 @@ import {loginHrUser} from "@/app/_actions/loginHrUser";
 import Input from "@/UI/Input/Input";
 import styles from "@/components/EditForm/editForm.module.scss";
 import Button from "@/UI/Button/Button";
-import { useTransition } from 'react';
+import { useActionState, useCallback, useState, useEffect } from 'react';
 import {getHrUserProfile} from "@/app/_actions/getHrUserProfile";
 import {useAppDispatch} from "@/lib/hooks";
 import {loadUpdateHrUser} from "@/lib/features/hrUser/hrUserSlice";
 import { useRouter } from 'next/navigation';
+import Modal from '@/components/Modal/Modal';
+import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 
-export default function LogingPage() {
+export interface IShowModal {
+  error: boolean | undefined;
+}
+
+export default function LoginPage() {
     const router = useRouter()
     const dispatch = useAppDispatch();
-    const [isPending, startTransition] = useTransition();
 
     const inputFields = [
         { name: "username", type: "text", label: "Username" },
         { name: "password", type: "password", label: "Password" },
     ];
 
-    const submitAction = async (formData) => {
-        startTransition(async () => {
-            const result = await loginHrUser(formData);
-            const parsedResult = JSON.parse(result);
-            const {success} = parsedResult;
-            if (success) {
-                const result = await getHrUserProfile();
-                const parsedResult = JSON.parse(result);
-                const {data} = parsedResult;
-                dispatch(loadUpdateHrUser(data));
-                router.push('/candidates');
-            }
-        })
-    }
+  const [ response, formAction ] = useActionState(loginHrUser, null);
+  const [ showModal, setShowModal ] = useState<IShowModal>({
+    error: false,
+  });
+
+    const getHrUserProfileData = useCallback(async () => {
+        const result = await getHrUserProfile();
+        const parsedResult = JSON.parse(result);
+        const {data} = parsedResult;
+        dispatch(loadUpdateHrUser(data));
+        router.push('/candidates');
+        }, [dispatch, router])
 
     const formContent = inputFields.map((inputField) => {
         return (
@@ -44,19 +47,29 @@ export default function LogingPage() {
                     label={inputField.label}
                     type={inputField.type}
                     flow="flowRow"
+                    errorMessage={response && response.errorFieldValidation ? response.errorFieldValidation[inputField.name] : null}
+                    defaultValue={response && response.error && response.prevState ? response.prevState[inputField.name] : ""}
                 />
             </div>
         )
     })
 
+    useEffect(() => {
+      if (response && response.success) {
+        getHrUserProfileData();
+      }
+    }, [getHrUserProfileData, response])
+
+    useEffect(() => {
+      console.log('response', response);
+      if (response && (response.errorMessage || response.success)) {
+        setShowModal({ error: response.error });
+      }
+    }, [response]);
+
     return (
         <div>
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.currentTarget);
-                    await submitAction(formData);
-                }}>
+            <form action={formAction}>
                 { formContent }
                 <div className={styles.buttonsContainer}>
                     <Button
@@ -66,6 +79,7 @@ export default function LogingPage() {
                     />
                 </div>
             </form>
+          {showModal.error && (<Modal type="error" content={<ModalContentMessage response={response} setShowModal={setShowModal} />}/>)}
         </div>
     )
 }

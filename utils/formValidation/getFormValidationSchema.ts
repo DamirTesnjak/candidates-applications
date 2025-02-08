@@ -34,6 +34,7 @@ export function getFormValidationSchema(formDataObject: IFormDataType) {
     };
 
     for (const field in fieldsKeys) {
+        console.log('fieldsKeys[field]', fieldsKeys[field])
         setSchemaField(fieldsKeys[field]);
     }
 

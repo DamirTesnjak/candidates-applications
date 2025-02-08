@@ -11,15 +11,17 @@ import styles from "./editForm.module.scss";
 import { useActionState, useEffect, useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
+import { initialStateCompanyEmailConfigs } from '@/lib/features/companyEmailConfigs/companyEmailConfigsSlice';
 
 export interface IFormProps {
     id?: string;
     serverAction?: (formData: FormData) =>  Promise<{errors: {[p: string]: string[] | undefined, [p: number]: string[] | undefined}, message?: undefined, error?: undefined} | {message: string, errors?: undefined, error?: undefined} | {}>
-    stateModel: typeof initialStateCandidate | typeof initialStateHrUser;
+    stateModel: typeof initialStateCandidate | typeof initialStateHrUser | typeof initialStateCompanyEmailConfigs;
     storeReducerName: string;
     editable?: boolean;
     newProfile?: boolean;
     showUploadCVButton?: boolean;
+    showUploadPictureButton?: boolean;
     hrForm?: boolean;
 }
 
@@ -29,7 +31,7 @@ export interface IShowModal {
 }
 
 export default function EditForm(props: IFormProps) {
-    const { id, serverAction, stateModel, storeReducerName, editable, newProfile, showUploadCVButton, hrForm } = props;
+    const { id, serverAction, stateModel, storeReducerName, editable, newProfile, showUploadCVButton, showUploadPictureButton } = props;
     const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
 
     const [ response, formAction ] = useActionState(serverAction, null);
@@ -46,7 +48,7 @@ export default function EditForm(props: IFormProps) {
     }
 
     useEffect(() => {
-        if (response && (response.error || response.success)) {
+        if (response && (response.errorMessage || response.success)) {
             setShowModal({
                 success: response.success,
                 error: response.error,
@@ -66,7 +68,7 @@ export default function EditForm(props: IFormProps) {
     return (
       <div>
         <form action={formAction}>
-            <input name="id" type="text" value={flattenedObjects('id')} readOnly hidden />
+          {id ? <input name="id" type="text" value={id} readOnly hidden /> : null}
             {filedsToDisplayKeys.map((stateModelKey) => {
                 if (stateModelKey === 'archived' || stateModelKey === 'employed' || stateModelKey === 'rejected') {
                     return (
@@ -91,7 +93,7 @@ export default function EditForm(props: IFormProps) {
                                 flow="flowRow"
                                 label={stateModelKey}
                                 name={stateModelKey}
-                                type="text"
+                                type={stateModelKey === "password" ? 'password' : "text"}
                                 readOnly={!editable}
                                 errorMessage={response && response.errorFieldValidation ? response.errorFieldValidation[stateModelKey] : null}
                                 defaultValue={displayDefaultValue(stateModelKey)}
@@ -101,14 +103,14 @@ export default function EditForm(props: IFormProps) {
                 }
             })}
             { editable && (<div className={styles.buttonsContainer}>
-                <Input
+                {showUploadPictureButton && <Input
                     className="uploadButton"
                     flow="flowRow"
                     label="Profile picture"
                     name="profilePicture"
                     type="file"
-                />
-                { showUploadCVButton && <Input
+                />}
+                {showUploadCVButton && <Input
                     className="uploadButton"
                     flow="flowRow"
                     label="CV PDF file"

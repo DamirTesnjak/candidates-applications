@@ -1,26 +1,37 @@
 'use server'
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES} from "@/constants/constants";
+import { IFormDataType } from '@/utils/types/formDataType';
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 
-export async function createCompanyEmailConfiguration(formData: FormData) {
-    const validatedFields = formValidation(formData);
+export async function createCompanyEmailConfiguration(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
-    // Return early if the form data is invalid
-    if (!validatedFields.success) {
-        return {
-            error: validatedFields.error.flatten().fieldErrors,
-        }
+  // Return early if the form data is invalid
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+      formData,
+      formDataObject,
+      errorMessage: 'ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: inputField validation error'
+    })
+
+    if (error) {
+      return {
+        errorFieldValidation,
+        error,
+        prevState: prevStateFormData,
+      }
     }
+
     const Model = connectToDB(DATABASES.companyEmailConfigs);
 
     if (!Model) {
         console.log('ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
@@ -35,12 +46,25 @@ export async function createCompanyEmailConfiguration(formData: FormData) {
             emailConfig.password = formDataObject.password;
             emailConfig.email = formDataObject.email;
 
+          const savedEmailConfig = await emailConfig.save();
+
+          if (savedEmailConfig !== emailConfig) {
+            console.log('ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Error with saving new email configuration to the database!');
+            return {
+              errorMessage: "Cannot create company email configuration! Please try again or contact support!",
+              error: true,
+              prevState: formDataObject,
+            }
+          }
+
         }
 
         if (!emailConfig) {
             console.log('ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Cannot find company email configuration!');
             return {
-                error: "Something went wrong, cannot save changes, please try again or contact support.",
+                errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+                error: true,
+                prevState: formDataObject,
             }
         }
 
@@ -48,29 +72,34 @@ export async function createCompanyEmailConfiguration(formData: FormData) {
         if (!savedEmailConfig) {
             console.log('ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Error with saving to the database!');
             return {
-                error: "Something went wrong, cannot save changes, please try again or contact support.",
+                errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+                error: true,
+                prevState: formDataObject,
             }
         }
-        return
-    }
-
-    const newCompanyEmailConfiguration = new Model({
+    } else {
+      const newCompanyEmailConfiguration = new Model({
         emailHost: formDataObject.emailHost,
         port: formDataObject.port,
         username: formDataObject.username,
         companyName: formDataObject.companyName,
         password: formDataObject.password,
         email: formDataObject.email,
-    });
-
-    const savedCompanyEmailConfiguration = await newCompanyEmailConfiguration.save();
-
-    if (savedCompanyEmailConfiguration !== newCompanyEmailConfiguration) {
+      });
+      const savedCompanyEmailConfiguration = await newCompanyEmailConfiguration.save();
+      if (savedCompanyEmailConfiguration !== newCompanyEmailConfiguration) {
         console.log('ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: Error with saving new email configuration to the database!');
         return {
-            error: "Cannot create company email configuration! Please try again or contact support!",
+          errorMessage: "Cannot create company email configuration! Please try again or contact support!",
+          error: true,
+          prevState: formDataObject,
         }
+      }
     }
 
-    return { message: "Company email configuration created successfully", success: true };
+    return {
+      successMessage: "Company email configuration saved successfully",
+      success: true,
+      prevState: formDataObject,
+    };
 }

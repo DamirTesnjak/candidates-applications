@@ -37,10 +37,7 @@ export interface ICandidateSchema {
 const { Schema } = mongoose;
 
 const candidateSchema = new Schema<ICandidateSchema>({
-    id: {
-        type: String,
-        unique: true,
-    },
+    id: String,
     profilePicture: {
         file: {
             name: String,

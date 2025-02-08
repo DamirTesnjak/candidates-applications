@@ -12,7 +12,8 @@ export async function getHrUserProfile() {
     if (!Model) {
         console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
         return {
-            message: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
         }
     }
 
@@ -20,7 +21,8 @@ export async function getHrUserProfile() {
         .select("-password");
     if (!user) {
         return JSON.stringify({
-            error: "User not found!",
+            errorMessage: "User not found!",
+            error: true,
         })
     }
 
@@ -31,6 +33,7 @@ export async function getHrUserProfile() {
             name: user.name,
             surname: user.surname,
             phoneNumber: user.phoneNumber,
+            companyName: user.companyName,
             email: user.email,
             profilePicture: user.profilePicture,
             username: user.username,

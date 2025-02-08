@@ -3,9 +3,10 @@
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES} from "@/constants/constants";
-import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 export async function deleteProfileInfo(formData: FormData) {
+    const cookieStore = await cookies()
     const formDataObject = getFormDataObject(formData);
 
     const Model = connectToDB(DATABASES[formDataObject.databaseName!]);
@@ -18,7 +19,6 @@ export async function deleteProfileInfo(formData: FormData) {
     }
     // check if user already exists
     const profile = await Model.findById(formDataObject.id);
-    console.log('deleted profile', profile);
     const deletedProfile = await profile.deleteOne();
 
     if (!deletedProfile) {
@@ -30,11 +30,7 @@ export async function deleteProfileInfo(formData: FormData) {
     }
 
     if (DATABASES.hrUsers === DATABASES[formDataObject.databaseName!]) {
-        redirect('/login');
-    }
-
-    if (DATABASES.candidates === DATABASES[formDataObject.databaseName!]) {
-        redirect('/candidates');
+      cookieStore.delete("token");
     }
 
     return {
