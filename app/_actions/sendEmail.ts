@@ -4,13 +4,20 @@ import nodemailer from "nodemailer";
 import {DATABASES} from "@/constants/constants";
 import {connectToDB} from "@/utils/dbConfig/dbConfig";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
+import { Model } from 'mongoose';
+import { IMappedEmailTemplates } from '@/utils/dbConfig/models/mappedEmailTemplates';
+import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
+import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmailSettingsModel';
+import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 
 export async function sendEmail(formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
+    const { emailTemplateType } = formDataObject;
+
     console.log('formDataObject', formDataObject);
 
-    const mappedEmailTemplatesModel = connectToDB(DATABASES.mappedEmailTemplates);
+    const mappedEmailTemplatesModel = connectToDB(DATABASES.mappedEmailTemplates) as Model<IMappedEmailTemplates>;
 
     if (!mappedEmailTemplatesModel) {
         console.log('ERROR_GET_SEND_EMAIL_MAPPED_EMAIL_TEMPLATES: Error with connecting to the database!');
@@ -27,7 +34,7 @@ export async function sendEmail(formData: FormData) {
         }
     }
 
-    const candidatesModel = connectToDB(DATABASES.candidates);
+    const candidatesModel = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
     if (!candidatesModel) {
         console.log('ERROR_GET_SEND_EMAIL_PROFILE: Error with connecting to the database!');
@@ -44,7 +51,7 @@ export async function sendEmail(formData: FormData) {
         }
     }
 
-    const companyEmailConfigsModel = connectToDB(DATABASES.companyEmailConfigs);
+    const companyEmailConfigsModel = connectToDB(DATABASES.companyEmailConfigs) as Model<ICompanyEmailSettingsSchema>;
 
     if (!companyEmailConfigsModel) {
         console.log('ERROR_GET_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!');
@@ -60,7 +67,7 @@ export async function sendEmail(formData: FormData) {
         }
     }
 
-    const emailTemplateModel = connectToDB(DATABASES.emailTemplates);
+    const emailTemplateModel = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
 
     if (!emailTemplateModel) {
         console.log('ERROR_GET_SEND_EMAIL_PROFILE_EMAIL_TEMPLATE: Error with connecting to the database!');
@@ -69,10 +76,7 @@ export async function sendEmail(formData: FormData) {
         }
     }
 
-    console.log('emailTemplateModel', mappedEmailTemplates[0][formDataObject.emailTemplateType]);
-
-    const emailTemplate = await emailTemplateModel?.find({ emailType: mappedEmailTemplates[0][formDataObject.emailTemplateType] });
-    console.log('emailTemplate', emailTemplate);
+    const emailTemplate = await emailTemplateModel?.find({ emailType: mappedEmailTemplates[0][emailTemplateType] });
 
     if (!emailTemplate) {
         return {
@@ -89,8 +93,6 @@ export async function sendEmail(formData: FormData) {
             pass: process.env.EMAIL_AUTH_PASS,
         }
     })
-
-    console.log('tetst', companyEmailConfiguration[0]);
 
     const mailOptions = {
         from: companyEmailConfiguration[0].email,

@@ -6,11 +6,21 @@ import {
 } from "material-react-table";
 import { useMemo } from "react";
 import {getColumnsDefs} from "@/utils/createTableColumnsDefs/createTableColumnsDef.";
+import { TableDataProps } from '@/app/candidates/customerTableDataProps';
 
 export interface TableProps {
     data: MRT_RowData[];
     columnsToDisplay: string[];
-    tableDataProps: any;
+    tableDataProps: (row: TableDataProps) => {
+      [x: string]: {
+        size: number,
+        cell: Element | null,
+        enableColumnActions: boolean,
+        enableColumnFilter: boolean,
+        enableColumnDragging: boolean,
+        enableSorting: boolean
+      };
+    };
 }
 
 export default function Table({data, columnsToDisplay, tableDataProps }: TableProps) {

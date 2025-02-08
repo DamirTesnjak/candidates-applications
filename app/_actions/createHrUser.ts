@@ -9,12 +9,20 @@ import { getFormDataObject } from "@/utils/formValidation/getFormDataObject";
 import { uploadFile } from "@/utils/uploadFile";
 import checkFormValidation from "@/utils/utilsServer/checkFormValidation";
 import { IFormDataType } from '@/utils/types/formDataType';
+import { Model, Types } from 'mongoose';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 
-const sendEmail = async ({ email, emailType, userId }: any) => {
+export interface IsendEmail {
+  email: IHrUserSchema["email"];
+  emailType: string;
+  userId: Types.ObjectId;
+}
+
+const sendEmail = async ({ email, emailType, userId }: IsendEmail) => {
     // create a hashed token
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
-    const Model = connectToDB(DATABASES.hrUsers);
+    const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
     if (!Model) {
         console.log('ERROR_SEND_EMAIL: Error with connecting to the database!');
@@ -80,7 +88,7 @@ export const createHrUser = async (prevState: IFormDataType, formData: FormData)
         }
     }
 
-    const Model = connectToDB(DATABASES.hrUsers);
+    const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
     if (!Model) {
         console.log('ERROR_CREATE_HR_USER: Error with connecting to the database!');
         return {
@@ -136,7 +144,7 @@ export const createHrUser = async (prevState: IFormDataType, formData: FormData)
 
     // send verification email
     const messageId = await sendEmail({
-        email: formDataObject.email,
+        email: formDataObject.email as IHrUserSchema["email"],
         emailType: EMAIL_TYPE.verify,
         userId: savedUser._id
     })

@@ -1,7 +1,7 @@
 import { IFile } from "@/utils/types/fileType";
 
 export interface IFormDataType {
-    [x: string]: IFile | string | undefined
+    [x: string]: IFile | string | number | undefined
     databaseName?: 'hrUsers' | 'candidates';
     id?: string;
     name?: string;
@@ -25,5 +25,6 @@ export interface IFormDataType {
     archive?: string;
     hire?: string;
     reject?: string;
-    port?: string;
+    port?: number;
+    emailTemplateType?: string;
 }

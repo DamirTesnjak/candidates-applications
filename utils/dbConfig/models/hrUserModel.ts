@@ -21,8 +21,8 @@ export interface IHrUserSchema {
     active: boolean;
     forgotPasswordToken: string;
     forgotPasswordTokenExpiry: Date;
-    verifyToken: string;
-    verifyTokenExpiry: Date;
+    verifyToken: string | undefined;
+    verifyTokenExpiry: Date | undefined;
 
 }
 

@@ -5,6 +5,8 @@ import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES} from "@/constants/constants";
 import { IFormDataType } from '@/utils/types/formDataType';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { Model } from 'mongoose';
+import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmailSettingsModel';
 
 export async function createCompanyEmailConfiguration(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
@@ -24,7 +26,7 @@ export async function createCompanyEmailConfiguration(prevState: IFormDataType, 
       }
     }
 
-    const Model = connectToDB(DATABASES.companyEmailConfigs);
+    const Model = connectToDB(DATABASES.companyEmailConfigs) as Model<ICompanyEmailSettingsSchema>;
 
     if (!Model) {
         console.log('ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!');
@@ -39,12 +41,12 @@ export async function createCompanyEmailConfiguration(prevState: IFormDataType, 
     if (companyEmailConfiguration.length > 0) {
         const emailConfig = await Model.findById(companyEmailConfiguration[0]._id);
         if (emailConfig) {
-            emailConfig.emailHost = formDataObject.emailHost;
-            emailConfig.port = formDataObject.port;
-            emailConfig.username = formDataObject.username;
-            emailConfig.companyName = formDataObject.companyName;
-            emailConfig.password = formDataObject.password;
-            emailConfig.email = formDataObject.email;
+            emailConfig.emailHost = formDataObject.emailHost as ICompanyEmailSettingsSchema["emailHost"];
+            emailConfig.port = formDataObject.port as ICompanyEmailSettingsSchema["port"];
+            emailConfig.username = formDataObject.username as ICompanyEmailSettingsSchema["username"];
+            emailConfig.companyName = formDataObject.companyName as ICompanyEmailSettingsSchema["companyName"];
+            emailConfig.password = formDataObject.password as ICompanyEmailSettingsSchema["password"];
+            emailConfig.email = formDataObject.email as ICompanyEmailSettingsSchema["email"];
 
           const savedEmailConfig = await emailConfig.save();
 

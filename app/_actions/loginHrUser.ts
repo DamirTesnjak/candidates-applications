@@ -8,6 +8,8 @@ import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { cookies } from 'next/headers';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { IFormDataType } from '@/utils/types/formDataType';
+import { Model } from 'mongoose';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 
 export async function loginHrUser(prevState: IFormDataType, formData: FormData) {
     const cookieStore = await cookies();
@@ -28,7 +30,7 @@ export async function loginHrUser(prevState: IFormDataType, formData: FormData) 
     }
   }
 
-    const Model = connectToDB(DATABASES.hrUsers);
+    const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
     if (!Model) {
         console.log('ERROR_LOGIN_HR_USER: Error with connecting to the database!');

@@ -6,6 +6,8 @@ import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants
 import {uploadFile} from "@/utils/uploadFile";
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { IFormDataType } from '@/utils/types/formDataType';
+import { Model } from 'mongoose';
+import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 
 export async function updateCandidate(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
@@ -25,7 +27,7 @@ export async function updateCandidate(prevState: IFormDataType, formData: FormDa
       }
     }
 
-    const Model = connectToDB(DATABASES.candidates);
+    const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
     if (!Model) {
         console.log('ERROR_UPDATE_CANDIDATE: Error with connecting to the database!');
@@ -42,9 +44,9 @@ export async function updateCandidate(prevState: IFormDataType, formData: FormDa
         const uploadedCurriculumVitaeFile = await uploadFile(formData, FILE_TYPE.file, FORM_INPUT_FIELD_NAME.file);
 
         candidate.profilePicture = uploadedProfilePictureFile || candidate.profilePicture;
-        candidate.name = formDataObject.name;
-        candidate.surname = formDataObject.surname;
-        candidate.contact = {
+        candidate.name = formDataObject.name as string;
+        candidate.surname = formDataObject.surname as string;
+        candidate.contact = <ICandidateSchema["contact"]>{
             address: formDataObject.address,
             city: formDataObject.city,
             zipCode: formDataObject.zipCode,
@@ -62,7 +64,7 @@ export async function updateCandidate(prevState: IFormDataType, formData: FormDa
     }
 
 
-    const savedCandidate = await candidate.save();
+    const savedCandidate = await candidate?.save();
     if (!savedCandidate) {
         console.log('ERROR_UPDATE_CANDIDATE: Error with updating the candidate to the database!');
         return {

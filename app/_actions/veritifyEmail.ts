@@ -2,9 +2,11 @@
 
 import {connectToDB} from "@/utils/dbConfig/dbConfig";
 import {DATABASES} from "@/constants/constants";
+import { Model } from 'mongoose';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 
 export async function verifyEmail(token: string) {
-    const Model = connectToDB(DATABASES.hrUsers)
+    const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
     if (!Model) {
         console.log('ERROR_VERIFY_EMAIL: Error with connecting to the database!');

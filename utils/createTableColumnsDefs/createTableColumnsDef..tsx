@@ -1,6 +1,21 @@
-export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }) => {
-    return columnsToDisplay.map((keyItem) => {
+import { TableDataProps } from '@/app/candidates/customerTableDataProps';
 
+export interface IgetColumnsDefsArg {
+  columnsToDisplay: string[];
+  tableDataProps: (row: TableDataProps) => {
+    [x: string]: {
+      size: number,
+      cell: Element | null,
+      enableColumnActions: boolean,
+      enableColumnFilter: boolean,
+      enableColumnDragging: boolean,
+      enableSorting: boolean
+    };
+  };
+}
+
+export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }: IgetColumnsDefsArg) => {
+    return columnsToDisplay.map((keyItem: string) => {
         return {
             accessorKey: keyItem,
             header: tableDataProps()[keyItem].title,

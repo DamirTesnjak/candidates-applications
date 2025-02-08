@@ -2,9 +2,11 @@
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {DATABASES} from "@/constants/constants";
+import { Model } from 'mongoose';
+import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 
 export async function getCandidateProfile(id: string) {
-    const Model = connectToDB(DATABASES.candidates);
+    const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
     if (!Model) {
         console.log('ERROR_GET_CANDIDATE_PROFILE: Error with connecting to the database!');

@@ -12,7 +12,7 @@ import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
 
 import {sendEmail} from "@/app/_actions/sendEmail";
 
-interface TableDataProps {
+export interface TableDataProps {
     original: {
         _id: ICandidateSchema["id"];
         name: string;

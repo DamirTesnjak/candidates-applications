@@ -4,6 +4,8 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES} from "@/constants/constants";
+import { Model } from 'mongoose';
+import { IMappedEmailTemplates } from '@/utils/dbConfig/models/mappedEmailTemplates';
 
 export async function mapEmailTemplates(formData: FormData) {
     const validatedFields = formValidation(formData);
@@ -15,7 +17,7 @@ export async function mapEmailTemplates(formData: FormData) {
             error: validatedFields.error.flatten().fieldErrors,
         }
     }
-    const Model = connectToDB(DATABASES.mappedEmailTemplates);
+    const Model = connectToDB(DATABASES.mappedEmailTemplates) as Model<IMappedEmailTemplates>;
 
     if (!Model) {
         console.log('ERROR_MAP_EMAIL_TEMPLATES: Error with connecting to the database!');
@@ -31,11 +33,11 @@ export async function mapEmailTemplates(formData: FormData) {
         const mappedEmailTemplateSetting = await Model.findById(mappedEmailTemplatesSettings[0]._id);
 
         if (mappedEmailTemplateSetting) {
-            mappedEmailTemplateSetting.archive = formDataObject.archive;
-            mappedEmailTemplateSetting.hire = formDataObject.hire;
-            mappedEmailTemplateSetting.reject = formDataObject.reject;
+            mappedEmailTemplateSetting.archive = formDataObject.archive as string;
+            mappedEmailTemplateSetting.hire = formDataObject.hire as string;
+            mappedEmailTemplateSetting.reject = formDataObject.reject as string;
         }
-        const savedMappedEmailSettings = await mappedEmailTemplateSetting.save();
+        const savedMappedEmailSettings = await mappedEmailTemplateSetting?.save();
         if (!savedMappedEmailSettings) {
             console.log('ERROR_UPDATE_MAP_EMAIL_TEMPLATES: Error with updating mapped email templates to the database!');
             return {

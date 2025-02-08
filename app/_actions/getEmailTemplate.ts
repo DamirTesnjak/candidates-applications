@@ -2,9 +2,11 @@
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {DATABASES} from "@/constants/constants";
+import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
+import { Model } from 'mongoose';
 
 export async function getEmailTemplate(id: string) {
-    const Model = connectToDB(DATABASES.emailTemplates);
+    const Model = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
 
     if (!Model) {
         console.log('ERROR_GET_EMAIL_TEMPLATE: Error with connecting to the database!');
@@ -18,7 +20,7 @@ export async function getEmailTemplate(id: string) {
         return {
             error: "Email template not found!",
         }
-    };
+    }
 
     return JSON.stringify({
         message: "Email template found",

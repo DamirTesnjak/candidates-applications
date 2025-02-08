@@ -6,6 +6,8 @@ import {uploadFile} from "@/utils/uploadFile";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import { IFormDataType } from '@/utils/types/formDataType';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
+import { Model } from 'mongoose';
 
 export async function createCandidate(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
@@ -25,7 +27,7 @@ export async function createCandidate(prevState: IFormDataType, formData: FormDa
       }
     }
 
-    const Model = connectToDB(DATABASES.candidates);
+    const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
     if (!Model) {
         console.log('ERROR_CREATE_CANDIDATE: Error with connecting to the database!');
@@ -36,7 +38,7 @@ export async function createCandidate(prevState: IFormDataType, formData: FormDa
         }
     }
 
-    const candidateFound = await Model.findOne({ "contact.email": formDataObject.email })
+    const candidateFound = await Model.findOne({ "contact.email": formDataObject.email });
     if (candidateFound) {
         return {
           errorMessage: "Candidate already exists",

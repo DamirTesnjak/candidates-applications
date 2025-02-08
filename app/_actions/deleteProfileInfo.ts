@@ -4,12 +4,15 @@ import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES} from "@/constants/constants";
 import { cookies } from 'next/headers';
+import { Model } from 'mongoose';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
+import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 
 export async function deleteProfileInfo(formData: FormData) {
     const cookieStore = await cookies()
     const formDataObject = getFormDataObject(formData);
 
-    const Model = connectToDB(DATABASES[formDataObject.databaseName!]);
+    const Model = connectToDB(DATABASES[formDataObject.databaseName!]) as Model<IHrUserSchema | ICandidateSchema>;
     if (!Model) {
         console.log('ERROR_DELETE_PROFILE: Error with connecting to the database!');
         return {
@@ -19,7 +22,7 @@ export async function deleteProfileInfo(formData: FormData) {
     }
     // check if user already exists
     const profile = await Model.findById(formDataObject.id);
-    const deletedProfile = await profile.deleteOne();
+    const deletedProfile = await profile?.deleteOne();
 
     if (!deletedProfile) {
         console.log('ERROR_DELETE_PROFILE: Error with deleting the profile from the database!');

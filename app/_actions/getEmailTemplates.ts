@@ -3,9 +3,10 @@
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {DATABASES} from "@/constants/constants";
 import {IEmailTemplateSchema} from "@/utils/dbConfig/models/emailTemplateModel";
+import { Model } from 'mongoose';
 
 export async function getEmailTemplates() {
-    const Model = connectToDB(DATABASES.emailTemplates)
+    const Model = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>
 
     if (!Model) {
         console.log('ERROR_GET_EMAIL_TEMPLATES: Error with connecting to the database!');

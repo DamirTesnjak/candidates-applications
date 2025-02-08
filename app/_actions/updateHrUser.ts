@@ -6,6 +6,8 @@ import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants
 import {uploadFile} from "@/utils/uploadFile";
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { IFormDataType } from '@/utils/types/formDataType';
+import { Model } from 'mongoose';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 
 export async function updateHrUser(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
@@ -25,7 +27,7 @@ export async function updateHrUser(prevState: IFormDataType, formData: FormData)
         }
     }
 
-    const Model = connectToDB(DATABASES.hrUsers);
+    const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
     if (!Model) {
         console.log('ERROR_UPDATE_HR_USER: Error with connecting to the database!');
@@ -41,14 +43,14 @@ export async function updateHrUser(prevState: IFormDataType, formData: FormData)
     if (hrUser) {
         const uploadedProfilePictureFile = await uploadFile(formData, FILE_TYPE.image, FORM_INPUT_FIELD_NAME.image);
         hrUser.profilePicture = uploadedProfilePictureFile || hrUser.profilePicture;
-        hrUser.name = formDataObject.name;
-        hrUser.surname = formDataObject.surname;
-        hrUser.phoneNumber = formDataObject.phoneNumber;
-        hrUser.email = formDataObject.email;
-        hrUser.username = formDataObject.username;
+        hrUser.name = formDataObject.name as string;
+        hrUser.surname = formDataObject.surname as string;
+        hrUser.phoneNumber = formDataObject.phoneNumber as string;
+        hrUser.email = formDataObject.email as string;
+        hrUser.username = formDataObject.username as string;
     }
 
-    const savedHrUser = await hrUser.save();
+    const savedHrUser = await hrUser?.save();
     if (!savedHrUser) {
         console.log('ERROR_UPDATE_HR_USER: Error with saving to the database!');
         return {
