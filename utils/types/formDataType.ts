@@ -1,7 +1,7 @@
 import { IFile } from "@/utils/types/fileType";
 
 export interface IFormDataType {
-    [x: string]: IFile | string | number | undefined
+    [x: string]: string | number | undefined
     databaseName?: 'hrUsers' | 'candidates';
     id?: string;
     name?: string;

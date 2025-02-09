@@ -1,13 +1,25 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 import { createPortal } from "react-dom";
 import styles from "./modal.module.scss";
 
-const Modal = ({ content, type }) => {
-    const elRef = useRef(null);
+export interface IModalProps {
+  type: string;
+  content: ReactNode;
+}
 
-    const titlePerType =  {
+export interface ITitlePerType {
+  [x: string]: string;
+  warning: "Warning!";
+  error: "Error!";
+  success: "Success!";
+}
+
+const Modal = ({ content, type }: IModalProps) => {
+    const elRef = useRef<HTMLElement | null>(null);
+
+    const titlePerType: ITitlePerType =  {
         warning: "Warning!",
         error: "Error!",
         success: "Success!",
@@ -19,8 +31,11 @@ const Modal = ({ content, type }) => {
 
     useEffect(() => {
         const modalRoot = document.getElementById("modal")!;
-        modalRoot.appendChild(elRef.current);
-        return () => modalRoot.removeChild(elRef.current);
+        modalRoot.appendChild(elRef.current!);
+        const removeChild = () => {
+          modalRoot.removeChild(elRef.current!);
+        }
+        return removeChild();
     }, []);
 
     return createPortal(

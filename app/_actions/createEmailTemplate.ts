@@ -5,8 +5,9 @@ import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
+import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function createEmailTemplate(formData: FormData) {
+export async function createEmailTemplate(prevState: IFormDataType, formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 
@@ -21,7 +22,9 @@ export async function createEmailTemplate(formData: FormData) {
     if (!Model) {
         console.log('ERROR_CREATE_EMAIL_TEMPLATE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
@@ -38,9 +41,15 @@ export async function createEmailTemplate(formData: FormData) {
     if (savedEmailTemplate !== newEmailTemplate) {
         console.log('ERROR_CREATE_EMAIL_TEMPLATE: Error with saving new email template to the database!');
         return {
-            error: "Cannot create email template! Please try again or contact support!",
+            errorMessage: "Cannot create email template! Please try again or contact support!",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
-    return { message: "Email template created successfully", success: true };
+    return {
+      successMessage: "Email template created successfully",
+      success: true,
+      prevState: formDataObject,
+    };
 }

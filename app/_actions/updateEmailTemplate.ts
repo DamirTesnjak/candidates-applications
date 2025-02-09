@@ -1,29 +1,39 @@
 'use server'
 
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES} from "@/constants/constants";
 import { Model } from 'mongoose';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function updateEmailTemplate(formData: FormData) {
-    const validatedFields = formValidation(formData);
+export async function updateEmailTemplate(prevState: IFormDataType, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
-    // Return early if the form data is invalid
-    if (!validatedFields.success) {
-        return {
-            error: validatedFields.error.flatten().fieldErrors,
-        }
+  // Return early if the form data is invalid
+  const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+    formData,
+    formDataObject,
+    errorMessage: 'ERROR_CHECK_EMAIL_TEMPLATE: inputField validation error'
+  })
+
+  if (error) {
+    return {
+      errorFieldValidation,
+      error,
+      prevState: prevStateFormData,
     }
+  }
 
     const Model = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
 
     if (!Model) {
         console.log('ERROR_UPDATE_EMAIL_TEMPLATE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
     // check if user already exists
@@ -37,12 +47,15 @@ export async function updateEmailTemplate(formData: FormData) {
     if (!savedEmailTemplate) {
         console.log('ERROR_UPDATE_EMAIL_TEMPLATE: Error with saving to the database!');
         return {
-            error: "Something went wrong, cannot save changes, please try again or contact support.",
+            errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+            error: true,
+            prevState: formDataObject,
         }
     }
 
     return {
-        message: "Changes saved",
+        successMessage: "Changes saved",
         success: true,
+        prevState: formDataObject,
     }
 }

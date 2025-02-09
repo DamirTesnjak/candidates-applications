@@ -1,8 +1,8 @@
 import TextEditor from "@/components/TextEditor/TextEditor";
-import {updateEmailTemplate} from "@/app/_actions/updateEmailTemplate";
 import {getEmailTemplate} from "@/app/_actions/getEmailTemplate";
 import styles from "@/styles/global/globals.module.scss";
 import { IParams } from '@/types/params';
+import { updateEmailTemplate } from '@/app/_actions/updateEmailTemplate';
 
 export default async function EditEmailTemplateMessage({params}: IParams){
     const { id } = await params;
@@ -12,9 +12,7 @@ export default async function EditEmailTemplateMessage({params}: IParams){
     return (
         <div className={styles.container}>
             <h2>{`Edit email message template: ${data.emailType}`}</h2>
-            <form action={updateEmailTemplate}>
-                <TextEditor data={data} />
-            </form>
+            <TextEditor data={data} serverAction={updateEmailTemplate}/>
         </div>
     )
 }

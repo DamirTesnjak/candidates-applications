@@ -1,7 +1,7 @@
 'use client'
 
 import { EDIT_TEXT_BUTTON } from "@/constants/constants";
-import {useEffect, useState, useMemo} from "react";
+import { useEffect, useState, useMemo, useActionState } from 'react';
 import addHTMLTags from "@/utils/addHTMLTags";
 import Paragraph from '@mui/icons-material/LocalParking';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -26,15 +26,34 @@ import Button from "@/UI/Button/Button";
 import Input from "@/UI/Input/Input";
 
 import styles from './textEditor.module.scss';
+import { IShowModal } from '@/types/ShowModalType';
+import Modal from '@/components/Modal/Modal';
+import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
+import { IFormDataType } from '@/utils/types/formDataType';
 
 export interface ITextEditorProps {
   data?: {
     emailText: string;
     emailType: string;
   };
+  serverAction?: (formData: FormData) =>  Promise<{
+    errorMessage?: string;
+    error?: boolean;
+    successMessage?: string;
+    success?: boolean;
+    errorFieldValidation?: {
+      [x: string]: string;
+    };
+    prevState?: IFormDataType;
+  }>
 }
 
-export default function TextEditor({ data }: ITextEditorProps) {
+export default function TextEditor({ data, serverAction }: ITextEditorProps) {
+  const [ response, formAction ] = useActionState(serverAction, null);
+  const [ showModal, setShowModal ] = useState<IShowModal>({
+    success: false,
+    error: false,
+  });
     const [textAreaText, setTextAreaText] = useState({
         manualEditing: true,
         text: data?.emailText || candidateCongratulationEmailJobPosition
@@ -116,7 +135,9 @@ export default function TextEditor({ data }: ITextEditorProps) {
 
     return (
         <div className={styles.paper}>
-            <div className={styles.selectionSaveToolbar}>
+          <form action={formAction}>
+
+          <div className={styles.selectionSaveToolbar}>
                 <Input
                     className="standard"
                     flow="flowColumn"
@@ -242,6 +263,9 @@ export default function TextEditor({ data }: ITextEditorProps) {
                 <textarea className={styles.textarea} id="editor" name="emailText" cols={50} rows={10} onInput={changeWhenTyping} value={textAreaText.text}/>
                 <div id="preview" className={styles.preview}/>
             </div>
+          </form>
+          {showModal.error && (<Modal type="error" content={<ModalContentMessage response={response} setShowModal={setShowModal} />}/>)}
+          {showModal.success && (<Modal type="success" content={<ModalContentMessage response={response} setShowModal={setShowModal} />}/>)}
         </div>
     )
 }

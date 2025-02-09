@@ -6,9 +6,7 @@ export default function SetupEmailTemplateMessages(){
     return (
         <div className={styles.container}>
             <h3>Configure template message</h3>
-            <form action={createEmailTemplate}>
-                <TextEditor />
-            </form>
+            <TextEditor serverAction={createEmailTemplate}/>
         </div>
     )
 }

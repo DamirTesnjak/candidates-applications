@@ -9,11 +9,7 @@ import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalCon
 import ArchiveIcon from '@mui/icons-material/Archive';
 import WorkIcon from '@mui/icons-material/Work';
 import CancelIcon from '@mui/icons-material/Cancel';
-
-export interface IShowModal {
-  success: boolean | undefined;
-  error: boolean | undefined;
-}
+import { IShowModal } from '@/types/ShowModalType';
 
 export interface IButtonIcons {
   [x: string]: ReactNode;
