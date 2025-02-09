@@ -1,18 +1,8 @@
-import { TableDataProps } from '@/app/candidates/customerTableDataProps';
+import { TableProps } from '@/UI/Table/Table';
 
 export interface IgetColumnsDefsArg {
-  columnsToDisplay: string[];
-  tableDataProps: (row: TableDataProps | null) => {
-    [x: string]: {
-      size: number,
-      title: string,
-      cell: Element | null,
-      enableColumnActions: boolean,
-      enableColumnFilter: boolean,
-      enableColumnDragging: boolean,
-      enableSorting: boolean
-    };
-  };
+  columnsToDisplay: TableProps["columnsToDisplay"];
+  tableDataProps: TableProps["tableDataProps"];
 }
 
 export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }: IgetColumnsDefsArg) => {

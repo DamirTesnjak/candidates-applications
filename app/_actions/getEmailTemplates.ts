@@ -10,21 +10,26 @@ export async function getEmailTemplates() {
 
     if (!Model) {
         console.log('ERROR_GET_EMAIL_TEMPLATES: Error with connecting to the database!');
-        return {
-            message: "Something went wrong, please try again or contact support.",
-        }
+        return JSON.stringify({
+              errorMessage: "Something went wrong, please try again or contact support.",
+              error: true,
+        });
     }
 
     const emailTemplates: IEmailTemplateSchema[] = await Model.find({});
 
     if (!emailTemplates) {
-        return { error: "Cannot find any email templates." }
+      return JSON.stringify({
+          errorMessage: "Cannot find any email templates.",
+          error: true,
+        });
     }
 
     if (emailTemplates.length === 0) {
-        return {
-            error: "No email templates found."
-        }
+      return JSON.stringify({
+          errorMessage: "No email templates found.",
+          error: true,
+      });
     }
     return JSON.stringify({
         message: "Fetching data successful!",

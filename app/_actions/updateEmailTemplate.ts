@@ -6,9 +6,8 @@ import {DATABASES} from "@/constants/constants";
 import { Model } from 'mongoose';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
-import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function updateEmailTemplate(prevState: IFormDataType, formData: FormData) {
+export async function updateEmailTemplate(prevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid

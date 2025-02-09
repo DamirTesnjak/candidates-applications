@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 export interface ICandidateSchema {
+    _id: string;
     id: string;
     profilePicture: {
         file: {

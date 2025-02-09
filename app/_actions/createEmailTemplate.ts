@@ -7,7 +7,7 @@ import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants
 import {uploadFile} from "@/utils/uploadFile";
 import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function createEmailTemplate(prevState: IFormDataType, formData: FormData) {
+export async function createEmailTemplate(prevState: any, formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 

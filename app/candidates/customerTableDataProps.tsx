@@ -6,6 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LaunchIcon from "@mui/icons-material/Launch";
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
+import { ReactNode } from 'react';
 
 import { RowButton } from '@/UI/Table/RowButton/RowButton';
 
@@ -21,7 +22,17 @@ export interface TableDataProps {
     };
 }
 
-export const customerTableDataProps = (row: TableDataProps) => {
+export const customerTableDataProps = (row: TableDataProps | null): {
+  [x: string]: {
+    title?: string;
+    size: number;
+    cell: ReactNode | string | null;
+    enableColumnActions?: boolean;
+    enableColumnFilter?: boolean;
+    enableColumnDragging?: boolean
+    enableSorting?: boolean;
+  }
+} => {
     return {
         "profilePicture":
         {

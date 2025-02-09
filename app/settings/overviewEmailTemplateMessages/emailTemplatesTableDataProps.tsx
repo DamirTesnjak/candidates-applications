@@ -3,6 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
 import Link from "next/link";
+import { ReactNode } from 'react';
 
 interface TableDataProps {
     original: {
@@ -11,7 +12,17 @@ interface TableDataProps {
     };
 }
 
-export const emailTemplatesTableDataProps = (row: TableDataProps) => {
+export const emailTemplatesTableDataProps = (row: TableDataProps): {
+  [x: string]: {
+    title?: string;
+    size: number;
+    cell: ReactNode | string | null;
+    enableColumnActions?: boolean;
+    enableColumnFilter?: boolean;
+    enableColumnDragging?: boolean
+    enableSorting?: boolean;
+  }
+} => {
     return {
         "emailType": {
             title: "Email Type",

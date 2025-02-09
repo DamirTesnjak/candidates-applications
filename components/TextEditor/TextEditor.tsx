@@ -36,7 +36,7 @@ export interface ITextEditorProps {
     emailText: string;
     emailType: string;
   };
-  serverAction?: (formData: FormData) =>  Promise<{
+  serverAction?: (formData: FormData) => Promise<{
     errorMessage?: string;
     error?: boolean;
     successMessage?: string;
@@ -45,11 +45,11 @@ export interface ITextEditorProps {
       [x: string]: string;
     };
     prevState?: IFormDataType;
-  }>
+  }>;
 }
 
 export default function TextEditor({ data, serverAction }: ITextEditorProps) {
-  const [ response, formAction ] = useActionState(serverAction, null);
+  const [ response, formAction ] = useActionState(serverAction, {});
   const [ showModal, setShowModal ] = useState<IShowModal>({
     success: false,
     error: false,

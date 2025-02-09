@@ -1,29 +1,24 @@
 'use client'
 
 import {
-    MaterialReactTable, MRT_RowData,
-    useMaterialReactTable,
-} from "material-react-table";
+  MaterialReactTable,
+  useMaterialReactTable
+} from 'material-react-table';
 import { useMemo } from "react";
 import {getColumnsDefs} from "@/utils/createTableColumnsDefs/createTableColumnsDef.";
-import { TableDataProps } from '@/app/candidates/customerTableDataProps';
+import { ITableComponentProps } from '@/components/TableComponent';
+import { customerTableDataProps } from '@/app/candidates/customerTableDataProps';
+import {
+  emailTemplatesTableDataProps
+} from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
 export interface TableProps {
-    data: MRT_RowData[];
-    columnsToDisplay: string[];
-    tableDataProps: (row: TableDataProps) => {
-      [x: string]: {
-        size: number,
-        cell: Element | null,
-        enableColumnActions: boolean,
-        enableColumnFilter: boolean,
-        enableColumnDragging: boolean,
-        enableSorting: boolean
-      };
-    };
+    tableData: ITableComponentProps["data"];
+    columnsToDisplay: ITableComponentProps["columnsToDisplay"];
+    tableDataProps: typeof customerTableDataProps | typeof emailTemplatesTableDataProps;
 }
 
-export default function Table({data, columnsToDisplay, tableDataProps }: TableProps) {
+export default function Table({tableData, columnsToDisplay, tableDataProps }: TableProps) {
     const getColumnsDefsProps = useMemo(() => ({
         columnsToDisplay,
         tableDataProps,
@@ -33,7 +28,7 @@ export default function Table({data, columnsToDisplay, tableDataProps }: TablePr
 
     const table = useMaterialReactTable({
         columns,
-        data,
+        data: tableData,
         initialState: {
             showColumnFilters: true,
             density: 'compact',

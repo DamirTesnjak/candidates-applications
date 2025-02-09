@@ -17,22 +17,31 @@ export async function getCandidates() {
     }
 
     const candidates: ICandidateSchema[] = await Model.find({});
-  candidates.map((candidate) => ({
-        ...candidate,
+
+  const mappedCandidates = candidates.map((candidate) => ({
+        id: candidate._id,
+        name: candidate.name,
+        surname: candidate.surname,
         profilePicture: {
             ...candidate.profilePicture,
             file: {
                 ...candidate.profilePicture.file,
-                data: Buffer.from(candidate.profilePicture.file.data).toString("base64"),
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
+                data: candidate.profilePicture.file.data.toString("base64"),
             }
         },
         curriculumVitae: {
             ...candidate.curriculumVitae,
             file: {
                 ...candidate.curriculumVitae.file,
-                data: Buffer.from(candidate.curriculumVitae.file.data).toString("base64"),
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
+                data: candidate.curriculumVitae.file.data.toString("base64"),
             }
         },
+        contact: candidate.contact,
+        status: candidate.status,
     }))
 
     if (!candidates) {
@@ -51,6 +60,6 @@ export async function getCandidates() {
     return JSON.stringify({
         message: "Fetching data successful!",
         success: true,
-        candidates,
+        candidates: mappedCandidates,
     });
 }

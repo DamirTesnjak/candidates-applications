@@ -1,6 +1,8 @@
 import {getCandidates} from "@/app/_actions/getCandidates";
 import TableComponent from "@/components/TableComponent";
 import { PAGES } from "@/constants/constants";
+import InfoMessage from '@/components/InfoMessage/InfoMessage';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 
 export default async function CandidatesPage() {
     const results = await getCandidates();
@@ -30,10 +32,10 @@ export default async function CandidatesPage() {
     }
 
     if (parsedResults && (!parsedResults.candidates || parsedResults.candidates.length === 0)) {
-        return <div>No candidates found.</div>;
+        return <InfoMessage text="No candidates found" />
     }
 
     if (!results) {
-        return <div>Cannot find any candidates!.</div>;
+      return <ErrorMessage text="Cannot find any candidates!" />
     }
 }

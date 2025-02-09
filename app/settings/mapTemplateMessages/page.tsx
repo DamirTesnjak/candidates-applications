@@ -7,13 +7,17 @@ import {getEmailTemplates} from "@/app/_actions/getEmailTemplates";
 import {mapEmailTemplates} from "@/app/_actions/mapEmailTemplates";
 import {useCallback, useState, useTransition, useEffect} from "react";
 
+export interface IEmailTemplate {
+  emailType: string;
+  emailText: string;
+}
+
 export default function MappedEmailsConfigurationPage() {
     const [isPending, startTransition] = useTransition();
-    const [emailTemplates, setEmailTemplates] = useState([]);
+    const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([]);
 
     const getMapEmailTemplates = useCallback(async () => {
         const emailTemplatesData = await getEmailTemplates();
-        console.log("emailTemplatesData", emailTemplatesData);
         setEmailTemplates(JSON.parse(emailTemplatesData).emailTemplates);
     }, []);
 
@@ -28,7 +32,7 @@ export default function MappedEmailsConfigurationPage() {
         id: emailTemplate.emailType, value: emailTemplate.emailType,
     })) || [];
 
-    const submitAction = async (formData) => {
+    const submitAction = async (formData: FormData) => {
         startTransition(async () => {
             await mapEmailTemplates(formData);
         })
