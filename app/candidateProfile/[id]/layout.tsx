@@ -10,8 +10,10 @@ import globalStyles from "../../../styles/global/globals.module.scss"
 import styles from "../candidateProfile.module.scss";
 import Button from "@/UI/Button/Button";
 import AddIcon from "@mui/icons-material/Add";
+import { ReactNode } from "react";
+import { IParams } from '@/types/params';
 
-export default async function CandidateProfileLayout({ children, params }: { params: { id: string } }) {
+export default async function CandidateProfileLayout({ children, params }: { children: ReactNode, params: IParams }) {
     const { id } = await params;
     const results = await getCandidateProfile(id);
     const parsedResults = results ? JSON.parse(results) : null;

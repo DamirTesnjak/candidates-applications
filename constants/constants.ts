@@ -14,11 +14,19 @@ export interface IDatabaseType {
 }
 
 export const DATABASES: IDatabaseType = {
-    candidates: 'candidates',
-    hrUsers: 'hrUsers',
-    emailTemplates: 'emailTemplates',
-    companyEmailConfigs: 'companyEmailConfigs',
-    mappedEmailTemplates: 'mappedEmailTemplates',
+  candidates: 'candidates',
+  hrUsers: 'hrUsers',
+  emailTemplates: 'emailTemplates',
+  companyEmailConfigs: 'companyEmailConfigs',
+  mappedEmailTemplates: 'mappedEmailTemplates',
+}
+
+export const enum DATABASES_ENUM {
+    candidates = 'candidates',
+    hrUsers = 'hrUsers',
+    emailTemplates = 'emailTemplates',
+    companyEmailConfigs = 'companyEmailConfigs',
+    mappedEmailTemplates = 'mappedEmailTemplates',
 }
 
 export const EMAIL_TYPE = {

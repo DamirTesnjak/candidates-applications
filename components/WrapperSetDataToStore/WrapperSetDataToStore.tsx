@@ -11,7 +11,7 @@ export default async function WrapperSetDataToStore() {
     if (!data) {
         return <ErrorMessage text="Could not find profile data" />;
     }
-    /* return (
+    return (
         <SetDataToStore data={data} databaseName={DATABASES.hrUsers} />
-    ) */
+    )
 }

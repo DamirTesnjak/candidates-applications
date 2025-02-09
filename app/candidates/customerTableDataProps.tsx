@@ -4,13 +4,10 @@ import Button from "@/UI/Button/Button";
 import Link from "next/link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LaunchIcon from "@mui/icons-material/Launch";
-import ArchiveIcon from '@mui/icons-material/Archive';
-import CancelIcon from '@mui/icons-material/Cancel';
-import WorkIcon from '@mui/icons-material/Work';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
 
-import {sendEmail} from "@/app/_actions/sendEmail";
+import { RowButton } from '@/UI/Table/RowButton/RowButton';
 
 export interface TableDataProps {
     original: {
@@ -22,22 +19,6 @@ export interface TableDataProps {
         profilePicture: ICandidateSchema["profilePicture"];
         curriculumVitae: ICandidateSchema["curriculumVitae"];
     };
-}
-
-const buttonIcons = {
-    archive: <ArchiveIcon />,
-    hire: <WorkIcon />,
-    reject: <CancelIcon />,
-}
-
-export const RowButton = ({ clientId, name, text, value, icon }) => {
-    return (
-        <form action={sendEmail}>
-            <input name="id" value={clientId} readOnly hidden />
-            <input name={name} value={value} readOnly hidden />
-            <Button className="submitButton" text={text} type="submit" startIcon={buttonIcons[icon]} />
-        </form>
-    )
 }
 
 export const customerTableDataProps = (row: TableDataProps) => {

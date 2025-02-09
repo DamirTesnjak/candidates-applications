@@ -10,38 +10,43 @@ export async function getCandidates() {
 
     if (!Model) {
         console.log('ERROR_GET_CANDIDATES: Error with connecting to the database!');
-        return {
-            message: "Something went wrong, please try again or contact support.",
-        }
+      return JSON.stringify({
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+      });
     }
 
     const candidates: ICandidateSchema[] = await Model.find({});
-    candidates.map((candidate) => ({
+  candidates.map((candidate) => ({
         ...candidate,
         profilePicture: {
             ...candidate.profilePicture,
             file: {
                 ...candidate.profilePicture.file,
-                data: candidate.profilePicture.file.data.toString("base64"),
+                data: Buffer.from(candidate.profilePicture.file.data).toString("base64"),
             }
         },
         curriculumVitae: {
             ...candidate.curriculumVitae,
             file: {
                 ...candidate.curriculumVitae.file,
-                data: candidate.curriculumVitae.file.data.toString("base64"),
+                data: Buffer.from(candidate.curriculumVitae.file.data).toString("base64"),
             }
         },
     }))
 
     if (!candidates) {
-        return { error: "Cannot find any candidates." }
+      return JSON.stringify({
+          errorMessage: "Cannot find any candidates.",
+          error: true
+      });
     }
 
     if (candidates.length === 0) {
-        return {
-            error: "No candidates found."
-        }
+      return JSON.stringify({
+            errorMessage: "No candidates found.",
+            error: true,
+      });
     }
     return JSON.stringify({
         message: "Fetching data successful!",

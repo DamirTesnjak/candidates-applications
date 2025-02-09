@@ -10,16 +10,18 @@ export async function getEmailTemplate(id: string) {
 
     if (!Model) {
         console.log('ERROR_GET_EMAIL_TEMPLATE: Error with connecting to the database!');
-        return {
-            error: "Something went wrong, please try again or contact support.",
-        }
+      return JSON.stringify({
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
+        });
     }
 
     const emailTemplate = await Model?.findById(id);
     if (!emailTemplate) {
-        return {
-            error: "Email template not found!",
-        }
+      return JSON.stringify({
+            errorMessage: "Email template not found!",
+            error: true,
+        });
     }
 
     return JSON.stringify({

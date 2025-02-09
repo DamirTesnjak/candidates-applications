@@ -7,11 +7,7 @@ import Button from "@/UI/Button/Button";
 import {useActionState, useState, useEffect} from "react";
 import Modal from "@/components/Modal/Modal";
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
-
-export interface IShowModal {
-    success: boolean | undefined;
-    error: boolean | undefined;
-}
+import { IShowModal } from '@/types/ShowModalType';
 
 export default function RegisterPage() {
     const inputFields = [

@@ -13,10 +13,10 @@ export async function getHrUserProfile() {
 
     if (!Model) {
         console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
-        return {
+      return JSON.stringify({
             errorMessage: "Something went wrong, please try again or contact support.",
             error: true,
-        }
+        })
     }
 
     const user = await Model?.findOne({id: tokenData.id})
@@ -29,7 +29,7 @@ export async function getHrUserProfile() {
     }
 
     return JSON.stringify({
-        message: "User found",
+        successMessage: "User found",
         data: {
             id: user._id,
             name: user.name,

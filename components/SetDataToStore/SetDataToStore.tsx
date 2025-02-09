@@ -4,9 +4,10 @@ import {useCallback, useEffect} from 'react'
 import {useAppDispatch} from "@/lib/hooks";
 import {loadUpdateCandidate} from "@/lib/features/candidate/candidateSlice";
 import {loadUpdateHrUser} from "@/lib/features/hrUser/hrUserSlice";
-import {DATABASES} from "@/constants/constants";
+import { DATABASES } from '@/constants/constants';
+import { ISetDataToStoreProps } from '@/types/SetDataToStoreProps';
 
-export default function SetDataToStore({data, databaseName}) {
+export default function SetDataToStore({data, databaseName}: ISetDataToStoreProps) {
     const dispatch = useAppDispatch();
 
     const actionState = useCallback(() => {

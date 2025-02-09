@@ -16,7 +16,7 @@ export default function VerifyEmail() {
 
     const verifyUserEmail = useCallback(async () => {
         const result = await verifyEmail(token);
-        if (error) return setError(result.error);
+        if (result && result.error) return setError(result.error);
         setVerified(true);
     }, [error, token])
 

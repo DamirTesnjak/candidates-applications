@@ -3,8 +3,9 @@ import EditForm from "@/components/EditForm/EditForm";
 import {initialStateCandidate} from "@/lib/features/candidate/candidateSlice";
 import {STORE_REDUCER_NAME} from "@/constants/constants";
 import styles from "../../candidateProfile.module.scss";
+import { IParams } from '@/types/params';
 
-export default async function EditCandidatePage({params}) {
+export default async function EditCandidatePage({params}: IParams) {
     const { id } = await params;
 
     return (

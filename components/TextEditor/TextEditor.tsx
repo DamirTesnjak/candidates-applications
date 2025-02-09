@@ -25,20 +25,31 @@ import {SelectChangeEvent} from "@mui/material/Select";
 import Button from "@/UI/Button/Button";
 import Input from "@/UI/Input/Input";
 
-
 import styles from './textEditor.module.scss';
 
-export default function TextEditor({ data }) {
+export interface ITextEditorProps {
+  data?: {
+    emailText: string;
+    emailType: string;
+  };
+}
+
+export default function TextEditor({ data }: ITextEditorProps) {
     const [textAreaText, setTextAreaText] = useState({
         manualEditing: true,
         text: data?.emailText || candidateCongratulationEmailJobPosition
     });
-    const [selectedEmailTemplate, setEmailTemplate] = useState({
+    const [,setEmailTemplate] = useState({
         manualEditing: false,
         selectedCategory: data?.emailType || "candidateHired"
     });
 
-    const preDefinedEmailTemplates = useMemo(() => ({
+    const preDefinedEmailTemplates: {
+        [x: string]: string;
+        candidateHired: string;
+        candidateRejected: string;
+        employeeFired: string;
+    } = useMemo(() => ({
         candidateHired: candidateCongratulationEmailJobPosition,
         candidateRejected: candidateRejectionEmailJobPosition,
         employeeFired: candidateEmailFiredFromJobPosition,
@@ -50,8 +61,7 @@ export default function TextEditor({ data }) {
         { id: 'employeeFired', value: "employeeFired"},
     ]
 
-    const handleChangeOnSelectEmailTemplate = (event: SelectChangeEvent<typeof value>) => {
-        console.log('event', event);
+    const handleChangeOnSelectEmailTemplate = (event: SelectChangeEvent) => {
         const previewElement = document.getElementById("preview");
         if (previewElement) {
             previewElement.innerHTML = preDefinedEmailTemplates[event.target.value];
@@ -67,7 +77,7 @@ export default function TextEditor({ data }) {
     };
 
     const changeWhenTyping = () => {
-        const editorElement = document.getElementById("editor")!;
+        const editorElement = document.getElementById("editor")! as HTMLInputElement;
         const previewElement = document.getElementById("preview")!;
             previewElement.innerHTML = editorElement.value;
             setTextAreaText({
@@ -112,6 +122,7 @@ export default function TextEditor({ data }) {
                     flow="flowColumn"
                     label="Email Template name"
                     name="emailType"
+                    type="text"
                 />
                 <SelectInput
                     label="Email Template"

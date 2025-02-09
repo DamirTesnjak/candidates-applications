@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-export default function InputFileUpload({text, className}: {text: string}) {
+export default function InputFileUpload({text, className}: {text: string, className?: string}) {
     return (
         <Button
             className={className}
@@ -27,7 +27,7 @@ export default function InputFileUpload({text, className}: {text: string}) {
                 }}
                 id="upload"
                 type="file"
-                onChange={(event) => console.log('file selected')}
+                onChange={() => console.log('file selected')}
             />
         </Button>
     );

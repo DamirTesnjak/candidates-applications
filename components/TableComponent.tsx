@@ -16,7 +16,7 @@ export interface IpageTables {
   }
 }
 
-export default function tableComponent({data, columnsToDisplay, page}) {
+export default function TableComponent({data, columnsToDisplay, page}) {
     const pageTables = {
         [PAGES.customersPage]: customerTableDataProps,
         [PAGES.emailTemplatePage]: emailTemplatesTableDataProps,

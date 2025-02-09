@@ -8,10 +8,10 @@ interface InputProps {
     role?: "button" | "radio" | "checkbox";
     type: "button" | "file" | "text" | "checkbox" | "password" | "number" | "email" ;
     value?: string | number | string[];
-    defaultValue?: string | number | string[];
+    defaultValue?: string | number | string[]| readonly string[] | boolean;
     readOnly?: boolean;
     required?: boolean;
-    checked?: string | number | boolean;
+    checked?: boolean;
     errorMessage?: string | null;
 }
 

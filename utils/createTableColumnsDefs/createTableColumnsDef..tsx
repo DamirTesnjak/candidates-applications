@@ -2,9 +2,10 @@ import { TableDataProps } from '@/app/candidates/customerTableDataProps';
 
 export interface IgetColumnsDefsArg {
   columnsToDisplay: string[];
-  tableDataProps: (row: TableDataProps) => {
+  tableDataProps: (row: TableDataProps | null) => {
     [x: string]: {
       size: number,
+      title: string,
       cell: Element | null,
       enableColumnActions: boolean,
       enableColumnFilter: boolean,

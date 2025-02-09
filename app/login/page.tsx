@@ -11,10 +11,7 @@ import {loadUpdateHrUser} from "@/lib/features/hrUser/hrUserSlice";
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
-
-export interface IShowModal {
-  error: boolean | undefined;
-}
+import { IShowModal } from '@/types/ShowModalType';
 
 export default function LoginPage() {
     const router = useRouter()

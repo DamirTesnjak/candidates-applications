@@ -13,7 +13,8 @@ export async function deleteEmailTemplate(formData: FormData) {
     if (!Model) {
         console.log('ERROR_DELETE_EMAIL_TEMPLATE: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
         }
     }
     // check if user already exists
@@ -23,12 +24,13 @@ export async function deleteEmailTemplate(formData: FormData) {
     if (!deletedEmailTemplate) {
         console.log('ERROR_DELETE_EMAIL_TEMPLATE: Error with deleting the email template from the database!');
         return {
-            error: "Something went wrong, cannot save changes, please try again or contact support.",
+            errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+            error: true,
         }
     }
 
     return {
-        message: "Changes saved",
+        successMessage: "Email template deleted successfully.",
         success: true,
     }
 }
