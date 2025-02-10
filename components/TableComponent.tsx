@@ -1,28 +1,27 @@
 'use client'
 
-import { customerTableDataProps } from '@/app/candidates/customerTableDataProps';
+import { candidatesTableDataProps } from '@/app/candidates/customerTableDataProps';
 import { emailTemplatesTableDataProps } from "@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps";
 import Table from "../UI/Table/Table";
 import {PAGES} from "@/constants/constants";
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
-import { MRT_RowData } from 'material-react-table';
+import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 
-export type ICandidateType = MRT_RowData & ICandidateSchema[]
-export type IEmailTemplateType = MRT_RowData & ICandidateSchema[]
+export interface IDataType extends ICandidateSchema, IEmailTemplateSchema {}
 
 export interface ITableComponentProps {
-  data: ICandidateType | IEmailTemplateType;
+  data: IDataType[];
   columnsToDisplay: string[];
   page: 'customerPage' | 'emailTemplatePage' | string;
 }
 
 export interface IPageTables {
-  [p: string]: typeof customerTableDataProps | typeof emailTemplatesTableDataProps;
+  [p: string]: typeof candidatesTableDataProps | typeof emailTemplatesTableDataProps;
 }
 
 export default function TableComponent({data, columnsToDisplay, page}: ITableComponentProps) {
     const pageTables: IPageTables = {
-        [PAGES.customersPage]: customerTableDataProps,
+        [PAGES.customersPage]: candidatesTableDataProps,
         [PAGES.emailTemplatePage]: emailTemplatesTableDataProps,
     };
 

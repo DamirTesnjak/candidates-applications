@@ -1,5 +1,3 @@
-import { IFile } from "@/utils/types/fileType";
-
 export interface IFormDataType {
     [x: string]: string | number | undefined
     databaseName?: 'hrUsers' | 'candidates';

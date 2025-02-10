@@ -7,7 +7,7 @@ import {
 import { useMemo } from "react";
 import {getColumnsDefs} from "@/utils/createTableColumnsDefs/createTableColumnsDef.";
 import { ITableComponentProps } from '@/components/TableComponent';
-import { customerTableDataProps } from '@/app/candidates/customerTableDataProps';
+import { candidatesTableDataProps } from '@/app/candidates/customerTableDataProps';
 import {
   emailTemplatesTableDataProps
 } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
@@ -15,7 +15,7 @@ import {
 export interface TableProps {
     tableData: ITableComponentProps["data"];
     columnsToDisplay: ITableComponentProps["columnsToDisplay"];
-    tableDataProps: typeof customerTableDataProps | typeof emailTemplatesTableDataProps;
+    tableDataProps: typeof candidatesTableDataProps | typeof emailTemplatesTableDataProps;
 }
 
 export default function Table({tableData, columnsToDisplay, tableDataProps }: TableProps) {

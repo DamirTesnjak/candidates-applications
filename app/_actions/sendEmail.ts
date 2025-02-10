@@ -9,9 +9,15 @@ import { IMappedEmailTemplates } from '@/utils/dbConfig/models/mappedEmailTempla
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmailSettingsModel';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
-import { IFormDataType } from '@/utils/types/formDataType';
 
-export async function sendEmail(prevState: IFormDataType, formData: FormData) {
+export interface IPrevState {
+  errorMessage: string;
+  error: boolean;
+  successMessage: string;
+  successIcon: boolean;
+}
+
+export async function sendEmail(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     const { emailTemplateType } = formDataObject;

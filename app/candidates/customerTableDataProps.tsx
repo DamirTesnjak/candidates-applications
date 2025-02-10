@@ -10,7 +10,7 @@ import { ReactNode } from 'react';
 
 import { RowButton } from '@/UI/Table/RowButton/RowButton';
 
-export interface TableDataProps {
+export interface ICandidatesTableDataRowProps {
     original: {
         _id: ICandidateSchema["id"];
         name: string;
@@ -22,9 +22,9 @@ export interface TableDataProps {
     };
 }
 
-export const customerTableDataProps = (row: TableDataProps | null): {
+export const candidatesTableDataProps = (row: ICandidatesTableDataRowProps | null): {
   [x: string]: {
-    title?: string;
+    title: string;
     size: number;
     cell: ReactNode | string | null;
     enableColumnActions?: boolean;
@@ -36,6 +36,7 @@ export const customerTableDataProps = (row: TableDataProps | null): {
     return {
         "profilePicture":
         {
+            title: "",
             size: 50,
             cell: row ? <Image src={getFile(
                 {

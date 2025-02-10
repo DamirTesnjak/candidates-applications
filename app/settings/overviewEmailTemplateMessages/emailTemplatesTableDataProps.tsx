@@ -1,20 +1,20 @@
 import Button from "@/UI/Button/Button";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {ICandidateSchema} from "@/utils/dbConfig/models/candidateModel.js";
 import Link from "next/link";
 import { ReactNode } from 'react';
+import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 
-interface TableDataProps {
+export interface IEmailTemplatesTableDataRowProps {
     original: {
-        _id: ICandidateSchema["id"];
+        _id: IEmailTemplateSchema["id"];
         emailType: string;
     };
 }
 
-export const emailTemplatesTableDataProps = (row: TableDataProps): {
+export const emailTemplatesTableDataProps = (row: IEmailTemplatesTableDataRowProps | null): {
   [x: string]: {
-    title?: string;
+    title: string;
     size: number;
     cell: ReactNode | string | null;
     enableColumnActions?: boolean;

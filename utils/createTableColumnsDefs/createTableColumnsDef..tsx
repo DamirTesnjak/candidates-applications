@@ -1,21 +1,30 @@
 import { TableProps } from '@/UI/Table/Table';
+import { ICandidatesTableDataRowProps } from '@/app/candidates/customerTableDataProps';
+import {
+  IEmailTemplatesTableDataRowProps
+} from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
-export interface IgetColumnsDefsArg {
+export interface IGetColumnsDefsArg {
   columnsToDisplay: TableProps["columnsToDisplay"];
   tableDataProps: TableProps["tableDataProps"];
 }
 
-export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }: IgetColumnsDefsArg) => {
+export interface IRow {
+  original: ICandidatesTableDataRowProps["original"] & IEmailTemplatesTableDataRowProps["original"];
+}
+
+export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }: IGetColumnsDefsArg) => {
     return columnsToDisplay.map((keyItem: string) => {
+        const noDataRow = null;
         return {
             accessorKey: keyItem,
-            header: tableDataProps()[keyItem].title,
-            size: tableDataProps()[keyItem].size,
-            enableColumnFilter: tableDataProps()[keyItem].enableColumnFilter,
-            enableColumnActions: tableDataProps()[keyItem].enableColumnActions,
-            enableColumnDragging: tableDataProps()[keyItem].enableColumnDragging,
-            enableSorting: tableDataProps()[keyItem].enableSorting,
-            Cell: ({ renderedCellValue, row}) => (<div>{tableDataProps(row)[keyItem].cell}</div>),
+            header: tableDataProps(noDataRow)[keyItem].title,
+            size: tableDataProps(noDataRow)[keyItem].size,
+            enableColumnFilter: tableDataProps(noDataRow)[keyItem].enableColumnFilter,
+            enableColumnActions: tableDataProps(noDataRow)[keyItem].enableColumnActions,
+            enableColumnDragging: tableDataProps(noDataRow)[keyItem].enableColumnDragging,
+            enableSorting: tableDataProps(noDataRow)[keyItem].enableSorting,
+            Cell: ({ row }: { row: IRow | null }) => (<div>{tableDataProps(row)[keyItem].cell}</div>),
         }
     })
 }

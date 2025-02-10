@@ -22,7 +22,12 @@ const buttonIcons: IButtonIcons = {
 }
 
 export  function RowButton({ clientId, name, text, value, icon }: IRowButton) {
-  const [ response, formAction ] = useActionState(sendEmail, null);
+  const [ response, formAction ] = useActionState(sendEmail, {
+    errorMessage: '',
+    error: false,
+    successMessage: '',
+    successIcon: false,
+  });
   const [ showModal, setShowModal ] = useState<IShowModal>({
     success: false,
     error: false,
