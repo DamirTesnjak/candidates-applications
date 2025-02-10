@@ -6,25 +6,25 @@ import {
 
 export interface IGetColumnsDefsArg {
   columnsToDisplay: TableProps["columnsToDisplay"];
-  tableDataProps: TableProps["tableDataProps"];
+  columnDef: TableProps["columnDef"];
 }
 
 export interface IRow {
   original: ICandidatesTableDataRowProps["original"] & IEmailTemplatesTableDataRowProps["original"];
 }
 
-export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }: IGetColumnsDefsArg) => {
+export const getColumnsDefs = ({ columnsToDisplay, columnDef }: IGetColumnsDefsArg) => {
     return columnsToDisplay.map((keyItem: string) => {
         const noDataRow = null;
         return {
             accessorKey: keyItem,
-            header: tableDataProps(noDataRow)[keyItem].title,
-            size: tableDataProps(noDataRow)[keyItem].size,
-            enableColumnFilter: tableDataProps(noDataRow)[keyItem].enableColumnFilter,
-            enableColumnActions: tableDataProps(noDataRow)[keyItem].enableColumnActions,
-            enableColumnDragging: tableDataProps(noDataRow)[keyItem].enableColumnDragging,
-            enableSorting: tableDataProps(noDataRow)[keyItem].enableSorting,
-            Cell: ({ row }: { row: IRow | null }) => (<div>{tableDataProps(row)[keyItem].cell}</div>),
+            header: columnDef(noDataRow)[keyItem].title,
+            size: columnDef(noDataRow)[keyItem].size,
+            enableColumnFilter: columnDef(noDataRow)[keyItem].enableColumnFilter,
+            enableColumnActions: columnDef(noDataRow)[keyItem].enableColumnActions,
+            enableColumnDragging: columnDef(noDataRow)[keyItem].enableColumnDragging,
+            enableSorting: columnDef(noDataRow)[keyItem].enableSorting,
+            Cell: ({ row }: { row: IRow | null }) => (<div>{columnDef(row)[keyItem].cell}</div>),
         }
     })
 }

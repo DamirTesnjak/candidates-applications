@@ -1,33 +1,33 @@
 'use client'
 
-import { candidatesTableDataProps } from '@/app/candidates/customerTableDataProps';
-import { emailTemplatesTableDataProps } from "@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps";
+import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 import Table from "../UI/Table/Table";
 import {PAGES} from "@/constants/constants";
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 
-export interface IDataType extends ICandidateSchema, IEmailTemplateSchema {}
+export interface ITableData extends ICandidateSchema, IEmailTemplateSchema {}
 
 export interface ITableComponentProps {
-  data: IDataType[];
+  tableData: ITableData[];
   columnsToDisplay: string[];
   page: 'customerPage' | 'emailTemplatePage' | string;
 }
 
 export interface IPageTables {
-  [p: string]: typeof candidatesTableDataProps | typeof emailTemplatesTableDataProps;
+  [p: string]: typeof candidatesColumnDef | typeof emailTemplatesColumnDef;
 }
 
-export default function TableComponent({data, columnsToDisplay, page}: ITableComponentProps) {
+export default function TableComponent({tableData, columnsToDisplay, page}: ITableComponentProps) {
     const pageTables: IPageTables = {
-        [PAGES.customersPage]: candidatesTableDataProps,
-        [PAGES.emailTemplatePage]: emailTemplatesTableDataProps,
+        [PAGES.customersPage]: candidatesColumnDef,
+        [PAGES.emailTemplatePage]: emailTemplatesColumnDef,
     };
 
     return <Table
-        tableData={data}
+        tableData={tableData}
         columnsToDisplay={columnsToDisplay}
-        tableDataProps={pageTables[page]}
+        columnDef={pageTables[page]}
     />;
 }

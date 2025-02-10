@@ -7,22 +7,20 @@ import {
 import { useMemo } from "react";
 import {getColumnsDefs} from "@/utils/createTableColumnsDefs/createTableColumnsDef.";
 import { ITableComponentProps } from '@/components/TableComponent';
-import { candidatesTableDataProps } from '@/app/candidates/customerTableDataProps';
-import {
-  emailTemplatesTableDataProps
-} from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
 export interface TableProps {
-    tableData: ITableComponentProps["data"];
+    tableData: ITableComponentProps["tableData"];
     columnsToDisplay: ITableComponentProps["columnsToDisplay"];
-    tableDataProps: typeof candidatesTableDataProps | typeof emailTemplatesTableDataProps;
+    columnDef: typeof candidatesColumnDef | typeof emailTemplatesColumnDef;
 }
 
-export default function Table({tableData, columnsToDisplay, tableDataProps }: TableProps) {
+export default function Table({tableData, columnsToDisplay, columnDef }: TableProps) {
     const getColumnsDefsProps = useMemo(() => ({
         columnsToDisplay,
-        tableDataProps,
-    }), [columnsToDisplay, tableDataProps])
+        columnDef,
+    }), [columnsToDisplay, columnDef])
 
     const columns = useMemo(() => getColumnsDefs(getColumnsDefsProps), [getColumnsDefsProps]);
 

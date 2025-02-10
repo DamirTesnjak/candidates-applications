@@ -4,8 +4,6 @@ import {getFormValidationSchema} from "@/utils/formValidation/getFormValidationS
 
 export function formValidation(formData: FormData) {
     const formDataObject = getFormDataObject(formData);
-
-    console.log('formDataObject', formDataObject);
     const formValidationSchema = getFormValidationSchema(formDataObject)
 
     return formValidationSchema.safeParse(formDataObject);

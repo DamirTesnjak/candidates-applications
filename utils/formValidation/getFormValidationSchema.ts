@@ -1,11 +1,10 @@
-import {z, ZodNumber, ZodObject, ZodString} from "zod";
+import { z, ZodObject, ZodRawShape, ZodString } from 'zod';
 import {IFormDataType} from "@/utils/types/formDataType";
 
 export function getFormValidationSchema(formDataObject: IFormDataType) {
     const fieldsKeys = Object.keys(formDataObject);
-    console.log('formDataObject', formDataObject);
     const schemaShape: {
-        [x: string]: ZodString | ZodObject<{[x:string]: ZodString | ZodNumber}>
+        [x: string]: ZodString | ZodObject<ZodRawShape>;
     } = {};
 
     const setSchemaField = (field: string) => {
@@ -34,7 +33,6 @@ export function getFormValidationSchema(formDataObject: IFormDataType) {
     };
 
     for (const field in fieldsKeys) {
-        console.log('fieldsKeys[field]', fieldsKeys[field])
         setSchemaField(fieldsKeys[field]);
     }
 

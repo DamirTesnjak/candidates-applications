@@ -22,7 +22,7 @@ export interface ICandidatesTableDataRowProps {
     };
 }
 
-export const candidatesTableDataProps = (row: ICandidatesTableDataRowProps | null): {
+export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
   [x: string]: {
     title: string;
     size: number;

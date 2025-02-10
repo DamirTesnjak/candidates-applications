@@ -13,7 +13,10 @@ import AddIcon from "@mui/icons-material/Add";
 import { ReactNode } from "react";
 import { IParams } from '@/types/params';
 
-export default async function CandidateProfileLayout({ children, params }: { children: ReactNode, params: IParams }) {
+export default async function CandidateProfileLayout({ children, params }: {
+  children: ReactNode;
+  params: IParams["params"];
+}) {
     const { id } = await params;
     const results = await getCandidateProfile(id);
     const parsedResults = results ? JSON.parse(results) : null;

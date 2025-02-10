@@ -12,7 +12,7 @@ export interface IEmailTemplatesTableDataRowProps {
     };
 }
 
-export const emailTemplatesTableDataProps = (row: IEmailTemplatesTableDataRowProps | null): {
+export const emailTemplatesColumnDef = (row: IEmailTemplatesTableDataRowProps | null): {
   [x: string]: {
     title: string;
     size: number;
