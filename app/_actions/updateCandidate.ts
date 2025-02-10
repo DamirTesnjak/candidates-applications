@@ -5,11 +5,11 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
-import { IFormDataType } from '@/utils/types/formDataType';
 import { Model } from 'mongoose';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
+import { IPrevState } from '@/utils/prevState';
 
-export async function updateCandidate(prevState: IFormDataType, formData: FormData) {
+export async function updateCandidate(prevState: Partial<IPrevState>, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid

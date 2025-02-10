@@ -1,6 +1,4 @@
-import { IAppSelectorState } from '@/lib/hooks';
-import { WritableDraft } from 'immer';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export default function updateWholeObjectInState(
   state: any,

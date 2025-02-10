@@ -1,13 +1,14 @@
 'use server'
 
-import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
+import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES} from "@/constants/constants";
 import { Model } from 'mongoose';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
+import { IPrevState } from '@/utils/prevState';
 
-export async function updateEmailTemplate(prevState, formData: FormData) {
+export async function updateEmailTemplate(prevState: Promise<IPrevState>, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid

@@ -25,7 +25,7 @@ export async function getEmailTemplate(id: string) {
     }
 
     return JSON.stringify({
-        message: "Email template found",
+        successMessage: "Email template found",
         data: {
             id: emailTemplate._id,
             emailType: emailTemplate.emailType,

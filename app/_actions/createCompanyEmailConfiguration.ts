@@ -1,14 +1,14 @@
 'use server'
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
+import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import {DATABASES} from "@/constants/constants";
-import { IFormDataType } from '@/utils/types/formDataType';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { Model } from 'mongoose';
 import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmailSettingsModel';
+import { IPrevState } from '@/utils/prevState';
 
-export async function createCompanyEmailConfiguration(prevState: IFormDataType, formData: FormData) {
+export async function createCompanyEmailConfiguration(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid

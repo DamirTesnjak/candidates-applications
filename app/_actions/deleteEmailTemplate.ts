@@ -5,8 +5,9 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig"
 import {DATABASES} from "@/constants/constants";
 import { Model } from 'mongoose';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
+import { IPrevState } from '@/utils/prevState';
 
-export async function deleteEmailTemplate(formData: FormData) {
+export async function deleteEmailTemplate(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     const Model = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;

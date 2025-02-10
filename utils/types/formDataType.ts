@@ -1,5 +1,5 @@
 export interface IFormDataType {
-    [x: string]: string | number | undefined
+    [x: string]: string | number | undefined | boolean | {[p: string]: string};
     databaseName?: 'hrUsers' | 'candidates';
     id?: string;
     name?: string;

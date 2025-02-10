@@ -30,13 +30,14 @@ import { IShowModal } from '@/types/ShowModalType';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IFormDataType } from '@/utils/types/formDataType';
+import { IPrevState } from '@/utils/prevState';
 
 export interface ITextEditorProps {
   data?: {
     emailText: string;
     emailType: string;
   };
-  serverAction?: (formData: FormData) => Promise<{
+  serverAction?: (prevState: Promise<IPrevState>, formData: FormData) => Promise<{
     errorMessage?: string;
     error?: boolean;
     successMessage?: string;
@@ -44,7 +45,7 @@ export interface ITextEditorProps {
     errorFieldValidation?: {
       [x: string]: string;
     };
-    prevState?: IFormDataType;
+    prevState?: IPrevState | IFormDataType;
   }>;
 }
 

@@ -8,17 +8,17 @@ import {DATABASES, EMAIL_TYPE, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constan
 import { getFormDataObject } from "@/utils/formValidation/getFormDataObject";
 import { uploadFile } from "@/utils/uploadFile";
 import checkFormValidation from "@/utils/utilsServer/checkFormValidation";
-import { IFormDataType } from '@/utils/types/formDataType';
 import { Model, Types } from 'mongoose';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
+import { IPrevState } from '@/utils/prevState';
 
-export interface IsendEmail {
+export interface ISendEmail {
   email: IHrUserSchema["email"];
   emailType: string;
   userId: Types.ObjectId;
 }
 
-const sendEmail = async ({ email, emailType, userId }: IsendEmail) => {
+const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
     // create a hashed token
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
@@ -70,7 +70,7 @@ const sendEmail = async ({ email, emailType, userId }: IsendEmail) => {
     return await transport.sendMail(mailOptions);
 }
 
-export const createHrUser = async (prevState: IFormDataType, formData: FormData) => {
+export const createHrUser = async (prevState: IPrevState, formData: FormData) => {
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid

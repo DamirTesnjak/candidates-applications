@@ -22,7 +22,8 @@ export async function mapEmailTemplates(formData: FormData) {
     if (!Model) {
         console.log('ERROR_MAP_EMAIL_TEMPLATES: Error with connecting to the database!');
         return {
-            error: "Something went wrong, please try again or contact support.",
+            errorMessage: "Something went wrong, please try again or contact support.",
+            error: true,
         }
     }
 
@@ -41,7 +42,8 @@ export async function mapEmailTemplates(formData: FormData) {
         if (!savedMappedEmailSettings) {
             console.log('ERROR_UPDATE_MAP_EMAIL_TEMPLATES: Error with updating mapped email templates to the database!');
             return {
-                error: "Something went wrong, cannot save changes, please try again or contact support.",
+                errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+                error: true,
             }
         }
         return
@@ -58,7 +60,8 @@ export async function mapEmailTemplates(formData: FormData) {
     if (savedMappedEmailSettings !== newMappedEmailSettings) {
         console.log('ERROR_MAP_EMAIL_TEMPLATES: Error with saving new mapped email templates to the database!');
         return {
-            error: "Cannot create user! Please try again or contact support!",
+            errorMessage: "Cannot create user! Please try again or contact support!",
+            error: true,
         }
     }
 

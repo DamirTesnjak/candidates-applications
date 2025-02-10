@@ -4,12 +4,12 @@ import { connectToDB } from "@/utils/dbConfig/dbConfig";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {uploadFile} from "@/utils/uploadFile";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
-import { IFormDataType } from '@/utils/types/formDataType';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { Model } from 'mongoose';
+import { IPrevState } from '@/utils/prevState';
 
-export async function createCandidate(prevState: IFormDataType, formData: FormData) {
+export async function createCandidate(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid

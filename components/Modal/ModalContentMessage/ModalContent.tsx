@@ -1,19 +1,10 @@
 import Button from '@/UI/Button/Button';
 import { Dispatch, SetStateAction } from 'react';
 import { IShowModal } from '@/types/ShowModalType';
-import { IFormDataType } from '@/utils/types/formDataType';
+import { IPrevState } from '@/utils/prevState';
 
 export interface IModalContentMessageProps {
-  response: {
-    errorMessage?: string;
-    error?: boolean;
-    successMessage?: string;
-    success?: boolean;
-    errorFieldValidation?: {
-      [p: string]: string;
-    };
-    prevState?: IFormDataType;
-  } | null
+  response: Partial<IPrevState> | null
     setShowModal:  Dispatch<SetStateAction<IShowModal>>
 }
 

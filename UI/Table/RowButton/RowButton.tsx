@@ -10,6 +10,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import WorkIcon from '@mui/icons-material/Work';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { IShowModal } from '@/types/ShowModalType';
+import { IPrevState } from '@/utils/prevState';
 
 export interface IButtonIcons {
   [x: string]: ReactNode;
@@ -22,12 +23,7 @@ const buttonIcons: IButtonIcons = {
 }
 
 export  function RowButton({ clientId, name, text, value, icon }: IRowButton) {
-  const [ response, formAction ] = useActionState(sendEmail, {
-    errorMessage: '',
-    error: false,
-    successMessage: '',
-    successIcon: false,
-  });
+  const [ response, formAction ] = useActionState(sendEmail, {});
   const [ showModal, setShowModal ] = useState<IShowModal>({
     success: false,
     error: false,

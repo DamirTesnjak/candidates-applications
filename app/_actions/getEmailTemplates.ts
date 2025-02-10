@@ -32,7 +32,7 @@ export async function getEmailTemplates() {
       });
     }
     return JSON.stringify({
-        message: "Fetching data successful!",
+        successMessage: "Fetching data successful!",
         success: true,
         emailTemplates,
     });

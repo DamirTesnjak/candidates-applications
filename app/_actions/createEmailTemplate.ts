@@ -5,8 +5,9 @@ import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
+import { IPrevState } from '@/utils/prevState';
 
-export async function createEmailTemplate(prevState: any, formData: FormData) {
+export async function createEmailTemplate(prevState: IPrevState, formData: FormData) {
     const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 

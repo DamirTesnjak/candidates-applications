@@ -1,5 +1,5 @@
 import {getCandidates} from "@/app/_actions/getCandidates";
-import TableComponent from "@/components/TableComponent";
+import TableComponent, { ITableData } from '@/components/TableComponent';
 import { PAGES } from "@/constants/constants";
 import InfoMessage from '@/components/InfoMessage/InfoMessage';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
@@ -25,7 +25,7 @@ export default async function CandidatesPage() {
         ]
 
         return <TableComponent
-            data={JSON.parse(results).candidates}
+            tableData={parsedResults.candidates}
             columnsToDisplay={columnsToDisplay}
             page={PAGES.customersPage}
         />;

@@ -18,7 +18,7 @@ export default function EditForm(props: IEditFormProps) {
   const { id, serverAction, stateModel, storeReducerName, editable, newProfile, showUploadCVButton, showUploadPictureButton } = props;
   const stateModelKeyAndValues = useAppSelector(state => state[storeReducerName]);
 
-    const [ response, formAction ] = useActionState(serverAction, null);
+    const [ response, formAction ] = useActionState(serverAction, {});
     const [ showModal, setShowModal ] = useState<IShowModal>({
         success: false,
         error: false,

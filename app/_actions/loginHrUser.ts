@@ -7,11 +7,11 @@ import {DATABASES} from "@/constants/constants";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import { cookies } from 'next/headers';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
-import { IFormDataType } from '@/utils/types/formDataType';
 import { Model } from 'mongoose';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
+import { IPrevState } from '@/utils/prevState';
 
-export async function loginHrUser(prevState: IFormDataType, formData: FormData) {
+export async function loginHrUser(prevState: IPrevState, formData: FormData) {
     const cookieStore = await cookies();
     const formDataObject = getFormDataObject(formData);
 
