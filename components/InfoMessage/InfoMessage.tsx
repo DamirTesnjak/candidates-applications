@@ -1,11 +1,13 @@
-import styles from "./infoMessage.module.scss";
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import styles from './infoMessage.module.scss';
 
-export default function InfoMessage({text}: {text: string}) {
-    return (
-        <div className={styles.infoMessage}>
-            <div className={styles.messageIcon}><InfoOutlinedIcon /></div>
-            <div>{text}</div>
-        </div>
-    )
+export default function InfoMessage({ text }: { text: string }) {
+  return (
+    <div className={styles.infoMessage}>
+      <div className={styles.messageIcon}>
+        <InfoOutlinedIcon />
+      </div>
+      <div>{text}</div>
+    </div>
+  );
 }

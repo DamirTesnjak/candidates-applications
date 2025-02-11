@@ -4,5 +4,7 @@ import { initialStateCandidate } from '@/lib/features/candidate/candidateSlice';
 
 export interface ISetDataToStoreProps {
   data: typeof initialStateHrUser | typeof initialStateCandidate;
-  databaseName: IDatabaseType[DATABASES_ENUM.hrUsers | DATABASES_ENUM.candidates];
+  databaseName: IDatabaseType[
+    | DATABASES_ENUM.hrUsers
+    | DATABASES_ENUM.candidates];
 }

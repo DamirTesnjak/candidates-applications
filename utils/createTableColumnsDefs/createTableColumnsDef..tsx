@@ -1,30 +1,34 @@
 import { TableProps } from '@/UI/Table/Table';
 import { ICandidatesTableDataRowProps } from '@/app/candidates/customerTableDataProps';
-import {
-  IEmailTemplatesTableDataRowProps
-} from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { IEmailTemplatesTableDataRowProps } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
 export interface IGetColumnsDefsArg {
-  columnsToDisplay: TableProps["columnsToDisplay"];
-  columnDef: TableProps["columnDef"];
+  columnsToDisplay: TableProps['columnsToDisplay'];
+  columnDef: TableProps['columnDef'];
 }
 
 export interface IRow {
-  original: ICandidatesTableDataRowProps["original"] & IEmailTemplatesTableDataRowProps["original"];
+  original: ICandidatesTableDataRowProps['original'] &
+    IEmailTemplatesTableDataRowProps['original'];
 }
 
-export const getColumnsDefs = ({ columnsToDisplay, columnDef }: IGetColumnsDefsArg) => {
-    return columnsToDisplay.map((keyItem: string) => {
-        const noDataRow = null;
-        return {
-            accessorKey: keyItem,
-            header: columnDef(noDataRow)[keyItem].title,
-            size: columnDef(noDataRow)[keyItem].size,
-            enableColumnFilter: columnDef(noDataRow)[keyItem].enableColumnFilter,
-            enableColumnActions: columnDef(noDataRow)[keyItem].enableColumnActions,
-            enableColumnDragging: columnDef(noDataRow)[keyItem].enableColumnDragging,
-            enableSorting: columnDef(noDataRow)[keyItem].enableSorting,
-            Cell: ({ row }: { row: IRow | null }) => (<div>{columnDef(row)[keyItem].cell}</div>),
-        }
-    })
-}
+export const getColumnsDefs = ({
+  columnsToDisplay,
+  columnDef,
+}: IGetColumnsDefsArg) => {
+  return columnsToDisplay.map((keyItem: string) => {
+    const noDataRow = null;
+    return {
+      accessorKey: keyItem,
+      header: columnDef(noDataRow)[keyItem].title,
+      size: columnDef(noDataRow)[keyItem].size,
+      enableColumnFilter: columnDef(noDataRow)[keyItem].enableColumnFilter,
+      enableColumnActions: columnDef(noDataRow)[keyItem].enableColumnActions,
+      enableColumnDragging: columnDef(noDataRow)[keyItem].enableColumnDragging,
+      enableSorting: columnDef(noDataRow)[keyItem].enableSorting,
+      Cell: ({ row }: { row: IRow | null }) => (
+        <div>{columnDef(row)[keyItem].cell}</div>
+      ),
+    };
+  });
+};

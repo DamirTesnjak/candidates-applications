@@ -7,7 +7,11 @@ export interface IcheckFormValidationArgs {
   errorMessage: string;
 }
 
-export default function checkFormValidation({formData, formDataObject, errorMessage}: IcheckFormValidationArgs) {
+export default function checkFormValidation({
+  formData,
+  formDataObject,
+  errorMessage,
+}: IcheckFormValidationArgs) {
   const validatedFields = formValidation(formData);
 
   if (!validatedFields.success) {
@@ -15,15 +19,15 @@ export default function checkFormValidation({formData, formDataObject, errorMess
 
     validatedFields.error.errors.forEach((error) => {
       errorFieldValidation[error.path[0]] = error.message;
-    })
+    });
 
     console.log(errorMessage);
 
     return {
       errorFieldValidation,
       error: true,
-      prevStateFormData: formDataObject
-    }
+      prevStateFormData: formDataObject,
+    };
   }
   return {
     errorFieldValidation: undefined,

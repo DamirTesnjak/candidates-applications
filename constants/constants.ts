@@ -1,16 +1,16 @@
 export const STORE_REDUCER_NAME = {
-    hrUser: "hrUser",
-    candidate: 'candidate',
-    companyEmailConfigs: "companyEmailConfigs",
-}
+  hrUser: 'hrUser',
+  candidate: 'candidate',
+  companyEmailConfigs: 'companyEmailConfigs',
+};
 
 export interface IDatabaseType {
-    [x: string]: string;
-    candidates: 'candidates';
-    hrUsers: 'hrUsers';
-    emailTemplates: 'emailTemplates';
-    companyEmailConfigs: 'companyEmailConfigs';
-    mappedEmailTemplates: 'mappedEmailTemplates';
+  [x: string]: string;
+  candidates: 'candidates';
+  hrUsers: 'hrUsers';
+  emailTemplates: 'emailTemplates';
+  companyEmailConfigs: 'companyEmailConfigs';
+  mappedEmailTemplates: 'mappedEmailTemplates';
 }
 
 export const DATABASES: IDatabaseType = {
@@ -19,31 +19,31 @@ export const DATABASES: IDatabaseType = {
   emailTemplates: 'emailTemplates',
   companyEmailConfigs: 'companyEmailConfigs',
   mappedEmailTemplates: 'mappedEmailTemplates',
-}
+};
 
 export const enum DATABASES_ENUM {
-    candidates = 'candidates',
-    hrUsers = 'hrUsers',
-    emailTemplates = 'emailTemplates',
-    companyEmailConfigs = 'companyEmailConfigs',
-    mappedEmailTemplates = 'mappedEmailTemplates',
+  candidates = 'candidates',
+  hrUsers = 'hrUsers',
+  emailTemplates = 'emailTemplates',
+  companyEmailConfigs = 'companyEmailConfigs',
+  mappedEmailTemplates = 'mappedEmailTemplates',
 }
 
 export const EMAIL_TYPE = {
-    verify: "VERIFY",
-    reset: "RESET",
-}
+  verify: 'VERIFY',
+  reset: 'RESET',
+};
 
 export const FILE_TYPE = {
-    image: "image",
-    file: "file",
-}
+  image: 'image',
+  file: 'file',
+};
 
 export const FORM_INPUT_FIELD_NAME = {
-    file: "file",
-    image: "profilePicture",
-    companyLogo: "companyLogo",
-}
+  file: 'file',
+  image: 'profilePicture',
+  companyLogo: 'companyLogo',
+};
 
 export interface IHTMLProps {
   type: string;
@@ -69,24 +69,48 @@ export interface IEditTextButton {
   startDateTemplate: IHTMLProps;
 }
 
-export const EDIT_TEXT_BUTTON : IEditTextButton = {
-    paragraph: { type: "paragraph", startTag: "<p>", endTag: "</p>"},
-    italic: { type: "italic", startTag: "<i>", endTag: "</i>"},
-    strong: { type: "strong", startTag: "<strong>", endTag: "</strong>"},
-    underline: { type: "underline", startTag: "<u>", endTag: "</u>"},
-    newline: { type: "newline", startTag: "<br>", endTag: ""},
-    link: { type: "link", startTag: '<a href="">', endTag: "</a>"},
-    superscript: { type: "superscript", startTag: "<sup>", endTag: "</sup>"},
-    subscript: { type: "subscript", startTag: "<sub>", endTag: "</sub>"},
-    targetPersonFullName: { type: "targetPersonFullName", startTag: "[TARGET_PERSON_FULL_NAME]", endTag: "" },
-    hrUserFullNameTemplate: { type: "hrUserFullNameTemplate", startTag: "[HR_USER_FULL_NAME]", endTag: "" },
-    jobTitleTemplate: { type: "jobTitleTemplate", startTag: "[JOB_TITLE]", endTag: "" },
-    companyNameTemplate: { type: "companyNameTemplate", startTag: "[COMPANY_NAME]", endTag: "" },
-    currentYearTemplate: { type: "currentYearTemplate", startTag: "[CURRENT_YEAR]", endTag: "" },
-    startDateTemplate: { type: "startDateTemplate", startTag: "[JOB_START_DATE]", endTag: "" },
-}
+export const EDIT_TEXT_BUTTON: IEditTextButton = {
+  paragraph: { type: 'paragraph', startTag: '<p>', endTag: '</p>' },
+  italic: { type: 'italic', startTag: '<i>', endTag: '</i>' },
+  strong: { type: 'strong', startTag: '<strong>', endTag: '</strong>' },
+  underline: { type: 'underline', startTag: '<u>', endTag: '</u>' },
+  newline: { type: 'newline', startTag: '<br>', endTag: '' },
+  link: { type: 'link', startTag: '<a href="">', endTag: '</a>' },
+  superscript: { type: 'superscript', startTag: '<sup>', endTag: '</sup>' },
+  subscript: { type: 'subscript', startTag: '<sub>', endTag: '</sub>' },
+  targetPersonFullName: {
+    type: 'targetPersonFullName',
+    startTag: '[TARGET_PERSON_FULL_NAME]',
+    endTag: '',
+  },
+  hrUserFullNameTemplate: {
+    type: 'hrUserFullNameTemplate',
+    startTag: '[HR_USER_FULL_NAME]',
+    endTag: '',
+  },
+  jobTitleTemplate: {
+    type: 'jobTitleTemplate',
+    startTag: '[JOB_TITLE]',
+    endTag: '',
+  },
+  companyNameTemplate: {
+    type: 'companyNameTemplate',
+    startTag: '[COMPANY_NAME]',
+    endTag: '',
+  },
+  currentYearTemplate: {
+    type: 'currentYearTemplate',
+    startTag: '[CURRENT_YEAR]',
+    endTag: '',
+  },
+  startDateTemplate: {
+    type: 'startDateTemplate',
+    startTag: '[JOB_START_DATE]',
+    endTag: '',
+  },
+};
 
 export const PAGES = {
-    customersPage: "customerPage",
-    emailTemplatePage: "emailTemplatePage",
-}
+  customersPage: 'customerPage',
+  emailTemplatePage: 'emailTemplatePage',
+};

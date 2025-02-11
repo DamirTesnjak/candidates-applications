@@ -1,24 +1,34 @@
-'use client'
+'use client';
 
-import {logoutHrUser} from "@/app/_actions/logoutHrUser";
-import Button from "../../../UI/Button/Button";
-import { useState } from "react";
-import {DATABASES} from "@/constants/constants";
-import SetDataToStore from "@/components/SetDataToStore/SetDataToStore";
-import {initialStateHrUser} from "@/lib/features/hrUser/hrUserSlice";
+import { useState } from 'react';
+import { logoutHrUser } from '@/app/_actions/logoutHrUser';
+import Button from '../../../UI/Button/Button';
+import SetDataToStore from '@/components/SetDataToStore/SetDataToStore';
+import { initialStateHrUser } from '@/lib/features/hrUser/hrUserSlice';
+import { DATABASES } from '@/constants/constants';
 
 export default function LogoutButton() {
-    const [ success, setSuccess ] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-    const handleLogout = async () => {
-        const result = await logoutHrUser();
-        setSuccess(result.success);
-    }
+  const handleLogout = async () => {
+    const result = await logoutHrUser();
+    setSuccess(result.success);
+  };
 
-    return (
-        <div>
-            <Button className="submitButton" type='submit' text="Logout" onClick={() => handleLogout()}/>
-            {success && <SetDataToStore data={initialStateHrUser} databaseName={DATABASES.hrUsers} />}
-        </div>
-    )
+  return (
+    <div>
+      <Button
+        className='submitButton'
+        type='submit'
+        text='Logout'
+        onClick={() => handleLogout()}
+      />
+      {success && (
+        <SetDataToStore
+          data={initialStateHrUser}
+          databaseName={DATABASES.hrUsers}
+        />
+      )}
+    </div>
+  );
 }
