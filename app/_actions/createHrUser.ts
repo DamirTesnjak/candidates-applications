@@ -9,12 +9,8 @@ import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { uploadFile } from '@/utils/uploadFile';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 import { IPrevState } from '@/utils/types/prevState';
-import {
-  DATABASES,
-  EMAIL_TYPE,
-  FILE_TYPE,
-  FORM_INPUT_FIELD_NAME,
-} from '@/constants/constants';
+import { DATABASES, EMAIL_TYPE, FILE_TYPE } from '@/constants/constants';
+import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmailSettingsModel';
 
 export interface ISendEmail {
   email: IHrUserSchema['email'];
@@ -49,12 +45,35 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
     });
   }
 
+  const companyEmailConfigsModel = connectToDB(
+    DATABASES.companyEmailConfigs,
+  ) as Model<ICompanyEmailSettingsSchema>;
+
+  if (!companyEmailConfigsModel) {
+    console.log(
+      'ERROR_GET_CREATE_USER_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!',
+    );
+    return {
+      errorMessage:
+        'Something went wrong, please try again or contact support.',
+      error: true,
+    };
+  }
+
+  const companyEmailConfiguration = await companyEmailConfigsModel?.find({});
+  if (!companyEmailConfiguration) {
+    return {
+      errorMessage: 'Company email not found!',
+      error: true,
+    };
+  }
+
   const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
+    host: companyEmailConfiguration[0].emailHost,
+    port: companyEmailConfiguration[0].port,
     auth: {
-      user: process.env.EMAIL_AUTH_USER,
-      pass: process.env.EMAIL_AUTH_PASS,
+      user: companyEmailConfiguration[0].username,
+      pass: companyEmailConfiguration[0].password,
     },
   });
 
@@ -86,6 +105,7 @@ export const createHrUser = async (
       formData,
       formDataObject,
       errorMessage: 'ERROR_CREATE_HR_USER: inputField validation error',
+      skipFileUploadValidation: false,
     });
 
   if (error) {
@@ -122,7 +142,6 @@ export const createHrUser = async (
   const uploadedProfilePictureFile = await uploadFile(
     formData,
     FILE_TYPE.image,
-    FORM_INPUT_FIELD_NAME.image,
   );
 
   if (!uploadedProfilePictureFile) {

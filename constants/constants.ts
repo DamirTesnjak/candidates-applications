@@ -35,14 +35,8 @@ export const EMAIL_TYPE = {
 };
 
 export const FILE_TYPE = {
-  image: 'image',
+  image: 'profilePicture:',
   file: 'file',
-};
-
-export const FORM_INPUT_FIELD_NAME = {
-  file: 'file',
-  image: 'profilePicture',
-  companyLogo: 'companyLogo',
 };
 
 export interface IHTMLProps {

@@ -26,6 +26,11 @@ export default function ModalContentMessage({
         response.errorFieldValidation.profilePicture
           ? response.errorFieldValidation.profilePicture
           : null}
+        {response &&
+        response.errorFieldValidation &&
+        response.errorFieldValidation.file
+          ? response.errorFieldValidation.file
+          : null}
         {response && response.errorMessage ? response.errorMessage : null}
         {response && response.successMessage ? response.successMessage : null}
       </div>

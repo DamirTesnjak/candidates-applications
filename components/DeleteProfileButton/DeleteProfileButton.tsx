@@ -45,8 +45,6 @@ export default function DeleteProfileButton({
     });
   };
 
-  console.log('deleteProfile', deleteProfile);
-
   const modalContent = (
     <div
       style={{

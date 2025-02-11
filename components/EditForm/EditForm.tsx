@@ -79,7 +79,13 @@ export default function EditForm(props: IEditFormProps) {
   };
 
   useEffect(() => {
-    if (response && (response.errorMessage || response.success)) {
+    if (
+      response &&
+      (response.errorMessage ||
+        response.errorFieldValidation?.profilePicture ||
+        response?.errorFieldValidation?.file ||
+        response.success)
+    ) {
       setShowModal({
         success: response.success,
         error: response.error,

@@ -7,11 +7,7 @@ import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { uploadFile } from '@/utils/uploadFile';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IPrevState } from '@/utils/types/prevState';
-import {
-  DATABASES,
-  FILE_TYPE,
-  FORM_INPUT_FIELD_NAME,
-} from '@/constants/constants';
+import { DATABASES, FILE_TYPE } from '@/constants/constants';
 
 export async function updateCandidate(
   _prevState: IPrevState,
@@ -25,6 +21,7 @@ export async function updateCandidate(
       formData,
       formDataObject,
       errorMessage: 'ERROR_UPDATE_CANDIDATE: inputField validation error',
+      skipFileUploadValidation: true,
     });
 
   if (error) {
@@ -54,12 +51,10 @@ export async function updateCandidate(
     const uploadedProfilePictureFile = await uploadFile(
       formData,
       FILE_TYPE.image,
-      FORM_INPUT_FIELD_NAME.image,
     );
     const uploadedCurriculumVitaeFile = await uploadFile(
       formData,
       FILE_TYPE.file,
-      FORM_INPUT_FIELD_NAME.file,
     );
 
     candidate.profilePicture =

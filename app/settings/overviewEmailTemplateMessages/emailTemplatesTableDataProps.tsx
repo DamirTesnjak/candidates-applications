@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@/UI/Button/Button';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
+import DeleteEmailTemplateButton from '@/components/DeleteEmailTemplateButton/DeleteEmailTemplateButton';
 
 export interface IEmailTemplatesTableDataRowProps {
   original: {
@@ -52,13 +52,7 @@ export const emailTemplatesColumnDef = (
     button2: {
       title: '',
       size: 150,
-      cell: row ? (
-        <Button
-          className='textButton'
-          type='button'
-          startIcon={<DeleteIcon />}
-        />
-      ) : null,
+      cell: row ? (<DeleteEmailTemplateButton id={row.original._id}/>) : null,
       enableColumnActions: false,
       enableColumnFilter: false,
       enableColumnDragging: false,

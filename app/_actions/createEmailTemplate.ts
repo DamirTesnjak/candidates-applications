@@ -5,11 +5,7 @@ import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { uploadFile } from '@/utils/uploadFile';
 import { IPrevState } from '@/utils/types/prevState';
-import {
-  DATABASES,
-  FILE_TYPE,
-  FORM_INPUT_FIELD_NAME,
-} from '@/constants/constants';
+import { DATABASES, FILE_TYPE } from '@/constants/constants';
 
 export async function createEmailTemplate(
   _prevState: IPrevState,
@@ -47,11 +43,7 @@ export async function createEmailTemplate(
     };
   }
 
-  const companyLogoPicture = await uploadFile(
-    formData,
-    FILE_TYPE.image,
-    FORM_INPUT_FIELD_NAME.companyLogo,
-  );
+  const companyLogoPicture = await uploadFile(formData, FILE_TYPE.image);
 
   const newEmailTemplate = new Model({
     emailType: formDataObject.emailType,

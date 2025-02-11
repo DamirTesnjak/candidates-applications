@@ -1,7 +1,10 @@
 import { z, ZodObject, ZodRawShape, ZodString } from 'zod';
 import { IFormDataType } from '@/utils/types/formDataType';
 
-export function getFormValidationSchema(formDataObject: IFormDataType) {
+export function getFormValidationSchema(
+  formDataObject: IFormDataType,
+  skipFileUploadValidation?: boolean,
+) {
   const fieldsKeys = Object.keys(formDataObject);
   const schemaShape: {
     [x: string]: ZodString | ZodObject<ZodRawShape>;
@@ -31,7 +34,10 @@ export function getFormValidationSchema(formDataObject: IFormDataType) {
         .min(1, { message: `${field} is required` })
         .email({ message: 'Invalid email address' });
     }
-    if (field === 'file' || field === 'profilePicture') {
+    if (
+      (field === 'file' || field === 'profilePicture') &&
+      !skipFileUploadValidation
+    ) {
       schemaShape[field] = z.object({
         size: z.number(),
         type: z.string(),

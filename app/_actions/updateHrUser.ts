@@ -7,11 +7,7 @@ import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { uploadFile } from '@/utils/uploadFile';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 import { IPrevState } from '@/utils/types/prevState';
-import {
-  DATABASES,
-  FILE_TYPE,
-  FORM_INPUT_FIELD_NAME,
-} from '@/constants/constants';
+import { DATABASES, FILE_TYPE } from '@/constants/constants';
 
 export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
   const formDataObject = getFormDataObject(formData);
@@ -22,6 +18,7 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
       formData,
       formDataObject,
       errorMessage: 'ERROR_UPDATE_HR_USER: inputField validation error',
+      skipFileUploadValidation: true,
     });
 
   if (error) {
@@ -44,13 +41,13 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
     };
   }
   // check if user already exists
+  console.log('formDataObject', formDataObject);
   const hrUser = await Model.findById(formDataObject.id);
   console.log('hrUser', hrUser);
   if (hrUser) {
     const uploadedProfilePictureFile = await uploadFile(
       formData,
       FILE_TYPE.image,
-      FORM_INPUT_FIELD_NAME.image,
     );
     hrUser.profilePicture = uploadedProfilePictureFile || hrUser.profilePicture;
     hrUser.name = formDataObject.name as string;

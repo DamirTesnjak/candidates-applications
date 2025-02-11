@@ -13,7 +13,6 @@ import { DATABASES } from '@/constants/constants';
 
 export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   const formDataObject = getFormDataObject(formData);
-
   const { emailTemplateType } = formDataObject;
 
   const mappedEmailTemplatesModel = connectToDB(
@@ -108,19 +107,19 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     emailType: emailType,
   });
 
-  if (!emailTemplate) {
+  if (!emailTemplate || (emailTemplate && emailTemplate.length === 0)) {
     return {
-      errorMessage: 'Email template  not found!',
+      errorMessage: 'Email template not found!',
       error: true,
     };
   }
 
   const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
+    host: companyEmailConfiguration[0].emailHost,
+    port: companyEmailConfiguration[0].port,
     auth: {
-      user: process.env.EMAIL_AUTH_USER,
-      pass: process.env.EMAIL_AUTH_PASS,
+      user: companyEmailConfiguration[0].username,
+      pass: companyEmailConfiguration[0].password,
     },
   });
 

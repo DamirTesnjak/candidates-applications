@@ -10,7 +10,6 @@ import { uploadFile } from '@/utils/uploadFile';
 import {
   DATABASES,
   FILE_TYPE,
-  FORM_INPUT_FIELD_NAME,
 } from '@/constants/constants';
 
 export async function createCandidate(
@@ -63,12 +62,14 @@ export async function createCandidate(
   const uploadedProfilePictureFile = await uploadFile(
     formData,
     FILE_TYPE.image,
-    FORM_INPUT_FIELD_NAME.image,
   );
+
+  console.log('formData', formData);
+  console.log('uploadedProfilePictureFile', uploadedProfilePictureFile);
+
   const uploadedCurriculumVitaeFile = await uploadFile(
     formData,
     FILE_TYPE.file,
-    FORM_INPUT_FIELD_NAME.file,
   );
 
   const newCandidate = new Model({

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useActionState, useState } from 'react';
+import { ReactNode, useActionState, useEffect, useState } from 'react';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import WorkIcon from '@mui/icons-material/Work';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -31,6 +31,18 @@ export function RowButton({ clientId, name, text, value, icon }: IRowButton) {
     success: false,
     error: false,
   });
+
+  useEffect(() => {
+    if (
+      response &&
+      (response.errorMessage || response.success)
+    ) {
+      setShowModal({
+        success: response.success,
+        error: response.error,
+      });
+    }
+  }, [response]);
   return (
     <div>
       <form action={formAction}>

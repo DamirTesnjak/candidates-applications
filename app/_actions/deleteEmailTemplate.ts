@@ -4,11 +4,10 @@ import { Model } from 'mongoose';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
-import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES } from '@/constants/constants';
+import { redirect } from 'next/navigation';
 
 export async function deleteEmailTemplate(
-  _prevState: IPrevState,
   formData: FormData,
 ) {
   const formDataObject = getFormDataObject(formData);
@@ -28,6 +27,7 @@ export async function deleteEmailTemplate(
   }
   // check if user already exists
   const emailTemplate = await Model.findById(formDataObject.id);
+  console.log('emailTemplate', emailTemplate);
   const deletedEmailTemplate = await emailTemplate?.deleteOne();
 
   if (!deletedEmailTemplate) {
@@ -40,9 +40,5 @@ export async function deleteEmailTemplate(
       error: true,
     };
   }
-
-  return {
-    successMessage: 'Email template deleted successfully.',
-    success: true,
-  };
+  redirect('/settings/overviewEmailTemplateMessages');
 }

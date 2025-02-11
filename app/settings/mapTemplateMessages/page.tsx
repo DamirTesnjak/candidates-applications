@@ -5,6 +5,10 @@ import Button from '@/UI/Button/Button';
 import SelectInput from '@/UI/SelectInput/SelectInput';
 import { getEmailTemplates } from '@/app/_actions/getEmailTemplates';
 import { mapEmailTemplates } from '@/app/_actions/mapEmailTemplates';
+import { IPrevState } from '@/utils/types/prevState';
+import { IShowModal } from '@/types/ShowModalType';
+import Modal from '@/components/Modal/Modal';
+import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import styles from '../../../styles/global/globals.module.scss';
 
 export interface IEmailTemplate {
@@ -15,10 +19,22 @@ export interface IEmailTemplate {
 export default function MappedEmailsConfigurationPage() {
   const [isPending, startTransition] = useTransition();
   const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([]);
+  const [response, setResponse] = useState<IPrevState>({});
+
+  const [showModal, setShowModal] = useState<IShowModal>({
+    success: false,
+    error: false,
+  });
 
   const getMapEmailTemplates = useCallback(async () => {
-    const emailTemplatesData = await getEmailTemplates();
-    setEmailTemplates(JSON.parse(emailTemplatesData).emailTemplates);
+    const response = await getEmailTemplates();
+    const responseParsed = JSON.parse(response);
+
+    if (responseParsed.emailTemplates) {
+      setEmailTemplates(responseParsed.emailTemplates);
+    } else {
+      setResponse(responseParsed);
+    }
   }, []);
 
   useEffect(() => {
@@ -26,6 +42,21 @@ export default function MappedEmailsConfigurationPage() {
       getMapEmailTemplates();
     }
   }, [emailTemplates.length, getMapEmailTemplates]);
+
+  useEffect(() => {
+    if (
+      response &&
+      (response.errorMessage ||
+        response.errorFieldValidation?.profilePicture ||
+        response?.errorFieldValidation?.file ||
+        response.success)
+    ) {
+      setShowModal({
+        success: response.success,
+        error: response.error,
+      });
+    }
+  }, [response]);
 
   const selectDropdownEmailList =
     emailTemplates?.map((emailTemplate) => ({
@@ -35,7 +66,8 @@ export default function MappedEmailsConfigurationPage() {
 
   const submitAction = async (formData: FormData) => {
     startTransition(async () => {
-      await mapEmailTemplates(formData);
+      const results = await mapEmailTemplates(formData);
+      setResponse(results);
     });
   };
 
@@ -69,6 +101,28 @@ export default function MappedEmailsConfigurationPage() {
         />
         <Button className='submitButton' type='submit' text='Save Changes' />
       </form>
+      {showModal.error && (
+        <Modal
+          type='error'
+          content={
+            <ModalContentMessage
+              response={response}
+              setShowModal={setShowModal}
+            />
+          }
+        />
+      )}
+      {showModal.success && (
+        <Modal
+          type='success'
+          content={
+            <ModalContentMessage
+              response={response}
+              setShowModal={setShowModal}
+            />
+          }
+        />
+      )}
     </div>
   );
 }

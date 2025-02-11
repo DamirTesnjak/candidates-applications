@@ -3,20 +3,12 @@
 import { Model } from 'mongoose';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
-import { formValidation } from '@/utils/formValidation/formValidation';
 import { IMappedEmailTemplates } from '@/utils/dbConfig/models/mappedEmailTemplates';
 import { DATABASES } from '@/constants/constants';
 
 export async function mapEmailTemplates(formData: FormData) {
-  const validatedFields = formValidation(formData);
   const formDataObject = getFormDataObject(formData);
 
-  // Return early if the form data is invalid
-  if (!validatedFields.success) {
-    return {
-      error: validatedFields.error.flatten().fieldErrors,
-    };
-  }
   const Model = connectToDB(
     DATABASES.mappedEmailTemplates,
   ) as Model<IMappedEmailTemplates>;
@@ -56,7 +48,10 @@ export async function mapEmailTemplates(formData: FormData) {
         error: true,
       };
     }
-    return;
+    return {
+      successMessage: 'New mapped email settings created successfully',
+      success: true,
+    };
   }
 
   const newMappedEmailSettings = new Model({
@@ -78,7 +73,7 @@ export async function mapEmailTemplates(formData: FormData) {
   }
 
   return {
-    message: 'New mapped email settings created successfully',
+    successMessage: 'New mapped email settings created successfully',
     success: true,
   };
 }

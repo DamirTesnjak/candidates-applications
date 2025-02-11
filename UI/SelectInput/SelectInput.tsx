@@ -74,10 +74,10 @@ export default function SelectInput({
           <MenuItem className={styles.menuItem} disabled value=''>
             <em>{placeholder}</em>
           </MenuItem>
-          {listDropdown.map((item) => (
+          {listDropdown.map((item, key) => (
             <MenuItem
               className={styles.menuItem}
-              key={item.id}
+              key={`${item.id}${name}${key}`}
               value={item.value}
             >
               {item.value}

@@ -5,14 +5,16 @@ export interface IcheckFormValidationArgs {
   formData: FormData;
   formDataObject: IFormDataType;
   errorMessage: string;
+  skipFileUploadValidation?: boolean;
 }
 
 export default function checkFormValidation({
   formData,
   formDataObject,
   errorMessage,
+  skipFileUploadValidation,
 }: IcheckFormValidationArgs) {
-  const validatedFields = formValidation(formData);
+  const validatedFields = formValidation(formData, skipFileUploadValidation);
 
   if (!validatedFields.success) {
     const errorFieldValidation: { [x: string]: string } = {};

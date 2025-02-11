@@ -15,8 +15,9 @@ export default async function EditCandidatePage({ params }: IParams) {
         serverAction={updateCandidate}
         stateModel={initialStateCandidate}
         storeReducerName={STORE_REDUCER_NAME.candidate}
-        editable={true}
-        showUploadCVButton={true}
+        editable
+        showUploadPictureButton
+        showUploadCVButton
       />
     </div>
   );
