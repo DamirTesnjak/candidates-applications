@@ -35,7 +35,7 @@ export const EMAIL_TYPE = {
 };
 
 export const FILE_TYPE = {
-  image: 'profilePicture:',
+  image: 'profilePicture',
   file: 'file',
 };
 
