@@ -8,7 +8,7 @@ export default function EditHrUserPage() {
     return (
         <div className={styles.profileForm}>
             <EditForm
-                id={true}
+                id=""
                 serverAction={updateHrUser}
                 stateModel={initialStateHrUser}
                 storeReducerName={STORE_REDUCER_NAME.hrUser}

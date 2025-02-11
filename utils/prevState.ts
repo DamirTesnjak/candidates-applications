@@ -7,6 +7,6 @@ export interface IPrevState {
   successMessage?: string;
   success?: boolean;
   errorFieldValidation?: {[p: string]: string};
-  prevState: IFormDataObject | IFormDataType;
+  prevState?: IFormDataObject | IFormDataType;
 
 }

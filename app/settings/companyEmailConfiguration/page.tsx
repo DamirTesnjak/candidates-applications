@@ -13,7 +13,6 @@ export default function companyEmailConfigurationPage() {
               stateModel={initialStateCompanyEmailConfigs}
               storeReducerName={STORE_REDUCER_NAME.companyEmailConfigs}
               editable={true}
-              showUploadButton={false}
             />
         </div>
     )

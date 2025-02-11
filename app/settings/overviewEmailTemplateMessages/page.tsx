@@ -19,7 +19,7 @@ export default async function overviewEmailTemplateMessages() {
         return (<div className={styles.container}>
                     <h3>Email Templates</h3>
                     <TableComponent
-                        data={parsedResults.emailTemplates}
+                        tableData={parsedResults.emailTemplates}
                         columnsToDisplay={columnsToDisplay}
                         page={PAGES.emailTemplatePage}
                     />

@@ -18,6 +18,7 @@ export default async function CandidateProfileLayout({ children, params }: {
   params: IParams["params"];
 }) {
     const { id } = await params;
+    console.log('id', id);
     const results = await getCandidateProfile(id);
     const parsedResults = results ? JSON.parse(results) : null;
     const { data } = parsedResults

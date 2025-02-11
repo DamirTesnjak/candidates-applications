@@ -8,6 +8,7 @@ import {useActionState, useState, useEffect} from "react";
 import Modal from "@/components/Modal/Modal";
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
+import { IPrevState } from '@/utils/prevState';
 
 export default function RegisterPage() {
     const inputFields = [
@@ -20,7 +21,7 @@ export default function RegisterPage() {
         { name: "password", type: "password", label: "Password" },
     ];
 
-    const [ response, formAction ] = useActionState(createHrUser, null);
+    const [ response, formAction ] = useActionState<IPrevState, FormData>(createHrUser, {});
     const [ showModal, setShowModal ] = useState<IShowModal>({
         success: false,
         error: false,

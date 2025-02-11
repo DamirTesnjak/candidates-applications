@@ -12,7 +12,7 @@ import { RowButton } from '@/UI/Table/RowButton/RowButton';
 
 export interface ICandidatesTableDataRowProps {
     original: {
-        _id: ICandidateSchema["id"];
+        id: ICandidateSchema["id"];
         name: string;
         surname: string;
         contact: ICandidateSchema["contact"];
@@ -33,6 +33,7 @@ export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
     enableSorting?: boolean;
   }
 } => {
+    console.log('row', row);
     return {
         "profilePicture":
         {
@@ -105,7 +106,7 @@ export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
         "button1": {
             title: "",
             size: 150,
-            cell: row ? <RowButton clientId={row.original._id} name="emailTemplateType" text="Archive" value="archive" icon="archive" /> : null,
+            cell: row ? <RowButton clientId={row.original.id} name="emailTemplateType" text="Archive" value="archive" icon="archive" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,
@@ -114,7 +115,7 @@ export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
         "button2": {
             title: "",
             size: 150,
-            cell: row ? <RowButton clientId={row.original._id} text="Hire" value="hire" name="emailTemplateType" icon="hire" /> : null,
+            cell: row ? <RowButton clientId={row.original.id} text="Hire" value="hire" name="emailTemplateType" icon="hire" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,
@@ -123,7 +124,7 @@ export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
         "button3": {
             title: "",
             size: 150,
-            cell: row ? <RowButton clientId={row.original._id} text="Reject" value="reject" name="emailTemplateType" icon="reject" /> : null,
+            cell: row ? <RowButton clientId={row.original.id} text="Reject" value="reject" name="emailTemplateType" icon="reject" /> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,
@@ -132,7 +133,7 @@ export const candidatesColumnDef = (row: ICandidatesTableDataRowProps | null): {
         "button4": {
             title: "Profile Link",
             size: 150,
-            cell: row ? <Link href={`/candidateProfile/${row.original._id}`} ><Button className="textButton" type="button" startIcon={<LaunchIcon />} /></Link> : null,
+            cell: row ? <Link href={`/candidateProfile/${row.original.id}`} ><Button className="textButton" type="button" startIcon={<LaunchIcon />} /></Link> : null,
             enableColumnActions: false,
             enableColumnFilter: false,
             enableColumnDragging: false,

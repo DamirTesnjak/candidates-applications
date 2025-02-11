@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 
 export async function getCandidateProfile(id: string) {
+  console.log('getCandidateProfile', id);
     const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
     if (!Model) {

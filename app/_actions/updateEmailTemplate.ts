@@ -8,7 +8,7 @@ import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { IPrevState } from '@/utils/prevState';
 
-export async function updateEmailTemplate(prevState: Promise<IPrevState>, formData: FormData) {
+export async function updateEmailTemplate(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid

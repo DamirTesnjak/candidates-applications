@@ -37,6 +37,8 @@ export default function DeleteProfileButton({id, databaseName}: {id: string; dat
         })
     }
 
+    console.log('deleteProfile', deleteProfile);
+
     const modalContent = (
         <div style={{
             display: "flex",

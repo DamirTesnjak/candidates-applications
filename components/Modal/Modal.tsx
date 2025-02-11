@@ -35,7 +35,7 @@ const Modal = ({ content, type }: IModalProps) => {
         const removeChild = () => {
           modalRoot.removeChild(elRef.current!);
         }
-        return removeChild();
+        return removeChild;
     }, []);
 
     return createPortal(

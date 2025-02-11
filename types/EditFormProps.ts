@@ -5,7 +5,7 @@ import { IPrevState } from '@/utils/prevState';
 
 export interface IEditFormProps {
   id?: string;
-  serverAction: (prevState: IPrevState, formData: FormData) =>  Promise<Partial<IPrevState>>;
+  serverAction?: (prevState: IPrevState, formData: FormData) =>  Promise<Partial<IPrevState>>;
   stateModel: typeof initialStateCandidate | typeof initialStateHrUser | typeof initialStateCompanyEmailConfigs;
   storeReducerName: string;
   editable?: boolean;

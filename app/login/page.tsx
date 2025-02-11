@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
+import { IPrevState } from '@/utils/prevState';
 
 export default function LoginPage() {
     const router = useRouter()
@@ -22,7 +23,7 @@ export default function LoginPage() {
         { name: "password", type: "password", label: "Password" },
     ];
 
-  const [ response, formAction ] = useActionState(loginHrUser, null);
+  const [ response, formAction ] = useActionState<IPrevState, FormData>(loginHrUser, {});
   const [ showModal, setShowModal ] = useState<IShowModal>({
     error: false,
   });

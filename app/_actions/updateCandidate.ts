@@ -9,7 +9,7 @@ import { Model } from 'mongoose';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IPrevState } from '@/utils/prevState';
 
-export async function updateCandidate(prevState: Partial<IPrevState>, formData: FormData) {
+export async function updateCandidate(prevState: IPrevState, formData: FormData) {
     const formDataObject = getFormDataObject(formData);
 
     // Return early if the form data is invalid

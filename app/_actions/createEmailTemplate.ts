@@ -1,22 +1,30 @@
 'use server'
 
 import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {formValidation} from "@/utils/formValidation/formValidation";
 import {getFormDataObject} from "@/utils/formValidation/getFormDataObject";
 import {DATABASES, FILE_TYPE, FORM_INPUT_FIELD_NAME} from "@/constants/constants";
 import {uploadFile} from "@/utils/uploadFile";
 import { IPrevState } from '@/utils/prevState';
+import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 
 export async function createEmailTemplate(prevState: IPrevState, formData: FormData) {
-    const validatedFields = formValidation(formData);
     const formDataObject = getFormDataObject(formData);
 
-    // Return early if the form data is invalid
-    if (!validatedFields.success) {
-        return {
-            error: validatedFields.error.flatten().fieldErrors,
-        }
+  // Return early if the form data is invalid
+    const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+      formData,
+      formDataObject,
+      errorMessage: 'ERROR_UPDATE_CANDIDATE: inputField validation error'
+    })
+
+    if (error) {
+      return {
+        errorFieldValidation,
+        error,
+        prevState: prevStateFormData,
+      }
     }
+
     const Model = connectToDB(DATABASES.emailTemplates);
 
     if (!Model) {
