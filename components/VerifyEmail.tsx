@@ -36,7 +36,7 @@ export default function VerifyEmail() {
       {verified && (
         <div>
           <h4>Email verified</h4>
-          <Link href='/login'>Login</Link>
+          <Link href={`${locale}/login`}>Login</Link>
         </div>
       )}
       {error && (

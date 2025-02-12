@@ -10,8 +10,8 @@ export default function Header() {
           <SupervisedUserCircleIcon />
         </span>
         <span>
-          <span className={styles.appNameFirstPart}>Job</span>
-          <span className={styles.appNameSecondPart}>Applicants</span>
+          <span className={styles.appNameFirstPart}>{translation("header.job")}Job</span>
+          <span className={styles.appNameSecondPart}>{translation("header.applicants")}</span>
         </span>
       </div>
       <div className={styles.profileActions}>

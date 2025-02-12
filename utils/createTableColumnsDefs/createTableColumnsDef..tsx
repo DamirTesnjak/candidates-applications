@@ -1,6 +1,6 @@
 import { TableProps } from '@/UI/Table/Table';
-import { ICandidatesTableDataRowProps } from '@/app/candidates/customerTableDataProps';
-import { IEmailTemplatesTableDataRowProps } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { ICandidatesTableDataRowProps } from '@/app/[locale]/candidates/customerTableDataProps';
+import { IEmailTemplatesTableDataRowProps } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
 export interface IGetColumnsDefsArg {
   columnsToDisplay: TableProps['columnsToDisplay'];

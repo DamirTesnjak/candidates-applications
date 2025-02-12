@@ -7,8 +7,8 @@ import {
 import { useMemo } from 'react';
 import { getColumnsDefs } from '@/utils/createTableColumnsDefs/createTableColumnsDef.';
 import { ITableComponentProps } from '@/components/TableComponent';
-import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
-import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
 export interface TableProps {
   tableData: ITableComponentProps['tableData'];

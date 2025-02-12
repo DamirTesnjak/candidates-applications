@@ -151,7 +151,7 @@ export default function EditForm(props: IEditFormProps) {
               <Input
                 className='uploadButton'
                 flow='flowRow'
-                label='Profile picture'
+                label={translation("editForm.profilePicture")}
                 name='profilePicture'
                 type='file'
               />
@@ -160,7 +160,7 @@ export default function EditForm(props: IEditFormProps) {
               <Input
                 className='uploadButton'
                 flow='flowRow'
-                label='CV PDF file'
+                label={translation("editForm.cvFile")}
                 name='file'
                 type='file'
               />
@@ -168,7 +168,7 @@ export default function EditForm(props: IEditFormProps) {
             <Button
               className='submitButton'
               type='submit'
-              text='Save Changes'
+              text={translation("editForm.saveChanges")}
             />
           </div>
         )}

@@ -17,7 +17,7 @@ export default function ProfileActions() {
   return (
     <div className={styles.profileAuthActions}>
       {username.length > 0 && (
-        <Link href={`/hrUserProfile`}>
+        <Link href={`${locale}/hrUserProfile`}>
           <div className={styles.profileNameDisplay}>
             <Image
               id='profilePicture'
@@ -36,8 +36,8 @@ export default function ProfileActions() {
       )}
       {username.length === 0 && (
         <div className={styles.profileNameDisplay}>
-          <Link href='/register'>Signup</Link>
-          <Link href='/login'>Login</Link>
+          <Link href={`${locale}/register`}>{translation("header.profileActions.register")}</Link>
+          <Link href={`${locale}/login`}>{translation("header.profileActions.login")}</Link>
         </div>
       )}
     </div>

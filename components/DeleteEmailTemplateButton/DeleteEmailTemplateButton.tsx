@@ -34,7 +34,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       }}
     >
       <div>
-        Do you want to delete this email template? The action cannot be undone!
+        {translation("deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate")}
       </div>
       <div
         style={{
@@ -54,13 +54,13 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
           <input hidden={true} name='id' defaultValue={id} />
           <Button
             className='submitButton'
-            text='Yes! Delete email template!'
+            text={translation("deleteEmailTemplateButton.yes.delete.email.template")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text='Cancel'
+          text={translation("deleteEmailTemplateButton.cancel")}
           onClick={() => openModal(false)}
           type='button'
         />
@@ -78,7 +78,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       )}
       <Button
         className='textButton'
-        text='Delete'
+        text={translation("deleteEmailTemplateButton.delete")}
         onClick={() => openModal(true)}
         startIcon={<DeleteIcon />}
         type='button'

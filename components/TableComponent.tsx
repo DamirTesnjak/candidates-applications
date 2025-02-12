@@ -1,7 +1,7 @@
 'use client';
 
-import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
-import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 import Table from '../UI/Table/Table';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';

@@ -20,7 +20,7 @@ export default function LogoutButton() {
       <Button
         className='submitButton'
         type='submit'
-        text='Logout'
+        text={translation("header.logoutButton.logout")}
         onClick={() => handleLogout()}
       />
       {success && (

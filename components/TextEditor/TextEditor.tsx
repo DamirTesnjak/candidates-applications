@@ -140,7 +140,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
           <Input
             className='standard'
             flow='flowColumn'
-            label='Email Template name'
+            label={translation("textEditor.emailTemplateName")}
             name='emailType'
             type='text'
           />
@@ -148,7 +148,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             label='Email Template'
             onSelect={handleChangeOnSelectEmailTemplate}
             listDropdown={selectDropdownEmailList}
-            placeholder='Select email Template'
+            placeholder={translation("textEditor.selectEmailTemplate")}
           />
           <div className={styles.buttonsContainer}>
             <Input
@@ -156,12 +156,12 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
               flow='flowRow'
               type='file'
               label='Upload company logo'
-              name='companyLogo'
+              name={translation("textEditor.companyLogo")}
             />
             <Button
               className='submitButton'
               type='submit'
-              text='Save Changes'
+              text={translation("textEditor.saveChange")}
             />
           </div>
         </div>
@@ -219,56 +219,56 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             startIcon={<PersonIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('targetPersonFullName')}
-            text='Candidate name'
+            text={translation("textEditor.candidateName")}
           />
           <Button
             className='textButton'
             startIcon={<AccountBoxIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('hrUserFullNameTemplate')}
-            text='Your Name'
+            text={translation("textEditor.yourName")}
           />
           <Button
             className='textButton'
             startIcon={<WorkIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text='Candidate Job Position'
+            text={translation("textEditor.candidateJobPosition")}
           />
           <Button
             className='textButton'
             startIcon={<WorkIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text='Your Job Title'
+            text={translation("textEditor.yourJobTitle")}
           />
           <Button
             className='textButton'
             startIcon={<BusinessIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('companyNameTemplate')}
-            text='Company Name'
+            text={translation("textEditor.companyName")}
           />
           <Button
             className='textButton'
             startIcon={<EventIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('currentDateTemplate')}
-            text='Current Date'
+            text={translation("textEditor.currentDate")}
           />
           <Button
             className='textButton'
             startIcon={<CalendarMonthIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('startDateTemplate')}
-            text='Start Date'
+            text={translation("textEditor.startDate")}
           />
         </div>
         <div className={styles.textAreaDisplay}>
           <textarea
             className={styles.textarea}
             id='editor'
-            name='emailText'
+            name={translation("textEditor.emailText")}
             cols={50}
             rows={10}
             onInput={changeWhenTyping}

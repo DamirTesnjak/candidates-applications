@@ -33,12 +33,12 @@ export default function DeleteProfileButton({
       if (success) {
         if (DATABASES.candidates === DATABASES[databaseName]) {
           dispatch(loadUpdateCandidate(initialStateHrUser));
-          router.push('/candidates');
+          router.push(`${locale}/candidates`);
         }
 
         if (DATABASES.hrUsers === DATABASES[databaseName]) {
           dispatch(loadUpdateHrUser(initialStateHrUser));
-          router.push('/register');
+          router.push(`${locale}/register`);
         }
         setDeleteProfile(false);
       }
@@ -79,13 +79,13 @@ export default function DeleteProfileButton({
           />
           <Button
             className='submitButton'
-            text='Yes! Delete profile!'
+            text={translation("deleteProfileButton.yes.delete.profile")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text='Cancel'
+          text={translation("deleteProfileButton.cancel")}
           onClick={() => setDeleteProfile(false)}
           type='button'
         />
@@ -97,7 +97,7 @@ export default function DeleteProfileButton({
     <div>
       <Button
         className='deleteButton'
-        text='Delete'
+        text={translation("deleteProfileButton.delete")}
         onClick={() => setDeleteProfile(true)}
         startIcon={<DeleteIcon />}
         type='button'
