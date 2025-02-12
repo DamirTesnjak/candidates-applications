@@ -1,24 +1,24 @@
-@import "styles/global/globals.module.scss";
-@import "UI/Button/button.module.scss";
+@use "styles/global/globals.module.scss" as globals;
+@use "UI/Button/button.module.scss" as buttonsStyles;
 
 .select {
     @extend .button;
     margin: 5px 0 5px 0;
     border-radius: 0;
     border: 0;
-    background-color: $input-background-color;
-    color: $black;
+    background-color: globals.$input-background-color;
+    color: globals.$black;
     text-transform: none;
 
     svg {
         font-size: 23px;
-        color: $black;
+        color: globals.$black;
     }
 }
 
 .menuItem {
     padding: 10px 10px 10px 10px;
-    background-color: $white;
+    background-color: globals.$white;
 
     &:hover {
         background-color: #d7f1ff;
