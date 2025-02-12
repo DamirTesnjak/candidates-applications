@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import {useTranslations} from 'next-intl';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
@@ -10,6 +11,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { IShowModal } from '@/types/ShowModalType';
 
 export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
+  const translation = useTranslations("deleteEmailTemplateButton");
   const [, startTransition] = useTransition();
   const [modal, openModal] = useState<boolean>(false);
   const [response, setResponse] = useState<IPrevState>({});

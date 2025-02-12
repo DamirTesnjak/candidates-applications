@@ -1,11 +1,14 @@
+import {getTranslations} from 'next-intl/server';
 import { getEmailTemplates } from '@/app/_actions/getEmailTemplates';
 import InfoMessage from '@/components/InfoMessage/InfoMessage';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import TableComponent from '@/components/TableComponent';
 import { PAGES } from '@/constants/constants';
+import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/styles/global/globals.module.scss';
 
 export default async function overviewEmailTemplateMessages() {
+  const translation = await getTranslations(TPages.overviewEmailTemplateMessages);
   const results = await getEmailTemplates();
   const parsedResults = JSON.parse(results);
 

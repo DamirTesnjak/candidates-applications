@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo, useActionState } from 'react';
+import {useTranslations} from 'next-intl';
 import Paragraph from '@mui/icons-material/LocalParking';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
@@ -42,6 +43,7 @@ export interface ITextEditorProps {
 }
 
 export default function TextEditor({ data, serverAction }: ITextEditorProps) {
+  const translation = useTranslations('textEditor');
   const [response, formAction] = useActionState<IPrevState, FormData>(
     serverAction,
     {},

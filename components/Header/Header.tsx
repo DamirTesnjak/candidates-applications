@@ -1,8 +1,10 @@
+import { getTranslations } from 'next-intl/server';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ProfileActions from '@/components/Header/ProfileActions/ProfileActions';
 import styles from './header.module.scss';
 
-export default function Header() {
+export default async function Header() {
+  const translation = await getTranslations("header");
   return (
     <header className={styles.header}>
       <div className={styles.appNameDisplay}>

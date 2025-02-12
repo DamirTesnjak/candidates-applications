@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/UI/Input/Input';
 import Button from '@/UI/Button/Button';
 import Modal from '@/components/Modal/Modal';
@@ -43,6 +44,7 @@ export default function EditForm(props: IEditFormProps) {
     showUploadCVButton,
     showUploadPictureButton,
   } = props;
+  const translation = useTranslations("editForm");
   const stateModelKeyAndValues = useAppSelector(
     (state) => state[storeReducerName],
   );

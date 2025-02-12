@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@/UI/Button/Button';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
@@ -14,6 +14,7 @@ export interface IEmailTemplatesTableDataRowProps {
 
 export const emailTemplatesColumnDef = (
   row: IEmailTemplatesTableDataRowProps | null,
+  translation
 ): {
   [x: string]: {
     title: string;
@@ -36,7 +37,7 @@ export const emailTemplatesColumnDef = (
       title: '',
       size: 150,
       cell: row ? (
-        <Link href={`/app/${locale}/settings/emailType/${row.original._id}`}>
+        <Link href={`/settings/emailType/${row.original._id}`}>
           <Button
             className='textButton'
             type='button'

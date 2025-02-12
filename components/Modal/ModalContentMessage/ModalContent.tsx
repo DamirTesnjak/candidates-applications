@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import { Dispatch, SetStateAction } from 'react';
 import Button from '@/UI/Button/Button';
 import { IShowModal } from '@/types/ShowModalType';
@@ -8,10 +9,11 @@ export interface IModalContentMessageProps {
   setShowModal: Dispatch<SetStateAction<IShowModal>>;
 }
 
-export default function ModalContentMessage({
+export default async function ModalContentMessage({
   response,
   setShowModal,
 }: IModalContentMessageProps) {
+  const translation = await getTranslations('ProfilePage');
   return (
     <div
       style={{

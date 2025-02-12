@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
 import { useSearchParams } from 'next/navigation';
 import { verifyEmail } from '@/app/_actions/veritifyEmail';
 
@@ -36,7 +36,7 @@ export default function VerifyEmail() {
       {verified && (
         <div>
           <h4>Email verified</h4>
-          <Link href={`${locale}/login`}>Login</Link>
+          <Link href={`/login`}>Login</Link>
         </div>
       )}
       {error && (

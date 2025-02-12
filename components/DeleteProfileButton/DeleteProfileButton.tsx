@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -21,6 +22,7 @@ export default function DeleteProfileButton({
   id: string;
   databaseName: string;
 }) {
+  const translation = useTranslations("deleteProfile");
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [, startTransition] = useTransition();
