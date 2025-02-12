@@ -35,19 +35,10 @@ const hrUserSchema = new Schema<IHrUserSchema>({
       contentType: String,
     },
   },
-  name: {
-    type: String,
-    unique: true,
-  },
-  surname: {
-    type: String,
-    unique: true,
-  },
+  name: String,
+  surname: String,
   companyName: String,
-  phoneNumber: {
-    type: String,
-    unique: true,
-  },
+  phoneNumber: String,
   email: {
     type: String,
     unique: true,

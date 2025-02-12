@@ -21,7 +21,6 @@ export default function VerifyEmail() {
 
   useEffect(() => {
     const decodedUrlToken = decodeURIComponent(urlToken);
-    console.log('urlToken', decodedUrlToken);
     setToken(decodedUrlToken || '');
   }, [urlToken]);
 

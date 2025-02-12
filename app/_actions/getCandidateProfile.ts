@@ -6,7 +6,6 @@ import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { DATABASES } from '@/constants/constants';
 
 export async function getCandidateProfile(id: string) {
-  console.log('getCandidateProfile', id);
   const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
   if (!Model) {

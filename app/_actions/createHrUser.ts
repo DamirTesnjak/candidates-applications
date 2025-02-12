@@ -61,9 +61,12 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
   }
 
   const companyEmailConfiguration = await companyEmailConfigsModel?.find({});
-  if (!companyEmailConfiguration) {
+  if (!companyEmailConfiguration || companyEmailConfiguration.length === 0) {
+    console.log(
+      'ERROR_GET_CREATE_USER_EMAIL_COMPANY_EMAIL_CONFIGURATION: Cannot find email config configuration!',
+    );
     return {
-      errorMessage: 'Company email not found!',
+      errorMessage: 'Company email configuration not found!',
       error: true,
     };
   }
@@ -90,7 +93,21 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
             </p>`,
   };
 
-  return await transport.sendMail(mailOptions);
+  const emailSent = await transport.sendMail(mailOptions);
+
+  if (!emailSent) {
+    console.log(
+      'ERROR_GET_CREATE_USER_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with sending an email!',
+    );
+    return {
+      errorMessage: "Cannot send an email to you! Registration failed! Please try again or contact support.",
+      error: true,
+    }
+  }
+
+  return {
+    success: true,
+  }
 };
 
 export const createHrUser = async (

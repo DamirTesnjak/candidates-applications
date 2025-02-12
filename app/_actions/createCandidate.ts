@@ -64,9 +64,6 @@ export async function createCandidate(
     FILE_TYPE.image,
   );
 
-  console.log('formData', formData);
-  console.log('uploadedProfilePictureFile', uploadedProfilePictureFile);
-
   const uploadedCurriculumVitaeFile = await uploadFile(
     formData,
     FILE_TYPE.file,

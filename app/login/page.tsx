@@ -71,7 +71,6 @@ export default function LoginPage() {
   }, [getHrUserProfileData, response]);
 
   useEffect(() => {
-    console.log('response', response);
     if (response && (response.errorMessage || response.success)) {
       setShowModal({ error: response.error });
     }

@@ -78,9 +78,9 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   }
 
   const companyEmailConfiguration = await companyEmailConfigsModel?.find({});
-  if (!companyEmailConfiguration) {
+  if (!companyEmailConfiguration || companyEmailConfiguration.length === 0) {
     return {
-      errorMessage: 'Company email not found!',
+      errorMessage: 'Company email configuration not found! Cannot send the email!',
       error: true,
     };
   }

@@ -41,9 +41,7 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
     };
   }
   // check if user already exists
-  console.log('formDataObject', formDataObject);
   const hrUser = await Model.findById(formDataObject.id);
-  console.log('hrUser', hrUser);
   if (hrUser) {
     const uploadedProfilePictureFile = await uploadFile(
       formData,

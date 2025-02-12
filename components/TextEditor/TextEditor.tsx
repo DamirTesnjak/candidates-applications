@@ -108,7 +108,6 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
 
   const onButtonTextEditorClick = (button: string) => {
     const editTextButtonsKeys = Object.keys(EDIT_TEXT_BUTTON);
-    console.log(editTextButtonsKeys);
 
     for (const key of editTextButtonsKeys) {
       if (button === key) {

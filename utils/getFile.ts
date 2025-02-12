@@ -4,7 +4,6 @@ export function getFile(file: {
   contentType: string;
 }) {
   const { name, data, contentType } = file;
-  console.log('file:', file);
   const fileType = contentType?.split('/')[1];
 
   if (fileType === 'pdf') {
