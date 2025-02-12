@@ -1,5 +1,6 @@
 'use client';
 
+import {useTranslations} from 'next-intl';
 import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
 import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 import Table from '../UI/Table/Table';
@@ -24,6 +25,9 @@ export default function TableComponent({
   columnsToDisplay,
   page,
 }: ITableComponentProps) {
+
+  const translation = useTranslations(PAGES[page]);
+
   const pageTables: IPageTables = {
     [PAGES.customersPage]: candidatesColumnDef,
     [PAGES.emailTemplatePage]: emailTemplatesColumnDef,
@@ -34,6 +38,7 @@ export default function TableComponent({
       tableData={tableData}
       columnsToDisplay={columnsToDisplay}
       columnDef={pageTables[page]}
+      translation={translation}
     />
   );
 }

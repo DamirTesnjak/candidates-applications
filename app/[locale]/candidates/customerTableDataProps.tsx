@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LaunchIcon from '@mui/icons-material/Launch';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
@@ -23,6 +23,7 @@ export interface ICandidatesTableDataRowProps {
 
 export const candidatesColumnDef = (
   row: ICandidatesTableDataRowProps | null,
+  translation,
 ): {
   [x: string]: {
     title: string;
@@ -183,7 +184,7 @@ export const candidatesColumnDef = (
       title: 'Profile Link',
       size: 150,
       cell: row ? (
-        <Link href={`/app/${locale}/candidateProfile/${row.original.id}`}>
+        <Link href={`/candidateProfile/${row.original.id}`}>
           <Button
             className='textButton'
             type='button'

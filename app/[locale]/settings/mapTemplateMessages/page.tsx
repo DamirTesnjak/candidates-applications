@@ -1,5 +1,6 @@
 'use client';
 
+import {useTranslations} from 'next-intl';
 import { useCallback, useState, useTransition, useEffect } from 'react';
 import Button from '@/UI/Button/Button';
 import SelectInput from '@/UI/SelectInput/SelectInput';
@@ -9,6 +10,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { IShowModal } from '@/types/ShowModalType';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
+import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '../../../../styles/global/globals.module.scss';
 
 export interface IEmailTemplate {
@@ -17,6 +19,7 @@ export interface IEmailTemplate {
 }
 
 export default function MappedEmailsConfigurationPage() {
+  const translation = useTranslations(TPages.mapTemplateMessages);
   const [isPending, startTransition] = useTransition();
   const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([]);
   const [response, setResponse] = useState<IPrevState>({});

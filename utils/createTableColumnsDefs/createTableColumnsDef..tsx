@@ -15,19 +15,20 @@ export interface IRow {
 export const getColumnsDefs = ({
   columnsToDisplay,
   columnDef,
+  translation,
 }: IGetColumnsDefsArg) => {
   return columnsToDisplay.map((keyItem: string) => {
     const noDataRow = null;
     return {
       accessorKey: keyItem,
-      header: columnDef(noDataRow)[keyItem].title,
-      size: columnDef(noDataRow)[keyItem].size,
-      enableColumnFilter: columnDef(noDataRow)[keyItem].enableColumnFilter,
-      enableColumnActions: columnDef(noDataRow)[keyItem].enableColumnActions,
-      enableColumnDragging: columnDef(noDataRow)[keyItem].enableColumnDragging,
-      enableSorting: columnDef(noDataRow)[keyItem].enableSorting,
+      header: columnDef(noDataRow, translation)[keyItem].title,
+      size: columnDef(noDataRow, translation)[keyItem].size,
+      enableColumnFilter: columnDef(noDataRow, translation)[keyItem].enableColumnFilter,
+      enableColumnActions: columnDef(noDataRow, translation)[keyItem].enableColumnActions,
+      enableColumnDragging: columnDef(noDataRow, translation)[keyItem].enableColumnDragging,
+      enableSorting: columnDef(noDataRow, translation)[keyItem].enableSorting,
       Cell: ({ row }: { row: IRow | null }) => (
-        <div>{columnDef(row)[keyItem].cell}</div>
+        <div>{columnDef(row, translation)[keyItem].cell}</div>
       ),
     };
   });

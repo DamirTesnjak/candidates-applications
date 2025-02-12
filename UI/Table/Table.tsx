@@ -4,6 +4,7 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from 'material-react-table';
+import {useTranslations} from 'next-intl';
 import { useMemo } from 'react';
 import { getColumnsDefs } from '@/utils/createTableColumnsDefs/createTableColumnsDef.';
 import { ITableComponentProps } from '@/components/TableComponent';
@@ -20,6 +21,7 @@ export default function Table({
   tableData,
   columnsToDisplay,
   columnDef,
+  translation
 }: TableProps) {
   const getColumnsDefsProps = useMemo(
     () => ({
@@ -30,7 +32,7 @@ export default function Table({
   );
 
   const columns = useMemo(
-    () => getColumnsDefs(getColumnsDefsProps),
+    () => getColumnsDefs(getColumnsDefsProps, translation),
     [getColumnsDefsProps],
   );
 

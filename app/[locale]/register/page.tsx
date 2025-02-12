@@ -1,16 +1,20 @@
 'use client';
 
+import { useActionState, useState, useEffect } from 'react';
+import {useTranslations} from 'next-intl';
 import { createHrUser } from '@/app/_actions/createHrUser';
 import Input from '@/UI/Input/Input';
 import Button from '@/UI/Button/Button';
-import { useActionState, useState, useEffect } from 'react';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
 import { IPrevState } from '@/utils/types/prevState';
+import { PAGES as TPage} from '@/messages/constants/constants';
 import styles from '@/components/EditForm/editForm.module.scss';
 
 export default function RegisterPage() {
+  const translation = useTranslations(TPage.register);
+
   const inputFields = [
     { name: 'name', type: 'text', label: translation('register.name') },
     { name: 'surname', type: 'text', label: translation('register.surname') },

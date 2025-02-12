@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Image from 'next/image';
-import Link from 'next/link';
+import {Link} from '@/i18n/routing';
+import {getTranslations} from 'next-intl/server';
 import { getCandidateProfile } from '@/app/_actions/getCandidateProfile';
 import { getFile } from '@/utils/getFile';
 import DeleteProfileButton from '@/components/DeleteProfileButton/DeleteProfileButton';
@@ -9,6 +10,7 @@ import SetDataToStore from '@/components/SetDataToStore/SetDataToStore';
 import Button from '@/UI/Button/Button';
 import { IParams } from '@/types/params';
 import { DATABASES } from '@/constants/constants';
+import { PAGES } from '@/messages/constants/constants';
 import globalStyles from '../../../../styles/global/globals.module.scss';
 import styles from '../candidateProfile.module.scss';
 
@@ -19,6 +21,9 @@ export default async function CandidateProfileLayout({
   children: ReactNode;
   params: IParams['params'];
 }) {
+
+  const translation = await getTranslations(PAGES.candidatesProfile);
+
   const { id } = await params;
   const results = await getCandidateProfile(id);
   const parsedResults = results ? JSON.parse(results) : null;
@@ -44,7 +49,7 @@ export default async function CandidateProfileLayout({
               height={200}
             />
             <div className={styles.buttonsContainer}>
-              <Link href={`/app/${locale}/candidateProfile/${id}/editCandidate`}>
+              <Link href={`/candidateProfile/${id}/editCandidate`}>
                 <Button
                   className='button'
                   text={translation("candidateProfile.id.edit.profile")}

@@ -2,7 +2,7 @@
 
 import { useActionState, useCallback, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
+import {useTranslations} from 'next-intl';
 import { loginHrUser } from '@/app/_actions/loginHrUser';
 import { getHrUserProfile } from '@/app/_actions/getHrUserProfile';
 import { useAppDispatch } from '@/lib/hooks';
@@ -13,9 +13,11 @@ import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
 import { IPrevState } from '@/utils/types/prevState';
+import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/components/EditForm/editForm.module.scss';
 
 export default function LoginPage() {
+  const translation = useTranslations(TPages.login);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
