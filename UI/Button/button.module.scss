@@ -1,4 +1,4 @@
-@import "styles/global/globals.module.scss";
+@use "styles/global/globals.module.scss" as globals;
 
 .MuiButton-icon {
   svg {
@@ -14,8 +14,8 @@
   width: auto;
   height: 40px;
   padding: 10px 10px 10px 10px;
-  background-color: $button-primary-background-color;
-  color: $button-primary-font-color;
+  background-color: globals.$button-primary-background-color;
+  color: globals.$button-primary-font-color;
   font-family: Roboto, serif;
   font-size: 0.75rem;
   font-weight: 500;
@@ -26,9 +26,9 @@
 .textButton {
   @extend .button;
   background-color: unset;
-  color: $button-text-font-color;
+  color: globals.$button-text-font-color;
   &:hover {
-    background-color: $button-text-background-color-hover;
+    background-color: globals.$button-text-background-color-hover;
   }
 
   span {
@@ -38,11 +38,11 @@
 
 .submitButton {
   @extend .button;
-  background-color: $submit-button-background-color;
-  color: $black;
+  background-color: globals.$submit-button-background-color;
+  color: globals.$black;
 }
 
 .deleteButton {
   @extend .button;
-  background-color: $red;
+  background-color: globals.$red;
 }

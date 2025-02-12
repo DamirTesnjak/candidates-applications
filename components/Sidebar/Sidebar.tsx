@@ -1,14 +1,23 @@
-import Link from "next/link";
-import styles from './sidebar.module.scss'
+import Link from 'next/link';
+import styles from './sidebar.module.scss';
 
-export default function Sidebar({sidebarLinks}) {
-    return (
-        <div className={styles.sidebar}>
-                {sidebarLinks.map((sidebarLink) => {
-                return <div className={styles.menuItem}  key={sidebarLink.link}>
-                    <Link href={sidebarLink.link}>{sidebarLink.text}</Link>
-                </div>
-            })}
-        </div>
-    )
+export interface ISidebarProps {
+  sidebarLinks: {
+    link: string;
+    text: string;
+  }[];
+}
+
+export default function Sidebar({ sidebarLinks }: ISidebarProps) {
+  return (
+    <div className={styles.sidebar}>
+      {sidebarLinks.map((sidebarLink) => {
+        return (
+          <div className={styles.menuItem} key={sidebarLink.link}>
+            <Link href={sidebarLink.link}>{sidebarLink.text}</Link>
+          </div>
+        );
+      })}
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-@import "styles/global/globals.module.scss";
+@use "styles/global/globals.module.scss" as globals;
 
 .errorMessage {
   display: flex;
@@ -8,7 +8,7 @@
   
   .messageIcon {
     svg {
-      color: $red;
+      color: globals.$red;
       font-size: 50px;
     }
   }

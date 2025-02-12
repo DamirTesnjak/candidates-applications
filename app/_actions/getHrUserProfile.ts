@@ -1,40 +1,45 @@
-'use server'
+'use server';
 
-import { getDataFromToken } from "@/utils/getDataFromToken";
-import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {DATABASES} from "@/constants/constants";
+import { Model } from 'mongoose';
+import { connectToDB } from '@/utils/dbConfig/dbConfig';
+import { getDataFromToken } from '@/utils/getDataFromToken';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
+import { DATABASES } from '@/constants/constants';
 
 export async function getHrUserProfile() {
-    const tokenData = await getDataFromToken();
+  const tokenData = await getDataFromToken();
 
-    const Model = connectToDB(DATABASES.hrUsers);
+  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
-    if (!Model) {
-        console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
-        return {
-            message: "Something went wrong, please try again or contact support.",
-        }
-    }
-
-    const user = await Model?.findOne({id: tokenData.id})
-        .select("-password");
-    if (!user) {
-        return JSON.stringify({
-            error: "User not found!",
-        })
-    }
-
+  if (!Model) {
+    console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
     return JSON.stringify({
-        message: "User found",
-        data: {
-            id: user._id,
-            name: user.name,
-            surname: user.surname,
-            phoneNumber: user.phoneNumber,
-            email: user.email,
-            profilePicture: user.profilePicture,
-            username: user.username,
-        },
-        success: true,
-    })
+      errorMessage:
+        'Something went wrong, please try again or contact support.',
+      error: true,
+    });
+  }
+
+  const user = await Model?.findOne({ id: tokenData.id }).select('-password');
+  if (!user) {
+    return JSON.stringify({
+      errorMessage: 'User not found!',
+      error: true,
+    });
+  }
+
+  return JSON.stringify({
+    successMessage: 'User found',
+    data: {
+      id: user._id,
+      name: user.name,
+      surname: user.surname,
+      phoneNumber: user.phoneNumber,
+      companyName: user.companyName,
+      email: user.email,
+      profilePicture: user.profilePicture,
+      username: user.username,
+    },
+    success: true,
+  });
 }

@@ -1,33 +1,42 @@
-'use server'
+'use server';
 
-import { connectToDB } from "@/utils/dbConfig/dbConfig";
-import {DATABASES} from "@/constants/constants";
+import { Model } from 'mongoose';
+import { connectToDB } from '@/utils/dbConfig/dbConfig';
+import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
+import { DATABASES } from '@/constants/constants';
 
 export async function getEmailTemplate(id: string) {
-    const Model = connectToDB(DATABASES.emailTemplates);
+  const Model = connectToDB(
+    DATABASES.emailTemplates,
+  ) as Model<IEmailTemplateSchema>;
 
-    if (!Model) {
-        console.log('ERROR_GET_EMAIL_TEMPLATE: Error with connecting to the database!');
-        return {
-            error: "Something went wrong, please try again or contact support.",
-        }
-    }
-
-    const emailTemplate = await Model?.findById(id);
-    if (!emailTemplate) {
-        return {
-            error: "Email template not found!",
-        }
-    };
-
+  if (!Model) {
+    console.log(
+      'ERROR_GET_EMAIL_TEMPLATE: Error with connecting to the database!',
+    );
     return JSON.stringify({
-        message: "Email template found",
-        data: {
-            id: emailTemplate._id,
-            emailType: emailTemplate.emailType,
-            emailText: emailTemplate.emailText,
-            companyLogo: emailTemplate.companyLogo,
-        },
-        success: true,
+      errorMessage:
+        'Something went wrong, please try again or contact support.',
+      error: true,
     });
+  }
+
+  const emailTemplate = await Model?.findById(id);
+  if (!emailTemplate) {
+    return JSON.stringify({
+      errorMessage: 'Email template not found!',
+      error: true,
+    });
+  }
+
+  return JSON.stringify({
+    successMessage: 'Email template found',
+    data: {
+      id: emailTemplate._id,
+      emailType: emailTemplate.emailType,
+      emailText: emailTemplate.emailText,
+      companyLogo: emailTemplate.companyLogo,
+    },
+    success: true,
+  });
 }

@@ -1,15 +1,34 @@
-export const getColumnsDefs = ({ columnsToDisplay, tableDataProps }) => {
-    return columnsToDisplay.map((keyItem) => {
+import { TableProps } from '@/UI/Table/Table';
+import { ICandidatesTableDataRowProps } from '@/app/candidates/customerTableDataProps';
+import { IEmailTemplatesTableDataRowProps } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 
-        return {
-            accessorKey: keyItem,
-            header: tableDataProps()[keyItem].title,
-            size: tableDataProps()[keyItem].size,
-            enableColumnFilter: tableDataProps()[keyItem].enableColumnFilter,
-            enableColumnActions: tableDataProps()[keyItem].enableColumnActions,
-            enableColumnDragging: tableDataProps()[keyItem].enableColumnDragging,
-            enableSorting: tableDataProps()[keyItem].enableSorting,
-            Cell: ({ renderedCellValue, row}) => (<div>{tableDataProps(row)[keyItem].cell}</div>),
-        }
-    })
+export interface IGetColumnsDefsArg {
+  columnsToDisplay: TableProps['columnsToDisplay'];
+  columnDef: TableProps['columnDef'];
 }
+
+export interface IRow {
+  original: ICandidatesTableDataRowProps['original'] &
+    IEmailTemplatesTableDataRowProps['original'];
+}
+
+export const getColumnsDefs = ({
+  columnsToDisplay,
+  columnDef,
+}: IGetColumnsDefsArg) => {
+  return columnsToDisplay.map((keyItem: string) => {
+    const noDataRow = null;
+    return {
+      accessorKey: keyItem,
+      header: columnDef(noDataRow)[keyItem].title,
+      size: columnDef(noDataRow)[keyItem].size,
+      enableColumnFilter: columnDef(noDataRow)[keyItem].enableColumnFilter,
+      enableColumnActions: columnDef(noDataRow)[keyItem].enableColumnActions,
+      enableColumnDragging: columnDef(noDataRow)[keyItem].enableColumnDragging,
+      enableSorting: columnDef(noDataRow)[keyItem].enableSorting,
+      Cell: ({ row }: { row: IRow | null }) => (
+        <div>{columnDef(row)[keyItem].cell}</div>
+      ),
+    };
+  });
+};

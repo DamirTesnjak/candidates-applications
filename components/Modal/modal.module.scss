@@ -1,4 +1,4 @@
-@import "styles/global/globals.module.scss";
+@use "styles/global/globals.module.scss" as globals;
 
 .modal {
   position: absolute;
@@ -7,7 +7,8 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0, 0.4);
-  //filter: blur(8px);
+  z-index: 2;
+  backdrop-filter: blur(5px);
 
   .window {
     position: absolute;
@@ -15,7 +16,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px 20px 20px 20px;
-    background-color: $white;
+    background-color: globals.$white;
     filter: unset;
     z-index: 1;
   }

@@ -1,14 +1,14 @@
-@import "styles/global/globals.module.scss";
-@import "UI/Button/button.module.scss";
+@use "styles/global/globals.module.scss" as globals;
+@use "UI/Button/button.module.scss" as buttonsStyles;
 
 
 .standard {
-  width: 250px;
+  width: 230px;
   height: 40px;
   margin: 5px 0 5px 0;
   padding: 5px 5px 5px 5px;
-  border: 1px solid $input-border;
-  background-color: $input-background-color;
+  border: 1px solid globals.$input-border;
+  background-color: globals.$input-background-color;
 }
 
 .uploadButton {
@@ -25,6 +25,11 @@
 .label {
   width: 250px !important;
   font-size: 15px;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: globals.$red;
 }
 
 .flowColumn {
@@ -58,6 +63,7 @@
   flex-direction: row;
   align-items: center;
   row-gap: 5px;
+  column-gap: 10px;
 
   input[type="file"] {
     display: none;
@@ -65,7 +71,7 @@
 
   input {
     &:-webkit-autofill {
-      background-color: $background-color;
+      background-color: globals.$background-color;
     }
   }
 
