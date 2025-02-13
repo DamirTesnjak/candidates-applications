@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import {Link} from '@/i18n/routing';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@/UI/Button/Button';
@@ -14,7 +15,7 @@ export interface IEmailTemplatesTableDataRowProps {
 
 export const emailTemplatesColumnDef = (
   row: IEmailTemplatesTableDataRowProps | null,
-  translation
+  translation: typeof useTranslations,
 ): {
   [x: string]: {
     title: string;
@@ -28,7 +29,7 @@ export const emailTemplatesColumnDef = (
 } => {
   return {
     emailType: {
-      title: translation("settings.overviewEmailTemplateMessages.emailType"),
+      title: translation("settings.overviewEmailTemplateMessages.emailType") as unknown as string,
       size: 100,
       cell: `${row?.original.emailType}`,
       enableColumnDragging: false,

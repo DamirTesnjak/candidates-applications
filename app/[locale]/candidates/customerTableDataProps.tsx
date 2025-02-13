@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import {Link} from '@/i18n/routing';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -23,7 +24,7 @@ export interface ICandidatesTableDataRowProps {
 
 export const candidatesColumnDef = (
   row: ICandidatesTableDataRowProps | null,
-  translation,
+  translation: typeof useTranslations
 ): {
   [x: string]: {
     title: string;
@@ -59,7 +60,7 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     name: {
-      title: translation("candidates.name"),
+      title: translation("candidates.name") as unknown as string,
       size: 100,
       cell: `${row?.original.name}
             ${row?.original.surname}`,
@@ -89,7 +90,7 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     phoneNumber: {
-      title: translation("candidates.phoneNumber"),
+      title: translation("candidates.phoneNumber") as unknown as string,
       size: 150,
       cell: row?.original.contact.phoneNumber,
       enableColumnDragging: false,
@@ -112,19 +113,19 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     archived: {
-      title: translation("candidates.archived"),
+      title: translation("candidates.archived") as unknown as string,
       size: 150,
       cell: row?.original.status.archived ? 'True' : 'False',
       enableColumnDragging: false,
     },
     hired: {
-      title: translation("candidates.hired"),
+      title: translation("candidates.hired") as unknown as string,
       size: 150,
       cell: row?.original.status.employed ? 'True' : 'False',
       enableColumnDragging: false,
     },
     rejected: {
-      title: translation("candidates.rejected"),
+      title: translation("candidates.rejected") as unknown as string,
       size: 150,
       cell: row?.original.status.rejected ? 'True' : 'False',
       enableColumnDragging: false,
@@ -136,7 +137,7 @@ export const candidatesColumnDef = (
         <RowButton
           clientId={row.original.id}
           name='emailTemplateType'
-          text={translation("candidates.archived")}
+          text={translation("candidates.archived") as unknown as string}
           value='archive'
           icon='archive'
         />
@@ -152,7 +153,7 @@ export const candidatesColumnDef = (
       cell: row ? (
         <RowButton
           clientId={row.original.id}
-          text={translation("candidates.hire")}
+          text={translation("candidates.hire") as unknown as string}
           value='hire'
           name='emailTemplateType'
           icon='hire'
@@ -169,7 +170,7 @@ export const candidatesColumnDef = (
       cell: row ? (
         <RowButton
           clientId={row.original.id}
-          text={translation("candidates.reject")}
+          text={translation("candidates.reject") as unknown as string}
           value='reject'
           name='emailTemplateType'
           icon='reject'

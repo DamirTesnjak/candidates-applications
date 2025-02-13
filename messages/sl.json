@@ -1,5 +1,101 @@
 {
-  "header.logoutButton.logout": "Odjava",
-  ""
+  "home": {
+    "home.welcome": "Dobrodošli"
+  },
+"candidatesProfile": {
+  "candidateProfile.id.candidateProfile": "Profil kandidata",
+  "candidateProfile.id.edit.profile": "Uredi profil"
+},
+"candidates": {
+  "candidates.name": "Ime",
+  "candidates.phoneNumber": "Tel. številka",
+  "candidates.archived": "Arhiviran",
+  "candidates.employed": "Zaposlen",
+  "candidates.hired": "Sprejet",
+  "candidates.rejected": "Zavrnjen",
+  "candidates.hire": "Sprejemi",
+  "candidates.reject": "Zavrni",
+  "candidates.addNewCandidate": "Dodaj kandidata",
+  "candidates.noCandidatesFound": "Nobenega kandidata nismo našli!",
+  "candidates.cannotFindAnyCandidates": "Ni mogoče najti nobenega kandidata!"
+},
+"hrUserProfile": {
+  "hrUserProfile.couldNotFindProfileData": "Ne moremo najti podatke o profilu!",
+  "hrUserProfile.profile": "Profil",
+  "hrUserProfile.editProfile": "Uredi profil"
+},
+"editHrUserProfile": {},
+"login": {
+  "login.login": "Vpis",
+  "login.username": "Uporabniško ime",
+  "login.password": "Geslo"
+},
+"register": {
+  "register.register": "Registracija",
+  "register.name": "Ime",
+  "register.surname": "Priimek"
 
+},
+"settings": {
+  "settings.companyEmailConfiguration": "Konfiguracija e-pošte podjetja",
+  "settings.setupEmailTemplateMessages": "Nastavi predloge e-poštnih sporočil",
+  "settings.overviewEmailTemplateMessages": "Pregled predlog e-poštnih sporočil"
+},
+"companyEmailConfiguration": {
+  "settings.companyEmailConfiguration.companyEmailConfiguration": "Konfiguracija e-pošte podjetja"
+},
+"emailType": {
+  "settings.emailType.id.editEmailMessageTemplate": "Uredi predlog e-poštnega sporočila"
+},
+"mapTemplateMessages": {
+  "settings.mapTemplateMessages.selectEmailTemplate": "Izberi predlogo e-poštno sporočila"
+},
+"overviewEmailTemplateMessages": {
+  "settings.overviewEmailTemplateMessages.emailType": "Vrsta e-poštenga sporočila",
+  "settings.overviewEmailTemplateMessages.noEmailTemplatesFound": "Predlogi e-poštnih sporočil ne obstajajo!",
+  "settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti predloge e-poštnih sporočil!"
+},
+"setupEmailTemplateMessages": {
+  "settings.setupEmailTemplateMessages.configureTemplateMessage": "Konfiguracija predloge e-poštnega sporočila"
+},
+  "deleteEmailTemplateButton": {
+    "deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate": "Želite izbrisati izbrani predlog e-poštnega sporočila?",
+    "deleteEmailTemplateButton.yes.delete.email.template": "Da! Izbriši predlog e-poštnega sporočila!",
+    "deleteEmailTemplateButton.cancel": "Prekliči",
+    "deleteEmailTemplateButton.delete": "Izbriši"
+  },
+  "deleteProfile": {
+    "deleteProfileButton.yes.delete.profile": "Da! Izbriši profil!",
+    "deleteProfileButton.cancel": "Prekliči",
+    "deleteProfileButton.delete": "Izbriši"
+  },
+  "editForm": {
+    "editForm.profilePicture": "Naloži profilno sliko",
+    "editForm.cvFile": "Naloži CV",
+    "editForm.saveChanges": "Shrani spremembe"
+  },
+  "header": {
+    "header.job": "Job",
+    "header.applicants": "Applicants",
+    "header.profileActions.register": "Registracija",
+    "header.profileActions": "Vpis"
+  },
+  "logoutButton": {
+    "logout": "Odjava"
+  },
+  "modal": {
+    "modal.modalContentMessage.ok": "V redu!"
+  },
+  "textEditor": {
+    "textEditor.emailTemplateName": "Ime",
+    "textEditor.selectEmailTemplate": "Izberi predlog e-poštnega sporočila",
+    "textEditor.companyLogo": "Logo podjetja",
+    "textEditor.saveChange": "Shrani spremembe",
+    "textEditor.candidateName": "Ime kandidata",
+    "textEditor.candidateJobPosition": "Delovno mesto kandidata",
+    "textEditor.yourJobTitle": "Tvoje delovno mesto",
+    "textEditor.companyName": "Ime podjetja",
+    "textEditor.currentDate": "Trenutni datum",
+    "textEditor.startDate": "Datum pričetka"
+  }
 }

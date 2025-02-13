@@ -1,0 +1,101 @@
+{
+  "home": {
+    "home.welcome": "Welcome"
+  },
+  "candidatesProfile": {
+    "candidateProfile.id.candidateProfile": "Candidate profile",
+    "candidateProfile.id.edit.profile": "Edit profile"
+  },
+  "candidates": {
+    "candidates.name": "Name",
+    "candidates.phoneNumber": "Phone number",
+    "candidates.archived": "Archived",
+    "candidates.employed": "Employed",
+    "candidates.hired": "Hired",
+    "candidates.rejected": "Rejected",
+    "candidates.hire": "Hire",
+    "candidates.reject": "Reject",
+    "candidates.addNewCandidate": "Add new candidate",
+    "candidates.noCandidatesFound": "No candidates found!",
+    "candidates.cannotFindAnyCandidates": "Cannot find any candidates!"
+  },
+  "hrUserProfile": {
+    "hrUserProfile.couldNotFindProfileData": "Could not find profile data!",
+    "hrUserProfile.profile": "Profile",
+    "hrUserProfile.editProfile": "Edit profile"
+  },
+  "editHrUserProfile": {},
+  "login": {
+    "login.login": "Login",
+    "login.username": "Username",
+    "login.password": "Password"
+  },
+  "register": {
+    "register.register": "Register",
+    "register.name": "Name",
+    "register.surname": "Surname"
+
+  },
+  "settings": {
+    "settings.companyEmailConfiguration": "Company email configuration",
+    "settings.setupEmailTemplateMessages": "Setup email template messages",
+    "settings.overviewEmailTemplateMessages": "Overview email template messages"
+  },
+  "companyEmailConfiguration": {
+    "settings.companyEmailConfiguration.companyEmailConfiguration": "Company email configuration"
+  },
+  "emailType": {
+    "settings.emailType.id.editEmailMessageTemplate": "Edit email message template"
+  },
+  "mapTemplateMessages": {
+    "settings.mapTemplateMessages.selectEmailTemplate": "Select email template"
+  },
+  "overviewEmailTemplateMessages": {
+    "settings.overviewEmailTemplateMessages.emailType": "Email type",
+    "settings.overviewEmailTemplateMessages.noEmailTemplatesFound": "No email templates found!",
+    "settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates": "Error! Cannot find any email templates!"
+  },
+  "setupEmailTemplateMessages": {
+    "settings.setupEmailTemplateMessages.configureTemplateMessage": "Configure template message"
+  },
+  "deleteEmailTemplateButton": {
+    "deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate": "Do you want to delete this email template?",
+    "deleteEmailTemplateButton.yes.delete.email.template": "Yes delete email template",
+    "deleteEmailTemplateButton.cancel": "Cancel",
+    "deleteEmailTemplateButton.delete": "Delete"
+  },
+  "deleteProfile": {
+    "deleteProfileButton.yes.delete.profile": "Yes! Delete profile!",
+    "deleteProfileButton.cancel": "Cancel",
+    "deleteProfileButton.delete": "Delete"
+  },
+  "editForm": {
+    "editForm.profilePicture": "Upload profile picture",
+    "editForm.cvFile": "Upload CV",
+    "editForm.saveChanges": "Save changes"
+  },
+  "header": {
+    "header.job": "Job",
+    "header.applicants": "Applicants",
+    "header.profileActions.register": "Register",
+    "header.profileActions.login": "Login"
+  },
+  "logoutButton": {
+    "logout": "Logout"
+  },
+  "modal": {
+    "modal.modalContentMessage.ok": "Ok!"
+  },
+  "textEditor": {
+    "textEditor.emailTemplateName": "Name",
+    "textEditor.selectEmailTemplate": "Select email template",
+    "textEditor.companyLogo": "Company logo",
+    "textEditor.saveChange": "Save changes",
+    "textEditor.candidateName": "Candidate name",
+    "textEditor.candidateJobPosition": "Candidate job position",
+    "textEditor.yourJobTitle": "Your job title",
+    "textEditor.companyName": "Company name",
+    "textEditor.currentDate": "Current date",
+    "textEditor.startDate": "Start date"
+  }
+}

@@ -29,6 +29,7 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
+    '/(en|sl|hr)/',
     '/(en|sl|hr)/candidates',
     '/(en|sl|hr)/createCandidate',
     '/(en|sl|hr)/hrUserProfile',

@@ -5,6 +5,7 @@ import { IEmailTemplatesTableDataRowProps } from '@/app/[locale]/settings/overvi
 export interface IGetColumnsDefsArg {
   columnsToDisplay: TableProps['columnsToDisplay'];
   columnDef: TableProps['columnDef'];
+  translation: TableProps["translation"];
 }
 
 export interface IRow {

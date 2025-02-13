@@ -9,7 +9,7 @@ import { initialStateHrUser } from '@/lib/features/hrUser/hrUserSlice';
 import { DATABASES } from '@/constants/constants';
 
 export default function LogoutButton() {
-  const translation = useTranslations("deleteEmailTemplateButton");
+  const translation = useTranslations("logoutButton");
   const [success, setSuccess] = useState<boolean>(false);
 
   const handleLogout = async () => {

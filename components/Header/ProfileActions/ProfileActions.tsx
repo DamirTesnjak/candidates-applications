@@ -10,7 +10,7 @@ import { getFile } from '@/utils/getFile';
 import styles from '../header.module.scss';
 
 export default function ProfileActions() {
-  const translation = useTranslations('UserProfile');
+  const translation = useTranslations('header');
   const profilePicture = useAppSelector((state) => state.hrUser.profilePicture);
   const username = useAppSelector((state) => state.hrUser.username);
 

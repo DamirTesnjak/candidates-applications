@@ -13,7 +13,7 @@ export default async function ModalContentMessage({
   response,
   setShowModal,
 }: IModalContentMessageProps) {
-  const translation = await getTranslations('ProfilePage');
+  const translation = await getTranslations('modal');
   return (
     <div
       style={{

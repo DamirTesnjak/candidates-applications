@@ -4,17 +4,18 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from 'material-react-table';
-import {useTranslations} from 'next-intl';
 import { useMemo } from 'react';
 import { getColumnsDefs } from '@/utils/createTableColumnsDefs/createTableColumnsDef.';
 import { ITableComponentProps } from '@/components/TableComponent';
 import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
 import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { useTranslations } from 'next-intl';
 
 export interface TableProps {
   tableData: ITableComponentProps['tableData'];
   columnsToDisplay: ITableComponentProps['columnsToDisplay'];
   columnDef: typeof candidatesColumnDef | typeof emailTemplatesColumnDef;
+  translation: typeof useTranslations;
 }
 
 export default function Table({
@@ -27,12 +28,13 @@ export default function Table({
     () => ({
       columnsToDisplay,
       columnDef,
+      translation,
     }),
-    [columnsToDisplay, columnDef],
+    [columnsToDisplay, columnDef, translation],
   );
 
   const columns = useMemo(
-    () => getColumnsDefs(getColumnsDefsProps, translation),
+    () => getColumnsDefs(getColumnsDefsProps),
     [getColumnsDefsProps],
   );
 
