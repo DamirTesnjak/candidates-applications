@@ -39,7 +39,7 @@ export default async function CandidateProfileLayout({
       <div className={styles.candidateProfilePage}>
         <h3
           className={styles.pageTitle}
-        >{`${translation("candidateProfile.id.candidateProfile")}: ${data.name} ${data.surname}`}</h3>
+        >{`${translation("candidateProfile")}: ${data.name} ${data.surname}`}</h3>
         <div className={styles.profilePicture}>
           <div id='profilePicture'>
             <Image
@@ -52,7 +52,7 @@ export default async function CandidateProfileLayout({
               <Link href={`/candidateProfile/${id}/editCandidate`}>
                 <Button
                   className='button'
-                  text={translation("candidateProfile.id.edit.profile")}
+                  text={translation("editProfile")}
                   startIcon={<AddIcon />}
                   type='button'
                 />

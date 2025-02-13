@@ -7,7 +7,7 @@ import { PAGES as TPages } from '@/messages/constants/constants';
 import { getTranslations } from 'next-intl/server';
 
 export default async function CandidatesPage() {
-  const translation = await getTranslations(TPages.candidates);
+  const translation = await getTranslations("candidates");
   const results = await getCandidates();
   const parsedResults = JSON.parse(results);
 
@@ -35,7 +35,7 @@ export default async function CandidatesPage() {
       <TableComponent
         tableData={parsedResults.candidates}
         columnsToDisplay={columnsToDisplay}
-        page={PAGES.customersPage}
+        page={"candidates"}
       />
     );
   }
@@ -44,10 +44,10 @@ export default async function CandidatesPage() {
     parsedResults &&
     (!parsedResults.candidates || parsedResults.candidates.length === 0)
   ) {
-    return <InfoMessage text={translation("candidates.noCandidatesFound")} />;
+    return <InfoMessage text={translation("noCandidatesFound")} />;
   }
 
   if (!results) {
-    return <ErrorMessage text={translation("candidates.cannotFindAnyCandidates")} />;
+    return <ErrorMessage text={translation("cannotFindAnyCandidates")} />;
   }
 }

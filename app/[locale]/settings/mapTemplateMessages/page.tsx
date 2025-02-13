@@ -87,22 +87,22 @@ export default function MappedEmailsConfigurationPage() {
         <SelectInput
           label='Archive'
           listDropdown={selectDropdownEmailList}
-          placeholder={translation("settings.mapTemplateMessages.selectEmailTemplate")}
+          placeholder={translation("selectEmailTemplate")}
           name='archive'
         />
         <SelectInput
           label='Hire'
           listDropdown={selectDropdownEmailList}
-          placeholder={translation("settings.mapTemplateMessages.selectEmailTemplate")}
+          placeholder={translation("selectEmailTemplate")}
           name='hire'
         />
         <SelectInput
           label='Reject'
           listDropdown={selectDropdownEmailList}
-          placeholder={translation("settings.mapTemplateMessages.selectEmailTemplate")}
+          placeholder={translation("selectEmailTemplate")}
           name='reject'
         />
-        <Button className='submitButton' type='submit' text={translation("settings.mapTemplateMessages.saveChanges")} />
+        <Button className='submitButton' type='submit' text={translation("saveChanges")} />
       </form>
       {showModal.error && (
         <Modal

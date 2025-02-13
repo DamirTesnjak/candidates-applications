@@ -8,7 +8,7 @@ import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/styles/global/globals.module.scss';
 
 export default async function overviewEmailTemplateMessages() {
-  const translation = await getTranslations(TPages.overviewEmailTemplateMessages);
+  const translation = await getTranslations("emailTemplatePage");
   const results = await getEmailTemplates();
   const parsedResults = JSON.parse(results);
 
@@ -25,7 +25,7 @@ export default async function overviewEmailTemplateMessages() {
         <TableComponent
           tableData={parsedResults.emailTemplates}
           columnsToDisplay={columnsToDisplay}
-          page={PAGES.emailTemplatePage}
+          page="emailTemplatePage"
         />
       </div>
     );
@@ -37,7 +37,7 @@ export default async function overviewEmailTemplateMessages() {
   ) {
     return (
       <div className={styles.container}>
-        <InfoMessage text={translation("settings.overviewEmailTemplateMessages.noEmailTemplatesFound")} />
+        <InfoMessage text={translation("noEmailTemplatesFound")} />
       </div>
     );
   }
@@ -45,7 +45,7 @@ export default async function overviewEmailTemplateMessages() {
   if (!results) {
     return (
       <div className={styles.container}>
-        <ErrorMessage text={translation("settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates")} />
+        <ErrorMessage text={translation("cannotFindAnyEmailTemplates")} />
       </div>
     );
   }

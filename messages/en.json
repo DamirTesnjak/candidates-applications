@@ -1,101 +1,113 @@
 {
   "home": {
-    "home.welcome": "Welcome"
+    "welcome": "Welcome"
   },
   "candidatesProfile": {
-    "candidateProfile.id.candidateProfile": "Candidate profile",
-    "candidateProfile.id.edit.profile": "Edit profile"
+    "candidateProfile": "Candidate profile",
+    "editProfile": "Edit profile"
   },
   "candidates": {
-    "candidates.name": "Name",
-    "candidates.phoneNumber": "Phone number",
-    "candidates.archived": "Archived",
-    "candidates.employed": "Employed",
-    "candidates.hired": "Hired",
-    "candidates.rejected": "Rejected",
-    "candidates.hire": "Hire",
-    "candidates.reject": "Reject",
-    "candidates.addNewCandidate": "Add new candidate",
-    "candidates.noCandidatesFound": "No candidates found!",
-    "candidates.cannotFindAnyCandidates": "Cannot find any candidates!"
+    "name": "Name",
+    "phoneNumber": "Phone number",
+    "archived": "Archived",
+    "employed": "Employed",
+    "hired": "Hired",
+    "rejected": "Rejected",
+    "hire": "Hire",
+    "reject": "Reject",
+    "addNewCandidate": "Add new candidate",
+    "noCandidatesFound": "No candidates found!",
+    "cannotFindAnyCandidates": "Cannot find any candidates!"
   },
   "hrUserProfile": {
-    "hrUserProfile.couldNotFindProfileData": "Could not find profile data!",
-    "hrUserProfile.profile": "Profile",
-    "hrUserProfile.editProfile": "Edit profile"
+    "couldNotFindProfileData": "Could not find profile data!",
+    "profile": "Profile",
+    "editProfile": "Edit profile"
   },
   "editHrUserProfile": {},
   "login": {
-    "login.login": "Login",
-    "login.username": "Username",
-    "login.password": "Password"
+    "login": "Login",
+    "username": "Username",
+    "password": "Password"
   },
   "register": {
-    "register.register": "Register",
-    "register.name": "Name",
-    "register.surname": "Surname"
+    "register": "Register",
+    "name": "Name",
+    "surname": "Surname",
+    "company": "Company name",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "profilePicture": "Upolad profile picture",
+    "saveChanges": "Save changes"
 
   },
   "settings": {
-    "settings.companyEmailConfiguration": "Company email configuration",
-    "settings.setupEmailTemplateMessages": "Setup email template messages",
-    "settings.overviewEmailTemplateMessages": "Overview email template messages"
+    "companyEmailConfiguration": "Company email configuration",
+    "setupEmailTemplateMessages": "Setup email template messages",
+    "overviewEmailTemplateMessages": "Overview email template messages",
+    "settings": "Settings",
+    "mapEmailTemplateMessages": "Map mail template messages"
   },
   "companyEmailConfiguration": {
-    "settings.companyEmailConfiguration.companyEmailConfiguration": "Company email configuration"
+    "companyEmailConfiguration": "Company email configuration"
   },
   "emailType": {
-    "settings.emailType.id.editEmailMessageTemplate": "Edit email message template"
+    "editEmailMessageTemplate": "Edit email message template"
   },
   "mapTemplateMessages": {
-    "settings.mapTemplateMessages.selectEmailTemplate": "Select email template"
+    "selectEmailTemplate": "Select email template",
+    "saveChanges": "Save changes"
   },
-  "overviewEmailTemplateMessages": {
-    "settings.overviewEmailTemplateMessages.emailType": "Email type",
-    "settings.overviewEmailTemplateMessages.noEmailTemplatesFound": "No email templates found!",
-    "settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates": "Error! Cannot find any email templates!"
+  "emailTemplatePage": {
+    "emailType": "Email type",
+    "noEmailTemplatesFound": "No email templates found!",
+    "cannotFindAnyEmailTemplates": "Error! Cannot find any email templates!"
   },
   "setupEmailTemplateMessages": {
-    "settings.setupEmailTemplateMessages.configureTemplateMessage": "Configure template message"
+    "configureTemplateMessage": "Configure template message",
+    "editEmailMessageTemplate": "Edit email message template"
   },
   "deleteEmailTemplateButton": {
-    "deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate": "Do you want to delete this email template?",
-    "deleteEmailTemplateButton.yes.delete.email.template": "Yes delete email template",
-    "deleteEmailTemplateButton.cancel": "Cancel",
-    "deleteEmailTemplateButton.delete": "Delete"
+    "doYouWantToDeleteThisEmailTemplate": "Do you want to delete this email template?",
+    "yesDeleteEmailTemplate": "Yes delete email template",
+    "cancel": "Cancel",
+    "delete": "Delete"
   },
   "deleteProfile": {
-    "deleteProfileButton.yes.delete.profile": "Yes! Delete profile!",
-    "deleteProfileButton.cancel": "Cancel",
-    "deleteProfileButton.delete": "Delete"
+    "yesDeleteProfile": "Yes! Delete profile!",
+    "cancel": "Cancel",
+    "delete": "Delete"
   },
   "editForm": {
-    "editForm.profilePicture": "Upload profile picture",
-    "editForm.cvFile": "Upload CV",
-    "editForm.saveChanges": "Save changes"
+    "profilePicture": "Upload profile picture",
+    "cvFile": "Upload CV",
+    "saveChanges": "Save changes"
   },
   "header": {
-    "header.job": "Job",
-    "header.applicants": "Applicants",
-    "header.profileActions.register": "Register",
-    "header.profileActions.login": "Login"
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Register",
+    "profileActionsLogin": "Login"
   },
   "logoutButton": {
     "logout": "Logout"
   },
   "modal": {
-    "modal.modalContentMessage.ok": "Ok!"
+    "ok": "Ok!"
   },
   "textEditor": {
-    "textEditor.emailTemplateName": "Name",
-    "textEditor.selectEmailTemplate": "Select email template",
-    "textEditor.companyLogo": "Company logo",
-    "textEditor.saveChange": "Save changes",
-    "textEditor.candidateName": "Candidate name",
-    "textEditor.candidateJobPosition": "Candidate job position",
-    "textEditor.yourJobTitle": "Your job title",
-    "textEditor.companyName": "Company name",
-    "textEditor.currentDate": "Current date",
-    "textEditor.startDate": "Start date"
+    "emailTemplateName": "Name",
+    "selectEmailTemplate": "Select email template",
+    "companyLogo": "Company logo",
+    "saveChange": "Save changes",
+    "candidateName": "Candidate name",
+    "candidateJobPosition": "Candidate job position",
+    "yourName": "Your name",
+    "yourJobTitle": "Your job title",
+    "companyName": "Company name",
+    "currentDate": "Current date",
+    "startDate": "Start date"
   }
 }

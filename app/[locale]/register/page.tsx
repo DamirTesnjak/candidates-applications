@@ -16,24 +16,24 @@ export default function RegisterPage() {
   const translation = useTranslations(TPage.register);
 
   const inputFields = [
-    { name: 'name', type: 'text', label: translation('register.name') },
-    { name: 'surname', type: 'text', label: translation('register.surname') },
+    { name: 'name', type: 'text', label: translation('name') },
+    { name: 'surname', type: 'text', label: translation('surname') },
     {
       name: 'companyName',
       type: 'text',
-      label: translation('register.company'),
+      label: translation('company'),
     },
     {
       name: 'phoneNumber',
       type: 'text',
-      label: translation('register.phoneNumber'),
+      label: translation('phoneNumber'),
     },
-    { name: 'email', type: 'email', label: translation('register.email') },
-    { name: 'username', type: 'text', label: translation('register.username') },
+    { name: 'email', type: 'email', label: translation('email') },
+    { name: 'username', type: 'text', label: translation('username') },
     {
       name: 'password',
       type: 'password',
-      label: translation('register.password'),
+      label: translation('password'),
     },
   ];
 
@@ -86,14 +86,14 @@ export default function RegisterPage() {
           <Input
             className='uploadButton'
             flow='flowRow'
-            label={translation('register.profilePicture')}
+            label={translation('profilePicture')}
             name='profilePicture'
             type='file'
           />
           <Button
             className='submitButton'
             type='submit'
-            text={translation('register.saveChanges')}
+            text={translation('saveChanges')}
           />
         </div>
       </form>

@@ -46,7 +46,7 @@ export default async function ModalContentMessage({
       >
         <Button
           className='button'
-          text={translation("modal.modalContentMessage.ok")}
+          text={translation("ok")}
           onClick={() =>
             setShowModal({
               success: false,

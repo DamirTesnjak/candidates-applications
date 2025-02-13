@@ -38,8 +38,8 @@ export default function ProfileActions() {
       )}
       {username.length === 0 && (
         <div className={styles.profileNameDisplay}>
-          <Link href={`/register`}>{translation("header.profileActions.register")}</Link>
-          <Link href={`/login`}>{translation("header.profileActions.login")}</Link>
+          <Link href={`/register`}>{translation("profileActionsRegister")}</Link>
+          <Link href={`/login`}>{translation("profileActionsLogin")}</Link>
         </div>
       )}
     </div>

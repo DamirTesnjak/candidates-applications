@@ -7,7 +7,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   const translation = await getTranslations(TPages.login);
   return (
     <div className={styles.container}>
-      <h3>{translation("login.login")}</h3>
+      <h3>{translation("login")}</h3>
       <div>{children}</div>
     </div>
   );

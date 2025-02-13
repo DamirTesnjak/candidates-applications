@@ -26,11 +26,11 @@ export default function TableComponent({
   page,
 }: ITableComponentProps) {
 
-  const translation = useTranslations(PAGES[page]);
+  const translation = useTranslations(page);
 
   const pageTables: IPageTables = {
-    [PAGES.customersPage]: candidatesColumnDef,
-    [PAGES.emailTemplatePage]: emailTemplatesColumnDef,
+    candidates: candidatesColumnDef,
+    emailTemplatePage: emailTemplatesColumnDef,
   };
 
   return (

@@ -1,101 +1,112 @@
 {
   "home": {
-    "home.welcome": "Dobrodošli"
+    "welcome": "Dobrodošli"
   },
 "candidatesProfile": {
-  "candidateProfile.id.candidateProfile": "Profil kandidata",
-  "candidateProfile.id.edit.profile": "Uredi profil"
+  "candidateProfile": "Profil kandidata",
+  "editProfile": "Uredi profil"
 },
 "candidates": {
-  "candidates.name": "Ime",
-  "candidates.phoneNumber": "Tel. številka",
-  "candidates.archived": "Arhiviran",
-  "candidates.employed": "Zaposlen",
-  "candidates.hired": "Sprejet",
-  "candidates.rejected": "Zavrnjen",
-  "candidates.hire": "Sprejemi",
-  "candidates.reject": "Zavrni",
-  "candidates.addNewCandidate": "Dodaj kandidata",
-  "candidates.noCandidatesFound": "Nobenega kandidata nismo našli!",
-  "candidates.cannotFindAnyCandidates": "Ni mogoče najti nobenega kandidata!"
+  "name": "Ime",
+  "phoneNumber": "Tel. številka",
+  "archived": "Arhiviran",
+  "employed": "Zaposlen",
+  "hired": "Sprejet",
+  "rejected": "Zavrnjen",
+  "hire": "Sprejemi",
+  "reject": "Zavrni",
+  "addNewCandidate": "Dodaj kandidata",
+  "noCandidatesFound": "Nobenega kandidata nismo našli!",
+  "cannotFindAnyCandidates": "Ni mogoče najti nobenega kandidata!"
 },
 "hrUserProfile": {
-  "hrUserProfile.couldNotFindProfileData": "Ne moremo najti podatke o profilu!",
-  "hrUserProfile.profile": "Profil",
-  "hrUserProfile.editProfile": "Uredi profil"
+  "couldNotFindProfileData": "Ne moremo najti podatke o profilu!",
+  "profile": "Profil",
+  "editProfile": "Uredi profil"
 },
 "editHrUserProfile": {},
 "login": {
-  "login.login": "Vpis",
-  "login.username": "Uporabniško ime",
-  "login.password": "Geslo"
+  "login": "Vpis",
+  "username": "Uporabniško ime",
+  "password": "Geslo"
 },
 "register": {
-  "register.register": "Registracija",
-  "register.name": "Ime",
-  "register.surname": "Priimek"
-
+  "register": "Registracija",
+  "name": "Ime",
+  "surname": "Priimek",
+  "company": "Ime podjetja",
+  "phoneNumber": "Telefonska številka",
+  "email": "e-pošta",
+  "username": "Uporabniško ime",
+  "password": "Geslo",
+  "profilePicture": "Naloži profilno sliko",
+  "saveChanges": "Shrani spremembe"
 },
 "settings": {
-  "settings.companyEmailConfiguration": "Konfiguracija e-pošte podjetja",
-  "settings.setupEmailTemplateMessages": "Nastavi predloge e-poštnih sporočil",
-  "settings.overviewEmailTemplateMessages": "Pregled predlog e-poštnih sporočil"
+  "companyEmailConfiguration": "Konfiguracija e-pošte podjetja",
+  "setupEmailTemplateMessages": "Nastavi predloge e-poštnih sporočil",
+  "overviewEmailTemplateMessages": "Pregled predlog e-poštnih sporočil",
+  "settings": "Nastavitve",
+  "mapEmailTemplateMessages": "Mapiranje predlog e-poštnih sporočil"
 },
 "companyEmailConfiguration": {
-  "settings.companyEmailConfiguration.companyEmailConfiguration": "Konfiguracija e-pošte podjetja"
+  "companyEmailConfiguration": "Konfiguracija e-pošte podjetja"
 },
 "emailType": {
-  "settings.emailType.id.editEmailMessageTemplate": "Uredi predlog e-poštnega sporočila"
+  "editEmailMessageTemplate": "Uredi predlog e-poštnega sporočila"
 },
 "mapTemplateMessages": {
-  "settings.mapTemplateMessages.selectEmailTemplate": "Izberi predlogo e-poštno sporočila"
+  "selectEmailTemplate": "Izberi predlogo e-poštno sporočila",
+  "saveChanges": "Shrani spremembe"
 },
-"overviewEmailTemplateMessages": {
-  "settings.overviewEmailTemplateMessages.emailType": "Vrsta e-poštenga sporočila",
-  "settings.overviewEmailTemplateMessages.noEmailTemplatesFound": "Predlogi e-poštnih sporočil ne obstajajo!",
-  "settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti predloge e-poštnih sporočil!"
+"emailTemplatePage": {
+  "emailType": "Vrsta e-poštenga sporočila",
+  "noEmailTemplatesFound": "Predlogi e-poštnih sporočil ne obstajajo!",
+  "cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti predloge e-poštnih sporočil!"
 },
 "setupEmailTemplateMessages": {
-  "settings.setupEmailTemplateMessages.configureTemplateMessage": "Konfiguracija predloge e-poštnega sporočila"
+  "configureTemplateMessage": "Konfiguracija predloge e-poštnega sporočila",
+  "editEmailMessageTemplate": "Uredi predlogo e-poštnega sporočila"
 },
   "deleteEmailTemplateButton": {
-    "deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate": "Želite izbrisati izbrani predlog e-poštnega sporočila?",
-    "deleteEmailTemplateButton.yes.delete.email.template": "Da! Izbriši predlog e-poštnega sporočila!",
-    "deleteEmailTemplateButton.cancel": "Prekliči",
-    "deleteEmailTemplateButton.delete": "Izbriši"
+    "doYouWantToDeleteThisEmailTemplate": "Želite izbrisati izbrani predlog e-poštnega sporočila?",
+    "yesDeleteEmailTemplate": "Da! Izbriši predlog e-poštnega sporočila!",
+    "cancel": "Prekliči",
+    "delete": "Izbriši"
   },
   "deleteProfile": {
-    "deleteProfileButton.yes.delete.profile": "Da! Izbriši profil!",
-    "deleteProfileButton.cancel": "Prekliči",
-    "deleteProfileButton.delete": "Izbriši"
+    "yesDeleteProfile": "Da! Izbriši profil!",
+    "cancel": "Prekliči",
+    "delete": "Izbriši"
   },
   "editForm": {
-    "editForm.profilePicture": "Naloži profilno sliko",
-    "editForm.cvFile": "Naloži CV",
-    "editForm.saveChanges": "Shrani spremembe"
+    "profilePicture": "Naloži profilno sliko",
+    "cvFile": "Naloži CV",
+    "saveChanges": "Shrani spremembe"
   },
   "header": {
-    "header.job": "Job",
-    "header.applicants": "Applicants",
-    "header.profileActions.register": "Registracija",
-    "header.profileActions": "Vpis"
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Registracija",
+    "profileActionsLogin": "Vpis"
   },
   "logoutButton": {
     "logout": "Odjava"
   },
   "modal": {
-    "modal.modalContentMessage.ok": "V redu!"
+    "ok": "V redu!"
   },
   "textEditor": {
-    "textEditor.emailTemplateName": "Ime",
-    "textEditor.selectEmailTemplate": "Izberi predlog e-poštnega sporočila",
-    "textEditor.companyLogo": "Logo podjetja",
-    "textEditor.saveChange": "Shrani spremembe",
-    "textEditor.candidateName": "Ime kandidata",
-    "textEditor.candidateJobPosition": "Delovno mesto kandidata",
-    "textEditor.yourJobTitle": "Tvoje delovno mesto",
-    "textEditor.companyName": "Ime podjetja",
-    "textEditor.currentDate": "Trenutni datum",
-    "textEditor.startDate": "Datum pričetka"
+    "emailTemplateName": "Ime",
+    "selectEmailTemplate": "Izberi predlog e-poštnega sporočila",
+    "companyLogo": "Logo podjetja",
+    "saveChange": "Shrani spremembe",
+    "candidateName": "Ime kandidata",
+    "candidateJobPosition": "Delovno mesto kandidata",
+    "yourName": "Vaše ime",
+    "yourJobTitle": "Tvoje delovno mesto",
+    "companyName": "Ime podjetja",
+    "currentDate": "Trenutni datum",
+    "startDate": "Datum pričetka"
   }
 }

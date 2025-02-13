@@ -1,101 +1,113 @@
 {
   "home": {
-    "home.welcome": "Dobrodošli"
+    "welcome": "Dobrodošli"
   },
 "candidatesProfile": {
-  "candidateProfile.id.candidateProfile": "Profil kandidata",
-  "candidateProfile.id.edit.profile": "Uredi profil"
+  "candidateProfile": "Profil kandidata",
+  "editProfile": "Uredi profil"
 },
 "candidates": {
-  "candidates.name": "Ime",
-  "candidates.phoneNumber": "Broj telefona",
-  "candidates.archived": "Arhivirano",
-  "candidates.employed": "Zaposlena",
-  "candidates.hired": "Prihvačen",
-  "candidates.rejected": "Odbijena",
-  "candidates.hire": "Prihvati",
-  "candidates.reject": "Odbij",
-  "candidates.addNewCandidate": "Dodaj kandidata",
-  "candidates.noCandidatesFound": "Nema pronađenih kandidata!",
-  "candidates.cannotFindAnyCandidates": "Nije pronađen nijedan kandidat!"
+  "name": "Ime",
+  "phoneNumber": "Broj telefona",
+  "archived": "Arhivirano",
+  "employed": "Zaposlena",
+  "hired": "Prihvačen",
+  "rejected": "Odbijena",
+  "hire": "Prihvati",
+  "reject": "Odbij",
+  "addNewCandidate": "Dodaj kandidata",
+  "noCandidatesFound": "Nema pronađenih kandidata!",
+  "cannotFindAnyCandidates": "Nije pronađen nijedan kandidat!"
 },
 "hrUserProfile": {
-  "hrUserProfile.couldNotFindProfileData": "Ne možemo pronaći podatke o vašem profilu.!",
-  "hrUserProfile.profile": "Profil",
-  "hrUserProfile.editProfile": "Uredi profil"
+  "couldNotFindProfileData": "Ne možemo pronaći podatke o vašem profilu.!",
+  "profile": "Profil",
+  "editProfile": "Uredi profil"
 },
 "editHrUserProfile": {},
 "login": {
-  "login.login": "Upis",
-  "login.username": "Korisničko ime",
-  "login.password": "Lozinka"
+  "login": "Upis",
+  "username": "Korisničko ime",
+  "password": "Lozinka"
 },
 "register": {
-  "register.register": "Registracija",
-  "register.name": "Ime",
-  "register.surname": "Prezime"
+  "register": "Registracija",
+  "name": "Ime",
+  "surname": "Prezime",
+  "company": "Ime tvrtke",
+  "phoneNumber": "Broj telefona",
+  "email": "e-pošta",
+  "username": "Korisničko ime",
+  "password": "Lozinka",
+  "profilePicture": "Naloži profile picture",
+  "saveChanges": "Spremite promjene"
 
 },
 "settings": {
-  "settings.companyEmailConfiguration": "Konfiguracija e-pošte tvrtke",
-  "settings.setupEmailTemplateMessages": "Postavite predloške e-pošte",
-  "settings.overviewEmailTemplateMessages": "Pregled predlog e-poštnih sporočil"
+  "companyEmailConfiguration": "Konfiguracija e-pošte tvrtke",
+  "setupEmailTemplateMessages": "Postavite predloške e-pošte",
+  "overviewEmailTemplateMessages": "Pregled predlog e-poštnih poruka",
+  "settings": "Postavke",
+  "mapEmailTemplateMessages": "Mapiranje predloška e-poštnih poruka"
 },
 "companyEmailConfiguration": {
-  "settings.companyEmailConfiguration.companyEmailConfiguration": "Konfiguracija e-pošte tvrtke"
+  "companyEmailConfiguration": "Konfiguracija e-pošte tvrtke"
 },
 "emailType": {
-  "settings.emailType.id.editEmailMessageTemplate": "Uredite predložak e-pošte"
+  "editEmailMessageTemplate": "Uredite predložak e-pošte"
 },
 "mapTemplateMessages": {
-  "settings.mapTemplateMessages.selectEmailTemplate": "Odaberite predložak e-pošte"
+  "selectEmailTemplate": "Odaberite predložak e-pošte",
+  "saveChanges": "Spremite promjene"
 },
-"overviewEmailTemplateMessages": {
-  "settings.overviewEmailTemplateMessages.emailType": "Vrsta poruke e-pošte",
-  "settings.overviewEmailTemplateMessages.noEmailTemplatesFound": "Prijedlozi e-poštnih poruka ne postoje!",
-  "settings.overviewEmailTemplateMessages.cannotFindAnyEmailTemplates": "Predložak e-pošte nije pronađen!"
+"emailTemplatePage": {
+  "emailType": "Vrsta poruke e-pošte",
+  "noEmailTemplatesFound": "Prijedlozi e-poštnih poruka ne postoje!",
+  "cannotFindAnyEmailTemplates": "Predložak e-pošte nije pronađen!"
 },
 "setupEmailTemplateMessages": {
-  "settings.setupEmailTemplateMessages.configureTemplateMessage": "Konfiguracija predloška e-pošte"
+  "configureTemplateMessage": "Konfiguracija predloška e-pošte",
+  "editEmailMessageTemplate": "Uredi predložak e-poštne poruke"
 },
   "deleteEmailTemplateButton": {
-    "deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate": "Želite li izbrisati odabrani predložak e-pošte??",
-    "deleteEmailTemplateButton.yes.delete.email.template": "Izbriši predložak e-pošte",
-    "deleteEmailTemplateButton.cancel": "Odkazati",
-    "deleteEmailTemplateButton.delete": "Izbriši"
+    "doYouWantToDeleteThisEmailTemplate": "Želite li izbrisati odabrani predložak e-pošte??",
+    "yesDeleteEmailTemplate": "Izbriši predložak e-pošte",
+    "cancel": "Odkazati",
+    "delete": "Izbriši"
   },
   "deleteProfile": {
-    "deleteProfileButton.yes.delete.profile": "Da! Izbriši profil!",
-    "deleteProfileButton.cancel": "Odkazati",
-    "deleteProfileButton.delete": "Izbriši"
+    "yesDeleteProfile": "Da! Izbriši profil!",
+    "cancel": "Odkazati",
+    "delete": "Izbriši"
   },
   "editForm": {
-    "editForm.profilePicture": "Naloži profilnu sliku",
-    "editForm.cvFile": "Naloži CV",
-    "editForm.saveChanges": "Spremite promjene"
+    "profilePicture": "Naloži profilnu sliku",
+    "cvFile": "Naloži CV",
+    "saveChanges": "Spremite promjene"
   },
   "header": {
-    "header.job": "Job",
-    "header.applicants": "Applicants",
-    "header.profileActions.register": "Registracija",
-    "header.profileActions": "Upis"
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Registracija",
+    "profileActionsLogin": "Upis"
   },
   "logoutButton": {
     "logout": "Odjava"
   },
   "modal": {
-    "modal.modalContentMessage.ok": "u redu!"
+    "ok": "u redu!"
   },
   "textEditor": {
-    "textEditor.emailTemplateName": "Ime",
-    "textEditor.selectEmailTemplate": "Odaberite predložak e-pošte",
-    "textEditor.companyLogo": "Logo tvrtke",
-    "textEditor.saveChange": "Spremite promjene",
-    "textEditor.candidateName": "Ime kandidata",
-    "textEditor.candidateJobPosition": "Naziv radnog mjesta kandidata",
-    "textEditor.yourJobTitle": "Vaše radno mjesto",
-    "textEditor.companyName": "Ime tvrtke",
-    "textEditor.currentDate": "Trenutačni datum",
-    "textEditor.startDate": "Datum početka"
+    "emailTemplateName": "Ime",
+    "selectEmailTemplate": "Odaberite predložak e-pošte",
+    "companyLogo": "Logo tvrtke",
+    "saveChange": "Spremite promjene",
+    "candidateName": "Ime kandidata",
+    "candidateJobPosition": "Naziv radnog mjesta kandidata",
+    "yourName": "Vaše name",
+    "yourJobTitle": "Vaše radno mjesto",
+    "companyName": "Ime tvrtke",
+    "currentDate": "Trenutačni datum",
+    "startDate": "Datum početka"
   }
 }

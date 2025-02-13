@@ -9,7 +9,7 @@ export default async function SetupEmailTemplateMessages() {
 
   return (
     <div className={styles.container}>
-      <h3>{translation("settings.setupEmailTemplateMessages.configureTemplateMessage")}</h3>
+      <h3>{translation("configureTemplateMessage")}</h3>
       <TextEditor serverAction={createEmailTemplate} />
     </div>
   );

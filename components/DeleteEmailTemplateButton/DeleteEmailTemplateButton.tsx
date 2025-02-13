@@ -36,7 +36,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       }}
     >
       <div>
-        {translation("deleteEmailTemplateButton.doYouWantToDeleteThisEmailTemplate")}
+        {translation("doYouWantToDeleteThisEmailTemplate")}
       </div>
       <div
         style={{
@@ -56,13 +56,13 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
           <input hidden={true} name='id' defaultValue={id} />
           <Button
             className='submitButton'
-            text={translation("deleteEmailTemplateButton.yes.delete.email.template")}
+            text={translation("yesDeleteEmailTemplate")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text={translation("deleteEmailTemplateButton.cancel")}
+          text={translation("cancel")}
           onClick={() => openModal(false)}
           type='button'
         />
@@ -80,7 +80,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       )}
       <Button
         className='textButton'
-        text={translation("deleteEmailTemplateButton.delete")}
+        text={translation("delete")}
         onClick={() => openModal(true)}
         startIcon={<DeleteIcon />}
         type='button'

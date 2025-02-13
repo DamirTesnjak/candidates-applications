@@ -29,7 +29,7 @@ export const emailTemplatesColumnDef = (
 } => {
   return {
     emailType: {
-      title: translation("settings.overviewEmailTemplateMessages.emailType") as unknown as string,
+      title: translation("emailType") as unknown as string,
       size: 100,
       cell: `${row?.original.emailType}`,
       enableColumnDragging: false,

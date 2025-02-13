@@ -81,13 +81,13 @@ export default function DeleteProfileButton({
           />
           <Button
             className='submitButton'
-            text={translation("deleteProfileButton.yes.delete.profile")}
+            text={translation("yesDeleteProfile")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text={translation("deleteProfileButton.cancel")}
+          text={translation("cancel")}
           onClick={() => setDeleteProfile(false)}
           type='button'
         />
@@ -99,7 +99,7 @@ export default function DeleteProfileButton({
     <div>
       <Button
         className='deleteButton'
-        text={translation("deleteProfileButton.delete")}
+        text={translation("delete")}
         onClick={() => setDeleteProfile(true)}
         startIcon={<DeleteIcon />}
         type='button'

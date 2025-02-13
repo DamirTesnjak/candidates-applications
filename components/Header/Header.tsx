@@ -12,8 +12,8 @@ export default async function Header() {
           <SupervisedUserCircleIcon />
         </span>
         <span>
-          <span className={styles.appNameFirstPart}>{translation("header.job")}Job</span>
-          <span className={styles.appNameSecondPart}>{translation("header.applicants")}</span>
+          <span className={styles.appNameFirstPart}>{translation("job")}</span>
+          <span className={styles.appNameSecondPart}>{translation("applicants")}</span>
         </span>
       </div>
       <div className={styles.profileActions}>

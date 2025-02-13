@@ -27,7 +27,7 @@ export default async function CandidateProfileLayout({
   const { data } = parsedResults;
 
   if (!data) {
-    return <ErrorMessage text={translation("hrUserProfile.couldNotFindProfileData")} />;
+    return <ErrorMessage text={translation("couldNotFindProfileData")} />;
   }
 
   return (
@@ -35,7 +35,7 @@ export default async function CandidateProfileLayout({
       <SetDataToStore data={data} databaseName={DATABASES.hrUsers} />
       <div className={styles.hrProfilePage}>
         <div className={styles.logoutContainer}>
-          <h3>{`${translation("hrUserProfile.profile")}: ${data.name} ${data.surname}`}</h3>
+          <h3>{`${translation("profile")}: ${data.name} ${data.surname}`}</h3>
           <LogoutButton />
         </div>
         <div className={styles.profilePicture}>
@@ -50,7 +50,7 @@ export default async function CandidateProfileLayout({
               <Link href={`/hrUserProfile/editHrUserProfile`}>
                 <Button
                   className='button'
-                  text={translation("hrUserProfile.editProfile")}
+                  text={translation("editProfile")}
                   startIcon={<AddIcon />}
                   type='button'
                 />

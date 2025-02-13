@@ -22,8 +22,8 @@ export default function LoginPage() {
   const dispatch = useAppDispatch();
 
   const inputFields = [
-    { name: 'username', type: 'text', label: translation("login.username") },
-    { name: 'password', type: 'password', label: translation("login.password") },
+    { name: 'username', type: 'text', label: translation("username") },
+    { name: 'password', type: 'password', label: translation("password") },
   ];
 
   const [response, formAction] = useActionState<IPrevState, FormData>(
@@ -83,7 +83,7 @@ export default function LoginPage() {
       <form action={formAction}>
         {formContent}
         <div className={styles.buttonsContainer}>
-          <Button className='submitButton' type='submit' text={translation("login.login")} />
+          <Button className='submitButton' type='submit' text={translation("profileActionsLogin")} />
         </div>
       </form>
       {showModal.error && (

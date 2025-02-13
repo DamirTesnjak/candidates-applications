@@ -60,7 +60,7 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     name: {
-      title: translation("candidates.name") as unknown as string,
+      title: translation("name") as unknown as string,
       size: 100,
       cell: `${row?.original.name}
             ${row?.original.surname}`,
@@ -90,7 +90,7 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     phoneNumber: {
-      title: translation("candidates.phoneNumber") as unknown as string,
+      title: translation("phoneNumber") as unknown as string,
       size: 150,
       cell: row?.original.contact.phoneNumber,
       enableColumnDragging: false,
@@ -113,19 +113,19 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     archived: {
-      title: translation("candidates.archived") as unknown as string,
+      title: translation("archived") as unknown as string,
       size: 150,
       cell: row?.original.status.archived ? 'True' : 'False',
       enableColumnDragging: false,
     },
     hired: {
-      title: translation("candidates.hired") as unknown as string,
+      title: translation("hired") as unknown as string,
       size: 150,
       cell: row?.original.status.employed ? 'True' : 'False',
       enableColumnDragging: false,
     },
     rejected: {
-      title: translation("candidates.rejected") as unknown as string,
+      title: translation("rejected") as unknown as string,
       size: 150,
       cell: row?.original.status.rejected ? 'True' : 'False',
       enableColumnDragging: false,
@@ -137,7 +137,7 @@ export const candidatesColumnDef = (
         <RowButton
           clientId={row.original.id}
           name='emailTemplateType'
-          text={translation("candidates.archived") as unknown as string}
+          text={translation("archived") as unknown as string}
           value='archive'
           icon='archive'
         />
@@ -153,7 +153,7 @@ export const candidatesColumnDef = (
       cell: row ? (
         <RowButton
           clientId={row.original.id}
-          text={translation("candidates.hire") as unknown as string}
+          text={translation("hire") as unknown as string}
           value='hire'
           name='emailTemplateType'
           icon='hire'
@@ -170,7 +170,7 @@ export const candidatesColumnDef = (
       cell: row ? (
         <RowButton
           clientId={row.original.id}
-          text={translation("candidates.reject") as unknown as string}
+          text={translation("reject") as unknown as string}
           value='reject'
           name='emailTemplateType'
           icon='reject'
