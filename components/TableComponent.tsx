@@ -6,7 +6,6 @@ import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTe
 import Table from '../UI/Table/Table';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
-import { PAGES } from '@/constants/constants';
 
 export interface ITableData extends ICandidateSchema, IEmailTemplateSchema {}
 

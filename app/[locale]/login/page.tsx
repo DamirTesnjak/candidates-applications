@@ -17,7 +17,7 @@ import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/components/EditForm/editForm.module.scss';
 
 export default function LoginPage() {
-  const translation = useTranslations(TPages.login);
+  const translation = useTranslations("login");
   const router = useRouter();
   const dispatch = useAppDispatch();
 

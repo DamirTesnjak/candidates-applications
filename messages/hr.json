@@ -28,7 +28,8 @@
 "login": {
   "login": "Upis",
   "username": "Korisničko ime",
-  "password": "Lozinka"
+  "password": "Lozinka",
+  "profileActionsLogin": "Upis"
 },
 "register": {
   "register": "Registracija",
@@ -81,6 +82,23 @@
     "delete": "Izbriši"
   },
   "editForm": {
+    "name": "Ime",
+    "surname": "Prezime",
+    "address": "Naslov",
+    "city": "Mjesto",
+    "zipCode": "Poštanski broj",
+    "country": "Država",
+    "phoneNumber": "Telefonski broj",
+    "linkedIn": "Linkedin",
+    "archived": "Arhiviran",
+    "employed": "Zaposlen",
+    "rejected": "Odbijen",
+    "emailHost": "Email ugostitelj (host)",
+    "port": "Vrata (port)",
+    "email": "e-pošta",
+    "username": "Koristničko ime",
+    "companyName": "Ime tvrtke",
+    "password": "Lozinka",
     "profilePicture": "Naloži profilnu sliku",
     "cvFile": "Naloži CV",
     "saveChanges": "Spremite promjene"

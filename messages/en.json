@@ -28,7 +28,8 @@
   "login": {
     "login": "Login",
     "username": "Username",
-    "password": "Password"
+    "password": "Password",
+    "profileActionsLogin": "Login"
   },
   "register": {
     "register": "Register",
@@ -81,6 +82,23 @@
     "delete": "Delete"
   },
   "editForm": {
+    "name": "Name",
+    "surname": "Surname",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Zip code",
+    "country": "Country",
+    "phoneNumber": "Phone number",
+    "linkedIn": "Linkedin",
+    "archived": "Archived",
+    "employed": "Employed",
+    "rejected": "Rejected",
+    "emailHost": "Email host",
+    "port": "Port",
+    "email": "Email",
+    "username": "Username",
+    "companyName": "Company name",
+    "password": "Password",
     "profilePicture": "Upload profile picture",
     "cvFile": "Upload CV",
     "saveChanges": "Save changes"

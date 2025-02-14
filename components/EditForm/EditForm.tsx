@@ -117,7 +117,7 @@ export default function EditForm(props: IEditFormProps) {
                 <Input
                   className='checkbox'
                   flow='flowRow'
-                  label={stateModelKey}
+                  label={translation(stateModelKey)}
                   name={stateModelKey}
                   type='checkbox'
                   defaultValue={flattenedObjects(stateModelKey) ? 'on' : 'off'}
@@ -132,7 +132,7 @@ export default function EditForm(props: IEditFormProps) {
                 <Input
                   className='standard'
                   flow='flowRow'
-                  label={stateModelKey}
+                  label={translation(stateModelKey)}
                   name={stateModelKey}
                   type={stateModelKey === 'password' ? 'password' : 'text'}
                   readOnly={!editable}
