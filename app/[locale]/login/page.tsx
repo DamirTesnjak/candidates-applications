@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState, useCallback, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import {useRouter} from '@/i18n/routing';
 import {useTranslations} from 'next-intl';
 import { loginHrUser } from '@/app/_actions/loginHrUser';
 import { getHrUserProfile } from '@/app/_actions/getHrUserProfile';
@@ -13,7 +13,6 @@ import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
 import { IPrevState } from '@/utils/types/prevState';
-import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/components/EditForm/editForm.module.scss';
 
 export default function LoginPage() {
@@ -39,7 +38,7 @@ export default function LoginPage() {
     const parsedResult = JSON.parse(result);
     const { data } = parsedResult;
     dispatch(loadUpdateHrUser(data));
-    router.push(`${locale}/candidates`);
+    router.push(`/candidates`);
   }, [dispatch, router]);
 
   const formContent = inputFields.map((inputField) => {

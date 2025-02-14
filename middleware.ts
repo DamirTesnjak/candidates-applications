@@ -22,13 +22,14 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL(`${locale}/login`, request.nextUrl));
+    return NextResponse.redirect(new URL(`/login`, request.nextUrl));
   }
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
+    '/',
     '/(en|sl|hr)/',
     '/(en|sl|hr)/candidates',
     '/(en|sl|hr)/createCandidate',

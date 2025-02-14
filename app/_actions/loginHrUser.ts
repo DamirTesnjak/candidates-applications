@@ -1,6 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { cookies } from 'next/headers';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -12,6 +13,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES } from '@/constants/constants';
 
 export async function loginHrUser(_prevState: IPrevState, formData: FormData) {
+  const translation = await getTranslations('serverAction');
   const cookieStore = await cookies();
   const formDataObject = getFormDataObject(formData);
 
@@ -36,8 +38,7 @@ export async function loginHrUser(_prevState: IPrevState, formData: FormData) {
   if (!Model) {
     console.log('ERROR_LOGIN_HR_USER: Error with connecting to the database!');
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
       prevState: formDataObject,
     };
@@ -47,7 +48,7 @@ export async function loginHrUser(_prevState: IPrevState, formData: FormData) {
   if (!hrUser) {
     console.log('ERROR_LOGIN_HR_USER: User cannot be found!');
     return {
-      errorMessage: 'Username does not exist! Please register first.',
+      errorMessage: translation("usernameDoesNotExist"),
       error: true,
       prevState: formDataObject,
     };
@@ -61,8 +62,7 @@ export async function loginHrUser(_prevState: IPrevState, formData: FormData) {
 
   if (!validPassword) {
     return {
-      errorMessage:
-        'Password does not match! Please try again or contact support.',
+      errorMessage: translation("passwordDoesNotMatch"),
       error: true,
       prevState: formDataObject,
     };

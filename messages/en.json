@@ -127,5 +127,24 @@
     "companyName": "Company name",
     "currentDate": "Current date",
     "startDate": "Start date"
+  },
+  "serverAction": {
+    "somethingWentWrong": "Something went wrong, please try again or contact support.",
+    "cannotSaveChanges": "Something went wrong, cannot save changes, please try again or contact support.",
+    "candidateNotFound": "Candidate not found!",
+    "candidateFound": "Candidate found!",
+    "noCandidatesFound": "No candidates found!",
+    "cannotFindAnyCandidates": "Cannot find any candidates!",
+    "emailTemplateNotFound": "Email template not found!",
+    "cannotFindAnyEmailTemplates": "Cannot find any email templates!",
+    "noEmailTemplatesFound": "No email templates found!",
+    "userNotFound": "User not found!",
+    "usernameDoesNotExist": "Username does not exist! Please register first.",
+    "passwordDoesNotMatch": "Password does not match! Please try again or contact support.",
+    "newMappedEmailSettingsCreatedSuccessfully": "New mapped email settings created successfully",
+    "companyEmailConfigurationNotFound": "Company email configuration not found! Cannot send the email!",
+    "emailSentToTheCandidate": "Email sent to the candidate!",
+    "savedChanges": "Saved changes",
+    "candidateAlreadyExists": "Candidate already exists"
   }
 }

@@ -1,6 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -16,6 +17,7 @@ export async function createCandidate(
   _prevState: IPrevState,
   formData: FormData,
 ) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
@@ -41,8 +43,7 @@ export async function createCandidate(
       'ERROR_CREATE_CANDIDATE: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
       prevState: formDataObject,
     };
@@ -53,7 +54,7 @@ export async function createCandidate(
   });
   if (candidateFound) {
     return {
-      errorMessage: 'Candidate already exists',
+      errorMessage: translation("candidateAlreadyExists"),
       error: true,
       prevState: formDataObject,
     };
@@ -97,12 +98,11 @@ export async function createCandidate(
       'ERROR_CREATE_CANDIDATE: Error with saving new candidate to the database!',
     );
     return {
-      errorMessage:
-        'Cannot create candidate! Please try again or contact support!',
+      errorMessage: translation("cannotSaveChanges"),
       error: true,
       prevState: formDataObject,
     };
   }
 
-  return { successMessage: 'Candidate created successfully', success: true };
+  return { successMessage: translation("savedChanges"), success: true };
 }

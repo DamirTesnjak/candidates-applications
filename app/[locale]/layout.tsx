@@ -32,11 +32,12 @@ export const metadata: Metadata = {
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: ReactNode;
-  params: {locale: string}
+  params: { locale: string }
 }>) {
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale as any)) {
     notFound();

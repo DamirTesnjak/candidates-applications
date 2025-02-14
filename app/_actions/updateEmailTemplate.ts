@@ -1,6 +1,7 @@
 'use server'
 
-import { Model } from 'mongoose';
+import { Model } from 'mongoose'
+import {getTranslations} from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -9,7 +10,8 @@ import { IPrevState } from '@/utils/types/prevState';
 import {DATABASES} from "@/constants/constants";
 
 export async function updateEmailTemplate(_prevState: IPrevState, formData: FormData) {
-    const formDataObject = getFormDataObject(formData);
+  const translation = await getTranslations('serverAction');
+  const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
   const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
@@ -31,7 +33,7 @@ export async function updateEmailTemplate(_prevState: IPrevState, formData: Form
     if (!Model) {
         console.log('ERROR_UPDATE_EMAIL_TEMPLATE: Error with connecting to the database!');
         return {
-            errorMessage: "Something went wrong, please try again or contact support.",
+            errorMessage: translation("somethingWentWrong"),
             error: true,
             prevState: formDataObject,
         }
@@ -47,14 +49,14 @@ export async function updateEmailTemplate(_prevState: IPrevState, formData: Form
     if (!savedEmailTemplate) {
         console.log('ERROR_UPDATE_EMAIL_TEMPLATE: Error with saving to the database!');
         return {
-            errorMessage: "Something went wrong, cannot save changes, please try again or contact support.",
+            errorMessage: translation("cannotSaveChanges"),
             error: true,
             prevState: formDataObject,
         }
     }
 
     return {
-        successMessage: "Changes saved",
+        successMessage: translation("savedChanges"),
         success: true,
         prevState: formDataObject,
     }

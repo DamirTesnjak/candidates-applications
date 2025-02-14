@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+import {useRouter} from '@/i18n/routing';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@/components/Modal/Modal';
 import { DATABASES } from '@/constants/constants';
@@ -35,12 +35,12 @@ export default function DeleteProfileButton({
       if (success) {
         if (DATABASES.candidates === DATABASES[databaseName]) {
           dispatch(loadUpdateCandidate(initialStateHrUser));
-          router.push(`${locale}/candidates`);
+          router.push(`/candidates`);
         }
 
         if (DATABASES.hrUsers === DATABASES[databaseName]) {
           dispatch(loadUpdateHrUser(initialStateHrUser));
-          router.push(`${locale}/register`);
+          router.push(`/register`);
         }
         setDeleteProfile(false);
       }

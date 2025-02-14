@@ -1,12 +1,14 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { IMappedEmailTemplates } from '@/utils/dbConfig/models/mappedEmailTemplates';
 import { DATABASES } from '@/constants/constants';
 
 export async function mapEmailTemplates(formData: FormData) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   const Model = connectToDB(
@@ -18,8 +20,7 @@ export async function mapEmailTemplates(formData: FormData) {
       'ERROR_MAP_EMAIL_TEMPLATES: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWrong"),
       error: true,
     };
   }
@@ -43,13 +44,12 @@ export async function mapEmailTemplates(formData: FormData) {
         'ERROR_UPDATE_MAP_EMAIL_TEMPLATES: Error with updating mapped email templates to the database!',
       );
       return {
-        errorMessage:
-          'Something went wrong, cannot save changes, please try again or contact support.',
+        errorMessage: translation("cannotSaveChanges"),
         error: true,
       };
     }
     return {
-      successMessage: 'New mapped email settings created successfully',
+      successMessage: translation("newMappedEmailSettingsCreatedSuccessfully"),
       success: true,
     };
   }
@@ -67,7 +67,7 @@ export async function mapEmailTemplates(formData: FormData) {
       'ERROR_MAP_EMAIL_TEMPLATES: Error with saving new mapped email templates to the database!',
     );
     return {
-      errorMessage: 'Cannot create user! Please try again or contact support!',
+      errorMessage: translation("cannotSaveChanges"),
       error: true,
     };
   }

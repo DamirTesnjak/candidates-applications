@@ -1,6 +1,7 @@
 'use server';
 
 import { Model, Types } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import nodemailer from 'nodemailer';
 import bcryptjs from 'bcryptjs';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
@@ -20,6 +21,7 @@ export interface ISendEmail {
 
 const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
   // create a hashed token
+  const translation = await getTranslations('serverAction');
   const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;

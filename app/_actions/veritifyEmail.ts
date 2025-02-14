@@ -1,17 +1,19 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 import { DATABASES } from '@/constants/constants';
 
 export async function verifyEmail(token: string) {
+  const translation = await getTranslations('serverAction');
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_VERIFY_EMAIL: Error with connecting to the database!');
     return {
-      error: 'Something went wrong, please try again later or contact support',
+      error: translation('somethingWentWrong'),
     };
   }
 
@@ -33,8 +35,7 @@ export async function verifyEmail(token: string) {
   if (updatedUser !== user) {
     console.log('ERROR_VERIFY_EMAIL: Error with verifying the email!');
     return {
-      error:
-        'Something went wrong during verification process, please try again or contact support',
+      error: translation('somethingWentWrong'),
     };
   }
 }
