@@ -7,6 +7,7 @@
     "editProfile": "Edit profile"
   },
   "candidates": {
+    "candidates": "Candidates",
     "name": "Name",
     "phoneNumber": "Phone number",
     "archived": "Archived",
@@ -150,5 +151,14 @@
     "cannotCreateUser": "Cannot create user! Please try again or contact support!",
     "userCreated": "User created successfully",
     "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support."
+  },
+  "localeSwitcher": {
+    "changeLanguage": "Change language",
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {other}}"
+  },
+  "sidebar": {
+    "candidates":"Candidates",
+    "settings": "Settings",
+    "about": "Help"
   }
 }

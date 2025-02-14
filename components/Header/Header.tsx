@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ProfileActions from '@/components/Header/ProfileActions/ProfileActions';
+import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher';
 import styles from './header.module.scss';
 
 export default async function Header() {
@@ -18,6 +19,7 @@ export default async function Header() {
       </div>
       <div className={styles.profileActions}>
         <ProfileActions />
+        <LocaleSwitcher />
       </div>
     </header>
   );

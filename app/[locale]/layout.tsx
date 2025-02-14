@@ -38,6 +38,7 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const { locale } = await params;
+  console.log('locale', locale);
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -48,9 +49,9 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   const sidebarLinks = [
-    { link: '/candidates', text: 'Candidates' },
-    { link: '/settings', text: 'Settings' },
-    { link: '/about', text: 'About' },
+    { link: '/candidates', text: 'candidates' },
+    { link: '/settings', text: 'settings' },
+    { link: '/about', text: 'about' },
   ];
   return (
     <html lang={locale}>

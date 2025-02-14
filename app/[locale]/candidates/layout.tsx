@@ -15,7 +15,7 @@ export default async function CandidatesLayout({
 
   return (
     <div className={styles.container}>
-      <h3>Candidates</h3>
+      <h3>{translation("candidates")}</h3>
       <Link href={`/candidates/createCandidate`}>
         <Button
           className='button'

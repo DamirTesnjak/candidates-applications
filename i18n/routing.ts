@@ -6,8 +6,19 @@ export const routing = defineRouting({
   locales: ['en', 'sl', "hr"],
 
   // Used when no locale matches
-  defaultLocale: 'en'
+  defaultLocale: 'en',
+  pathnames: {
+    '/': '/',
+    '/candidateProfile': {
+      en: 'candidate-profile',
+      hr: 'profil-kandidata',
+      sl: 'profil-kandidata',
+    }
+}
 });
+
+export type Pathnames = keyof typeof routing.pathnames;
+export type Locale = (typeof routing.locales)[number];
 
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration

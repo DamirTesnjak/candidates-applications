@@ -7,6 +7,7 @@
     "editProfile": "Uredi profil"
   },
   "candidates": {
+    "candidates": "Kandidati",
     "name": "Ime",
     "phoneNumber": "Telefonska številka",
     "archived": "Arhiviran",
@@ -93,8 +94,8 @@
     "archived": "Arhivirano",
     "employed": "Zaposlen",
     "rejected": "Zavrnjeno",
-    "emailHost": "Gostitelj elektronske pošte",
-    "port": "pristanišče",
+    "emailHost": "Gostitelj elektronske pošte (Host)",
+    "port": "Vrata (port)",
     "email": "E-pošta",
     "username": "Uporabniško ime",
     "companyName": "Ime podjetja",
@@ -104,8 +105,8 @@
     "saveChanges": "Shrani spremembe"
   },
   "header": {
-    "job": "Delo",
-    "applications": "Prosilci",
+    "job": "Job",
+    "applicants": "Applicants",
     "profileActionsRegister": "Registracija",
     "profileActionsLogin": "Prijava"
   },
@@ -150,5 +151,14 @@
     "cannotCreateUser": "Uporabnika ni mogoče ustvariti! Poskusite znova ali kontaktirajte podporo!",
     "userCreated": "Uporabnik je bil uspešno ustvarjen",
     "cannotSendAnEmailToYou": "Ne morem vam poslati e-pošte! Registracija ni uspela! Poskusite znova ali se obrnite na podporo."
-    }
+    },
+  "localeSwitcher": {
+    "changeLanguage": "Spremenite jezik",
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} ostalo {Ostalo}}"
+  },
+  "sidebar": {
+    "candidates":"Kandidati",
+    "settings": "Nastavitve",
+    "about": "Pomoč"
   }
+}

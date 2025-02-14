@@ -11,9 +11,10 @@ export default createMiddleware(routing);
 export async function middleware(request: NextRequest) {
   const cookieStore = await cookies();
   const path = request.nextUrl.pathname;
+  const locale = cookieStore.get('NEXT_LOCALE')?.value;
 
   const isPublicPath =
-    path === '/login' || path === '/register' || path === '/verifyemail';
+    path === `/${locale}/login` || path === `/${locale}/register` || path === `/${locale}/verifyemail`;
 
   const token = cookieStore.get('token')?.value || '';
 
@@ -22,7 +23,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL(`/login`, request.nextUrl));
+    return NextResponse.redirect(new URL(`/${locale}/login`, request.nextUrl));
   }
 }
 
