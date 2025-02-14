@@ -145,6 +145,10 @@
     "companyEmailConfigurationNotFound": "Company email configuration not found! Cannot send the email!",
     "emailSentToTheCandidate": "Email sent to the candidate!",
     "savedChanges": "Saved changes",
-    "candidateAlreadyExists": "Candidate already exists"
+    "candidateAlreadyExists": "Candidate already exists",
+    "userAlreadyExists": "User already exists",
+    "cannotCreateUser": "Cannot create user! Please try again or contact support!",
+    "userCreated": "User created successfully",
+    "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support."
   }
 }
