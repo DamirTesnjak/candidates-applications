@@ -1,6 +1,7 @@
 'use server';
 
 import { Model, Types } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import nodemailer from 'nodemailer';
 import bcryptjs from 'bcryptjs';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
@@ -20,6 +21,7 @@ export interface ISendEmail {
 
 const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
   // create a hashed token
+  const translation = await getTranslations('serverAction');
   const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
@@ -27,8 +29,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
   if (!Model) {
     console.log('ERROR_SEND_EMAIL: Error with connecting to the database!');
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
     };
   }
@@ -54,8 +55,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
       'ERROR_GET_CREATE_USER_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
     };
   }
@@ -100,7 +100,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
       'ERROR_GET_CREATE_USER_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with sending an email!',
     );
     return {
-      errorMessage: "Cannot send an email to you! Registration failed! Please try again or contact support.",
+      errorMessage: translation("cannotSendAnEmailToYou"),
       error: true,
     }
   }
@@ -114,6 +114,7 @@ export const createHrUser = async (
   _prevState: IPrevState,
   formData: FormData,
 ) => {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
@@ -137,8 +138,7 @@ export const createHrUser = async (
   if (!Model) {
     console.log('ERROR_CREATE_HR_USER: Error with connecting to the database!');
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
       prevState: formDataObject,
     };
@@ -147,7 +147,7 @@ export const createHrUser = async (
   const hrUser = await Model.findOne({ email: formDataObject.email });
   if (hrUser) {
     return {
-      errorMessage: 'User already exists!',
+      errorMessage: translation("userAlreadyExists"),
       error: true,
       prevState: formDataObject,
     };
@@ -187,7 +187,7 @@ export const createHrUser = async (
       'ERROR_CREATE_HR_USER: Error with saving new candidate to the database!',
     );
     return {
-      errorMessage: 'Cannot create user! Please try again or contact support!',
+      errorMessage: translation('cannotCreateUser'),
       error: true,
       prevState: formDataObject,
     };
@@ -203,15 +203,14 @@ export const createHrUser = async (
   if (!messageId) {
     console.log('ERROR_CREATE_HR_USER: Error with sending confirmation email!');
     return {
-      errorMessage:
-        'Something went wrong! Please try again or contact support!',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
       prevState: formDataObject,
     };
   }
 
   return {
-    successMessage: 'User created successfully',
+    successMessage: translation("userCreated"),
     success: true,
     prevState: formDataObject,
   };

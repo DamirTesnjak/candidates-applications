@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import {useTranslations} from 'next-intl';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
@@ -10,6 +11,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { IShowModal } from '@/types/ShowModalType';
 
 export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
+  const translation = useTranslations("deleteEmailTemplateButton");
   const [, startTransition] = useTransition();
   const [modal, openModal] = useState<boolean>(false);
   const [response, setResponse] = useState<IPrevState>({});
@@ -34,7 +36,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       }}
     >
       <div>
-        Do you want to delete this email template? The action cannot be undone!
+        {translation("doYouWantToDeleteThisEmailTemplate")}
       </div>
       <div
         style={{
@@ -54,13 +56,13 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
           <input hidden={true} name='id' defaultValue={id} />
           <Button
             className='submitButton'
-            text='Yes! Delete email template!'
+            text={translation("yesDeleteEmailTemplate")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text='Cancel'
+          text={translation("cancel")}
           onClick={() => openModal(false)}
           type='button'
         />
@@ -78,7 +80,7 @@ export default function DeleteEmailTemplateButton({ id }: { id: string; }) {
       )}
       <Button
         className='textButton'
-        text='Delete'
+        text={translation("delete")}
         onClick={() => openModal(true)}
         startIcon={<DeleteIcon />}
         type='button'

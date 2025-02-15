@@ -1,11 +1,11 @@
 'use client';
 
-import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
-import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import {useTranslations} from 'next-intl';
+import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
 import Table from '../UI/Table/Table';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
-import { PAGES } from '@/constants/constants';
 
 export interface ITableData extends ICandidateSchema, IEmailTemplateSchema {}
 
@@ -24,9 +24,12 @@ export default function TableComponent({
   columnsToDisplay,
   page,
 }: ITableComponentProps) {
+
+  const translation = useTranslations(page);
+
   const pageTables: IPageTables = {
-    [PAGES.customersPage]: candidatesColumnDef,
-    [PAGES.emailTemplatePage]: emailTemplatesColumnDef,
+    candidates: candidatesColumnDef,
+    emailTemplatePage: emailTemplatesColumnDef,
   };
 
   return (
@@ -34,6 +37,7 @@ export default function TableComponent({
       tableData={tableData}
       columnsToDisplay={columnsToDisplay}
       columnDef={pageTables[page]}
+      translation={translation}
     />
   );
 }

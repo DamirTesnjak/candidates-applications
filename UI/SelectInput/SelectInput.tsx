@@ -46,7 +46,6 @@ export default function SelectInput({
 
     if (onSelect) {
       onSelect(event);
-    } else {
     }
   };
 

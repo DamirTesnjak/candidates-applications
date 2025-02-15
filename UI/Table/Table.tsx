@@ -7,26 +7,30 @@ import {
 import { useMemo } from 'react';
 import { getColumnsDefs } from '@/utils/createTableColumnsDefs/createTableColumnsDef.';
 import { ITableComponentProps } from '@/components/TableComponent';
-import { candidatesColumnDef } from '@/app/candidates/customerTableDataProps';
-import { emailTemplatesColumnDef } from '@/app/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
+import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
+import { useTranslations } from 'next-intl';
 
 export interface TableProps {
   tableData: ITableComponentProps['tableData'];
   columnsToDisplay: ITableComponentProps['columnsToDisplay'];
   columnDef: typeof candidatesColumnDef | typeof emailTemplatesColumnDef;
+  translation: typeof useTranslations;
 }
 
 export default function Table({
   tableData,
   columnsToDisplay,
   columnDef,
+  translation
 }: TableProps) {
   const getColumnsDefsProps = useMemo(
     () => ({
       columnsToDisplay,
       columnDef,
+      translation,
     }),
-    [columnsToDisplay, columnDef],
+    [columnsToDisplay, columnDef, translation],
   );
 
   const columns = useMemo(

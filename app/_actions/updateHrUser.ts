@@ -1,6 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -10,6 +11,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES, FILE_TYPE } from '@/constants/constants';
 
 export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
@@ -34,8 +36,7 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
   if (!Model) {
     console.log('ERROR_UPDATE_HR_USER: Error with connecting to the database!');
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
       prevState: formDataObject,
     };
@@ -59,15 +60,14 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
   if (!savedHrUser) {
     console.log('ERROR_UPDATE_HR_USER: Error with saving to the database!');
     return {
-      errorMessage:
-        'Something went wrong, cannot save changes, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
       prevState: formDataObject,
     };
   }
 
   return {
-    successMessage: 'User updated successfully',
+    successMessage: translation("savedChanges"),
     success: true,
     prevState: formDataObject,
   };

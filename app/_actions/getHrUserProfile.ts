@@ -1,12 +1,15 @@
 'use server';
 
-import { Model } from 'mongoose';
+import { Model } from 'mongoose'
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getDataFromToken } from '@/utils/getDataFromToken';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 import { DATABASES } from '@/constants/constants';
 
 export async function getHrUserProfile() {
+  const translation = await getTranslations('serverAction');
+
   const tokenData = await getDataFromToken();
 
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
@@ -14,8 +17,7 @@ export async function getHrUserProfile() {
   if (!Model) {
     console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');
     return JSON.stringify({
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     });
   }
@@ -23,7 +25,7 @@ export async function getHrUserProfile() {
   const user = await Model?.findOne({ id: tokenData.id }).select('-password');
   if (!user) {
     return JSON.stringify({
-      errorMessage: 'User not found!',
+      errorMessage: translation("userNotFound"),
       error: true,
     });
   }

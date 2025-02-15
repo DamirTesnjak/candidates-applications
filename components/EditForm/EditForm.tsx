@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Input from '@/UI/Input/Input';
 import Button from '@/UI/Button/Button';
 import Modal from '@/components/Modal/Modal';
@@ -43,6 +44,7 @@ export default function EditForm(props: IEditFormProps) {
     showUploadCVButton,
     showUploadPictureButton,
   } = props;
+  const translation = useTranslations("editForm");
   const stateModelKeyAndValues = useAppSelector(
     (state) => state[storeReducerName],
   );
@@ -115,7 +117,7 @@ export default function EditForm(props: IEditFormProps) {
                 <Input
                   className='checkbox'
                   flow='flowRow'
-                  label={stateModelKey}
+                  label={translation(stateModelKey)}
                   name={stateModelKey}
                   type='checkbox'
                   defaultValue={flattenedObjects(stateModelKey) ? 'on' : 'off'}
@@ -130,7 +132,7 @@ export default function EditForm(props: IEditFormProps) {
                 <Input
                   className='standard'
                   flow='flowRow'
-                  label={stateModelKey}
+                  label={translation(stateModelKey)}
                   name={stateModelKey}
                   type={stateModelKey === 'password' ? 'password' : 'text'}
                   readOnly={!editable}
@@ -151,7 +153,7 @@ export default function EditForm(props: IEditFormProps) {
               <Input
                 className='uploadButton'
                 flow='flowRow'
-                label='Profile picture'
+                label={translation("profilePicture")}
                 name='profilePicture'
                 type='file'
               />
@@ -160,7 +162,7 @@ export default function EditForm(props: IEditFormProps) {
               <Input
                 className='uploadButton'
                 flow='flowRow'
-                label='CV PDF file'
+                label={translation("cvFile")}
                 name='file'
                 type='file'
               />
@@ -168,7 +170,7 @@ export default function EditForm(props: IEditFormProps) {
             <Button
               className='submitButton'
               type='submit'
-              text='Save Changes'
+              text={translation("saveChanges")}
             />
           </div>
         )}

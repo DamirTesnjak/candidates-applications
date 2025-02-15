@@ -1,0 +1,166 @@
+{
+  "home": {
+    "welcome": "Welcome"
+  },
+  "candidatesProfile": {
+    "candidateProfile": "Candidate profile",
+    "editProfile": "Edit profile"
+  },
+  "candidates": {
+    "candidates": "Candidates",
+    "name": "Name",
+    "phoneNumber": "Phone number",
+    "archived": "Archived",
+    "employed": "Employed",
+    "hired": "Hired",
+    "rejected": "Rejected",
+    "hire": "Hire",
+    "reject": "Reject",
+    "profileLink": "Profile link",
+    "addNewCandidate": "Add new candidate",
+    "noCandidatesFound": "No candidates found!",
+    "cannotFindAnyCandidates": "Cannot find any candidates!"
+  },
+  "hrUserProfile": {
+    "couldNotFindProfileData": "Could not find profile data!",
+    "profile": "Profile",
+    "editProfile": "Edit profile"
+  },
+  "editHrUserProfile": {},
+  "login": {
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "profileActionsLogin": "Login"
+  },
+  "register": {
+    "register": "Register",
+    "name": "Name",
+    "surname": "Surname",
+    "company": "Company name",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "profilePicture": "Upolad profile picture",
+    "saveChanges": "Save changes"
+
+  },
+  "settings": {
+    "companyEmailConfiguration": "Company email configuration",
+    "setupEmailTemplateMessages": "Setup email template messages",
+    "overviewEmailTemplateMessages": "Overview email template messages",
+    "settings": "Settings",
+    "mapEmailTemplateMessages": "Map mail template messages"
+  },
+  "companyEmailConfiguration": {
+    "companyEmailConfiguration": "Company email configuration"
+  },
+  "emailType": {
+    "editEmailMessageTemplate": "Edit email message template"
+  },
+  "mapTemplateMessages": {
+    "selectEmailTemplate": "Select email template",
+    "saveChanges": "Save changes"
+  },
+  "emailTemplatePage": {
+    "emailType": "Email type",
+    "noEmailTemplatesFound": "No email templates found!",
+    "cannotFindAnyEmailTemplates": "Error! Cannot find any email templates!"
+  },
+  "setupEmailTemplateMessages": {
+    "configureTemplateMessage": "Configure template message",
+    "editEmailMessageTemplate": "Edit email message template"
+  },
+  "deleteEmailTemplateButton": {
+    "doYouWantToDeleteThisEmailTemplate": "Do you want to delete this email template?",
+    "yesDeleteEmailTemplate": "Yes delete email template",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "deleteProfile": {
+    "yesDeleteProfile": "Yes! Delete profile!",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "doYouWantToDeleteThisProfile": "Do you want to delete this profile? The action cannot be undone!"
+  },
+  "editForm": {
+    "name": "Name",
+    "surname": "Surname",
+    "address": "Address",
+    "city": "City",
+    "zipCode": "Zip code",
+    "country": "Country",
+    "phoneNumber": "Phone number",
+    "linkedIn": "Linkedin",
+    "archived": "Archived",
+    "employed": "Employed",
+    "rejected": "Rejected",
+    "emailHost": "Email host",
+    "port": "Port",
+    "email": "Email",
+    "username": "Username",
+    "companyName": "Company name",
+    "password": "Password",
+    "profilePicture": "Upload profile picture",
+    "cvFile": "Upload CV",
+    "saveChanges": "Save changes"
+  },
+  "header": {
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Register",
+    "profileActionsLogin": "Login"
+  },
+  "logoutButton": {
+    "logout": "Logout"
+  },
+  "modal": {
+    "ok": "Ok!"
+  },
+  "textEditor": {
+    "emailTemplateName": "Name",
+    "selectEmailTemplate": "Select email template",
+    "companyLogo": "Company logo",
+    "saveChange": "Save changes",
+    "candidateName": "Candidate name",
+    "candidateJobPosition": "Candidate job position",
+    "yourName": "Your name",
+    "yourJobTitle": "Your job title",
+    "companyName": "Company name",
+    "currentDate": "Current date",
+    "startDate": "Start date"
+  },
+  "serverAction": {
+    "somethingWentWrong": "Something went wrong, please try again or contact support.",
+    "cannotSaveChanges": "Something went wrong, cannot save changes, please try again or contact support.",
+    "candidateNotFound": "Candidate not found!",
+    "candidateFound": "Candidate found!",
+    "noCandidatesFound": "No candidates found!",
+    "cannotFindAnyCandidates": "Cannot find any candidates!",
+    "emailTemplateNotFound": "Email template not found!",
+    "cannotFindAnyEmailTemplates": "Cannot find any email templates!",
+    "noEmailTemplatesFound": "No email templates found!",
+    "userNotFound": "User not found!",
+    "usernameDoesNotExist": "Username does not exist! Please register first.",
+    "passwordDoesNotMatch": "Password does not match! Please try again or contact support.",
+    "newMappedEmailSettingsCreatedSuccessfully": "New mapped email settings created successfully",
+    "companyEmailConfigurationNotFound": "Company email configuration not found! Cannot send the email!",
+    "emailSentToTheCandidate": "Email sent to the candidate!",
+    "savedChanges": "Saved changes",
+    "candidateAlreadyExists": "Candidate already exists",
+    "userAlreadyExists": "User already exists",
+    "cannotCreateUser": "Cannot create user! Please try again or contact support!",
+    "userCreated": "User created successfully",
+    "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support."
+  },
+  "localeSwitcher": {
+    "changeLanguage": "Change language",
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {other}}"
+  },
+  "sidebar": {
+    "candidates":"Candidates",
+    "settings": "Settings",
+    "about": "Help"
+  }
+}

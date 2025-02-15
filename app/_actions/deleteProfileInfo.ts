@@ -1,6 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
@@ -9,6 +10,7 @@ import { DATABASES } from '@/constants/constants';
 import { cookies } from 'next/headers';
 
 export async function deleteProfileInfo(formData: FormData) {
+  const translation = await getTranslations('serverAction');
   const cookieStore = await cookies();
   const formDataObject = getFormDataObject(formData);
 
@@ -18,8 +20,7 @@ export async function deleteProfileInfo(formData: FormData) {
   if (!Model) {
     console.log('ERROR_DELETE_PROFILE: Error with connecting to the database!');
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     };
   }
@@ -32,8 +33,7 @@ export async function deleteProfileInfo(formData: FormData) {
       'ERROR_DELETE_PROFILE: Error with deleting the profile from the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, cannot save changes, please try again or contact support.',
+      errorMessage: translation("cannotSaveChanges"),
       error: true,
     };
   }

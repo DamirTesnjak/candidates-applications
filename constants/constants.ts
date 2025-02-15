@@ -104,7 +104,13 @@ export const EDIT_TEXT_BUTTON: IEditTextButton = {
   },
 };
 
-export const PAGES = {
+export interface IPages {
+  [x: string]: string;
+  customersPage: 'customerPage',
+  emailTemplatePage: 'emailTemplatePage',
+}
+
+export const PAGES: IPages = {
   customersPage: 'customerPage',
   emailTemplatePage: 'emailTemplatePage',
 };

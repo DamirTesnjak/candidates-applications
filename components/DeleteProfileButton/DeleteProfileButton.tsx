@@ -1,7 +1,8 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
+import {useRouter} from '@/i18n/routing';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Modal from '@/components/Modal/Modal';
 import { DATABASES } from '@/constants/constants';
@@ -21,6 +22,7 @@ export default function DeleteProfileButton({
   id: string;
   databaseName: string;
 }) {
+  const translation = useTranslations("deleteProfile");
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [, startTransition] = useTransition();
@@ -33,12 +35,12 @@ export default function DeleteProfileButton({
       if (success) {
         if (DATABASES.candidates === DATABASES[databaseName]) {
           dispatch(loadUpdateCandidate(initialStateHrUser));
-          router.push('/candidates');
+          router.push(`/candidates`);
         }
 
         if (DATABASES.hrUsers === DATABASES[databaseName]) {
           dispatch(loadUpdateHrUser(initialStateHrUser));
-          router.push('/register');
+          router.push(`/register`);
         }
         setDeleteProfile(false);
       }
@@ -54,7 +56,7 @@ export default function DeleteProfileButton({
       }}
     >
       <div>
-        Do you want to delete this profile? The action cannot be undone!
+        {translation("doYouWantToDeleteThisProfile")}
       </div>
       <div
         style={{
@@ -79,13 +81,13 @@ export default function DeleteProfileButton({
           />
           <Button
             className='submitButton'
-            text='Yes! Delete profile!'
+            text={translation("yesDeleteProfile")}
             type='submit'
           />
         </form>
         <Button
           className='button'
-          text='Cancel'
+          text={translation("cancel")}
           onClick={() => setDeleteProfile(false)}
           type='button'
         />
@@ -97,7 +99,7 @@ export default function DeleteProfileButton({
     <div>
       <Button
         className='deleteButton'
-        text='Delete'
+        text={translation("delete")}
         onClick={() => setDeleteProfile(true)}
         startIcon={<DeleteIcon />}
         type='button'

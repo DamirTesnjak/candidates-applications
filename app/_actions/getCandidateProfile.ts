@@ -1,11 +1,13 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { ICandidateSchema } from '@/utils/dbConfig/models/candidateModel.js';
 import { DATABASES } from '@/constants/constants';
 
 export async function getCandidateProfile(id: string) {
+  const translation = await getTranslations('serverAction');
   const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
   if (!Model) {
@@ -13,8 +15,7 @@ export async function getCandidateProfile(id: string) {
       'ERROR_GET_CANDIDATE_PROFILE: Error with connecting to the database!',
     );
     return JSON.stringify({
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
     });
   }
@@ -22,7 +23,7 @@ export async function getCandidateProfile(id: string) {
   const candidate = await Model?.findById(id);
   if (!candidate) {
     return JSON.stringify({
-      errorMessage: 'Candidate not found!',
+      errorMessage: translation('candidateFound'),
       error: true,
     });
   }

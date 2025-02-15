@@ -1,6 +1,7 @@
 'use server';
 
 import nodemailer from 'nodemailer';
+import {getTranslations} from 'next-intl/server';
 import { Model } from 'mongoose';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -12,6 +13,7 @@ import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES } from '@/constants/constants';
 
 export async function sendEmail(_prevState: IPrevState, formData: FormData) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
   const { emailTemplateType } = formDataObject;
 
@@ -24,8 +26,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
       'ERROR_GET_SEND_EMAIL_MAPPED_EMAIL_TEMPLATES: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     };
   }
@@ -33,7 +34,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   const mappedEmailTemplates = await mappedEmailTemplatesModel?.find({});
   if (!mappedEmailTemplates) {
     return {
-      errorMessage: 'Mapped email templates not found!',
+      errorMessage: translation("noEmailTemplatesFound"),
       error: true,
     };
   }
@@ -47,8 +48,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
       'ERROR_GET_SEND_EMAIL_PROFILE: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     };
   }
@@ -57,7 +57,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
 
   if (!candidate) {
     return {
-      errorMessage: 'Candidate not found!',
+      errorMessage: translation("candidateNotFound"),
       error: true,
     };
   }
@@ -71,8 +71,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
       'ERROR_GET_SEND_EMAIL_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     };
   }
@@ -80,7 +79,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   const companyEmailConfiguration = await companyEmailConfigsModel?.find({});
   if (!companyEmailConfiguration || companyEmailConfiguration.length === 0) {
     return {
-      errorMessage: 'Company email configuration not found! Cannot send the email!',
+      errorMessage: translation("companyEmailConfigurationNotFound"),
       error: true,
     };
   }
@@ -94,8 +93,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
       'ERROR_GET_SEND_EMAIL_PROFILE_EMAIL_TEMPLATE: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation("somethingWentWrong"),
       error: true,
     };
   }
@@ -109,7 +107,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
 
   if (!emailTemplate || (emailTemplate && emailTemplate.length === 0)) {
     return {
-      errorMessage: 'Email template not found!',
+      errorMessage: translation("emailTemplateNotFound"),
       error: true,
     };
   }
@@ -132,5 +130,5 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
 
   await transport.sendMail(mailOptions);
 
-  return { successMessage: 'Email sent to the candidate!', success: true };
+  return { successMessage: translation("emailSentToTheCandidate"), success: true };
 }

@@ -1,0 +1,166 @@
+{
+  "home": {
+    "welcome": "Dobro došli"
+  },
+  "candidatesProfile": {
+    "candidateProfile": "Profil kandidata",
+    "editProfile": "Uredi profil"
+  },
+  "candidates": {
+    "candidates": "Kandidati",
+    "name": "Ime",
+    "phoneNumber": "Telefonski broj",
+    "archived": "Arhiviran",
+    "employed": "Zaposlen",
+    "hired": "Primljen",
+    "rejected": "Odbijen",
+    "hire": "Zaposli ga",
+    "reject": "Odbij",
+    "profileLink": "Link profila",
+    "addNewCandidate": "Dodaj novog kandidata",
+    "noCandidatesFound": "Nisu pronađeni kandidati!",
+    "cannotFindAnyCandidates": "Ne mogu pronaći nijednog kandidata!"
+  },
+  "hrUserProfile": {
+    "couldNotFindProfileData": "Nije moguće pronaći podatke profila!",
+    "profile": "Profil",
+    "editProfile": "Uredi profil"
+  },
+  "editHrUserProfile": {},
+  "login": {
+    "login": "Prijava",
+    "username": "Korisničko ime",
+    "password": "Lozinka",
+    "profileActionsLogin": "Prijava"
+  },
+  "registration": {
+    "register": "Registracija",
+    "name": "Ime",
+    "surname": "Prezime",
+    "company": "Ime tvrtke",
+    "phoneNumber": "Telefonski broj",
+    "email": "E-pošta",
+    "username": "Korisničko ime",
+    "password": "Lozinka",
+    "profilePicture": "Učitaj profilnu sliku",
+    "saveChanges": "Spremi promjene"
+
+  },
+  "settings": {
+    "companyEmailConfiguration": "Konfiguracija e-pošte tvrtke",
+    "setupEmailTemplateMessages": "Postavi poruke predloška e-pošte",
+    "overviewEmailTemplateMessages": "Pregled poruka predložaka e-pošte",
+    "settings": "Postavke",
+    "mapEmailTemplateMessages": "Mapiraj poruke predloška pošte"
+  },
+  "companyEmailConfiguration": {
+    "companyEmailConfiguration": "Konfiguracija e-pošte tvrtke"
+  },
+  "emailType": {
+    "editEmailMessageTemplate": "Uredi predložak poruke e-pošte"
+  },
+  "mapTemplateMessages": {
+    "selectEmailTemplate": "Odaberite predložak e-pošte",
+    "saveChanges": "Spremi promjene"
+  },
+  "emailTemplatePage": {
+    "emailType": "Vrsta e-pošte",
+    "noEmailTemplatesFound": "Nisu pronađeni predlošci e-pošte!",
+    "cannotFindAnyEmailTemplates": "Greška! Ne mogu pronaći predloške e-pošte!"
+  },
+  "setupEmailTemplateMessages": {
+    "configureTemplateMessage": "Konfiguriraj poruku predloška",
+    "editEmailMessageTemplate": "Uredi predložak poruke e-pošte"
+  },
+  "deleteEmailTemplateButton": {
+    "doYouWantToDeleteThisEmailTemplate": "Želite li izbrisati ovaj predložak e-pošte?",
+    "yesDeleteEmailTemplate": "Da izbriši predložak e-pošte",
+    "cancel": "Otkaži",
+    "delete": "Izbriši"
+  },
+  "deleteProfile": {
+    "yesDeleteProfile": "Da! Izbriši profil!",
+    "cancel": "Otkaži",
+    "delete": "Izbriši",
+    "doYouWantToDeleteThisProfile": "Želite li izbrisati ovaj profil? Akcija se ne može poništiti!"
+  },
+  "editForm": {
+    "name": "Ime",
+    "surname": "Prezime",
+    "address": "Adresa",
+    "city": "Grad",
+    "zipCode": "Poštanski broj",
+    "country": "Država",
+    "phoneNumber": "Telefonski broj",
+    "linkedIn": "Linkedin",
+    "archived": "Arhiviran",
+    "employed": "Zaposle",
+    "rejected": "Odbijen",
+    "emailHost": "Gostitelj e-pošte (Host)",
+    "port": "Vrata (port)",
+    "email": "E-pošta",
+    "username": "Korisničko ime",
+    "companyName": "Ime tvrtke",
+    "password": "Lozinka",
+    "profilePicture": "Učitaj profilnu sliku",
+    "cvFile": "Učitaj CV",
+    "saveChanges": "Spremi promjene"
+  },
+  "header": {
+    "job": "Job",
+    "applicants": "Applicants",
+    "profileActionsRegister": "Registracija",
+    "profileActionsLogin": "Prijava"
+  },
+  "logoutButton": {
+    "logout": "Odjava"
+  },
+  "modal": {
+    "ok": "u redu!"
+  },
+  "textEditor": {
+    "emailTemplateName": "Ime",
+    "selectEmailTemplate": "Odaberite predložak e-pošte",
+    "companyLogo": "Logotip tvrtke",
+    "saveChange": "Spremi promjene",
+    "candidateName": "Ime kandidata",
+    "candidateJobPosition": "Radno mjesto kandidata",
+    "yourName": "Vaše ime",
+    "yourJobTitle": "Vaš posao",
+    "companyName": "Ime tvrtke",
+    "currentDate": "Trenutni datum",
+    "startDate": "Datum početka"
+  },
+  "serverAction": {
+    "somethingWentWrong": "Nešto je pošlo po zlu, pokušajte ponovo ili kontaktirajte podršku.",
+    "cannotSaveChanges": "Nešto nije u redu, ne mogu se spremiti promjene, pokušajte ponovo ili kontaktirajte podršku.",
+    "candidateNotFound": "Kandidat nije pronađen!",
+    "candidateFound": "Kandidat pronađen!",
+    "noCandidatesFound": "Nisu pronađeni kandidati!",
+    "cannotFindAnyCandidates": "Ne mogu pronaći nijednog kandidata!",
+    "emailTemplateNotFound": "Predložak e-pošte nije pronađen!",
+    "cannotFindAnyEmailTemplates": "Ne mogu pronaći predloške e-pošte!",
+    "noEmailTemplatesFound": "Nisu pronađeni predlošci e-pošte!",
+    "userNotFound": "Korisnik nije pronađen!",
+    "usernameDoesNotExist": "Korisničko ime ne postoji! Prvo se registrirajte.",
+    "passwordDoesNotMatch": "Lozinka se ne podudara! Pokušajte ponovo ili kontaktirajte podršku.",
+    "newMappedEmailSettingsCreatedSuccessfully": "Nove mapirane postavke e-pošte uspješno su stvorene",
+    "companyEmailConfigurationNotFound": "Konfiguracija e-pošte tvrtke nije pronađena! Ne mogu poslati e-poštu!",
+    "emailSentToTheCandidate": "E-poruka poslana kandidatu!",
+    "savedChanges": "Spremljene promjene",
+    "candidateAlreadyExists": "Kandidat već postoji",
+    "userAlreadyExists": "Korisnik već postoji",
+    "cannotCreateUser": "Ne mogu stvoriti korisnika! Pokušajte ponovo ili kontaktirajte podršku!",
+    "userCreated": "Korisnik je uspješno kreiran",
+    "cannotSendAnEmailToYou": "Ne mogu vam poslati e-poštu! Registracija nije uspjela! Pokušajte ponovo ili kontaktirajte podršku."
+    },
+  "localeSwitcher": {
+    "changeLanguage": "Promjenite jezik",
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"
+  },
+  "sidebar": {
+    "candidates":"Kandidati",
+    "settings": "Postavke",
+    "about": "Pomoč"
+  }
+}

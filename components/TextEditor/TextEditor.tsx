@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo, useActionState } from 'react';
+import {useTranslations} from 'next-intl';
 import Paragraph from '@mui/icons-material/LocalParking';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
@@ -42,6 +43,7 @@ export interface ITextEditorProps {
 }
 
 export default function TextEditor({ data, serverAction }: ITextEditorProps) {
+  const translation = useTranslations('textEditor');
   const [response, formAction] = useActionState<IPrevState, FormData>(
     serverAction,
     {},
@@ -140,7 +142,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
           <Input
             className='standard'
             flow='flowColumn'
-            label='Email Template name'
+            label={translation("emailTemplateName")}
             name='emailType'
             type='text'
           />
@@ -148,7 +150,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             label='Email Template'
             onSelect={handleChangeOnSelectEmailTemplate}
             listDropdown={selectDropdownEmailList}
-            placeholder='Select email Template'
+            placeholder={translation("selectEmailTemplate")}
           />
           <div className={styles.buttonsContainer}>
             <Input
@@ -156,12 +158,12 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
               flow='flowRow'
               type='file'
               label='Upload company logo'
-              name='companyLogo'
+              name={translation("companyLogo")}
             />
             <Button
               className='submitButton'
               type='submit'
-              text='Save Changes'
+              text={translation("saveChange")}
             />
           </div>
         </div>
@@ -219,56 +221,56 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             startIcon={<PersonIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('targetPersonFullName')}
-            text='Candidate name'
+            text={translation("candidateName")}
           />
           <Button
             className='textButton'
             startIcon={<AccountBoxIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('hrUserFullNameTemplate')}
-            text='Your Name'
+            text={translation("yourName")}
           />
           <Button
             className='textButton'
             startIcon={<WorkIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text='Candidate Job Position'
+            text={translation("candidateJobPosition")}
           />
           <Button
             className='textButton'
             startIcon={<WorkIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text='Your Job Title'
+            text={translation("yourJobTitle")}
           />
           <Button
             className='textButton'
             startIcon={<BusinessIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('companyNameTemplate')}
-            text='Company Name'
+            text={translation("companyName")}
           />
           <Button
             className='textButton'
             startIcon={<EventIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('currentDateTemplate')}
-            text='Current Date'
+            text={translation("currentDate")}
           />
           <Button
             className='textButton'
             startIcon={<CalendarMonthIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('startDateTemplate')}
-            text='Start Date'
+            text={translation("startDate")}
           />
         </div>
         <div className={styles.textAreaDisplay}>
           <textarea
             className={styles.textarea}
             id='editor'
-            name='emailText'
+            name="emailText"
             cols={50}
             rows={10}
             onInput={changeWhenTyping}

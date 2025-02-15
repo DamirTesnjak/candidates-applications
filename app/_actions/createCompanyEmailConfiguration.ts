@@ -1,6 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -12,6 +13,7 @@ export async function createCompanyEmailConfiguration(
   _prevState: IPrevState,
   formData: FormData,
 ) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
@@ -40,8 +42,7 @@ export async function createCompanyEmailConfiguration(
       'ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
       prevState: formDataObject,
     };
@@ -71,8 +72,7 @@ export async function createCompanyEmailConfiguration(
           'ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Error with saving new email configuration to the database!',
         );
         return {
-          errorMessage:
-            'Cannot create company email configuration! Please try again or contact support!',
+          errorMessage: translation('cannotSaveChanges'),
           error: true,
           prevState: formDataObject,
         };
@@ -84,8 +84,7 @@ export async function createCompanyEmailConfiguration(
         'ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Cannot find company email configuration!',
       );
       return {
-        errorMessage:
-          'Something went wrong, cannot save changes, please try again or contact support.',
+        errorMessage: translation('somethingWentWrong'),
         error: true,
         prevState: formDataObject,
       };
@@ -97,8 +96,7 @@ export async function createCompanyEmailConfiguration(
         'ERROR_UPDATE_COMPANY_EMAIL_CONFIGURATION: Error with saving to the database!',
       );
       return {
-        errorMessage:
-          'Something went wrong, cannot save changes, please try again or contact support.',
+        errorMessage: translation('somethingWentWrong'),
         error: true,
         prevState: formDataObject,
       };
@@ -119,8 +117,7 @@ export async function createCompanyEmailConfiguration(
         'ERROR_CREATE_COMPANY_EMAIL_CONFIGURATION: Error with saving new email configuration to the database!',
       );
       return {
-        errorMessage:
-          'Cannot create company email configuration! Please try again or contact support!',
+        errorMessage: translation('somethingWentWrong'),
         error: true,
         prevState: formDataObject,
       };
@@ -128,7 +125,7 @@ export async function createCompanyEmailConfiguration(
   }
 
   return {
-    successMessage: 'Company email configuration saved successfully',
+    successMessage: translation('savedChanges'),
     success: true,
     prevState: formDataObject,
   };

@@ -1,11 +1,14 @@
 'use server';
 
 import { Model } from 'mongoose';
+import {getTranslations} from 'next-intl/server';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 import { DATABASES } from '@/constants/constants';
 
 export async function getEmailTemplate(id: string) {
+  const translation = await getTranslations('serverAction');
+
   const Model = connectToDB(
     DATABASES.emailTemplates,
   ) as Model<IEmailTemplateSchema>;
@@ -15,8 +18,7 @@ export async function getEmailTemplate(id: string) {
       'ERROR_GET_EMAIL_TEMPLATE: Error with connecting to the database!',
     );
     return JSON.stringify({
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
     });
   }
@@ -24,7 +26,7 @@ export async function getEmailTemplate(id: string) {
   const emailTemplate = await Model?.findById(id);
   if (!emailTemplate) {
     return JSON.stringify({
-      errorMessage: 'Email template not found!',
+      errorMessage: translation("emailTemplateNotFound"),
       error: true,
     });
   }

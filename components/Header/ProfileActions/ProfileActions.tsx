@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/routing';
 import { useEffect } from 'react';
 
 import { useAppSelector } from '@/lib/hooks';
@@ -9,6 +10,7 @@ import { getFile } from '@/utils/getFile';
 import styles from '../header.module.scss';
 
 export default function ProfileActions() {
+  const translation = useTranslations('header');
   const profilePicture = useAppSelector((state) => state.hrUser.profilePicture);
   const username = useAppSelector((state) => state.hrUser.username);
 
@@ -36,8 +38,8 @@ export default function ProfileActions() {
       )}
       {username.length === 0 && (
         <div className={styles.profileNameDisplay}>
-          <Link href='/register'>Signup</Link>
-          <Link href='/login'>Login</Link>
+          <Link href={`/register`}>{translation("profileActionsRegister")}</Link>
+          <Link href={`/login`}>{translation("profileActionsLogin")}</Link>
         </div>
       )}
     </div>

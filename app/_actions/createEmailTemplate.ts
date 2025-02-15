@@ -1,5 +1,6 @@
 'use server';
 
+import {getTranslations} from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -11,6 +12,7 @@ export async function createEmailTemplate(
   _prevState: IPrevState,
   formData: FormData,
 ) {
+  const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
@@ -36,8 +38,7 @@ export async function createEmailTemplate(
       'ERROR_CREATE_EMAIL_TEMPLATE: Error with connecting to the database!',
     );
     return {
-      errorMessage:
-        'Something went wrong, please try again or contact support.',
+      errorMessage: translation('somethingWentWrong'),
       error: true,
       prevState: formDataObject,
     };
@@ -58,15 +59,14 @@ export async function createEmailTemplate(
       'ERROR_CREATE_EMAIL_TEMPLATE: Error with saving new email template to the database!',
     );
     return {
-      errorMessage:
-        'Cannot create email template! Please try again or contact support!',
+      errorMessage: translation('cannotSaveChanges'),
       error: true,
       prevState: formDataObject,
     };
   }
 
   return {
-    successMessage: 'Email template created successfully',
+    successMessage: translation('savedChanges'),
     success: true,
     prevState: formDataObject,
   };
