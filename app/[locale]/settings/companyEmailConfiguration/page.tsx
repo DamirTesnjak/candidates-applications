@@ -11,7 +11,7 @@ export default async function companyEmailConfigurationPage() {
 
   return (
     <div className={styles.container}>
-      <h3>{translation("companyEmailConfiguration")}</h3>
+      <h3 id="companyEmailConfiguration-title">{translation("companyEmailConfiguration")}</h3>
       <EditForm
         serverAction={createCompanyEmailConfiguration}
         stateModel={initialStateCompanyEmailConfigs}

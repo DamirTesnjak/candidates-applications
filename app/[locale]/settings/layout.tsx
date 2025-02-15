@@ -7,18 +7,22 @@ export default async function SettingsLayout({ children }: { children: ReactNode
   const translation = await getTranslations("settings");
   const tabsList = [
     {
+      id: "companyEmailConfiguration",
       url: `/settings/companyEmailConfiguration`,
       text: translation("companyEmailConfiguration"),
     },
     {
+      id: "setupEmailTemplateMessages",
       url: `/settings/setupEmailTemplateMessages`,
       text: translation("setupEmailTemplateMessages"),
     },
     {
+      id: "overviewEmailTemplateMessages",
       url: `/settings/overviewEmailTemplateMessages`,
       text: translation("overviewEmailTemplateMessages"),
     },
     {
+      id: "mapEmailTemplateMessages",
       url: `/settings/mapTemplateMessages`,
       text: translation("mapEmailTemplateMessages"),
     },

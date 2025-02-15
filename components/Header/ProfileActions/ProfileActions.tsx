@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import { getFile } from '@/utils/getFile';
 import styles from '../header.module.scss';
+import TutorialFeature from '@/components/TutorialFeature/TutorialFeature';
 
 export default function ProfileActions() {
   const translation = useTranslations('header');
@@ -41,6 +42,9 @@ export default function ProfileActions() {
           <Link href={`/register`}>{translation("profileActionsRegister")}</Link>
           <Link href={`/login`}>{translation("profileActionsLogin")}</Link>
         </div>
+      )}
+      {username.length > 0 && (
+        <TutorialFeature />
       )}
     </div>
   );

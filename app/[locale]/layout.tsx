@@ -51,7 +51,7 @@ export default async function LocaleLayout({
   const sidebarLinks = [
     { link: '/candidates', text: 'candidates' },
     { link: '/settings', text: 'settings' },
-    { link: '/about', text: 'about' },
+    { link: '/help', text: 'help' },
   ];
   return (
     <html lang={locale}>

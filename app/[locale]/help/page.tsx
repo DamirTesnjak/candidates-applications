@@ -1,14 +1,11 @@
-import { getTranslations } from 'next-intl/server';
-import {setRequestLocale} from 'next-intl/server';
 import styles from '@/styles/global/globals.module.scss';
+import { getTranslations } from 'next-intl/server';
 
-export default async function Home({ params }: {  params: { locale: string } }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default async function HelpPage() {
+  const translation = await getTranslations("help");
 
-  const translation = await getTranslations("home");
-  return <div className={styles.container}>
-    <h2>{`${translation("welcome")}`}</h2>
+  return (<div className={styles.container}>
+    <h2>{`${translation("help")}`}</h2>
     <article>
       Welcome to the JobApplicants app. With this application you will be able to maintain the list of your employees at your company.
       <br/>
@@ -19,7 +16,8 @@ export default async function Home({ params }: {  params: { locale: string } }) 
       For more information how to use this app go to the Help section.
       <br/>
       <br/>
-      You must login with your company credentials to start using the app. Please login to start TUTORIAL
+      You must login with your company credentials to start using the app.
     </article>
-    </div>
+  </div>
+  );
 }

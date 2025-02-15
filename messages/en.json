@@ -161,6 +161,9 @@
   "sidebar": {
     "candidates":"Candidates",
     "settings": "Settings",
-    "about": "Help"
+    "help": "Help"
+  },
+  "help": {
+    "help": "Help"
   }
 }

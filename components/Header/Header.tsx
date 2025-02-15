@@ -3,6 +3,7 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ProfileActions from '@/components/Header/ProfileActions/ProfileActions';
 import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher';
 import styles from './header.module.scss';
+import TutorialFeature from '@/components/TutorialFeature/TutorialFeature';
 
 export default async function Header() {
   const translation = await getTranslations("header");
