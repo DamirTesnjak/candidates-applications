@@ -14,12 +14,12 @@ export async function middleware(request: NextRequest) {
   const locale = cookieStore.get('NEXT_LOCALE')?.value;
 
   const isPublicPath =
-    path === `/${locale}/login` || path === `/${locale}/register` || path === `/${locale}/verifyemail`;
+    path === `/${locale}/login` || path === `/${locale}/register` || path === `/${locale}/verifyemail` || path === `/`;
 
   const token = cookieStore.get('token')?.value || '';
 
   if (isPublicPath && token.length > 0) {
-    return NextResponse.redirect(new URL('/', request.nextUrl));
+    return NextResponse.redirect(new URL(`/${locale}`, request.nextUrl));
   }
 
   if (!isPublicPath && !token) {
@@ -30,7 +30,6 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    '/',
     '/(en|sl|hr)/',
     '/(en|sl|hr)/candidates',
     '/(en|sl|hr)/createCandidate',

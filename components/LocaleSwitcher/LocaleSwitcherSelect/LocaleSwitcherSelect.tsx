@@ -1,19 +1,18 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import LanguageIcon from '@mui/icons-material/Language';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 import { Locale, usePathname, useRouter } from '@/i18n/routing';
 
 type Props = {
   children: ReactNode;
   defaultValue: string;
-  label: string;
 };
 
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
-  label,
 }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -27,21 +26,26 @@ export default function LocaleSwitcherSelect({
         // @ts-expect-error -- TypeScript will validate that only known `params`
         // are used in combination with a given `pathname`. Since the two will
         // always match for the current route, we can skip runtime checks.
-        pathname, { locale: nextLocale },
+        {pathname, params},
+        { locale: nextLocale },
       );
     });
   }
 
   return (
-    <label>
-      <p>{label}</p>
-      <select
-        defaultValue={defaultValue}
-        disabled={isPending}
-        onChange={onSelectChange}
-      >
-        {children}
-      </select>
-    </label>
+    <div>
+      <span><LanguageIcon style={{ color:"#727cf5"}}/></span>
+      <span>
+        <select
+            style={{ backgroundColor: "#f7f7f7", textTransform: "uppercase", fontWeight: 500, color: "#727cf5" }}
+            defaultValue={defaultValue}
+            disabled={isPending}
+            onChange={onSelectChange}
+          >
+            {children}
+          </select>
+      </span>
+
+    </div>
   );
 }

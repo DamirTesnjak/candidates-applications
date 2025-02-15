@@ -10,7 +10,7 @@
     "candidates": "Kandidati",
     "name": "Ime",
     "phoneNumber": "Telefonski broj",
-    "archived": "",
+    "archived": "Arhiviran",
     "employed": "Zaposlen",
     "hired": "Primljen",
     "rejected": "Odbijen",
@@ -80,7 +80,8 @@
   "deleteProfile": {
     "yesDeleteProfile": "Da! Izbriši profil!",
     "cancel": "Otkaži",
-    "delete": "Izbriši"
+    "delete": "Izbriši",
+    "doYouWantToDeleteThisProfile": "Želite li izbrisati ovaj profil? Akcija se ne može poništiti!"
   },
   "editForm": {
     "name": "Ime",
@@ -154,7 +155,7 @@
     },
   "localeSwitcher": {
     "changeLanguage": "Promjenite jezik",
-    "locale": "{locale, select, en {English} hr{Hrvatski} sl {Sloveščina} ostalo {Ostalo}}"
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"
   },
   "sidebar": {
     "candidates":"Kandidati",

@@ -56,7 +56,7 @@ export default function DeleteProfileButton({
       }}
     >
       <div>
-        Do you want to delete this profile? The action cannot be undone!
+        {translation("doYouWantToDeleteThisProfile")}
       </div>
       <div
         style={{

@@ -80,7 +80,8 @@
   "deleteProfile": {
     "yesDeleteProfile": "Da! Izbriši profil!",
     "cancel": "Prekliči",
-    "delete": "Izbriši"
+    "delete": "Izbriši",
+    "doYouWantToDeleteThisProfile": "Ali želite izbrisati ta profil? Dejanja ni mogoče razveljaviti!"
   },
   "editForm": {
     "name": "Ime",
@@ -154,7 +155,7 @@
     },
   "localeSwitcher": {
     "changeLanguage": "Spremenite jezik",
-    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} ostalo {Ostalo}}"
+    "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"
   },
   "sidebar": {
     "candidates":"Kandidati",
