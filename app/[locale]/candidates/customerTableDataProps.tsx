@@ -5,6 +5,7 @@ import {Link} from '@/i18n/routing';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LaunchIcon from '@mui/icons-material/Launch';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import CircleIcon from '@mui/icons-material/Circle';
 import { getFile } from '@/utils/getFile';
 import Button from '@/UI/Button/Button';
 import { RowButton } from '@/UI/Table/RowButton/RowButton';
@@ -64,6 +65,7 @@ export const candidatesColumnDef = (
       size: 100,
       cell: `${row?.original.name}
             ${row?.original.surname}`,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     curriculumVitae: {
@@ -93,6 +95,7 @@ export const candidatesColumnDef = (
       title: translation("phoneNumber") as unknown as string,
       size: 150,
       cell: row?.original.contact.phoneNumber,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     linkedIn: {
@@ -115,19 +118,22 @@ export const candidatesColumnDef = (
     archived: {
       title: translation("archived") as unknown as string,
       size: 150,
-      cell: row?.original.status.archived ? 'True' : 'False',
+      cell: row?.original.status.archived ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     hired: {
       title: translation("hired") as unknown as string,
       size: 150,
-      cell: row?.original.status.employed ? 'True' : 'False',
+      cell: row?.original.status.employed ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     rejected: {
       title: translation("rejected") as unknown as string,
       size: 150,
-      cell: row?.original.status.rejected ? 'True' : 'False',
+      cell: row?.original.status.rejected ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     button1: {
@@ -182,7 +188,7 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     button4: {
-      title: 'Profile Link',
+      title: translation("profileLink") as unknown as string,
       size: 150,
       cell: row ? (
         <Link href={`/candidateProfile/${row.original.id}`}>

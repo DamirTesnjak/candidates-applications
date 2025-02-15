@@ -16,6 +16,7 @@
     "rejected": "Odbijen",
     "hire": "Zaposli ga",
     "reject": "Odbij",
+    "profileLink": "Link profila",
     "addNewCandidate": "Dodaj novog kandidata",
     "noCandidatesFound": "Nisu pronađeni kandidati!",
     "cannotFindAnyCandidates": "Ne mogu pronaći nijednog kandidata!"
@@ -62,7 +63,7 @@
     "selectEmailTemplate": "Odaberite predložak e-pošte",
     "saveChanges": "Spremi promjene"
   },
-  "e-mailTemplatePage": {
+  "emailTemplatePage": {
     "emailType": "Vrsta e-pošte",
     "noEmailTemplatesFound": "Nisu pronađeni predlošci e-pošte!",
     "cannotFindAnyEmailTemplates": "Greška! Ne mogu pronaći predloške e-pošte!"

@@ -32,6 +32,7 @@ export const emailTemplatesColumnDef = (
       title: translation("emailType") as unknown as string,
       size: 100,
       cell: `${row?.original.emailType}`,
+      enableColumnActions: false,
       enableColumnDragging: false,
     },
     button1: {
