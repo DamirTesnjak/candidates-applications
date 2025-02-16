@@ -59,14 +59,14 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages}>
         <AppRouterCacheProvider options={{ enableCssLayer: false }}>
           <ThemeProvider theme={theme}>
-            <StoreProvider>
-              <div className={styles.container}>
-                <Sidebar sidebarLinks={sidebarLinks} />
-                <Header />
-                {children}
-              </div>
-            </StoreProvider>
-            <div id='modal' />
+              <StoreProvider>
+                <div className={styles.container}>
+                  <Sidebar sidebarLinks={sidebarLinks} />
+                  <Header />
+                    {children}
+                </div>
+              </StoreProvider>
+              <div id='modal' />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </NextIntlClientProvider>

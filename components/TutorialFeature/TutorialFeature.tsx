@@ -1,88 +1,104 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useContext } from 'react';
 import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS, CallBackProps } from 'react-joyride';
-import { usePathname } from '@/i18n/routing';
+import { useRouter, usePathname } from '@/i18n/routing';
 
 export default function TutorialFeature() {
-  const location = usePathname();
-  const [run, setRun] = useState(false);
-  const [stepIndex, setStepIndex] = useState(0);
+  const location = usePathname()
+  const router = useRouter();
   const [steps, setSteps] = useState([]);
-
-  const tourSteps = {
-    "/candidates": [
-      { target: "#sidebar-settings", content: "Welcome to the Home Page!" },
-    ],
-    "/settings": [
-      { target: "#companyEmailConfiguration", content: "This is the About Page1." },
-      { target: ".about-info", content: "Learn more about us here." }
-    ],
-    "/settings/companyEmailConfiguration": [
-      { target: "#companyEmailConfiguration", content: "This is the About Page2." },
-      { target: ".about-info", content: "Learn more about us here." }
-    ],
-    "/settings/setupEmailTemplateMessages": [
-      { target: "#companyEmailConfiguration", content: "This is the About Page3." },
-      { target: ".about-info", content: "Learn more about us here." }
-    ],
-  }
-
-  const handleJoyrideCallback = (data: CallBackProps) => {
-    const { action, index, origin, status, type } = data;
-
-    if (action === ACTIONS.CLOSE && origin === ORIGIN.KEYBOARD) {
-      // do something
-    }
-
-    if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-      // Update state to advance the tour
-      setStepIndex(index + (action === ACTIONS.PREV ? -1 : 1));
-    }
-
-    console.groupCollapsed(type);
-    console.log(data); //eslint-disable-line no-console
-    console.groupEnd();
-  };
-
-  const handleClickStart = () => {
-    setRun(true);
-  };
-
-  console.log('steps', steps);
+  const [run, setRun] = useState(false);
+  const [locations , setLocations] = useState([]);
 
   useEffect(() => {
     const tourSteps = {
       "/candidates": [
         { target: "#sidebar-settings", content: "Welcome to the Home Page!" },
+        { target: "#elementDoesNotExist", content: "" },
       ],
       "/settings": [
         { target: "#companyEmailConfiguration", content: "This is the About Page1." },
-        { target: ".about-info", content: "Learn more about us here." }
+        { target: "#elementDoesNotExist", content: "" },
       ],
       "/settings/companyEmailConfiguration": [
-        { target: "#companyEmailConfiguration", content: "This is the About Page2." },
-        { target: ".about-info", content: "Learn more about us here." }
+        { target: "#form", content: "Form" },
+        { target: "#setupEmailTemplateMessages", content: "This is the About Page3." },
+        { target: "#elementDoesNotExist", content: "" },
       ],
       "/settings/setupEmailTemplateMessages": [
-        { target: "#companyEmailConfiguration", content: "This is the About Page3." },
-        { target: ".about-info", content: "Learn more about us here." }
+        { target: "#textEditorMainToolbar", content: "This is the About Page3." },
+        { target: "#textEditorToolbar", content: "This is the About Page3." },
+        { target: "#editor", content: "This is the About Page3." },
+        { target: "#preview", content: "This is the About Page3." },
+        { target: "#overviewEmailTemplateMessages", content: "This is the About Page3." },
+        { target: "#elementDoesNotExist", content: "" },
+      ],
+      "/settings/overviewEmailTemplateMessages": [
+        { target: "#overviewEmailTemplateMessages", content: "This is the About Page3." },
+        { target: "#mapTemplateMessages", content: "This is the About Page3." },
+        { target: "#elementDoesNotExist", content: "" },
+      ],
+      "/settings/mapTemplateMessages": [
+        { target: "#mapEmailTemplateMessages", content: "This is the About Page3." },
+        { target: "#form", content: "" },
+        { target: "#elementDoesNotExist", content: "" },
       ],
     }
     setSteps(tourSteps[location] || [])
-  }, [location])
+  }, [location, run])
+
+  console.log('location', location);
+
+
+  useEffect(() => {
+    const startTutorialButton = document.getElementById('startTutorial');
+    if (!locations.includes(location) && location !== '/login' && startTutorialButton) {
+      console.log('ieuiuiutieurtieutieutiutieutieutieutieutieutieutieutiuetieut');
+      startTutorialButton.click();
+      setLocations([...locations, location]);
+    }
+  }, [location, locations, steps])
+
+  console.log('run', run);
 
   return (
     <div>
-      <Joyride run={run} steps={steps} continuous
-               showSkipButton
-               showProgress
-               callback={(data) => {
-                 if (data.status === "finished" || data.status === "skipped") {
-                   setRun(false); // Stop the tour after completion
-                 }
-               }} />
-      <button onClick={handleClickStart}>Start</button>
+      <Joyride
+        steps={steps}
+        run={run}
+        continuous
+        scrollToFirstStep
+        showSkipButton
+        callback={(data) => {
+          const { status } = data;
+          const finishedStatuses = ['finished', 'skipped']
+          console.log('data', data)
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/candidates') {
+            router.push("/settings")
+          }
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings') {
+            router.push("/settings/companyEmailConfiguration")
+          }
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings/companyEmailConfiguration') {
+            router.push("/settings/setupEmailTemplateMessages")
+          }
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings/setupEmailTemplateMessages') {
+            router.push("/settings/overviewEmailTemplateMessages")
+          }
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings/overviewEmailTemplateMessages') {
+            router.push("/settings/mapTemplateMessages")
+          }
+          if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings/mapTemplateMessages') {
+            router.push("/candidates")
+            setRun(false);
+          }
+          if (finishedStatuses.includes(status)) {
+            setRun(false);
+          }
+        }}
+      />
+      <button id="startTutorial" onClick={() => setRun(true)}>Start</button>
     </div>
   );
 }

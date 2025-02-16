@@ -103,7 +103,7 @@ export default function EditForm(props: IEditFormProps) {
   };
 
   return (
-    <div>
+    <div id="form">
       <form action={formAction}>
         {id ? <input name='id' type='text' value={id} readOnly hidden /> : null}
         {fieldsToDisplayKeys.map((stateModelKey) => {
