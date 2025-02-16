@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useMemo, useEffect, useContext } from 'react';
-import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS, CallBackProps } from 'react-joyride';
+import { useState, useEffect } from 'react';
+import Joyride, { EVENTS } from 'react-joyride';
 import { useRouter, usePathname } from '@/i18n/routing';
 
 export default function TutorialFeature() {
@@ -48,9 +48,6 @@ export default function TutorialFeature() {
     setSteps(tourSteps[location] || [])
   }, [location, run])
 
-  console.log('location', location);
-
-
   useEffect(() => {
     const startTutorialButton = document.getElementById('startTutorial');
     if (!locations.includes(location) && location !== '/login' && startTutorialButton) {
@@ -58,9 +55,16 @@ export default function TutorialFeature() {
       startTutorialButton.click();
       setLocations([...locations, location]);
     }
-  }, [location, locations, steps])
+  }, [location, locations, steps]);
 
-  console.log('run', run);
+  useEffect(() => {
+      const hasSeenTour = localStorage.getItem('hasSeenTour');
+      if (!hasSeenTour) {
+        setRun(true);
+      } else {
+        setRun(false);
+      }
+    }, []);
 
   return (
     <div>
@@ -91,14 +95,19 @@ export default function TutorialFeature() {
           }
           if (data.type === EVENTS.TARGET_NOT_FOUND && location === '/settings/mapTemplateMessages') {
             router.push("/candidates")
+            localStorage.setItem('hasSeenTour', 'true');
             setRun(false);
           }
           if (finishedStatuses.includes(status)) {
+            localStorage.setItem('hasSeenTour', 'true');
             setRun(false);
           }
         }}
       />
-      <button id="startTutorial" onClick={() => setRun(true)}>Start</button>
+      <button id="startTutorial" onClick={() => {
+        setRun(true)
+        setLocations([])
+      }}>Start</button>
     </div>
   );
 }
