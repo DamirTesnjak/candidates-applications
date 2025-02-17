@@ -20,31 +20,32 @@ export default function ProfileActions() {
   return (
     <div className={styles.profileAuthActions}>
       {username.length > 0 && (
-        <Link href={`/hrUserProfile`}>
-          <div className={styles.profileNameDisplay}>
-            <Image
-              id='profilePicture'
-              src={getFile(profilePicture.file)!}
-              width={25}
-              height={25}
-              alt='Loging button'
-              style={{
-                height: '25px',
-                borderRadius: '100%',
-              }}
-            />
-            <span>{username}</span>
-          </div>
-        </Link>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link href={`/hrUserProfile`}>
+            <div className={styles.profileNameDisplay}>
+              <Image
+                id='profilePicture'
+                src={getFile(profilePicture.file)!}
+                width={25}
+                height={25}
+                alt='Loging button'
+                style={{
+                  height: '25px',
+                  borderRadius: '100%',
+                }}
+              />
+              <span>{username}</span>
+            </div>
+          </Link>
+          <TutorialFeature />
+        </div>
+
       )}
       {username.length === 0 && (
         <div className={styles.profileNameDisplay}>
           <Link href={`/register`}>{translation("profileActionsRegister")}</Link>
           <Link href={`/login`}>{translation("profileActionsLogin")}</Link>
         </div>
-      )}
-      {username.length > 0 && (
-        <TutorialFeature />
       )}
     </div>
   );

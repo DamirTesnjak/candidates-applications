@@ -167,5 +167,21 @@
   },
   "help": {
     "help": "Pomoč"
+  },
+  "tutorial": {
+    "candidates": "Prije nego počnete koristiti ovu aplikaciju. Trebamo vam pokazati kako postaviti važne postavke! Bez toga neke funkcije ove aplikacije neće ispravno raditi. Dopustite nam da posjetimo odjeljak 'POSTAVKE' aplikacije! Možete preskočiti ovaj vodič u bilo kojem trenutku.",
+    "settings": "Nalazimo se u 'POSTAVKAMA'. Kao što vidite imamo kartice za različite odjeljke Postavki. Posjetimo prvu!",
+    "companyEmailConfiguration": "Ovaj obrazac je vrlo važan! Omogućuje vam postavljanje konfiguracije e-pošte za slanje e-pošte kandidatima i zaposlenicima. Proslijedite sve potrebne informacije vašeg davatelja usluga e-pošte. Postavke će biti spremljene u vašoj bazi podataka. Za promjenu konfiguracije, samo ponovno posjetite ovaj odjeljak i ispunite obrazac i spremite promjene. Nova konfiguracija stupa na snagu odmah!",
+    "companyEmailConfiguration2": "Posjetimo sljedeći odjeljak postavki!",
+    "setupEmailTemplateMessages": "Ovdje možemo konfigurirati predloške e-pošte! Zašto ponovno pisati istu e-poštu kada možete jednostavno poslati predložak, ispunjen odgovarajućim informacijama. Za početak, u polju 'IME' dodijelite naziv predloška. Zatim možete odabrati postojeći ili stvoriti novi. Također možete učitati logotip tvrtke koji će kasnije biti uključen u e-poštu koja se šalje. Promjene se mogu spremiti klikom na gumb 'SPREMI PROMJENE', novi predlošci su spremljeni u vašoj bazi podataka!",
+    "setupEmailTemplateMessages2": "Alatna traka koja će vam pomoći da umetnete potrebne HTML oznake u uređivač. Imenovani gumbi umeću specifične konstante u uređivač, npr. [COMPANY_NAME]. Oni će kasnije biti zamijenjeni ispravnim informacijama kada pošaljete e-poštu!",
+    "setupEmailTemplateMessages3": "Ovdje napišite bilo koji predložak e-pošte kao HTML oznaku. Koristite alatnu traku za jednostavno umetanje HTML oznaka.",
+    "setupEmailTemplateMessages4": "Pogledajte pisani predložak koji će biti prikazan u poslanoj e-pošti!",
+    "setupEmailTemplateMessages5": "Posjetimo sljedeći odjeljak postavki!",
+    "overviewEmailTemplateMessages": "Na ovoj stranici možete vidjeti spremljene predloške e-pošte kao podatke u tablici. Ikone radnji u recima tablice omogućuju vam uređivanje postojećih predložaka e-pošte ili njihovo brisanje!",
+    "overviewEmailTemplateMessages2": "Posjetimo sljedeći odjeljak postavki!",
+    "mapTemplateMessages": "Ovdje dodijelite predloške e-pošte odgovarajućim 'AKCIJAMA: arhiviraj, zaposli, odbij'. Nove postavke stupaju na snagu odmah!",
+    "mapTemplateMessages2": "Da vidimo odjeljak KANDIDATI u aplikaciji",
+    "candidates2": "Tablica vam omogućuje da vidite podatke o kandidatima. Klikom na gumbe kao što su 'ARHIVIRAJ', 'ZAPOSLITE', 'ODBIJ' pokrenut će se slanje e-pošte, na temelju mapiranog predloška e-pošte za određenu radnju, definiranu u 'POSTAVKE/PORUKE PREDLOŽKA KARTE'. Klikom na ikonu CV oblaka, možete preuzeti životopis kandidata. Klikom na Linkedin ikonu možete posjetiti njegovu Linkedin stranicu. OVO JE KRAJ TUTORIALA"
   }
 }

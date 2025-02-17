@@ -38,7 +38,6 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const { locale } = await params;
-  console.log('locale', locale);
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -51,7 +50,6 @@ export default async function LocaleLayout({
   const sidebarLinks = [
     { link: '/candidates', text: 'candidates' },
     { link: '/settings', text: 'settings' },
-    { link: '/help', text: 'help' },
   ];
   return (
     <html lang={locale}>
@@ -62,7 +60,7 @@ export default async function LocaleLayout({
               <StoreProvider>
                 <div className={styles.container}>
                   <Sidebar sidebarLinks={sidebarLinks} />
-                  <Header />
+                  <Header/>
                     {children}
                 </div>
               </StoreProvider>

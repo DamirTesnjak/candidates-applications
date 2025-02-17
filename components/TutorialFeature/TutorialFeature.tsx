@@ -3,128 +3,154 @@
 import { useState, useEffect } from 'react';
 import Joyride, { EVENTS } from 'react-joyride';
 import { useRouter, usePathname } from '@/i18n/routing';
+import HelpIcon from '@mui/icons-material/Help';
+import Button from '@/UI/Button/Button';
+import { useTranslations, useLocale } from 'next-intl';
+
+interface ITourSteps {
+  [x: string]: {
+    target: string;
+    content: string;
+  }[];
+}
 
 export default function TutorialFeature() {
+  const locale = useLocale();
+  console.log('locale', locale);
+  const translation = useTranslations('tutorial');
   const location = usePathname();
   const router = useRouter();
-  const [steps, setSteps] = useState([]);
+  const [steps, setSteps] = useState<
+    {
+      target: string;
+      content: string;
+    }[]
+  >([]);
   const [run, setRun] = useState(false);
-  const [locations, setLocations] = useState([]);
+  const [locations, setLocations] = useState<string[]>([]);
+  const [startTutorial, setStartTutorial] = useState(false);
 
   useEffect(() => {
-    const tourSteps = {
+    const tourSteps: ITourSteps = {
       '/candidates': [
         {
           target: '#sidebar-settings',
-          content:
-            "Before you start using this app. We need you to show you how to setup important settings! Without it some functionalities of " +
-            "this app will not be working properly. Lets us visit the 'SETTING' section of an app! You can skip this tutorial at any given time.",
+          content: translation('candidates'),
         },
         {
           target: '#elementDoesNotExist',
-          content: "",
-        }
+          content: '',
+        },
       ],
       '/settings': [
         {
           target: '#companyEmailConfiguration',
-          content: "We are at the 'SETTINGS'. As you can see we have tabs for different sections of Settings. Lets visit the first one!"
+          content: translation('settings'),
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
       '/settings/companyEmailConfiguration': [
-        { target: '#form', content: 'This form is very important! It allows you to setup email configuration for sending emails to candidates' +
-            ' and employees. Pass all required information of your email provider. Settings will be saved in your database.' +
-            'To change configuration, just visit this section again and fill the form and save the changes. New configuration is in effect immediately!',
+        {
+          target: '#form',
+          content: translation('companyEmailConfiguration'),
         },
         {
           target: '#setupEmailTemplateMessages',
-          content: 'Let us visit the next section of settings!',
+          content: translation('companyEmailConfiguration2'),
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
       '/settings/setupEmailTemplateMessages': [
         {
           target: '#textEditorMainToolbar',
-          content: 'Here we can configure an email templates! Why writing the same email over again when you can just send an template, filled with ' +
-            'proper information. To start, in the field "NAME" you assign the name of the template. Next you can select the preexisting one or create a new one.' +
-            ' You may also upload a company logo which will be included later in a sending email. Changes can be saved on click on an button "SAVE CHANGES". ' +
-            'The new templates are saved in your database!',
+          content: translation('setupEmailTemplateMessages'),
         },
-        { target: '#textEditorToolbar', content: 'Toolbar to help you to insert necessary HTML tags in editor. Named buttons insert a specific constants in ' +
-            'editor e.g. [COMPANY_NAME]. They will be later replaced with a proper information when you send an email!' },
-        { target: '#editor', content: 'Here write any email template as HTML markup. Use the toolbar to easy insert HTML tags.' },
-        { target: '#preview', content: 'See the written template as will be displayed in a sent email!' },
+        {
+          target: '#textEditorToolbar',
+          content: translation('setupEmailTemplateMessages2'),
+        },
+        {
+          target: '#editor',
+          content: translation('setupEmailTemplateMessages3'),
+        },
+        {
+          target: '#preview',
+          content: translation('setupEmailTemplateMessages4'),
+        },
         {
           target: '#overviewEmailTemplateMessages',
-          content: 'Let us visit the next section of settings!',
+          content: translation('setupEmailTemplateMessages5'),
         },
-        { target: '#elementDoesNotExist',
-          content: '' ,
-        },
+        { target: '#elementDoesNotExist', content: '' },
       ],
       '/settings/overviewEmailTemplateMessages': [
-        { target: '#tableElement',
-          content: 'On this page you can see the saved email templates as data in table. Action icons in table rows allows you to ' +
-            'edit existing email templates or deleting them!'
+        {
+          target: '#tableElement',
+          content: translation('overviewEmailTemplateMessages'),
         },
         {
           target: '#mapEmailTemplateMessages',
-          content: 'Let us visit the next section of settings!',
+          content: translation('overviewEmailTemplateMessages2'),
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
       '/settings/mapTemplateMessages': [
-        { target: '#form', content: 'Here assign email templates to proper "ACTIONS: archive, hire, reject". New settings are in effect immediately! '},
-        { target: '#sidebar-candidates', content: 'Let us see the CANDIDATES section of the app'
+        {
+          target: '#form',
+          content: translation('mapTemplateMessages'),
+        },
+        {
+          target: '#sidebar-candidates',
+          content: translation('mapTemplateMessages2'),
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
     };
     if (locations.length > 2 && location === '/candidates') {
-      console.log('test45454545454')
       setSteps([
-        { target: '#candidates', content: 'Table allows you to see candidates data. On clicking buttons such as "ARCHIVE", "HIRE", "REJECT" will trigger sending ' +
-            'an email, based on mapped template email for specific action, defined in "SETTINGS/MAP TEMPLATE MESSAGES. By clicking CV cloud icon, you can download ' +
-            'candidates\'s CV. By cliking the Linkedin icon you can visit its Linkedin page. THIS IS THE END OF TUTORIAL'
+        {
+          target: '#candidates',
+          content: translation('candidates2'),
         },
       ]);
     } else {
-      setSteps(tourSteps[location] || [])
+      setSteps(tourSteps[location] || []);
     }
-  }, [location, locations.length, run]);
+  }, [location, locations, translation]);
 
   useEffect(() => {
     // if there is ono data, replace with images
     if (location === '/settings/overviewEmailTemplateMessages') {
-      const tableElement = document.getElementById("tableElement");
+      const tableElement = document.getElementById('tableElement');
 
       if (!tableElement) {
-        const message = document.getElementById("message");
-        message?.remove();
-
+        const message = document.getElementById('message');
+        if (message && message.style) {
+          message.style.display = 'none';
+        }
         const element = document.createElement('div');
         element.setAttribute('id', 'tableElement');
-        element.innerHTML = `<img id="tableElement" src="/templates_en.png" alt="table image"/>`
+        element.innerHTML = `<img id="candidates" src="/templates_${locale}.png" alt="table image"/>`;
 
         const containerElement = document.getElementById('container');
         containerElement?.appendChild(element);
       }
     }
     if (location === '/settings/mapTemplateMessages') {
-      const modalElement = document.getElementById("modal");
-      modalElement?.remove();
+      const modalElement = document.getElementById('modal');
+      if (modalElement && modalElement.style) {
+        modalElement.style.display = 'none';
+      }
     }
     if (location === '/candidates') {
-      const tableElement = document.getElementById("candidates");
+      const tableElement = document.getElementById('candidates');
 
       if (!tableElement) {
-        const message = document.getElementById("message");
+        const message = document.getElementById('message');
         message?.remove();
 
         const element = document.createElement('div');
-        element.setAttribute('id', 'candidates');
-        element.innerHTML = `<img src="/candidates_en.png" alt="table image"/>`
+        element.innerHTML = `<img id="candidates" src="/candidates_${locale}.png" alt="table image"/>`;
 
         const containerElement = document.getElementById('container');
         containerElement?.appendChild(element);
@@ -139,15 +165,15 @@ export default function TutorialFeature() {
       !hasSeenTour &&
       !locations.includes(location) &&
       location !== '/login' &&
-      startTutorialButton
+      startTutorialButton &&
+      startTutorial
     ) {
       startTutorialButton.click();
       setLocations([...locations, location]);
     }
-  }, [location, locations, steps]);
+  }, [location, locations, startTutorial, steps]);
 
-  console.log('locations', locations);
-  console.log('steps', steps);
+  console.log('startTutorial', startTutorial);
 
   return (
     <div>
@@ -160,7 +186,6 @@ export default function TutorialFeature() {
         callback={(data) => {
           const { status } = data;
           const finishedStatuses = ['finished', 'skipped'];
-          console.log('status', status);
           if (
             locations.length === 1 &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
@@ -191,7 +216,20 @@ export default function TutorialFeature() {
             location === '/settings/overviewEmailTemplateMessages'
           ) {
             const newLocations = [...locations];
-            newLocations.shift()
+            newLocations.shift();
+
+            const message = document.getElementById('message');
+            if (message && message.style) {
+              message.style.display = 'block';
+            }
+
+            const image = document.querySelector(
+              'img[id="tableElement"]',
+            ) as HTMLImageElement;
+            if (image && image.style) {
+              image.style.display = 'none';
+            }
+
             setLocations(newLocations);
             router.push('/settings/mapTemplateMessages');
           }
@@ -199,22 +237,46 @@ export default function TutorialFeature() {
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/mapTemplateMessages'
           ) {
+            const modalElement = document.getElementById('modal');
+            if (modalElement && modalElement.style) {
+              modalElement.style.display = 'block';
+            }
             router.push('/candidates');
           }
+          if (finishedStatuses.includes(status) &&
+            locations.length > 2 &&
+            location === '/candidates'
+          ) {
+            setStartTutorial(false);
+          }
           if (finishedStatuses.includes(status)) {
+            const message = document.getElementById('message');
+            if (message && message.style) {
+              message.style.display = 'block';
+            }
+
+            const image = document.querySelector(
+              'img[id="candidates"]',
+            ) as HTMLImageElement;
+            if (image && image.style) {
+              image.style.display = 'none';
+            }
             setRun(false);
           }
         }}
       />
-      <button
+      <Button
         id='startTutorial'
+        text='Tutorial'
+        type='button'
+        className='primaryTextButton'
+        startIcon={<HelpIcon />}
         onClick={() => {
           setRun(true);
+          setStartTutorial(true);
           setLocations([]);
         }}
-      >
-        Start
-      </button>
+      />
     </div>
   );
 }

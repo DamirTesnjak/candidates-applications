@@ -36,6 +36,19 @@
   }
 }
 
+.primaryTextButton {
+  @extend .button;
+  background-color: unset;
+  color: globals.$primary-color;
+  &:hover {
+    background-color: globals.$button-text-background-color-hover;
+  }
+
+  span {
+    @extend .MuiButton-icon;
+  }
+}
+
 .submitButton {
   @extend .button;
   background-color: globals.$submit-button-background-color;
