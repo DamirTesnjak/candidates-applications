@@ -14,7 +14,7 @@ export default async function CandidatesLayout({
   const translation = await getTranslations("candidates");
 
   return (
-    <div className={styles.container}>
+    <div id="container" className={styles.container}>
       <h3>{translation("candidates")}</h3>
       <Link href={`/candidates/createCandidate`}>
         <Button
@@ -24,7 +24,7 @@ export default async function CandidatesLayout({
           type='button'
         />
       </Link>
-      <div>{children}</div>
+      <div id="candidates">{children}</div>
     </div>
   );
 }

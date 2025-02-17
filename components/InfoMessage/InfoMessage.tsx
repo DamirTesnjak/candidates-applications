@@ -3,7 +3,7 @@ import styles from './infoMessage.module.scss';
 
 export default function InfoMessage({ text }: { text: string }) {
   return (
-    <div className={styles.infoMessage}>
+    <div id="message" className={styles.infoMessage}>
       <div className={styles.messageIcon}>
         <InfoOutlinedIcon />
       </div>

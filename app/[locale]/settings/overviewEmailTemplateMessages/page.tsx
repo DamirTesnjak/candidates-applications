@@ -3,8 +3,6 @@ import { getEmailTemplates } from '@/app/_actions/getEmailTemplates';
 import InfoMessage from '@/components/InfoMessage/InfoMessage';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import TableComponent from '@/components/TableComponent';
-import { PAGES } from '@/constants/constants';
-import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '@/styles/global/globals.module.scss';
 
 export default async function overviewEmailTemplateMessages() {
@@ -20,8 +18,8 @@ export default async function overviewEmailTemplateMessages() {
     const columnsToDisplay = ['emailType', 'button1', 'button2'];
 
     return (
-      <div className={styles.container}>
-        <h3>Email Templates</h3>
+      <div id="container" className={styles.container}>
+        <h3>{translation("emailTemplates")}</h3>
         <TableComponent
           tableData={parsedResults.emailTemplates}
           columnsToDisplay={columnsToDisplay}
@@ -36,7 +34,7 @@ export default async function overviewEmailTemplateMessages() {
     (!parsedResults.emailTemplates || parsedResults.emailTemplates.length === 0)
   ) {
     return (
-      <div className={styles.container}>
+      <div id="container" className={styles.container}>
         <InfoMessage text={translation("noEmailTemplatesFound")} />
       </div>
     );
@@ -44,7 +42,7 @@ export default async function overviewEmailTemplateMessages() {
 
   if (!results) {
     return (
-      <div className={styles.container}>
+      <div id="container" className={styles.container}>
         <ErrorMessage text={translation("cannotFindAnyEmailTemplates")} />
       </div>
     );

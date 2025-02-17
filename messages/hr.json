@@ -15,6 +15,7 @@
     "hired": "Primljen",
     "rejected": "Odbijen",
     "hire": "Zaposli ga",
+    "archive": "Arhiviraj",
     "reject": "Odbij",
     "profileLink": "Link profila",
     "addNewCandidate": "Dodaj novog kandidata",
@@ -64,6 +65,7 @@
     "saveChanges": "Spremi promjene"
   },
   "emailTemplatePage": {
+    "emailTemplates": "Predlošci e-pošte",
     "emailType": "Vrsta e-pošte",
     "noEmailTemplatesFound": "Nisu pronađeni predlošci e-pošte!",
     "cannotFindAnyEmailTemplates": "Greška! Ne mogu pronaći predloške e-pošte!"
@@ -161,6 +163,9 @@
   "sidebar": {
     "candidates":"Kandidati",
     "settings": "Postavke",
-    "about": "Pomoč"
+    "help": "Pomoč"
+  },
+  "help": {
+    "help": "Pomoč"
   }
 }

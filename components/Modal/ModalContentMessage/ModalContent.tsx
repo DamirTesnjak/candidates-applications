@@ -1,4 +1,6 @@
-import { getTranslations } from 'next-intl/server';
+'use client'
+
+import { useTranslations } from 'next-intl';
 import { Dispatch, SetStateAction } from 'react';
 import Button from '@/UI/Button/Button';
 import { IShowModal } from '@/types/ShowModalType';
@@ -9,11 +11,11 @@ export interface IModalContentMessageProps {
   setShowModal: Dispatch<SetStateAction<IShowModal>>;
 }
 
-export default async function ModalContentMessage({
+export default function ModalContentMessage({
   response,
   setShowModal,
 }: IModalContentMessageProps) {
-  const translation = await getTranslations('modal');
+  const translation = useTranslations('modal');
   return (
     <div
       style={{

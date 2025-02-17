@@ -28,7 +28,7 @@ export default function TutorialFeature() {
       '/settings': [
         {
           target: '#companyEmailConfiguration',
-          content: "We are  at the 'SETTINGS'. As you can see we have tabs for different sections of Settings. Lets visit the first one!"
+          content: "We are at the 'SETTINGS'. As you can see we have tabs for different sections of Settings. Lets visit the first one!"
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
@@ -64,44 +64,90 @@ export default function TutorialFeature() {
         },
       ],
       '/settings/overviewEmailTemplateMessages': [
-        { target: '#overviewEmailTemplateMessages',
+        { target: '#tableElement',
           content: 'On this page you can see the saved email templates as data in table. Action icons in table rows allows you to ' +
-            'edit existing email templates or deleting them!',
+            'edit existing email templates or deleting them!'
+        },
+        {
+          target: '#mapEmailTemplateMessages',
+          content: 'Let us visit the next section of settings!',
         },
         { target: '#elementDoesNotExist', content: '' },
       ],
       '/settings/mapTemplateMessages': [
         { target: '#form', content: 'Here assign email templates to proper "ACTIONS: archive, hire, reject". New settings are in effect immediately! '},
-        { target: '#sidebar-help', content: 'Now you know how to setup the settings. Information of other functionalities can be find under ' +
-            'the HELP section, listed in sidebar!' },
+        { target: '#sidebar-candidates', content: 'Let us see the CANDIDATES section of the app'
+        },
+        { target: '#elementDoesNotExist', content: '' },
       ],
     };
-    setSteps(tourSteps[location] || []);
-  }, [location, run]);
+    if (locations.length > 2 && location === '/candidates') {
+      console.log('test45454545454')
+      setSteps([
+        { target: '#candidates', content: 'Table allows you to see candidates data. On clicking buttons such as "ARCHIVE", "HIRE", "REJECT" will trigger sending ' +
+            'an email, based on mapped template email for specific action, defined in "SETTINGS/MAP TEMPLATE MESSAGES. By clicking CV cloud icon, you can download ' +
+            'candidates\'s CV. By cliking the Linkedin icon you can visit its Linkedin page. THIS IS THE END OF TUTORIAL'
+        },
+      ]);
+    } else {
+      setSteps(tourSteps[location] || [])
+    }
+  }, [location, locations.length, run]);
 
   useEffect(() => {
+    // if there is ono data, replace with images
+    if (location === '/settings/overviewEmailTemplateMessages') {
+      const tableElement = document.getElementById("tableElement");
+
+      if (!tableElement) {
+        const message = document.getElementById("message");
+        message?.remove();
+
+        const element = document.createElement('div');
+        element.setAttribute('id', 'tableElement');
+        element.innerHTML = `<img id="tableElement" src="/templates_en.png" alt="table image"/>`
+
+        const containerElement = document.getElementById('container');
+        containerElement?.appendChild(element);
+      }
+    }
+    if (location === '/settings/mapTemplateMessages') {
+      const modalElement = document.getElementById("modal");
+      modalElement?.remove();
+    }
+    if (location === '/candidates') {
+      const tableElement = document.getElementById("candidates");
+
+      if (!tableElement) {
+        const message = document.getElementById("message");
+        message?.remove();
+
+        const element = document.createElement('div');
+        element.setAttribute('id', 'candidates');
+        element.innerHTML = `<img src="/candidates_en.png" alt="table image"/>`
+
+        const containerElement = document.getElementById('container');
+        containerElement?.appendChild(element);
+      }
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const hasSeenTour = localStorage.getItem('hasSeenTour');
     const startTutorialButton = document.getElementById('startTutorial');
     if (
+      !hasSeenTour &&
       !locations.includes(location) &&
       location !== '/login' &&
       startTutorialButton
     ) {
-      console.log(
-        'ieuiuiutieurtieutieutiutieutieutieutieutieutieutieutiuetieut',
-      );
       startTutorialButton.click();
       setLocations([...locations, location]);
     }
   }, [location, locations, steps]);
 
-  useEffect(() => {
-    const hasSeenTour = localStorage.getItem('hasSeenTour');
-    if (!hasSeenTour) {
-      setRun(true);
-    } else {
-      setRun(false);
-    }
-  }, []);
+  console.log('locations', locations);
+  console.log('steps', steps);
 
   return (
     <div>
@@ -114,8 +160,9 @@ export default function TutorialFeature() {
         callback={(data) => {
           const { status } = data;
           const finishedStatuses = ['finished', 'skipped'];
-          console.log('data', data);
+          console.log('status', status);
           if (
+            locations.length === 1 &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/candidates'
           ) {
@@ -143,10 +190,18 @@ export default function TutorialFeature() {
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/overviewEmailTemplateMessages'
           ) {
+            const newLocations = [...locations];
+            newLocations.shift()
+            setLocations(newLocations);
             router.push('/settings/mapTemplateMessages');
           }
+          if (
+            data.type === EVENTS.TARGET_NOT_FOUND &&
+            location === '/settings/mapTemplateMessages'
+          ) {
+            router.push('/candidates');
+          }
           if (finishedStatuses.includes(status)) {
-            localStorage.setItem('hasSeenTour', 'true');
             setRun(false);
           }
         }}

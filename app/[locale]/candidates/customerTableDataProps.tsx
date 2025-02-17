@@ -143,7 +143,7 @@ export const candidatesColumnDef = (
         <RowButton
           clientId={row.original.id}
           name='emailTemplateType'
-          text={translation("archived") as unknown as string}
+          text={translation("archive") as unknown as string}
           value='archive'
           icon='archive'
         />

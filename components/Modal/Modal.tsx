@@ -31,9 +31,9 @@ const Modal = ({ content, type }: IModalProps) => {
 
   useEffect(() => {
     const modalRoot = document.getElementById('modal')!;
-    modalRoot.appendChild(elRef.current!);
+    modalRoot?.appendChild(elRef.current!);
     const removeChild = () => {
-      modalRoot.removeChild(elRef.current!);
+      modalRoot?.removeChild(elRef.current!);
     };
     return removeChild;
   }, []);

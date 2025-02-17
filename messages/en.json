@@ -14,6 +14,7 @@
     "employed": "Employed",
     "hired": "Hired",
     "rejected": "Rejected",
+    "archive": "Archive",
     "hire": "Hire",
     "reject": "Reject",
     "profileLink": "Profile link",
@@ -64,6 +65,7 @@
     "saveChanges": "Save changes"
   },
   "emailTemplatePage": {
+    "emailTemplates": "Email templates",
     "emailType": "Email type",
     "noEmailTemplatesFound": "No email templates found!",
     "cannotFindAnyEmailTemplates": "Error! Cannot find any email templates!"

@@ -14,6 +14,7 @@
     "employed": "Zaposlen",
     "hired": "Sprejet",
     "rejected": "Zavrnjeno",
+    "archive": "Arhiviraj",
     "hire": "Sprejemi",
     "reject": "Zavrni",
     "profileLink": "Link profila",
@@ -64,6 +65,7 @@
     "saveChanges": "Shrani spremembe"
   },
   "emailTemplatePage": {
+    "emailTemplates": "E-poštne predloge",
     "emailType": "Vrsta e-pošte",
     "noEmailTemplatesFound": "Ni e-poštnih predlog!",
     "cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti nobene e-poštne predloge!"
@@ -88,7 +90,7 @@
     "name": "Ime",
     "surname": "Priimek",
     "address": "Naslov",
-    "city": "mesto",
+    "city": "Mesto",
     "zipCode": "Poštna številka",
     "country": "Država",
     "phoneNumber": "Telefonska številka",
@@ -161,6 +163,9 @@
   "sidebar": {
     "candidates":"Kandidati",
     "settings": "Nastavitve",
-    "about": "Pomoč"
+    "help": "Pomoč"
+  },
+  "help": {
+    "help": "Pomoč"
   }
 }

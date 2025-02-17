@@ -25,6 +25,8 @@ export async function getEmailTemplates() {
 
   const emailTemplates: IEmailTemplateSchema[] = await Model.find({});
 
+  console.log('emailTemplates', emailTemplates);
+
   if (!emailTemplates) {
     return JSON.stringify({
       errorMessage: translation("cannotFindAnyEmailTemplates"),
