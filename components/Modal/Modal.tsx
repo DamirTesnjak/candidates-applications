@@ -3,6 +3,7 @@
 import { useEffect, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './modal.module.scss';
+import { useTranslations } from 'next-intl';
 
 export interface IModalProps {
   type: string;
@@ -11,18 +12,19 @@ export interface IModalProps {
 
 export interface ITitlePerType {
   [x: string]: string;
-  warning: 'Warning!';
-  error: 'Error!';
-  success: 'Success!';
+  warning: string;
+  error: string;
+  success: string;
 }
 
 const Modal = ({ content, type }: IModalProps) => {
+  const translation = useTranslations('modal');
   const elRef = useRef<HTMLElement | null>(null);
 
   const titlePerType: ITitlePerType = {
-    warning: 'Warning!',
-    error: 'Error!',
-    success: 'Success!',
+    warning: translation('warning'),
+    error: translation('error'),
+    success: translation('success'),
   };
 
   if (!elRef.current) {

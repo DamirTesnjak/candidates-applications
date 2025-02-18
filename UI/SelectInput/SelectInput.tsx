@@ -10,7 +10,11 @@ import styles from './selectInput.module.scss';
 interface SelectInputProps {
   label?: string;
   onSelect?: (value: SelectChangeEvent<any>) => void;
-  listDropdown: { id: string; value: string }[];
+  listDropdown: {
+    [x:string]: string | string[];
+    id: string;
+    text: string;
+    value: string }[];
   placeholder?: string;
   name?: string;
 }
@@ -34,8 +38,22 @@ export default function SelectInput({
   name,
 }: SelectInputProps) {
   const [selectedValue, setSelectValue] = React.useState<string[]>([]);
+  const [displayValue, setDisplayValue] = React.useState<string>('');
+
+  const findIndexByKeyValue = (
+    arr: SelectInputProps['listDropdown'],
+    key: string,
+    value: string | string[],
+  ) => {
+    return arr.reduce((index, obj, i) => (obj[key] === value ? i : index), -1);
+  };
 
   const handleChange = (event: SelectChangeEvent<typeof selectedValue>) => {
+    const index = findIndexByKeyValue(
+      listDropdown,
+      'value',
+      event.target.value,
+    );
     const {
       target: { value },
     } = event;
@@ -43,6 +61,7 @@ export default function SelectInput({
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    setDisplayValue(listDropdown[index].text);
 
     if (onSelect) {
       onSelect(event);
@@ -65,7 +84,7 @@ export default function SelectInput({
               return <em>{placeholder}</em>;
             }
 
-            return selected.join(', ');
+            return displayValue;
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
@@ -79,7 +98,7 @@ export default function SelectInput({
               key={`${item.id}${name}${key}`}
               value={item.value}
             >
-              {item.value}
+              {item.text}
             </MenuItem>
           ))}
         </Select>

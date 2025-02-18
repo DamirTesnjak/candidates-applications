@@ -37,6 +37,7 @@ export async function mapEmailTemplates(formData: FormData) {
       mappedEmailTemplateSetting.archive = formDataObject.archive as string;
       mappedEmailTemplateSetting.hire = formDataObject.hire as string;
       mappedEmailTemplateSetting.reject = formDataObject.reject as string;
+      mappedEmailTemplateSetting.fire = formDataObject.fire as string;
     }
     const savedMappedEmailSettings = await mappedEmailTemplateSetting?.save();
     if (!savedMappedEmailSettings) {
@@ -58,6 +59,7 @@ export async function mapEmailTemplates(formData: FormData) {
     archive: formDataObject.archive,
     hire: formDataObject.hire,
     reject: formDataObject.reject,
+    fire: formDataObject.fire,
   });
 
   const savedMappedEmailSettings = await newMappedEmailSettings.save();
