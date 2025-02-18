@@ -4,6 +4,7 @@ import { ReactNode, useActionState, useEffect, useState } from 'react';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import WorkIcon from '@mui/icons-material/Work';
 import CancelIcon from '@mui/icons-material/Cancel';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { sendEmail } from '@/app/_actions/sendEmail';
 import Button from '@/UI/Button/Button';
 import Modal from '@/components/Modal/Modal';
@@ -20,6 +21,7 @@ const buttonIcons: IButtonIcons = {
   archive: <ArchiveIcon />,
   hire: <WorkIcon />,
   reject: <CancelIcon />,
+  fire: <LogoutIcon />
 };
 
 export function RowButton({ clientId, name, text, value, icon }: IRowButton) {

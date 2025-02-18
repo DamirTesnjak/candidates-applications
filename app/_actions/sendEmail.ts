@@ -11,6 +11,8 @@ import { ICompanyEmailSettingsSchema } from '@/utils/dbConfig/models/companyEmai
 import { IEmailTemplateSchema } from '@/utils/dbConfig/models/emailTemplateModel';
 import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES } from '@/constants/constants';
+import { getDataFromToken } from '@/utils/getDataFromToken';
+import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
 
 export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   const translation = await getTranslations('serverAction');
@@ -112,6 +114,26 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     };
   }
 
+  const tokenData = await getDataFromToken();
+
+  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+
+  if (!Model) {
+    console.log('ERROR_GET_SEND_EMAIL_GET_HR_PROFILE: Error with connecting to the database!');
+    return {
+      errorMessage: translation("somethingWentWrong"),
+      error: true,
+    };
+  }
+
+  const user = await Model?.findOne({ id: tokenData.id }).select('-password');
+  if (!user) {
+    return {
+      errorMessage: translation("userNotFound"),
+      error: true,
+    };
+  }
+
   const transport = nodemailer.createTransport({
     host: companyEmailConfiguration[0].emailHost,
     port: companyEmailConfiguration[0].port,
@@ -121,11 +143,16 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     },
   });
 
+  const emailText = emailTemplate[0].emailText
+    .replaceAll('[CANDIDATE_NAME]', `${candidate.name} ${candidate.surname}`)
+    .replaceAll('[COMPANY_NAME]', companyEmailConfiguration[0].companyName)
+    .replaceAll('[YOUR_NAME]', `${user.name} ${user.surname}`);
+
   const mailOptions = {
     from: companyEmailConfiguration[0].email,
     to: candidate.contact.email,
-    subject: 'Job application',
-    html: emailTemplate[0].emailText,
+    subject: translation('jobStatus'),
+    html: emailText,
   };
 
   await transport.sendMail(mailOptions);

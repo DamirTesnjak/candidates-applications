@@ -25,8 +25,6 @@ export const enum DATABASES_ENUM {
   candidates = 'candidates',
   hrUsers = 'hrUsers',
   emailTemplates = 'emailTemplates',
-  companyEmailConfigs = 'companyEmailConfigs',
-  mappedEmailTemplates = 'mappedEmailTemplates',
 }
 
 export const EMAIL_TYPE = {
@@ -57,10 +55,7 @@ export interface IEditTextButton {
   subscript: IHTMLProps;
   targetPersonFullName: IHTMLProps;
   hrUserFullNameTemplate: IHTMLProps;
-  jobTitleTemplate: IHTMLProps;
   companyNameTemplate: IHTMLProps;
-  currentYearTemplate: IHTMLProps;
-  startDateTemplate: IHTMLProps;
 }
 
 export const EDIT_TEXT_BUTTON: IEditTextButton = {
@@ -74,17 +69,12 @@ export const EDIT_TEXT_BUTTON: IEditTextButton = {
   subscript: { type: 'subscript', startTag: '<sub>', endTag: '</sub>' },
   targetPersonFullName: {
     type: 'targetPersonFullName',
-    startTag: '[TARGET_PERSON_FULL_NAME]',
+    startTag: '[CANDIDATE_NAME]',
     endTag: '',
   },
   hrUserFullNameTemplate: {
     type: 'hrUserFullNameTemplate',
-    startTag: '[HR_USER_FULL_NAME]',
-    endTag: '',
-  },
-  jobTitleTemplate: {
-    type: 'jobTitleTemplate',
-    startTag: '[JOB_TITLE]',
+    startTag: '[YOUR_NAME]',
     endTag: '',
   },
   companyNameTemplate: {
@@ -92,25 +82,5 @@ export const EDIT_TEXT_BUTTON: IEditTextButton = {
     startTag: '[COMPANY_NAME]',
     endTag: '',
   },
-  currentYearTemplate: {
-    type: 'currentYearTemplate',
-    startTag: '[CURRENT_YEAR]',
-    endTag: '',
-  },
-  startDateTemplate: {
-    type: 'startDateTemplate',
-    startTag: '[JOB_START_DATE]',
-    endTag: '',
-  },
 };
 
-export interface IPages {
-  [x: string]: string;
-  customersPage: 'customerPage',
-  emailTemplatePage: 'emailTemplatePage',
-}
-
-export const PAGES: IPages = {
-  customersPage: 'customerPage',
-  emailTemplatePage: 'emailTemplatePage',
-};

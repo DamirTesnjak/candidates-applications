@@ -12,11 +12,12 @@
     "phoneNumber": "Telefonska številka",
     "archived": "Arhiviran",
     "employed": "Zaposlen",
-    "hired": "Sprejet",
+    "hired": "Zaposlen",
     "rejected": "Zavrnjeno",
     "archive": "Pošlji v arhiv",
     "hire": "Zaposli",
     "reject": "Zavrni",
+    "fire": "Odpusti",
     "profileLink": "Link profila",
     "addNewCandidate": "Dodaj novega kandidata",
     "noCandidatesFound": "Ni kandidatov!",
@@ -61,6 +62,11 @@
     "editEmailMessageTemplate": "Uredi predlogo e-poštnega sporočila"
   },
   "mapTemplateMessages": {
+    "archive": "Pošlji v arhiv",
+    "hire": "Zaposli",
+    "reject": "Zavrni",
+    "fire": "Odpusti",
+    "mapEmailTemplateMessages": "Preslikaj sporočila poštnih predlog",
     "selectEmailTemplate": "Izberite e-poštno predlogo",
     "saveChanges": "Shrani spremembe"
   },
@@ -118,7 +124,10 @@
     "logout": "Odjava"
   },
   "modal": {
-    "ok": "V redu!"
+    "ok": "V redu!",
+    "success": "Uspešno zaključeno",
+    "warning": "Opozorilo!",
+    "error": "Napaka!"
   },
   "textEditor": {
     "emailTemplateName": "Ime",
@@ -126,12 +135,12 @@
     "companyLogo": "Naloži logotip podjetja",
     "saveChange": "Shrani spremembe",
     "candidateName": "Ime kandidata",
-    "candidateJobPosition": "Delovno mesto kandidata",
     "yourName": "Vaše ime",
-    "yourJobTitle": "Naziv vašega delovnega mesta",
     "companyName": "Ime podjetja",
-    "currentDate": "Trenutni datum",
-    "startDate": "Začetni datum"
+    "hire": "Zaposli",
+    "reject": "Zavrni",
+    "fire": "Odpusti",
+    "emailTemplate": "E-poštna predloga"
   },
   "serverAction": {
     "somethingWentWrong": "Nekaj je šlo narobe, poskusite znova ali kontaktirajte podporo.",
@@ -148,14 +157,15 @@
     "passwordDoesNotMatch": "Geslo se ne ujema! Poskusite znova ali kontaktirajte podporo.",
     "newMappedEmailSettingsCreatedSuccessfully": "Uspešno ustvarjene nove preslikane e-poštne nastavitve",
     "companyEmailConfigurationNotFound": "Konfiguracije e-pošte podjetja ni bilo mogoče najti! E-pošte ni mogoče poslati!",
-    "emailSentToTheCandidate": "E-poštno sporočilo je bilo poslano kandidatu!",
+    "emailSentToTheCandidate": "E-poštno sporočilo je bilo poslano!",
     "savedChanges": "Shranjene spremembe",
     "candidateAlreadyExists": "Kandidat že obstaja",
     "userAlreadyExists": "Uporabnik že obstaja",
     "cannotCreateUser": "Uporabnika ni mogoče ustvariti! Poskusite znova ali kontaktirajte podporo!",
     "userCreated": "Uporabnik je bil uspešno ustvarjen",
-    "cannotSendAnEmailToYou": "Ne morem vam poslati e-pošte! Registracija ni uspela! Poskusite znova ali se obrnite na podporo."
-    },
+    "cannotSendAnEmailToYou": "Ne morem vam poslati e-pošte! Registracija ni uspela! Poskusite znova ali se obrnite na podporo.",
+    "jobStatus": "Prijava na delovno mesto/status zaposlenega"
+  },
   "localeSwitcher": {
     "changeLanguage": "Spremenite jezik",
     "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"

@@ -64,6 +64,7 @@ export default function MappedEmailsConfigurationPage() {
   const selectDropdownEmailList =
     emailTemplates?.map((emailTemplate) => ({
       id: emailTemplate.emailType,
+      text: emailTemplate.emailType,
       value: emailTemplate.emailType,
     })) || [];
 
@@ -76,7 +77,7 @@ export default function MappedEmailsConfigurationPage() {
 
   return (
     <div className={styles.container}>
-      <h3>Map email template messages</h3>
+      <h3>{translation('mapEmailTemplateMessages')}</h3>
       <form
         id="form"
         onSubmit={async (e) => {
@@ -86,22 +87,28 @@ export default function MappedEmailsConfigurationPage() {
         }}
       >
         <SelectInput
-          label='Archive'
+          label={translation('archive')}
           listDropdown={selectDropdownEmailList}
           placeholder={translation("selectEmailTemplate")}
           name='archive'
         />
         <SelectInput
-          label='Hire'
+          label={translation('hire')}
           listDropdown={selectDropdownEmailList}
           placeholder={translation("selectEmailTemplate")}
           name='hire'
         />
         <SelectInput
-          label='Reject'
+          label={translation('reject')}
           listDropdown={selectDropdownEmailList}
           placeholder={translation("selectEmailTemplate")}
           name='reject'
+        />
+        <SelectInput
+          label={translation('fire')}
+          listDropdown={selectDropdownEmailList}
+          placeholder={translation("selectEmailTemplate")}
+          name='fire'
         />
         <Button className='submitButton' type='submit' text={translation("saveChanges")} />
       </form>

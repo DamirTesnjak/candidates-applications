@@ -5,6 +5,7 @@ export interface IMappedEmailTemplates {
   archive: string;
   hire: string;
   reject: string;
+  fire: string;
 }
 
 const { Schema } = mongoose;
@@ -13,6 +14,7 @@ const mappedEmailTemplates = new Schema<IMappedEmailTemplates>({
   archive: String,
   hire: String,
   reject: String,
+  fire: String,
 });
 
 export default mappedEmailTemplates;

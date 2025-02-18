@@ -12,11 +12,12 @@
     "phoneNumber": "Telefonski broj",
     "archived": "Arhiviran",
     "employed": "Zaposlen",
-    "hired": "Primljen",
+    "hired": "Zaposlen",
     "rejected": "Odbijen",
     "hire": "Zaposli",
     "archive": "Pošalji v arhiv",
     "reject": "Odbij",
+    "fire": "Odpusti",
     "profileLink": "Link profila",
     "addNewCandidate": "Dodaj novog kandidata",
     "noCandidatesFound": "Nisu pronađeni kandidati!",
@@ -61,6 +62,11 @@
     "editEmailMessageTemplate": "Uredi predložak poruke e-pošte"
   },
   "mapTemplateMessages": {
+    "hire": "Zaposli",
+    "archive": "Pošalji v arhiv",
+    "reject": "Odbij",
+    "fire": "Odpusti",
+    "mapEmailTemplateMessages": "Mapiraj poruke predloška pošte",
     "selectEmailTemplate": "Odaberite predložak e-pošte",
     "saveChanges": "Spremi promjene"
   },
@@ -96,7 +102,7 @@
     "phoneNumber": "Telefonski broj",
     "linkedIn": "Linkedin",
     "archived": "Arhiviran",
-    "employed": "Zaposle",
+    "employed": "Zaposlen",
     "rejected": "Odbijen",
     "emailHost": "Gostitelj e-pošte (Host)",
     "port": "Vrata (port)",
@@ -118,20 +124,23 @@
     "logout": "Odjava"
   },
   "modal": {
-    "ok": "u redu!"
+    "ok": "u redu!",
+    "success": "Uspješno zaključeno",
+    "warning": "Opuzorenje!",
+    "error": "Greška!"
   },
   "textEditor": {
     "emailTemplateName": "Ime",
     "selectEmailTemplate": "Odaberite predložak e-pošte",
-    "companyLogo": "Naloži logotip tvrtke",
+    "companyLogo": "Učitaj logotip tvrtke",
     "saveChange": "Spremi promjene",
     "candidateName": "Ime kandidata",
-    "candidateJobPosition": "Radno mjesto kandidata",
     "yourName": "Vaše ime",
-    "yourJobTitle": "Vaš posao",
     "companyName": "Ime tvrtke",
-    "currentDate": "Trenutni datum",
-    "startDate": "Datum početka"
+    "hire": "Zaposli",
+    "reject": "Odbij",
+    "fire": "Odpusti",
+    "emailTemplate": "Predložak e-pošte"
   },
   "serverAction": {
     "somethingWentWrong": "Nešto je pošlo po zlu, pokušajte ponovo ili kontaktirajte podršku.",
@@ -148,14 +157,16 @@
     "passwordDoesNotMatch": "Lozinka se ne podudara! Pokušajte ponovo ili kontaktirajte podršku.",
     "newMappedEmailSettingsCreatedSuccessfully": "Nove mapirane postavke e-pošte uspješno su stvorene",
     "companyEmailConfigurationNotFound": "Konfiguracija e-pošte tvrtke nije pronađena! Ne mogu poslati e-poštu!",
-    "emailSentToTheCandidate": "E-poruka poslana kandidatu!",
+    "emailSentToTheCandidate": "E-poruka poslana!",
     "savedChanges": "Spremljene promjene",
     "candidateAlreadyExists": "Kandidat već postoji",
     "userAlreadyExists": "Korisnik već postoji",
     "cannotCreateUser": "Ne mogu stvoriti korisnika! Pokušajte ponovo ili kontaktirajte podršku!",
     "userCreated": "Korisnik je uspješno kreiran",
-    "cannotSendAnEmailToYou": "Ne mogu vam poslati e-poštu! Registracija nije uspjela! Pokušajte ponovo ili kontaktirajte podršku."
-    },
+    "cannotSendAnEmailToYou": "Ne mogu vam poslati e-poštu! Registracija nije uspjela! Pokušajte ponovo ili kontaktirajte podršku.",
+    "jobStatus": "Prijava na radno mijesto/status zaposlenega"
+
+  },
   "localeSwitcher": {
     "changeLanguage": "Promjenite jezik",
     "locale": "{locale, select, en {English} hr {Hrvatski} sl {Sloveščina} other {Ostalo}}"
