@@ -24,7 +24,7 @@ export default async function CandidatesLayout({
           type='button'
         />
       </Link>
-      <div id="candidates">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }

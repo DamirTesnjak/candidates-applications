@@ -71,5 +71,7 @@ export default function Table({
     },
   });
 
-  return <MaterialReactTable table={table} />;
+  return (<div id="table">
+    <MaterialReactTable table={table} />
+  </div>);
 }

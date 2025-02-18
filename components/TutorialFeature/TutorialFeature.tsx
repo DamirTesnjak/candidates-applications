@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Joyride, { EVENTS } from 'react-joyride';
+import Joyride, { ACTIONS, STATUS, EVENTS } from 'react-joyride';
+import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import HelpIcon from '@mui/icons-material/Help';
 import Button from '@/UI/Button/Button';
-import { useTranslations, useLocale } from 'next-intl';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { updateTutorialData } from '@/lib/features/tutorialData/tutorialDataSlice';
 
 interface ITourSteps {
   [x: string]: {
@@ -15,8 +17,8 @@ interface ITourSteps {
 }
 
 export default function TutorialFeature() {
-  const locale = useLocale();
-  console.log('locale', locale);
+  const dispatch = useAppDispatch();
+  const tutorialRunning = useAppSelector((state) => state.tutorialData.tutorialRunning);
   const translation = useTranslations('tutorial');
   const location = usePathname();
   const router = useRouter();
@@ -28,7 +30,7 @@ export default function TutorialFeature() {
   >([]);
   const [run, setRun] = useState(false);
   const [locations, setLocations] = useState<string[]>([]);
-  const [startTutorial, setStartTutorial] = useState(false);
+
 
   useEffect(() => {
     const tourSteps: ITourSteps = {
@@ -85,7 +87,7 @@ export default function TutorialFeature() {
       ],
       '/settings/overviewEmailTemplateMessages': [
         {
-          target: '#tableElement',
+          target: '#table',
           content: translation('overviewEmailTemplateMessages'),
         },
         {
@@ -109,7 +111,7 @@ export default function TutorialFeature() {
     if (locations.length > 2 && location === '/candidates') {
       setSteps([
         {
-          target: '#candidates',
+          target: '#table',
           content: translation('candidates2'),
         },
       ]);
@@ -119,46 +121,6 @@ export default function TutorialFeature() {
   }, [location, locations, translation]);
 
   useEffect(() => {
-    // if there is ono data, replace with images
-    if (location === '/settings/overviewEmailTemplateMessages') {
-      const tableElement = document.getElementById('tableElement');
-
-      if (!tableElement) {
-        const message = document.getElementById('message');
-        if (message && message.style) {
-          message.style.display = 'none';
-        }
-        const element = document.createElement('div');
-        element.setAttribute('id', 'tableElement');
-        element.innerHTML = `<img id="candidates" src="/templates_${locale}.png" alt="table image"/>`;
-
-        const containerElement = document.getElementById('container');
-        containerElement?.appendChild(element);
-      }
-    }
-    if (location === '/settings/mapTemplateMessages') {
-      const modalElement = document.getElementById('modal');
-      if (modalElement && modalElement.style) {
-        modalElement.style.display = 'none';
-      }
-    }
-    if (location === '/candidates') {
-      const tableElement = document.getElementById('candidates');
-
-      if (!tableElement) {
-        const message = document.getElementById('message');
-        message?.remove();
-
-        const element = document.createElement('div');
-        element.innerHTML = `<img id="candidates" src="/candidates_${locale}.png" alt="table image"/>`;
-
-        const containerElement = document.getElementById('container');
-        containerElement?.appendChild(element);
-      }
-    }
-  }, [location]);
-
-  useEffect(() => {
     const hasSeenTour = localStorage.getItem('hasSeenTour');
     const startTutorialButton = document.getElementById('startTutorial');
     if (
@@ -166,14 +128,14 @@ export default function TutorialFeature() {
       !locations.includes(location) &&
       location !== '/login' &&
       startTutorialButton &&
-      startTutorial
+      tutorialRunning
     ) {
       startTutorialButton.click();
       setLocations([...locations, location]);
     }
-  }, [location, locations, startTutorial, steps]);
+  }, [location, locations, tutorialRunning, steps]);
 
-  console.log('startTutorial', startTutorial);
+  console.log('tutorialRunning', tutorialRunning);
 
   return (
     <div>
@@ -185,7 +147,7 @@ export default function TutorialFeature() {
         showSkipButton
         callback={(data) => {
           const { status } = data;
-          const finishedStatuses = ['finished', 'skipped'];
+          const finishedStatuses = ['finished'];
           if (
             locations.length === 1 &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
@@ -218,18 +180,6 @@ export default function TutorialFeature() {
             const newLocations = [...locations];
             newLocations.shift();
 
-            const message = document.getElementById('message');
-            if (message && message.style) {
-              message.style.display = 'block';
-            }
-
-            const image = document.querySelector(
-              'img[id="tableElement"]',
-            ) as HTMLImageElement;
-            if (image && image.style) {
-              image.style.display = 'none';
-            }
-
             setLocations(newLocations);
             router.push('/settings/mapTemplateMessages');
           }
@@ -237,30 +187,19 @@ export default function TutorialFeature() {
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/mapTemplateMessages'
           ) {
-            const modalElement = document.getElementById('modal');
-            if (modalElement && modalElement.style) {
-              modalElement.style.display = 'block';
-            }
             router.push('/candidates');
           }
           if (finishedStatuses.includes(status) &&
             locations.length > 2 &&
             location === '/candidates'
           ) {
-            setStartTutorial(false);
+            dispatch(updateTutorialData({ tutorialRunning: false }));
+          }
+          if (data.action === ACTIONS.CLOSE || data.status === STATUS.SKIPPED) {
+            dispatch(updateTutorialData({ tutorialRunning: false }));
+            setRun(false);
           }
           if (finishedStatuses.includes(status)) {
-            const message = document.getElementById('message');
-            if (message && message.style) {
-              message.style.display = 'block';
-            }
-
-            const image = document.querySelector(
-              'img[id="candidates"]',
-            ) as HTMLImageElement;
-            if (image && image.style) {
-              image.style.display = 'none';
-            }
             setRun(false);
           }
         }}
@@ -273,7 +212,7 @@ export default function TutorialFeature() {
         startIcon={<HelpIcon />}
         onClick={() => {
           setRun(true);
-          setStartTutorial(true);
+          dispatch(updateTutorialData({ tutorialRunning: true }));
           setLocations([]);
         }}
       />

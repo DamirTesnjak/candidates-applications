@@ -59,6 +59,8 @@ export async function getCandidates() {
       error: true,
     });
   }
+
+  console.log('mappedCandidates', mappedCandidates);
   return JSON.stringify({
     successMessage: 'Fetching data successful!',
     success: true,
