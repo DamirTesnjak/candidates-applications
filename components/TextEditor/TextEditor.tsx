@@ -12,10 +12,7 @@ import SuperscriptIcon from '@mui/icons-material/Superscript';
 import SubscriptIcon from '@mui/icons-material/Subscript';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import WorkIcon from '@mui/icons-material/Work';
 import BusinessIcon from '@mui/icons-material/Business';
-import EventIcon from '@mui/icons-material/Event';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { SelectChangeEvent } from '@mui/material/Select';
 import { candidateCongratulationEmailJobPosition } from '@/utils/emailMessagesTemplates/messageCandidateSelected';
 import { candidateRejectionEmailJobPosition } from '@/utils/emailMessagesTemplates/messageCandidateRejected';
@@ -76,9 +73,9 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
   );
 
   const selectDropdownEmailList = [
-    { id: 'candidateHired', value: 'candidateHired' },
-    { id: 'candidateRejected', value: 'candidateRejected' },
-    { id: 'employeeFired', value: 'employeeFired' },
+    { id: 'candidateHired', text: translation('hire'), value: "candidateHired" },
+    { id: 'candidateRejected', text: translation('reject'), value: "candidateRejected" },
+    { id: 'employeeFired', text: translation('fire'), value: "employeeFired" },
   ];
 
   const handleChangeOnSelectEmailTemplate = (event: SelectChangeEvent) => {
@@ -147,7 +144,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             type='text'
           />
           <SelectInput
-            label='Email Template'
+            label={translation("emailTemplate")}
             onSelect={handleChangeOnSelectEmailTemplate}
             listDropdown={selectDropdownEmailList}
             placeholder={translation("selectEmailTemplate")}
@@ -232,38 +229,10 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
           />
           <Button
             className='textButton'
-            startIcon={<WorkIcon />}
-            type='button'
-            onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text={translation("candidateJobPosition")}
-          />
-          <Button
-            className='textButton'
-            startIcon={<WorkIcon />}
-            type='button'
-            onClick={() => onButtonTextEditorClick('jobTitleTemplate')}
-            text={translation("yourJobTitle")}
-          />
-          <Button
-            className='textButton'
             startIcon={<BusinessIcon />}
             type='button'
             onClick={() => onButtonTextEditorClick('companyNameTemplate')}
             text={translation("companyName")}
-          />
-          <Button
-            className='textButton'
-            startIcon={<EventIcon />}
-            type='button'
-            onClick={() => onButtonTextEditorClick('currentDateTemplate')}
-            text={translation("currentDate")}
-          />
-          <Button
-            className='textButton'
-            startIcon={<CalendarMonthIcon />}
-            type='button'
-            onClick={() => onButtonTextEditorClick('startDateTemplate')}
-            text={translation("startDate")}
           />
         </div>
         <div className={styles.textAreaDisplay}>

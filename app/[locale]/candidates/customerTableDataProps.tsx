@@ -188,6 +188,23 @@ export const candidatesColumnDef = (
       enableSorting: false,
     },
     button4: {
+      title: '',
+      size: 150,
+      cell: row ? (
+        <RowButton
+          clientId={row.original.id}
+          text={translation("fire") as unknown as string}
+          value='fire'
+          name='emailTemplateType'
+          icon='fire'
+        />
+      ) : null,
+      enableColumnActions: false,
+      enableColumnFilter: false,
+      enableColumnDragging: false,
+      enableSorting: false,
+    },
+    button5: {
       title: translation("profileLink") as unknown as string,
       size: 150,
       cell: row ? (

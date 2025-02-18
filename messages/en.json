@@ -17,6 +17,7 @@
     "archive": "Archive",
     "hire": "Hire",
     "reject": "Reject",
+    "fire": "Fire",
     "profileLink": "Profile link",
     "addNewCandidate": "Add new candidate",
     "noCandidatesFound": "No candidates found!",
@@ -61,6 +62,11 @@
     "editEmailMessageTemplate": "Edit email message template"
   },
   "mapTemplateMessages": {
+    "archive": "Archive",
+    "hire": "Hire",
+    "reject": "Reject",
+    "fire": "Fire",
+    "mapEmailTemplateMessages": "Map mail template messages",
     "selectEmailTemplate": "Select email template",
     "saveChanges": "Save changes"
   },
@@ -118,7 +124,10 @@
     "logout": "Logout"
   },
   "modal": {
-    "ok": "Ok!"
+    "ok": "Ok!",
+    "success": "Success!",
+    "warning": "Warning!",
+    "error": "Error!"
   },
   "textEditor": {
     "emailTemplateName": "Name",
@@ -126,12 +135,13 @@
     "companyLogo": "Upload company logo",
     "saveChange": "Save changes",
     "candidateName": "Candidate name",
-    "candidateJobPosition": "Candidate job position",
     "yourName": "Your name",
     "yourJobTitle": "Your job title",
     "companyName": "Company name",
-    "currentDate": "Current date",
-    "startDate": "Start date"
+    "hire": "Hire",
+    "reject": "Reject",
+    "fire": "Fire",
+    "emailTemplate": "Email Template"
   },
   "serverAction": {
     "somethingWentWrong": "Something went wrong, please try again or contact support.",
@@ -148,13 +158,14 @@
     "passwordDoesNotMatch": "Password does not match! Please try again or contact support.",
     "newMappedEmailSettingsCreatedSuccessfully": "New mapped email settings created successfully",
     "companyEmailConfigurationNotFound": "Company email configuration not found! Cannot send the email!",
-    "emailSentToTheCandidate": "Email sent to the candidate!",
+    "emailSentToTheCandidate": "Email sent!",
     "savedChanges": "Saved changes",
     "candidateAlreadyExists": "Candidate already exists",
     "userAlreadyExists": "User already exists",
     "cannotCreateUser": "Cannot create user! Please try again or contact support!",
     "userCreated": "User created successfully",
-    "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support."
+    "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support.",
+    "jobStatus": "Job application/employment"
   },
   "localeSwitcher": {
     "changeLanguage": "Change language",
