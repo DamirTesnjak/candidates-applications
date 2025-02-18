@@ -42,7 +42,12 @@ export async function deleteEmailTemplate(
     };
   }
   redirect({
-    href:'/settings/overviewEmailTemplateMessages',
-    locale
-  });
+      href:'/settings/overviewEmailTemplateMessages',
+      locale
+    });
+  return {
+    successMessage: translation("emailDeleted"),
+    success: true,
+  }
+
 }

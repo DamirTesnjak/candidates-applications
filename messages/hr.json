@@ -164,8 +164,8 @@
     "cannotCreateUser": "Ne mogu stvoriti korisnika! Pokušajte ponovo ili kontaktirajte podršku!",
     "userCreated": "Korisnik je uspješno kreiran",
     "cannotSendAnEmailToYou": "Ne mogu vam poslati e-poštu! Registracija nije uspjela! Pokušajte ponovo ili kontaktirajte podršku.",
-    "jobStatus": "Prijava na radno mijesto/status zaposlenega"
-
+    "jobStatus": "Prijava na radno mijesto/status zaposlenega",
+    "emailDeleted": "Predložak e-pošte je uspješno izbrisan!"
   },
   "localeSwitcher": {
     "changeLanguage": "Promjenite jezik",

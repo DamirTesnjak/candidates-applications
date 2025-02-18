@@ -165,7 +165,8 @@
     "cannotCreateUser": "Cannot create user! Please try again or contact support!",
     "userCreated": "User created successfully",
     "cannotSendAnEmailToYou": "Cannot send an email to you! Registration failed! Please try again or contact support.",
-    "jobStatus": "Job application/employment"
+    "jobStatus": "Job application/employment",
+    "emailDeleted": "Email template has been successfully deleted!"
   },
   "localeSwitcher": {
     "changeLanguage": "Change language",

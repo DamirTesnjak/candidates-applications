@@ -164,7 +164,8 @@
     "cannotCreateUser": "Uporabnika ni mogoče ustvariti! Poskusite znova ali kontaktirajte podporo!",
     "userCreated": "Uporabnik je bil uspešno ustvarjen",
     "cannotSendAnEmailToYou": "Ne morem vam poslati e-pošte! Registracija ni uspela! Poskusite znova ali se obrnite na podporo.",
-    "jobStatus": "Prijava na delovno mesto/status zaposlenega"
+    "jobStatus": "Prijava na delovno mesto/status zaposlenega",
+    "emailDeleted": "E-poštna predloga je bila uspešno izbrisana!"
   },
   "localeSwitcher": {
     "changeLanguage": "Spremenite jezik",

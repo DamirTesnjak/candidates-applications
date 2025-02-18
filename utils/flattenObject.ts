@@ -2,16 +2,18 @@
 import { initialStateCandidate } from '@/lib/features/candidate/candidateSlice';
 import { initialStateHrUser } from '@/lib/features/hrUser/hrUserSlice';
 import { initialStateCompanyEmailConfigs } from '@/lib/features/companyEmailConfigs/companyEmailConfigsSlice';
+import {initialStateTutorialData } from '@/lib/features/tutorialData/tutorialDataSlice';
 
 export type IInitialStateCandidate = typeof initialStateCandidate;
 export type IInitialStateHrUser = typeof initialStateHrUser;
-export type IInitialStateCompanyEmailConfigs =
-  typeof initialStateCompanyEmailConfigs;
+export type IInitialStateCompanyEmailConfigs = typeof initialStateCompanyEmailConfigs;
+export type IInitialStateTutorialData = typeof initialStateTutorialData;
 
 export type IAppState =
   | IInitialStateCandidate
   | IInitialStateHrUser
-  | IInitialStateCompanyEmailConfigs;
+  | IInitialStateCompanyEmailConfigs
+  | IInitialStateTutorialData;
 export interface IObjectToFlatExtended {
   [x: string]: any;
 }

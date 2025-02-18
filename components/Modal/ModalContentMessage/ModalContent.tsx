@@ -1,5 +1,3 @@
-'use client'
-
 import { useTranslations } from 'next-intl';
 import { Dispatch, SetStateAction } from 'react';
 import Button from '@/UI/Button/Button';

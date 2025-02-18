@@ -15,7 +15,7 @@ export interface IEmailTemplatesTableDataRowProps {
 
 export const emailTemplatesColumnDef = (
   row: IEmailTemplatesTableDataRowProps | null,
-  translation: typeof useTranslations,
+  translation: ReturnType<typeof useTranslations<string>>,
 ): {
   [x: string]: {
     title: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import {useTranslations} from 'next-intl';
+import {useTranslations } from 'next-intl';
 import { usePathname } from '@/i18n/routing';
 import { candidatesColumnDef } from '@/app/[locale]/candidates/customerTableDataProps';
 import { emailTemplatesColumnDef } from '@/app/[locale]/settings/overviewEmailTemplateMessages/emailTemplatesTableDataProps';
@@ -30,7 +30,7 @@ export default function TableComponent({
   const tutorialRunning = useAppSelector((state) => state.tutorialData.tutorialRunning);
   const tutorialTableDataCandidates = useAppSelector((state) => state.tutorialData.mappedCandidates);
   const tutorialDataEmailTemplates =  useAppSelector((state) => state.tutorialData.emailTemplates);
-  const translation = useTranslations(page);
+  const translation = useTranslations<string>(page);
 
   const pageTables: IPageTables = {
     candidates: candidatesColumnDef,
@@ -40,10 +40,10 @@ export default function TableComponent({
   // if tutorial is running, return tutorialData as tableData
   const replaceTableData = (): ITableData[] => {
     if (tutorialRunning && location === '/candidates') {
-      return tutorialTableDataCandidates;
+      return tutorialTableDataCandidates as ITableData[];
     }
     if (tutorialRunning && location === '/settings/overviewEmailTemplateMessages') {
-      return tutorialDataEmailTemplates;
+      return tutorialDataEmailTemplates as unknown as ITableData[];
     }
     return tableData;
   }
