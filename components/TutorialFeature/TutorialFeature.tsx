@@ -121,10 +121,8 @@ export default function TutorialFeature() {
   }, [location, locations, translation]);
 
   useEffect(() => {
-    const hasSeenTour = localStorage.getItem('hasSeenTour');
     const startTutorialButton = document.getElementById('startTutorial');
     if (
-      !hasSeenTour &&
       !locations.includes(location) &&
       location !== '/login' &&
       startTutorialButton &&
@@ -135,8 +133,6 @@ export default function TutorialFeature() {
     }
   }, [location, locations, tutorialRunning, steps]);
 
-  console.log('tutorialRunning', tutorialRunning);
-
   return (
     <div>
       <Joyride
@@ -145,6 +141,25 @@ export default function TutorialFeature() {
         continuous
         scrollToFirstStep
         showSkipButton
+        locale={{
+          back: translation('back'),
+          close: translation('close'),
+          last: translation('last'),
+          next: translation('next'),
+          open: translation('open'),
+          skip: translation('skip'),
+      }}
+        styles={{
+          options: {
+            arrowColor: '#ffffff',
+            backgroundColor: '#ffffff',
+            overlayColor: 'rgba(0, 0, 0, 0.4)',
+            primaryColor: '#717bf3',
+            textColor: '#313a46',
+            width: 500,
+            zIndex: 1000,
+          },
+        }}
         callback={(data) => {
           const { status } = data;
           const finishedStatuses = ['finished'];

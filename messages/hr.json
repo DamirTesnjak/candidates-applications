@@ -182,6 +182,12 @@
     "overviewEmailTemplateMessages2": "Posjetimo sljedeći odjeljak postavki!",
     "mapTemplateMessages": "Ovdje dodijelite predloške e-pošte odgovarajućim 'AKCIJAMA: arhiviraj, zaposli, odbij'. Nove postavke stupaju na snagu odmah!",
     "mapTemplateMessages2": "Da vidimo odjeljak KANDIDATI u aplikaciji",
-    "candidates2": "Tablica vam omogućuje da vidite podatke o kandidatima. Klikom na gumbe kao što su 'ARHIVIRAJ', 'ZAPOSLITE', 'ODBIJ' pokrenut će se slanje e-pošte, na temelju mapiranog predloška e-pošte za određenu radnju, definiranu u 'POSTAVKE/PORUKE PREDLOŽKA KARTE'. Klikom na ikonu CV oblaka, možete preuzeti životopis kandidata. Klikom na Linkedin ikonu možete posjetiti njegovu Linkedin stranicu. OVO JE KRAJ TUTORIALA"
+    "candidates2": "Tablica vam omogućuje da vidite podatke o kandidatima. Klikom na gumbe kao što su 'ARHIVIRAJ', 'ZAPOSLITE', 'ODBIJ' pokrenut će se slanje e-pošte, na temelju mapiranog predloška e-pošte za određenu radnju, definiranu u 'POSTAVKE/PORUKE PREDLOŽKA KARTE'. Klikom na ikonu CV oblaka, možete preuzeti životopis kandidata. Klikom na Linkedin ikonu možete posjetiti njegovu Linkedin stranicu. OVO JE KRAJ TUTORIALA",
+    "back": "Nazad",
+    "close": "Zatvori",
+    "last": "Kraj",
+    "next": "Naprijed",
+    "open": "Otvori",
+    "skip": "Preskoči"
   }
 }

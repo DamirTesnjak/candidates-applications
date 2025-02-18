@@ -182,6 +182,12 @@
     "overviewEmailTemplateMessages2": "Naj obiščemo naslednji razdelek nastavitev!",
     "mapTemplateMessages": "Tukaj dodelite e-poštne predloge pravim 'DEJANJEM: arhiviraj, najemi, zavrni'. Nove nastavitve začnejo veljati takoj!",
     "mapTemplateMessages2": "Oglejmo si razdelek KANDIDATI v aplikaciji",
-    "candidates2": "Tabela vam omogoča ogled podatkov o kandidatih. S klikom na gumbe, kot so »ARHIV«, »ZAPOSLI«, »ZAVRNI«, se bo sprožilo pošiljanje e-poštnega sporočila, ki temelji na preslikani e-pošti s predlogo za določeno dejanje, definirano v »NASTAVITVAH/PREDLOGA SPOROČIL NA ZEMLJEVIDU«. Če kliknete ikono oblaka CV, lahko prenesete življenjepis kandidata. Če kliknete ikono Linkedin, lahko obiščete njegovo stran Linkedin. TO JE KONEC VADNICE"
+    "candidates2": "Tabela vam omogoča ogled podatkov o kandidatih. S klikom na gumbe, kot so »ARHIV«, »ZAPOSLI«, »ZAVRNI«, se bo sprožilo pošiljanje e-poštnega sporočila, ki temelji na preslikani e-pošti s predlogo za določeno dejanje, definirano v »NASTAVITVAH/PREDLOGA SPOROČIL NA ZEMLJEVIDU«. Če kliknete ikono oblaka CV, lahko prenesete življenjepis kandidata. Če kliknete ikono Linkedin, lahko obiščete njegovo stran Linkedin. TO JE KONEC VADNICE",
+    "back": "Nazaj",
+    "close": "Zapri",
+    "last": "Konec",
+    "next": "Naprej",
+    "open": "Odpri",
+    "skip": "Preskoči"
   }
 }

@@ -182,6 +182,12 @@
     "overviewEmailTemplateMessages2": "Let us visit the next section of settings!",
     "mapTemplateMessages": "Here assign email templates to proper 'ACTIONS: archive, hire, reject'. New settings are in effect immediately!",
     "mapTemplateMessages2": "Let us see the CANDIDATES section of the app",
-    "candidates2": "Table allows you to see candidates data. On clicking buttons such as 'ARCHIVE', 'HIRE', 'REJECT' will trigger sending an email, based on mapped template email for specific action, defined in 'SETTINGS/MAP TEMPLATE MESSAGES'. By clicking CV cloud icon, you can download candidates's CV. By clicking the Linkedin icon you can visit its Linkedin page. THIS IS THE END OF TUTORIAL"
+    "candidates2": "Table allows you to see candidates data. On clicking buttons such as 'ARCHIVE', 'HIRE', 'REJECT' will trigger sending an email, based on mapped template email for specific action, defined in 'SETTINGS/MAP TEMPLATE MESSAGES'. By clicking CV cloud icon, you can download candidates's CV. By clicking the Linkedin icon you can visit its Linkedin page. THIS IS THE END OF TUTORIAL",
+    "back": "Back",
+    "close": "Close",
+    "last": "Last",
+    "next": "Next",
+    "open": "Open",
+    "skip": "Skip"
   }
 }
