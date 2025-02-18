@@ -23,8 +23,6 @@ export default function checkFormValidation({
       errorFieldValidation[error.path[0]] = error.message;
     });
 
-    console.log(errorMessage);
-
     return {
       errorFieldValidation,
       error: true,

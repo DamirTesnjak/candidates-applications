@@ -38,7 +38,6 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const { locale } = await params;
-  console.log('locale', locale);
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -51,7 +50,6 @@ export default async function LocaleLayout({
   const sidebarLinks = [
     { link: '/candidates', text: 'candidates' },
     { link: '/settings', text: 'settings' },
-    { link: '/about', text: 'about' },
   ];
   return (
     <html lang={locale}>
@@ -59,14 +57,14 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages}>
         <AppRouterCacheProvider options={{ enableCssLayer: false }}>
           <ThemeProvider theme={theme}>
-            <StoreProvider>
-              <div className={styles.container}>
-                <Sidebar sidebarLinks={sidebarLinks} />
-                <Header />
-                {children}
-              </div>
-            </StoreProvider>
-            <div id='modal' />
+              <StoreProvider>
+                <div className={styles.container}>
+                  <Sidebar sidebarLinks={sidebarLinks} />
+                  <Header/>
+                    {children}
+                </div>
+              </StoreProvider>
+              <div id='modal' />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </NextIntlClientProvider>

@@ -14,7 +14,8 @@
     "employed": "Zaposlen",
     "hired": "Sprejet",
     "rejected": "Zavrnjeno",
-    "hire": "Sprejemi",
+    "archive": "Pošlji v arhiv",
+    "hire": "Zaposli",
     "reject": "Zavrni",
     "profileLink": "Link profila",
     "addNewCandidate": "Dodaj novega kandidata",
@@ -64,6 +65,7 @@
     "saveChanges": "Shrani spremembe"
   },
   "emailTemplatePage": {
+    "emailTemplates": "E-poštne predloge",
     "emailType": "Vrsta e-pošte",
     "noEmailTemplatesFound": "Ni e-poštnih predlog!",
     "cannotFindAnyEmailTemplates": "Napaka! Ni mogoče najti nobene e-poštne predloge!"
@@ -88,7 +90,7 @@
     "name": "Ime",
     "surname": "Priimek",
     "address": "Naslov",
-    "city": "mesto",
+    "city": "Mesto",
     "zipCode": "Poštna številka",
     "country": "Država",
     "phoneNumber": "Telefonska številka",
@@ -121,7 +123,7 @@
   "textEditor": {
     "emailTemplateName": "Ime",
     "selectEmailTemplate": "Izberite e-poštno predlogo",
-    "companyLogo": "Logotip podjetja",
+    "companyLogo": "Naloži logotip podjetja",
     "saveChange": "Shrani spremembe",
     "candidateName": "Ime kandidata",
     "candidateJobPosition": "Delovno mesto kandidata",
@@ -161,6 +163,31 @@
   "sidebar": {
     "candidates":"Kandidati",
     "settings": "Nastavitve",
-    "about": "Pomoč"
+    "help": "Pomoč"
+  },
+  "help": {
+    "help": "Pomoč"
+  },
+  "tutorial": {
+    "candidates": "Preden začnete uporabljati to aplikacijo vam moramo pokazati pokažete kako nastaviti pomembne nastavitve! Brez tega nekatere funkcije te aplikacije ne bodo delovale pravilno. Obiščimo razdelek 'NASTAVITEV' v aplikaciji! To vadnico lahko kadar koli preskočite.",
+    "settings": "Smo v 'NASTAVITVAH'. Kot lahko vidite, imamo zavihke za različne razdelke nastavitev. Obiščimo prvega!",
+    "companyEmailConfiguration": "Ta obrazec je zelo pomemben! Omogoča vam nastavitev e-poštne konfiguracije. Vnesite vse zahtevane informacije vašega e-poštnega ponudnika. Če želite spremeniti konfiguracijo, preprosto znova obiščite ta razdelek in izpolnite obrazec ter shranite spremembe. Nova konfiguracija začne veljati takoj!",
+    "companyEmailConfiguration2": "Obiščimo naslednji razdelek nastavitev!",
+    "setupEmailTemplateMessages": "Tukaj lahko konfiguriramo e-poštne predloge! Zakaj bi znova pisali isto e-pošto, ko pa lahko preprosto pošljete predlogo, napolnjeno z ustreznimi informacijami. Za začetek v polju 'IME' dodelite ime predloge. Nato lahko izberete že obstoječo ali ustvarite novo. Prav tako lahko naložite logotip podjetja, ki bo pozneje vključen v poslano e-pošto. Spremembe lahko shranite s klikom na gumb 'SHRANI SPREMEMBE' so shranjene nove predloge!",
+    "setupEmailTemplateMessages2": "Orodna vrstica za pomoč pri vstavljanju potrebnih oznak HTML v urejevalnik. Imenovani gumbi vstavljajo določene konstante v urejevalnik, npr. [COMPANY_NAME]. Pozneje bodo zamenjani z ustreznimi informacijami, ko pošljete e-pošto!",
+    "setupEmailTemplateMessages3": "Tukaj napišite poljubno e-poštno predlogo kot oznako HTML. Uporabite orodno vrstico za preprosto vstavljanje oznak HTML.",
+    "setupEmailTemplateMessages4": "Oglejte si pisno predlogo, kot bo prikazana v poslanem e-poštnem sporočilu!",
+    "setupEmailTemplateMessages5": "Obiščimo naslednji razdelek nastavitev!",
+    "overviewEmailTemplateMessages": "Na tej strani si lahko ogledate shranjene e-poštne predloge kot podatke v tabeli. Ikone dejanj v vrsticah tabele vam omogočajo urejanje obstoječih e-poštnih predlog ali njihovo brisanje!",
+    "overviewEmailTemplateMessages2": "Naj obiščemo naslednji razdelek nastavitev!",
+    "mapTemplateMessages": "Tukaj dodelite e-poštne predloge pravim 'DEJANJEM: arhiviraj, zaposli, zavrni'. Nove nastavitve začnejo veljati takoj!",
+    "mapTemplateMessages2": "Oglejmo si razdelek KANDIDATI v aplikaciji",
+    "candidates2": "Tabela vam omogoča ogled podatkov o kandidatih. S klikom na gumbe, kot so »ARHIV«, »ZAPOSLI«, »ZAVRNI«, se bo sprožilo pošiljanje e-poštnega sporočila, ki temelji na preslikani e-pošti s predlogo za določeno dejanje, definirano v »NASTAVITVE/PRESLIKAJ SPOROČILA POŠTNIH PREDLOG«. Če kliknete ikono oblaka CV, lahko prenesete življenjepis kandidata. Če kliknete ikono Linkedin, lahko obiščete njegovo stran Linkedin. TO JE KONEC VADNICE",
+    "back": "Nazaj",
+    "close": "Zapri",
+    "last": "Konec",
+    "next": "Naprej",
+    "open": "Odpri",
+    "skip": "Preskoči"
   }
 }

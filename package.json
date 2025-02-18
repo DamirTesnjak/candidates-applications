@@ -27,6 +27,7 @@
     "nodemailer": "^6.9.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-joyride": "^3.0.0-7",
     "react-redux": "^9.2.0",
     "scss-reset": "^1.4.6",
     "zod": "^3.24.1"

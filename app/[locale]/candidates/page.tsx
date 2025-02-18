@@ -2,8 +2,6 @@ import { getCandidates } from '@/app/_actions/getCandidates';
 import TableComponent from '@/components/TableComponent';
 import InfoMessage from '@/components/InfoMessage/InfoMessage';
 import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
-import { PAGES } from '@/constants/constants';
-import { PAGES as TPages } from '@/messages/constants/constants';
 import { getTranslations } from 'next-intl/server';
 
 export default async function CandidatesPage() {

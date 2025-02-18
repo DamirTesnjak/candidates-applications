@@ -138,7 +138,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
   return (
     <div className={styles.paper}>
       <form action={formAction}>
-        <div className={styles.selectionSaveToolbar}>
+        <div id="textEditorMainToolbar" className={styles.selectionSaveToolbar}>
           <Input
             className='standard'
             flow='flowColumn'
@@ -157,8 +157,8 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
               className='uploadButton'
               flow='flowRow'
               type='file'
-              label='Upload company logo'
-              name={translation("companyLogo")}
+              label={translation("companyLogo")}
+              name="companyLogo"
             />
             <Button
               className='submitButton'
@@ -167,7 +167,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
             />
           </div>
         </div>
-        <div className={styles.toolbar}>
+        <div id="textEditorToolbar" className={styles.toolbar}>
           <Button
             className='textButton'
             startIcon={<Paragraph />}

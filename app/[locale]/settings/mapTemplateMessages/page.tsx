@@ -78,6 +78,7 @@ export default function MappedEmailsConfigurationPage() {
     <div className={styles.container}>
       <h3>Map email template messages</h3>
       <form
+        id="form"
         onSubmit={async (e) => {
           e.preventDefault();
           const formData = new FormData(e.currentTarget);

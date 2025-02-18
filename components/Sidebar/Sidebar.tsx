@@ -15,7 +15,7 @@ export default async function Sidebar({ sidebarLinks }: ISidebarProps) {
     <div className={styles.sidebar}>
       {sidebarLinks.map((sidebarLink) => {
         return (
-          <div className={styles.menuItem} key={sidebarLink.link}>
+          <div id={`sidebar-${sidebarLink.text}`}className={styles.menuItem} key={sidebarLink.link}>
             <Link href={sidebarLink.link}>{translation(sidebarLink.text)}</Link>
           </div>
         );

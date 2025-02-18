@@ -3,7 +3,7 @@ import styles from './errorMessage.module.scss';
 
 export default function ErrorMessage({ text }: { text: string }) {
   return (
-    <div className={styles.errorMessage}>
+    <div id="message" className={styles.errorMessage}>
       <div className={styles.messageIcon}>
         <ErrorOutlinedIcon />
       </div>

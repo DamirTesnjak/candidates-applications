@@ -2,7 +2,8 @@ import { ReactNode } from 'react';
 import styles from './button.module.scss';
 
 interface ButtonProps {
-  className: 'button' | 'textButton' | 'submitButton' | 'deleteButton';
+  id?: string;
+  className: 'button' | 'textButton' | 'submitButton' | 'deleteButton' | 'primaryTextButton';
   startIcon?: ReactNode;
   type: 'button' | 'submit' | 'reset';
   text?: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
 }
 
 export default function Button({
+  id,
   className,
   startIcon,
   type,
@@ -18,12 +20,13 @@ export default function Button({
 }: ButtonProps) {
   const CLASS_NAME = {
     button: styles.button,
+    primaryTextButton: styles.primaryTextButton,
     textButton: styles.textButton,
     submitButton: styles.submitButton,
     deleteButton: styles.deleteButton,
   };
   return (
-    <button className={CLASS_NAME[className]} type={type} onClick={onClick}>
+    <button id={id} className={CLASS_NAME[className]} type={type} onClick={onClick}>
       <span>{startIcon}</span>
       <span>{text}</span>
     </button>

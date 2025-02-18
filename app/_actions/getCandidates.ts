@@ -59,6 +59,7 @@ export async function getCandidates() {
       error: true,
     });
   }
+
   return JSON.stringify({
     successMessage: 'Fetching data successful!',
     success: true,
