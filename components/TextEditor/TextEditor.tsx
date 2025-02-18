@@ -157,8 +157,8 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
               className='uploadButton'
               flow='flowRow'
               type='file'
-              label='Upload company logo'
-              name={translation("companyLogo")}
+              label={translation("companyLogo")}
+              name="companyLogo"
             />
             <Button
               className='submitButton'
