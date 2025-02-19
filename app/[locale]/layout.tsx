@@ -7,8 +7,6 @@ import {routing} from '@/i18n/routing';
 
 import { Roboto } from 'next/font/google';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '@/theme/theme';
 
 import '../../styles/global/scssReset.css';
 import styles from '../../styles/mainLayout/container.module.scss';
@@ -24,6 +22,9 @@ const roboto = Roboto({
 import Sidebar from '@/components/Sidebar/Sidebar';
 import StoreProvider from '@/app/StoreProvider';
 import Header from '@/components/Header/Header';
+import SetDataToStore from '@/components/SetDataToStore/SetDataToStore';
+import { DATABASES } from '@/constants/constants';
+import { getHrUserProfile } from '@/app/_actions/getHrUserProfile';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -38,6 +39,8 @@ export default async function LocaleLayout({
   params: { locale: string }
 }>) {
   const { locale } = await params;
+  const result = await getHrUserProfile();
+  const parsedResult = JSON.parse(result);
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -55,17 +58,20 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={globalStyles.body}>
       <NextIntlClientProvider messages={messages}>
-        <AppRouterCacheProvider options={{ enableCssLayer: false }}>
-          <ThemeProvider theme={theme}>
+        <AppRouterCacheProvider>
               <StoreProvider>
                 <div className={styles.container}>
                   <Sidebar sidebarLinks={sidebarLinks} />
                   <Header/>
                     {children}
                 </div>
+                <SetDataToStore
+                  response={parsedResult}
+                  data={parsedResult.data}
+                  databaseName={DATABASES.hrUsers}
+                />
               </StoreProvider>
               <div id='modal' />
-          </ThemeProvider>
         </AppRouterCacheProvider>
       </NextIntlClientProvider>
       </body>
