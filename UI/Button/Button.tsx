@@ -8,6 +8,7 @@ interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
   text?: string;
   onClick?: () => void;
+  component?: ReactNode;
 }
 
 export default function Button({
@@ -17,6 +18,7 @@ export default function Button({
   type,
   text,
   onClick,
+  component,
 }: ButtonProps) {
   const CLASS_NAME = {
     button: styles.button,
@@ -28,7 +30,7 @@ export default function Button({
   return (
     <button id={id} className={CLASS_NAME[className]} type={type} onClick={onClick}>
       <span>{startIcon}</span>
-      <span>{text}</span>
+      {component ? <span>{component}</span> : <span>{text}</span>}
     </button>
   );
 }

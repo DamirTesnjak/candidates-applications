@@ -1,6 +1,7 @@
 {
   "home": {
-    "welcome": "Dobrodošli"
+    "welcome": "Dobrodošli",
+    "welcomeText": "<article>\n      Dobrodošli v aplikaciji JobApplicants app. Aplikacija vam omogoča urejanje seznama zaposlenih v vašem podjetju.\n      <br/>\n      Omogoča vam tudi urejanje seznama kandidatov prijavljenih na vaša razpisna delovna mesta.\n      <br/>\n      Aplikacija vam omogoča tudi ustvarjanje predlogov e-poštnih sporočil, in vam poenostavi pošiljanje e-pošte s klikom na gumb.\n      <br/>\n      Za dodatne informacije obiščite sekcijo POMOČ.\n      <br/>\n      <br/>\n      Za pričetek uporabe aplikacije se prijavite z vašo akredetacijo podjetja. Za ogled VADNICE morate biti prijavljeni!\n    </article>"
   },
   "candidatesProfile": {
     "candidateProfile": "Profil kandidata",

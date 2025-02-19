@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import LanguageIcon from '@mui/icons-material/Language';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 import { Locale, usePathname, useRouter } from '@/i18n/routing';
+import Button from '@/UI/Button/Button';
 
 type Props = {
   children: ReactNode;
@@ -26,26 +27,33 @@ export default function LocaleSwitcherSelect({
         // @ts-expect-error -- TypeScript will validate that only known `params`
         // are used in combination with a given `pathname`. Since the two will
         // always match for the current route, we can skip runtime checks.
-        {pathname, params},
+        { pathname, params },
         { locale: nextLocale },
       );
     });
   }
 
   return (
-    <div>
-      <span><LanguageIcon style={{ color:"#727cf5"}}/></span>
-      <span>
+    <Button
+      className='primaryTextButton'
+      type='button'
+      startIcon={<LanguageIcon />}
+      component={
         <select
-            style={{ backgroundColor: "#f7f7f7", textTransform: "uppercase", fontWeight: 500, color: "#727cf5" }}
-            defaultValue={defaultValue}
-            disabled={isPending}
-            onChange={onSelectChange}
-          >
-            {children}
-          </select>
-      </span>
-
-    </div>
+          style={{
+            backgroundColor: '#f7f7f7',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+            color: '#727cf5',
+            fontSize: '12px',
+          }}
+          defaultValue={defaultValue}
+          disabled={isPending}
+          onChange={onSelectChange}
+        >
+          {children}
+        </select>
+      }
+    />
   );
 }
