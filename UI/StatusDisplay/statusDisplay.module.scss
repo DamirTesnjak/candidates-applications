@@ -1,0 +1,45 @@
+@use "styles/global/globals.module.scss" as globals;
+@use "UI/Button/button.module.scss" as buttonsStyles;
+
+
+.standard {
+  width: 230px;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  padding: 5px 5px 5px 5px;
+}
+
+.label {
+  width: 250px !important;
+  font-size: 15px;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+}
+
+.flowRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 5px;
+  column-gap: 10px;
+
+  .label {
+    @extend .label;
+  }
+
+  .standard {
+    @extend .standard;
+  }
+}

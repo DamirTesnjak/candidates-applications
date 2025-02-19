@@ -1,7 +1,7 @@
 'use server';
 
 import { Model } from 'mongoose';
-import {getTranslations} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import checkFormValidation from '@/utils/utilsServer/checkFormValidation';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -77,6 +77,7 @@ export async function updateCandidate(
       archived: formDataObject.archived === 'on',
       employed: formDataObject.employed === 'on',
       rejected: formDataObject.rejected === 'on',
+      fired: formDataObject.fired === 'on',
     };
   }
 

@@ -2,9 +2,12 @@
 
 import { useActionState, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Input from '@/UI/Input/Input';
 import Button from '@/UI/Button/Button';
 import Modal from '@/components/Modal/Modal';
+import StatusDisplay from '@/UI/StatusDisplay/StatusDisplay'
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { IShowModal } from '@/types/ShowModalType';
 import { IPrevState } from '@/utils/types/prevState';
@@ -110,20 +113,17 @@ export default function EditForm(props: IEditFormProps) {
           if (
             stateModelKey === 'archived' ||
             stateModelKey === 'employed' ||
-            stateModelKey === 'rejected'
+            stateModelKey === 'rejected' ||
+            stateModelKey === 'fired'
           ) {
             return (
               <div key={stateModelKey}>
-                <Input
-                  className='checkbox'
+                { !editable && <StatusDisplay
+                  className='standard'
                   flow='flowRow'
                   label={translation(stateModelKey)}
-                  name={stateModelKey}
-                  type='checkbox'
-                  defaultValue={flattenedObjects(stateModelKey) ? 'on' : 'off'}
-                  checked={flattenedObjects(stateModelKey)}
-                  readOnly={!editable}
-                />
+                  icon={flattenedObjects(stateModelKey) ? <TaskAltIcon /> : <RadioButtonUncheckedIcon />}
+                /> }
               </div>
             );
           } else {

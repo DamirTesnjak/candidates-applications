@@ -97,6 +97,7 @@ export const candidatesColumnDef = (
       cell: row?.original.contact.phoneNumber,
       enableColumnActions: false,
       enableColumnDragging: false,
+      enableSorting: false,
     },
     linkedIn: {
       title: 'LinkedIn',
@@ -117,28 +118,43 @@ export const candidatesColumnDef = (
     },
     archived: {
       title: translation("archived") as unknown as string,
-      size: 150,
-      cell: row?.original.status.archived ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      size: 100,
+      cell: row?.original.status.archived ? <CircleIcon style={{ fontSize: 10, color: "blue" }} /> : <CircleIcon style={{ fontSize: 10, color: "lightgray" }} />,
       enableColumnActions: false,
+      enableColumnFilter: false,
       enableColumnDragging: false,
+      enableSorting: false,
     },
     hired: {
       title: translation("hired") as unknown as string,
-      size: 150,
-      cell: row?.original.status.employed ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      size: 100,
+      cell: row?.original.status.employed ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "lightgray" }} />,
       enableColumnActions: false,
+      enableColumnFilter: false,
       enableColumnDragging: false,
+      enableSorting: false,
     },
     rejected: {
       title: translation("rejected") as unknown as string,
-      size: 150,
-      cell: row?.original.status.rejected ? <CircleIcon style={{ fontSize: 10, color: "green" }} /> : <CircleIcon style={{ fontSize: 10, color: "grey" }} />,
+      size: 100,
+      cell: row?.original.status.rejected ? <CircleIcon style={{ fontSize: 10, color: "orange" }} /> : <CircleIcon style={{ fontSize: 10, color: "lightgray" }} />,
       enableColumnActions: false,
+      enableColumnFilter: false,
       enableColumnDragging: false,
+      enableSorting: false,
+    },
+    fired: {
+      title: translation("fired") as unknown as string,
+      size: 100,
+      cell: row?.original.status.fired ? <CircleIcon style={{ fontSize: 10, color: "red" }} /> : <CircleIcon style={{ fontSize: 10, color: "lightgray" }} />,
+      enableColumnActions: false,
+      enableColumnFilter: false,
+      enableColumnDragging: false,
+      enableSorting: false,
     },
     button1: {
       title: '',
-      size: 150,
+      size: 100,
       cell: row ? (
         <RowButton
           clientId={row.original.id}
@@ -155,7 +171,7 @@ export const candidatesColumnDef = (
     },
     button2: {
       title: '',
-      size: 150,
+      size: 100,
       cell: row ? (
         <RowButton
           clientId={row.original.id}
@@ -172,7 +188,7 @@ export const candidatesColumnDef = (
     },
     button3: {
       title: '',
-      size: 150,
+      size: 100,
       cell: row ? (
         <RowButton
           clientId={row.original.id}
@@ -189,7 +205,7 @@ export const candidatesColumnDef = (
     },
     button4: {
       title: '',
-      size: 150,
+      size: 100,
       cell: row ? (
         <RowButton
           clientId={row.original.id}

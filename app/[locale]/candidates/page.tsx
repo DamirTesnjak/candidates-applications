@@ -23,6 +23,7 @@ export default async function CandidatesPage() {
       'archived',
       'hired',
       'rejected',
+      'fired',
       'button1',
       'button2',
       'button3',

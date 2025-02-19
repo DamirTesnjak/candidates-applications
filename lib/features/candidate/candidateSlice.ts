@@ -29,9 +29,10 @@ export const initialStateCandidate = {
     },
   },
   status: {
-    archived: true,
+    archived: false,
     employed: false,
     rejected: false,
+    fired: false,
   },
 };
 

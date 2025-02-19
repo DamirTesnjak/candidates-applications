@@ -32,6 +32,7 @@ export interface ICandidateSchema {
     archived: boolean;
     employed: boolean;
     rejected: boolean;
+    fired: boolean;
   };
 }
 
@@ -68,6 +69,7 @@ const candidateSchema = new Schema<ICandidateSchema>({
     archived: Boolean,
     employed: Boolean,
     rejected: Boolean,
+    fired: Boolean,
   },
 });
 

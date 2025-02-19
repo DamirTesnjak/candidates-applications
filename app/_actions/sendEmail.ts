@@ -1,7 +1,7 @@
 'use server';
 
 import nodemailer from 'nodemailer';
-import {getTranslations} from 'next-intl/server';
+import {getTranslations, getLocale} from 'next-intl/server';
 import { Model } from 'mongoose';
 import { connectToDB } from '@/utils/dbConfig/dbConfig';
 import { getFormDataObject } from '@/utils/formValidation/getFormDataObject';
@@ -13,8 +13,10 @@ import { IPrevState } from '@/utils/types/prevState';
 import { DATABASES } from '@/constants/constants';
 import { getDataFromToken } from '@/utils/getDataFromToken';
 import { IHrUserSchema } from '@/utils/dbConfig/models/hrUserModel';
+import { revalidatePath } from 'next/cache';
 
 export async function sendEmail(_prevState: IPrevState, formData: FormData) {
+  const locale = getLocale();
   const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
   const { emailTemplateType } = formDataObject;
@@ -61,6 +63,45 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     return {
       errorMessage: translation("candidateNotFound"),
       error: true,
+    };
+  }
+
+  if (emailTemplateType === 'archive') {
+    candidate.status.archived = true;
+    candidate.status.rejected = false;
+    candidate.status.employed = false;
+    candidate.status.fired = false;
+  }
+
+  if (emailTemplateType === 'reject') {
+    candidate.status.archived = false;
+    candidate.status.rejected = true;
+    candidate.status.employed = false;
+    candidate.status.fired = false;  }
+
+  if (emailTemplateType === 'hire') {
+    candidate.status.archived = false;
+    candidate.status.rejected = false;
+    candidate.status.employed = true;
+    candidate.status.fired = false;
+  }
+
+  if (emailTemplateType === 'fire') {
+    candidate.status.archived = false;
+    candidate.status.rejected = false;
+    candidate.status.employed = false;
+    candidate.status.fired = true;
+  }
+
+  const savedCandidate = await candidate?.save();
+  if (!savedCandidate) {
+    console.log(
+      'ERROR_GET_SEND_EMAIL_ERROR_UPDATE_CANDIDATE: Error with updating the candidate to the database!',
+    );
+    return {
+      errorMessage: translation("cannotSaveChanges"),
+      error: true,
+      prevState: formDataObject,
     };
   }
 
@@ -156,6 +197,8 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   };
 
   await transport.sendMail(mailOptions);
+
+  revalidatePath(`${locale}\candidates`);
 
   return { successMessage: translation("emailSentToTheCandidate"), success: true };
 }
