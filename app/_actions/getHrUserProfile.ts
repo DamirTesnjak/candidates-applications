@@ -11,7 +11,6 @@ export async function getHrUserProfile() {
   const translation = await getTranslations('serverAction');
 
   const tokenData = await getDataFromToken();
-  console.log('tokenData', tokenData);
 
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 

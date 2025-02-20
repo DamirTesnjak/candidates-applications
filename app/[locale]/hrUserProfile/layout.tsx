@@ -19,7 +19,6 @@ export default async function CandidateProfileLayout({
   children,
 }: {
   children: ReactNode;
-  params: { id: string };
 }) {
   const translation = await getTranslations(TPages.hrUserProfile);
   const results = await getHrUserProfile();

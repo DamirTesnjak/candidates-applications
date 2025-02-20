@@ -4,7 +4,7 @@ import styles from '@/styles/global/globals.module.scss';
 import { Link } from '@/i18n/routing';
 import Button from '@/UI/Button/Button';
 
-export default async function Home({ params }: {  params: { locale: string } }) {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 

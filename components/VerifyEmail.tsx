@@ -17,7 +17,7 @@ export default function VerifyEmail() {
     const result = await verifyEmail(token);
     if (result && result.error) return setError(result.error);
     setVerified(true);
-  }, [error, token]);
+  }, [token]);
 
   useEffect(() => {
     const decodedUrlToken = decodeURIComponent(urlToken);

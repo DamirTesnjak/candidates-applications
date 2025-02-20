@@ -157,6 +157,14 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
 
   const tokenData = await getDataFromToken();
 
+  if (!tokenData) {
+    console.log('WARNING_GET_HR_PROFILE: Token is not found!')
+    return {
+      successMessage: '',
+      success: true,
+    }
+  }
+
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {

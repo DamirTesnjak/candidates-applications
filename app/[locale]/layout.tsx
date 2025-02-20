@@ -12,6 +12,7 @@ import '../../styles/global/scssReset.css';
 import styles from '../../styles/mainLayout/container.module.scss';
 import globalStyles from '../../styles/global/globals.module.scss';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
@@ -42,7 +43,7 @@ export default async function LocaleLayout({
   const result = await getHrUserProfile();
   const parsedResult = JSON.parse(result);
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as 'en' | 'sl' | 'hr')) {
     notFound();
   }
 
