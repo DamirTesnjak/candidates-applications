@@ -1,7 +1,9 @@
 {
   "home": {
     "welcome": "Welcome",
-    "welcomeText": "<article>\n      Welcome to the JobApplicants app. With this application you will be able to maintain the list of your employees at your company.\n      <br/>\n      You will be able to maintain the list of candidates applying to your published job posts on different social media.\n      <br/>\n      This app will help you to create email templates that you can then send later to your employees or candidates by a clicking a single button\n      <br/>\n      For more information how to use this app go to the Help section.\n      <br/>\n      <br/>\n      You must login with your company credentials to start using the app. Please login to start TUTORIAL\n    </article>"
+    "welcomeText": "<article>\n      Welcome to the JobApplicants app. With this application you will be able to maintain the list of your employees at your company.\n      <br/>\n      You will be able to maintain the list of candidates applying to your published job posts on different social media.\n      <br/>\n      This app will help you to create email templates that you can then send later to your employees or candidates by a clicking a single button\n      <br/>\n      For more information how to use this app go to the Help section.\n      <br/>\n      <br/>\n      You must login with your company credentials to start using the app. Please login to start TUTORIAL\n    </article>",
+    "profileActionsRegister": "Register",
+    "profileActionsLogin": "Login"
   },
   "candidatesProfile": {
     "candidateProfile": "Candidate profile",

@@ -11,6 +11,7 @@ export async function getHrUserProfile() {
   const translation = await getTranslations('serverAction');
 
   const tokenData = await getDataFromToken();
+  console.log('tokenData', tokenData);
 
   const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
@@ -20,6 +21,14 @@ export async function getHrUserProfile() {
       errorMessage: translation("somethingWentWrong"),
       error: true,
     });
+  }
+
+  if (!tokenData) {
+    console.log('WARNING_GET_HR_PROFILE: Token is not found!')
+    return JSON.stringify({
+      successMessage: '',
+      success: true,
+    })
   }
 
   const user = await Model?.findOne({ id: tokenData.id }).select('-password');

@@ -1,19 +1,19 @@
 import { ReactNode } from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import {Link} from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { getFile } from '@/utils/getFile';
 import { getHrUserProfile } from '@/app/_actions/getHrUserProfile';
 import Button from '@/UI/Button/Button';
 import DeleteProfileButton from '@/components/DeleteProfileButton/DeleteProfileButton';
 import SetDataToStore from '@/components/SetDataToStore/SetDataToStore';
-import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import LogoutButton from '@/components/Header/LogoutButton/LogoutButton';
 import { DATABASES } from '@/constants/constants';
 import globalStyles from '@/styles/global/globals.module.scss';
 import styles from './hrUserProfile.module.scss';
 import { getTranslations } from 'next-intl/server';
 import { PAGES as TPages } from '@/messages/constants/constants';
+import { redirect } from 'next/navigation';
 
 export default async function CandidateProfileLayout({
   children,
@@ -27,7 +27,7 @@ export default async function CandidateProfileLayout({
   const { data } = parsedResults;
 
   if (!data) {
-    return <ErrorMessage text={translation("couldNotFindProfileData")} />;
+    redirect('/')
   }
 
   return (

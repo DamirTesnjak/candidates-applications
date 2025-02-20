@@ -20,7 +20,7 @@ export interface IEmailTemplate {
 
 export default function MappedEmailsConfigurationPage() {
   const translation = useTranslations(TPages.mapTemplateMessages);
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([]);
   const [response, setResponse] = useState<IPrevState>({});
 
