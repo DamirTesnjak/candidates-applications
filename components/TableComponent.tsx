@@ -39,6 +39,7 @@ export default function TableComponent({
 
   // if tutorial is running, return tutorialData as tableData
   const replaceTableData = (): ITableData[] => {
+    console.log('tutorialTableDataCandidates', tutorialTableDataCandidates)
     if (tutorialRunning && location === '/candidates') {
       return tutorialTableDataCandidates as ITableData[];
     }

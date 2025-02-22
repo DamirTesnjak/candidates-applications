@@ -57,7 +57,8 @@
     "setupEmailTemplateMessages": "Postavi poruke predloška e-pošte",
     "overviewEmailTemplateMessages": "Pregled poruka predložaka e-pošte",
     "settings": "Postavke",
-    "mapEmailTemplateMessages": "Mapiraj poruke predloška pošte"
+    "mapEmailTemplateMessages": "Mapiraj poruke predloška pošte",
+    "settingsText": "Ovdje možete postaviti nove konfiguracije nastavki. Kliknite na kartice!"
   },
   "companyEmailConfiguration": {
     "companyEmailConfiguration": "Konfiguracija e-pošte tvrtke"

@@ -45,6 +45,7 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
     serverAction,
     {},
   );
+
   const [showModal, setShowModal] = useState<IShowModal>({
     success: false,
     error: false,
@@ -131,6 +132,21 @@ export default function TextEditor({ data, serverAction }: ITextEditorProps) {
       previewElement.innerHTML = textAreaText.text;
     }
   }, [textAreaText]);
+
+  useEffect(() => {
+    if (
+      response &&
+      (response.errorMessage ||
+        response.errorFieldValidation?.profilePicture ||
+        response?.errorFieldValidation?.file ||
+        response.success)
+    ) {
+      setShowModal({
+        success: response.success,
+        error: response.error,
+      });
+    }
+  }, [response]);
 
   return (
     <div className={styles.paper}>

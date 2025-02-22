@@ -12,6 +12,7 @@ import Modal from '@/components/Modal/Modal';
 import ModalContentMessage from '@/components/Modal/ModalContentMessage/ModalContent';
 import { PAGES as TPages } from '@/messages/constants/constants';
 import styles from '../../../../styles/global/globals.module.scss';
+import { useAppSelector } from '@/lib/hooks';
 
 export interface IEmailTemplate {
   emailType: string;
@@ -20,6 +21,7 @@ export interface IEmailTemplate {
 
 export default function MappedEmailsConfigurationPage() {
   const translation = useTranslations(TPages.mapTemplateMessages);
+  const tutorialRunning = useAppSelector((state) => state.tutorialData.tutorialRunning);
   const [, startTransition] = useTransition();
   const [emailTemplates, setEmailTemplates] = useState<IEmailTemplate[]>([]);
   const [response, setResponse] = useState<IPrevState>({});
@@ -112,7 +114,7 @@ export default function MappedEmailsConfigurationPage() {
         />
         <Button className='submitButton' type='submit' text={translation("saveChanges")} />
       </form>
-      {showModal.error && (
+      {showModal.error && !tutorialRunning && (
         <Modal
           type='error'
           content={
@@ -123,7 +125,7 @@ export default function MappedEmailsConfigurationPage() {
           }
         />
       )}
-      {showModal.success && (
+      {showModal.success && !tutorialRunning && (
         <Modal
           type='success'
           content={

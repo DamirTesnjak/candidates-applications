@@ -1,53 +1,41 @@
 import { getCandidates } from '@/app/_actions/getCandidates';
 import TableComponent from '@/components/TableComponent';
-import InfoMessage from '@/components/InfoMessage/InfoMessage';
-import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
-import { getTranslations } from 'next-intl/server';
+import MessagesDisplay from '@/components/MessagesDisplay/MessagesDisplay';
 
 export default async function CandidatesPage() {
-  const translation = await getTranslations("candidates");
   const results = await getCandidates();
   const parsedResults = JSON.parse(results);
 
-  if (
-    parsedResults &&
-    parsedResults.candidates &&
-    parsedResults.candidates.length > 0
-  ) {
-    const columnsToDisplay = [
-      'profilePicture',
-      'name',
-      'curriculumVitae',
-      'phoneNumber',
-      'linkedIn',
-      'archived',
-      'hired',
-      'rejected',
-      'fired',
-      'button1',
-      'button2',
-      'button3',
-      'button4',
-      'button5',
-    ];
+  const columnsToDisplay = [
+    'profilePicture',
+    'name',
+    'curriculumVitae',
+    'phoneNumber',
+    'linkedIn',
+    'archived',
+    'hired',
+    'rejected',
+    'fired',
+    'button1',
+    'button2',
+    'button3',
+    'button4',
+    'button5',
+  ];
 
-    return (
+  return (
+    <div>
       <TableComponent
-        tableData={parsedResults.candidates}
+        tableData={parsedResults.candidates || []}
         columnsToDisplay={columnsToDisplay}
-        page={"candidates"}
+        page={'candidates'}
       />
-    );
-  }
-
-  if (
-    parsedResults &&
-    (!parsedResults.candidates || parsedResults.candidates.length === 0)
-  ) {
-    return <InfoMessage text={translation("noCandidatesFound")} />;
-  }
-
-  if (!results) {
-    return <ErrorMessage text={translation("cannotFindAnyCandidates")} />;
-  }
+      <MessagesDisplay
+        pageData='candidates'
+        page='candidates'
+        results={results}
+        parsedResults={parsedResults}
+      />
+    </div>
+  );
 }

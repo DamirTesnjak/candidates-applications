@@ -57,7 +57,8 @@
     "setupEmailTemplateMessages": "Setup email template messages",
     "overviewEmailTemplateMessages": "Overview email template messages",
     "settings": "Settings",
-    "mapEmailTemplateMessages": "Map mail template messages"
+    "mapEmailTemplateMessages": "Map mail template messages",
+    "settingsText": "Here you can configure settings. To start, visit one of the settings tabs!"
   },
   "companyEmailConfiguration": {
     "companyEmailConfiguration": "Company email configuration"

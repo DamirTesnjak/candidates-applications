@@ -8,7 +8,7 @@ const translation = await getTranslations("settings");
   return (
     <div className={styles.container}>
       <h3>{translation("settings")}</h3>
-      Test
+      {translation("settingsText")}
     </div>
   );
 }
