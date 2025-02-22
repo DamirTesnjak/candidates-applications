@@ -8,7 +8,7 @@ import { DATABASES } from '@/constants/constants';
 
 export async function verifyEmail(token: string) {
   const translation = await getTranslations('serverAction');
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_VERIFY_EMAIL: Error with connecting to the database!');

@@ -8,7 +8,7 @@ import { DATABASES } from '@/constants/constants';
 
 export async function getCandidates() {
   const translation = await getTranslations('serverAction');
-  const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
+  const Model = await connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
   if (!Model) {
     console.log('ERROR_GET_CANDIDATES: Error with connecting to the database!');

@@ -12,7 +12,7 @@ export async function getHrUserProfile() {
 
   const tokenData = await getDataFromToken();
 
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_GET_HR_PROFILE: Error with connecting to the database!');

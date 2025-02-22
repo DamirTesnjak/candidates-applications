@@ -31,7 +31,7 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
     };
   }
 
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_UPDATE_HR_USER: Error with connecting to the database!');

@@ -14,7 +14,7 @@ export async function deleteProfileInfo(formData: FormData) {
   const cookieStore = await cookies();
   const formDataObject = getFormDataObject(formData);
 
-  const Model = connectToDB(DATABASES[formDataObject.databaseName!]) as Model<
+  const Model = await connectToDB(DATABASES[formDataObject.databaseName!]) as Model<
     IHrUserSchema | ICandidateSchema
   >;
   if (!Model) {

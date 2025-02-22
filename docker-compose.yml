@@ -4,12 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "4000:3000"
     depends_on:
       - mongo
-    environment:
-      - MONGO_URL=${MONGO_URL}
-      - TOKEN_SECRET=${TOKEN_SECRET}
 
   mongo:
     image: mongo

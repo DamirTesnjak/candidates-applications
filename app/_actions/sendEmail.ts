@@ -21,7 +21,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
   const formDataObject = getFormDataObject(formData);
   const { emailTemplateType } = formDataObject;
 
-  const mappedEmailTemplatesModel = connectToDB(
+  const mappedEmailTemplatesModel = await connectToDB(
     DATABASES.mappedEmailTemplates,
   ) as Model<IMappedEmailTemplates>;
 
@@ -43,7 +43,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     };
   }
 
-  const candidatesModel = connectToDB(
+  const candidatesModel = await connectToDB(
     DATABASES.candidates,
   ) as Model<ICandidateSchema>;
 
@@ -105,7 +105,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     };
   }
 
-  const companyEmailConfigsModel = connectToDB(
+  const companyEmailConfigsModel = await connectToDB(
     DATABASES.companyEmailConfigs,
   ) as Model<ICompanyEmailSettingsSchema>;
 
@@ -127,7 +127,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     };
   }
 
-  const emailTemplateModel = connectToDB(
+  const emailTemplateModel = await connectToDB(
     DATABASES.emailTemplates,
   ) as Model<IEmailTemplateSchema>;
 
@@ -165,7 +165,7 @@ export async function sendEmail(_prevState: IPrevState, formData: FormData) {
     }
   }
 
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_GET_SEND_EMAIL_GET_HR_PROFILE: Error with connecting to the database!');

@@ -33,7 +33,7 @@ export async function createCompanyEmailConfiguration(
     };
   }
 
-  const Model = connectToDB(
+  const Model = await connectToDB(
     DATABASES.companyEmailConfigs,
   ) as Model<ICompanyEmailSettingsSchema>;
 

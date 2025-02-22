@@ -11,7 +11,7 @@ export async function mapEmailTemplates(formData: FormData) {
   const translation = await getTranslations('serverAction');
   const formDataObject = getFormDataObject(formData);
 
-  const Model = connectToDB(
+  const Model = await connectToDB(
     DATABASES.mappedEmailTemplates,
   ) as Model<IMappedEmailTemplates>;
 

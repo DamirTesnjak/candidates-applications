@@ -31,7 +31,7 @@ export async function createEmailTemplate(
     };
   }
 
-  const Model = connectToDB(DATABASES.emailTemplates);
+  const Model = await connectToDB(DATABASES.emailTemplates);
 
   if (!Model) {
     console.log(

@@ -16,7 +16,7 @@ export async function deleteEmailTemplate(
   const locale = await getLocale();
   const formDataObject = getFormDataObject(formData);
 
-  const Model = connectToDB(
+  const Model = await connectToDB(
     DATABASES.emailTemplates,
   ) as Model<IEmailTemplateSchema>;
   if (!Model) {

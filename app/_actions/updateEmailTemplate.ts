@@ -28,7 +28,7 @@ export async function updateEmailTemplate(_prevState: IPrevState, formData: Form
     }
   }
 
-    const Model = connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
+    const Model = await connectToDB(DATABASES.emailTemplates) as Model<IEmailTemplateSchema>;
 
     if (!Model) {
         console.log('ERROR_UPDATE_EMAIL_TEMPLATE: Error with connecting to the database!');

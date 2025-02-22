@@ -9,7 +9,7 @@ import { DATABASES } from '@/constants/constants';
 export async function getEmailTemplates() {
   const translation = await getTranslations('serverAction');
 
-  const Model = connectToDB(
+  const Model = await connectToDB(
     DATABASES.emailTemplates,
   ) as Model<IEmailTemplateSchema>;
 

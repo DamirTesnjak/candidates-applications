@@ -24,7 +24,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
   const translation = await getTranslations('serverAction');
   const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
 
   if (!Model) {
     console.log('ERROR_SEND_EMAIL: Error with connecting to the database!');
@@ -46,7 +46,7 @@ const sendEmail = async ({ email, emailType, userId }: ISendEmail) => {
     });
   }
 
-  const companyEmailConfigsModel = connectToDB(
+  const companyEmailConfigsModel = await connectToDB(
     DATABASES.companyEmailConfigs,
   ) as Model<ICompanyEmailSettingsSchema>;
 
@@ -134,7 +134,7 @@ export const createHrUser = async (
     };
   }
 
-  const Model = connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
+  const Model = await connectToDB(DATABASES.hrUsers) as Model<IHrUserSchema>;
   if (!Model) {
     console.log('ERROR_CREATE_HR_USER: Error with connecting to the database!');
     return {

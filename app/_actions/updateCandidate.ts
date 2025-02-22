@@ -34,7 +34,7 @@ export async function updateCandidate(
     };
   }
 
-  const Model = connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
+  const Model = await connectToDB(DATABASES.candidates) as Model<ICandidateSchema>;
 
   if (!Model) {
     console.log(

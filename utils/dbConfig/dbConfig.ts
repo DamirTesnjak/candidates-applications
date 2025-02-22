@@ -6,13 +6,14 @@ import companyEmailSettingsSchema from '@/utils/dbConfig/models/companyEmailSett
 import mappedEmailTemplates from '@/utils/dbConfig/models/mappedEmailTemplates';
 import { DATABASES } from '@/constants/constants';
 
-export function connectToDB(database: string) {
+export async function connectToDB(database: string) {
   try {
-    console.log(
-      `${process.env.MONGO_URL!}/${database}`,
-      `${process.env.MONGO_URL!}/${database}`,
-    );
-    const connection = createConnection(`${process.env.MONGO_URL}/${database}`);
+    const connection = await createConnection(`${process.env.MONGO_URL}/${database}`)
+      .asPromise();
+
+    if (connection.readyState === 0) {
+      return undefined;
+    }
 
     let Model;
 
@@ -50,7 +51,6 @@ export function connectToDB(database: string) {
       console.log(
         `Cannot connect to database ${database}! Please make sure MongoDB is running ${err}.`,
       );
-      process.exit();
     });
     return Model;
   } catch (err) {
