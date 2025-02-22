@@ -140,7 +140,6 @@ export default function TutorialFeature() {
         run={run}
         continuous
         scrollToFirstStep
-        showSkipButton
         locale={{
           back: translation('back'),
           close: translation('close'),
@@ -162,8 +161,18 @@ export default function TutorialFeature() {
         }}
         callback={(data) => {
           const { status } = data;
+          console.log('data', data);
           const finishedStatuses = ['finished'];
+          if (finishedStatuses.includes(status)) {
+            setRun(false);
+          }
+          if (data.action === ACTIONS.CLOSE || data.action === ACTIONS.SKIP) {
+            dispatch(updateTutorialData({ tutorialRunning: false }));
+            setRun(false);
+            return
+          }
           if (
+            tutorialRunning &&
             locations.length === 1 &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/candidates'
@@ -171,24 +180,28 @@ export default function TutorialFeature() {
             router.push('/settings');
           }
           if (
+            tutorialRunning &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings'
           ) {
             router.push('/settings/companyEmailConfiguration');
           }
           if (
+            tutorialRunning &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/companyEmailConfiguration'
           ) {
             router.push('/settings/setupEmailTemplateMessages');
           }
           if (
+            tutorialRunning &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/setupEmailTemplateMessages'
           ) {
             router.push('/settings/overviewEmailTemplateMessages');
           }
           if (
+            tutorialRunning &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/overviewEmailTemplateMessages'
           ) {
@@ -199,6 +212,7 @@ export default function TutorialFeature() {
             router.push('/settings/mapTemplateMessages');
           }
           if (
+            tutorialRunning &&
             data.type === EVENTS.TARGET_NOT_FOUND &&
             location === '/settings/mapTemplateMessages'
           ) {
@@ -209,13 +223,6 @@ export default function TutorialFeature() {
             location === '/candidates'
           ) {
             dispatch(updateTutorialData({ tutorialRunning: false }));
-          }
-          if (data.action === ACTIONS.CLOSE || data.status === STATUS.SKIPPED) {
-            dispatch(updateTutorialData({ tutorialRunning: false }));
-            setRun(false);
-          }
-          if (finishedStatuses.includes(status)) {
-            setRun(false);
           }
         }}
       />
