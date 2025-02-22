@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Joyride, { ACTIONS, STATUS, EVENTS } from 'react-joyride';
+import Joyride, { ACTIONS, EVENTS } from 'react-joyride';
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import HelpIcon from '@mui/icons-material/Help';
