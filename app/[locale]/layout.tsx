@@ -26,6 +26,7 @@ import Header from '@/components/Header/Header';
 import SetDataToStore from '@/components/SetDataToStore/SetDataToStore';
 import { DATABASES } from '@/constants/constants';
 import { getHrUserProfile } from '@/app/_actions/getHrUserProfile';
+import TawkChatPosition from '@/components/ChatWrapper/TawkChatPosition';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -75,6 +76,15 @@ export default async function LocaleLayout({
               <div id='modal' />
         </AppRouterCacheProvider>
       </NextIntlClientProvider>
+      <TawkChatPosition
+        overridePosition
+        displayChat
+        propId="67bc764563883a190f88e78b"
+        widgetId="1iks2s06d"
+        topRight={{
+          top: 600,
+          right: 50,
+        }} />
       </body>
     </html>
   );

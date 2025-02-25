@@ -2,11 +2,15 @@
 
 import { useState, useCallback, useEffect } from 'react';
 
-export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft, buttonMobilePosition, mobile }: {
+export default function TawkChatPosition({ propId, widgetId, overridePosition, topLeft, topRight, bottomRight, bottomLeft, buttonMobilePosition, displayChat, mobile }: {
+  propId: string;
+  widgetId: string;
+  overridePosition: boolean;
   topLeft?: { top: number; left: number; };
   topRight?: { top: number; right: number; };
   bottomRight?: { bottom: number; right: number; };
   bottomLeft?: { bottom: number; left: number; };
+  displayChat: boolean;
   mobile?: boolean;
   buttonMobilePosition?: {
     top?: number;
@@ -37,7 +41,15 @@ export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft
 
   if (window.Tawk_API) {
     window.Tawk_API.onLoad = function () {
-      setStyleProps()
+      if (
+        displayChat &&
+        overridePosition && (
+        (topLeft && topLeft.left && topLeft.top) ||
+        (topRight && topRight.right && topRight.top) ||
+        (bottomRight && bottomRight.bottom && bottomRight.right) ||
+        (bottomLeft && bottomLeft.bottom && bottomLeft.left))) {
+        setStyleProps()
+      }
     };
 
     // Track when the chat is opened
@@ -68,28 +80,40 @@ export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft
   }) => {
     if (!mobile) {
       chatWindow.style.position = 'absolute';
-      chatWindow.style.marginBottom = chatButtonHeight + 'px';
-
       chatWrapper.style.position = 'absolute';
-      chatWrapper.style.height = chatWindowHeight + chatButtonHeight + 10 + 'px';
+      chatWrapper.style.height = chatWindowHeight + (chatButtonHeight*2) + 'px';
       chatWrapper.style.width = chatWindowWidth + 'px';
 
       if (topLeft) {
+        chatButton.style.left = 10 + 'px';
         chatWrapper.style.top = topLeft.top + 'px';
         chatWrapper.style.left = topLeft.left + 'px';
+        if (chatWrapper.clientHeight > topLeft.top) {
+          const chatWindowTop = chatButton.clientHeight + 10;
+          chatWindow.style.top = chatWindowTop + 'px';
+          chatButton.style.top = 0 + 'px';
+        }
       }
 
       if (topRight) {
+        chatButton.style.right = 10 + 'px';
         chatWrapper.style.top = topRight.top + 'px';
         chatWrapper.style.right = topRight.right + 'px';
+        if (chatWrapper.clientHeight > topRight.top) {
+          const chatWindowTop = chatButton.clientHeight + 10;
+          chatWindow.style.top = chatWindowTop + 'px';
+          chatButton.style.top = 0 + 'px';
+        }
       }
 
       if (bottomRight) {
+        chatButton.style.right = 10 + 'px';
         chatWrapper.style.bottom = bottomRight.bottom + 'px';
         chatWrapper.style.right = bottomRight.right + 'px';
       }
 
       if (bottomLeft) {
+        chatButton.style.left = 10 + 'px';
         chatWrapper.style.bottom = bottomLeft.bottom + 'px';
         chatWrapper.style.left = bottomLeft.left + 'px';
       }
@@ -122,7 +146,7 @@ export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft
     chatButton.style.position = 'absolute';
     const chatButtonHeight = chatButton.clientHeight;
 
-    const chatWindowWidth = chatWindow.clientWidth;
+    const chatWindowWidth = chatWindow.clientWidth + 10; // padding included
     const chatWindowHeight = chatWindow.clientHeight;
 
     setChatPosition({
@@ -139,6 +163,7 @@ export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft
   };
 
   useEffect(() => {
+    if (displayChat) {
       const chatWindow = (document.getElementsByClassName('open')[0] ||
         document.getElementsByClassName('closed')[0]) as HTMLElement;
       const chatWrapper = document.getElementById('chatWrapper')!;
@@ -159,18 +184,19 @@ export default function ChatWrapper({ topLeft, topRight, bottomRight, bottomLeft
           chatWrapper,
         });
       }
-  }, [chatOpened, setChatPosition]);
+    }
+  }, [chatOpened, displayChat, setChatPosition]);
 
   useEffect(() => {
     if (!chatElement) {
       const s1 = document.createElement('script'),
         s0 = document.getElementsByTagName('body')[0];
       s1.async = true;
-      s1.src = 'https://embed.tawk.to/67bc764563883a190f88e78b/1iks2s06d';
+      s1.src = `https://embed.tawk.to/${propId}/${widgetId}`;
       s1.setAttribute('crossorigin', '*');
       s0.appendChild(s1);
     }
-  }, [chatElement]);
+  }, [chatElement, propId, widgetId]);
 
   return <div id='chatWrapper' className='chatWrapper'></div>;
 }
