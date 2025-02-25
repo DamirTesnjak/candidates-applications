@@ -82,7 +82,7 @@ export default async function LocaleLayout({
         propId="67bc764563883a190f88e78b"
         widgetId="1iks2s06d"
         topRight={{
-          top: 600,
+          top: 50,
           right: 50,
         }} />
       </body>
