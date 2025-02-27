@@ -1,3 +1,5 @@
+@use "include-media" as media;
+
 /* SCSS HEX */
 $sail: #add7f6;
 $hover: #87bfff;
@@ -41,7 +43,6 @@ $table-font-color: #6c757d;
 /* App logo */
 $app-logo-color: $primary-color;
 
-
 .body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   line-height: 1.6;
@@ -49,7 +50,6 @@ $app-logo-color: $primary-color;
 
   a {
     display: block;
-    width: 100%;
     color: $primary-color;
     font-weight: 500;
     text-align: left;
