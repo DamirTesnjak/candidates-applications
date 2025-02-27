@@ -5,7 +5,7 @@
   grid-template-columns: 150px 1fr;
 
   @include mediaQuery.media("<desktop") {
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: auto 50px 1fr;
     grid-template-columns: 1fr;
   }
 }
