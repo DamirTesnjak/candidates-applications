@@ -8,13 +8,12 @@ export interface IcheckFormValidationArgs {
   skipFileUploadValidation?: boolean;
 }
 
-export default function checkFormValidation({
+export default async function checkFormValidation({
   formData,
   formDataObject,
-  errorMessage,
   skipFileUploadValidation,
 }: IcheckFormValidationArgs) {
-  const validatedFields = formValidation(formData, skipFileUploadValidation);
+  const validatedFields = await formValidation(formData, skipFileUploadValidation);
 
   if (!validatedFields.success) {
     const errorFieldValidation: { [x: string]: string } = {};

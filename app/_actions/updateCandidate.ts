@@ -19,7 +19,7 @@ export async function updateCandidate(
 
   // Return early if the form data is invalid
   const { errorFieldValidation, error, prevStateFormData } =
-    checkFormValidation({
+    await checkFormValidation({
       formData,
       formDataObject,
       errorMessage: 'ERROR_UPDATE_CANDIDATE: inputField validation error',

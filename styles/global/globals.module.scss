@@ -1,13 +1,9 @@
+@use "include-media" as media;
+
 /* SCSS HEX */
-$sail: #add7f6;
-$hover: #87bfff;
-$background-color-input: #3f8efc;
 $purple-heart: #3b28cc;
 $background-color: #eeeeee;
 $submit-button-background-color: #ffb600;
-$light-blue: #d7f1ff ;
-
-
 $white: #fff;
 $black: #000;
 $red: #fa5c7c;
@@ -17,9 +13,17 @@ $primary-color: #727cf5;
 
 /* Buttons */
 $button-primary-background-color: $primary-color;
+$button-primary-background-color-hover: #a0a7f8;
+$button-primary-background-color-pressed: #2839f0;
 $button-primary-font-color: #fff;
 $button-text-font-color: #6c757d;
 $button-text-background-color-hover: #f6f7fb;
+
+$submit-button-background-color-hover: #ffe299;
+$submit-button-background-color-pressed: #ffcc4d;
+$delete-button-background-color-hover: #ffb3b3;
+$delete-button-background-color-pressed: #b30000;
+
 
 /* Input */
 $input-background-color: #fff;
@@ -41,7 +45,6 @@ $table-font-color: #6c757d;
 /* App logo */
 $app-logo-color: $primary-color;
 
-
 .body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   line-height: 1.6;
@@ -49,7 +52,6 @@ $app-logo-color: $primary-color;
 
   a {
     display: block;
-    width: 100%;
     color: $primary-color;
     font-weight: 500;
     text-align: left;

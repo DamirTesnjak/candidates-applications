@@ -1,4 +1,5 @@
 @use "styles/global/globals.module.scss" as globals;
+@use "styles/global/include-media" as mediaQuery;
 @use "UI/Button/button.module.scss" as buttonsStyles;
 
 
@@ -23,8 +24,12 @@
 }
 
 .label {
-  width: 250px !important;
+  width: 250px;
   font-size: 15px;
+
+  @include mediaQuery.media("<desktop") {
+   width: 100px
+  }
 }
 
 .errorMessage {

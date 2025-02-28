@@ -1,10 +1,12 @@
 @use "styles/global/globals.module.scss" as globals;
+@use "styles/global/include-media" as mediaQuery;
 
 .header {
   grid-column: 1/3;
   grid-row: 1/2;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 20px;
@@ -39,6 +41,7 @@
 .profileActions {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   .profileAuthActions {
     a {

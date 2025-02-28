@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { getEmailTemplates } from '@/app/_actions/getEmailTemplates';
 import TableComponent from '@/components/TableComponent';
 import MessagesDisplay from '@/components/MessagesDisplay/MessagesDisplay';
+import styles from '@/styles/global/globals.module.scss';
 
 export default async function overviewEmailTemplateMessages() {
   const translation = await getTranslations('emailTemplatePage');
@@ -11,7 +12,7 @@ export default async function overviewEmailTemplateMessages() {
   const columnsToDisplay = ['emailType', 'button1', 'button2'];
 
   return (
-    <div>
+    <div className={styles.container}>
       <h3>{translation('emailTemplates')}</h3>
       <TableComponent
         tableData={parsedResults.emailTemplates || []}

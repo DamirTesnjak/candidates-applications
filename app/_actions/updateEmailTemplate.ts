@@ -14,7 +14,7 @@ export async function updateEmailTemplate(_prevState: IPrevState, formData: Form
   const formDataObject = getFormDataObject(formData);
 
   // Return early if the form data is invalid
-  const { errorFieldValidation, error, prevStateFormData } = checkFormValidation({
+  const { errorFieldValidation, error, prevStateFormData } = await checkFormValidation({
     formData,
     formDataObject,
     errorMessage: 'ERROR_CHECK_EMAIL_TEMPLATE: inputField validation error'

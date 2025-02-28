@@ -21,6 +21,14 @@
   font-weight: 500;
   text-transform: uppercase;
   border: none;
+
+  &:hover {
+    background-color: globals.$button-primary-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$button-primary-background-color-pressed;
+  }
 }
 
 .textButton {
@@ -53,9 +61,25 @@
   @extend .button;
   background-color: globals.$submit-button-background-color;
   color: globals.$black;
+
+  &:hover {
+    background-color: globals.$submit-button-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$submit-button-background-color-pressed;
+  }
 }
 
 .deleteButton {
   @extend .button;
   background-color: globals.$red;
+
+  &:hover {
+    background-color: globals.$delete-button-background-color-hover;
+  }
+
+  &:active {
+    background-color: globals.$delete-button-background-color-pressed;
+  }
 }

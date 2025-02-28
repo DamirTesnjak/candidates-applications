@@ -1,10 +1,12 @@
 import { z, ZodObject, ZodRawShape, ZodString } from 'zod';
 import { IFormDataType } from '@/utils/types/formDataType';
+import { getTranslations } from 'next-intl/server';
 
-export function getFormValidationSchema(
+export async function getFormValidationSchema(
   formDataObject: IFormDataType,
   skipFileUploadValidation?: boolean,
 ) {
+  const translation = await getTranslations("formValidation");
   const fieldsKeys = Object.keys(formDataObject);
   const schemaShape: {
     [x: string]: ZodString | ZodObject<ZodRawShape>;
@@ -21,18 +23,18 @@ export function getFormValidationSchema(
     ) {
       schemaShape[field] = z
         .string()
-        .min(1, { message: `${field} is required` });
+        .min(1, { message: translation("fieldRequired") });
     }
     if (field === 'password') {
       schemaShape[field] = z
         .string()
-        .min(10, { message: 'Must be 10 or more characters long' });
+        .min(10, { message: translation('mustBe10orMoreCharactersLong') });
     }
     if (field === 'email') {
       schemaShape[field] = z
         .string()
-        .min(1, { message: `${field} is required` })
-        .email({ message: 'Invalid email address' });
+        .min(1, { message: translation("fieldRequired") })
+        .email({ message: translation("invalidEmailAddress") });
     }
     if (
       (field === 'file' || field === 'profilePicture') &&
@@ -42,7 +44,7 @@ export function getFormValidationSchema(
         size: z.number(),
         type: z.string(),
         name: z.string().refine((val) => val !== 'undefined', {
-          message: `${field} is required`,
+          message: translation("fieldRequired"),
         }),
         lastModified: z.number(),
       });

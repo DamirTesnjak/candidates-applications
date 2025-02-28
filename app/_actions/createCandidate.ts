@@ -22,7 +22,7 @@ export async function createCandidate(
 
   // Return early if the form data is invalid
   const { errorFieldValidation, error, prevStateFormData } =
-    checkFormValidation({
+    await checkFormValidation({
       formData,
       formDataObject,
       errorMessage: 'ERROR_CREATE_CANDIDATE: inputField validation error',
