@@ -11,7 +11,6 @@ export interface IcheckFormValidationArgs {
 export default async function checkFormValidation({
   formData,
   formDataObject,
-  errorMessage,
   skipFileUploadValidation,
 }: IcheckFormValidationArgs) {
   const validatedFields = await formValidation(formData, skipFileUploadValidation);
