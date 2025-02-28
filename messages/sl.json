@@ -207,5 +207,10 @@
     "next": "Naprej",
     "open": "Odpri",
     "skip": "Preskoči"
+  },
+  "formValidation": {
+    "fieldRequired": "Polje je obvezno",
+    "mustBe10orMoreCharactersLong": "Mora biti več kot 10 znakov dolgo",
+    "invalidEmailAddress": "Neveljaven e-pošni naslov"
   }
 }

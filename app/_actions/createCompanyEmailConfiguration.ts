@@ -18,7 +18,7 @@ export async function createCompanyEmailConfiguration(
 
   // Return early if the form data is invalid
   const { errorFieldValidation, error, prevStateFormData } =
-    checkFormValidation({
+    await checkFormValidation({
       formData,
       formDataObject,
       errorMessage:

@@ -16,7 +16,7 @@ export async function updateHrUser(_prevState: IPrevState, formData: FormData) {
 
   // Return early if the form data is invalid
   const { errorFieldValidation, error, prevStateFormData } =
-    checkFormValidation({
+    await checkFormValidation({
       formData,
       formDataObject,
       errorMessage: 'ERROR_UPDATE_HR_USER: inputField validation error',

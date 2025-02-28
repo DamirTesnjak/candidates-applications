@@ -207,5 +207,10 @@
     "next": "Next",
     "open": "Open",
     "skip": "Skip"
+  },
+  "formValidation": {
+    "fieldRequired": "Field is required",
+    "mustBe10orMoreCharactersLong": "Must be 10 or more characters long",
+    "invalidEmailAddress": "Invalid email address"
   }
 }

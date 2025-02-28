@@ -41,6 +41,7 @@
 .profileActions {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   .profileAuthActions {
     a {
