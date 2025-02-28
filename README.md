@@ -43,3 +43,14 @@ To run as nodejs server you must have installed Node on your computer.
   and will pull Mongo image for the app's database
 
 - When both images are running, visit the app at http://localhost:4000
+
+## Usage
+
+This is the simple NextJS app of viewing candidates, applying for a job. This app is running on your local environment as
+NodeJS server or as a docker container, depending on installation. As in real application you must
+register then login to use it. All data and profile credentials ate saved on your local database.
+
+After you logged in click the button TUTORIAL (top right corner of a page) to start simple introduction about setting app
+necessary configurations in the app.  
+
+App supports English, Slovenian, and Croatian language
