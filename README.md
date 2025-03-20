@@ -50,8 +50,8 @@ This is the simple NextJS app of viewing candidates, applying for a job. This ap
 NodeJS server or as a docker container, depending on installation. As in real application you must
 register then login to use it. All data and profile credentials ate saved on your local database.
 
-After you logged in click the button TUTORIAL (top right corner of a page) to start simple introduction about setting app
-necessary configurations in the app.  
+After you logged in click the button TUTORIAL (top right corner of a page) to start simple introduction about setting the app with
+necessary configurations.  
 
 App supports English, Slovenian, and Croatian language
 
