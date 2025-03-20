@@ -54,3 +54,5 @@ After you logged in click the button TUTORIAL (top right corner of a page) to st
 necessary configurations in the app.  
 
 App supports English, Slovenian, and Croatian language
+
+### When registering the new user, please upload the picture and fill in entire form! Only then registration will be successful ###
